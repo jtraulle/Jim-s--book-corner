@@ -1,0 +1,1 @@
+Ce module ne fait rien de pariculier.
