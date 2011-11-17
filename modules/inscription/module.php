@@ -40,14 +40,6 @@ class inscription extends Module{
 			$this->site->ajouter_message('tout s\'est bien passé dans le formulaire précédent');			
 			$this->site->redirect('index');
 		}
-			
-
-
-
 	}
-
-
-
-
 }
 ?>

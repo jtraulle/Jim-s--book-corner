@@ -1,23 +1,36 @@
 <?php
-class Membre extends Table{
-	
-	
-		public $id;
-		public $mail;
-		public $nom;
-		public $prenom;
-		public $login;
+class Emprunteur extends Table{
+		public $numEmprunteur;
+		public $nomEmprunteur;
+		public $prenomEmprunteur;
+		public $numRueEmprunteur;
+		public $nomRueEmprunteur;
+		public $villeEmprunteur;
+		public $codePostalEmprunteur;
+		public $identifiantEmprunteur;
+		public $mdpEmprunteur;
+		public $telFixeEmprunteur;
+		public $telPortableEmprunteur;
+		public $emailEmprunteur
+
 		//etc.
 
 		
 		//fonctions publiques---------------------------------------------------------------		
-		public function __construct($login,$nom,$prenom,$mail,$pass,$id=-1){
-			$this->mail=$mail;
-			$this->nom=$nom;
-			$this->prenom=$prenom;
-			$this->pass=$pass;
-			$this->login=$login;
-			$this->id=$id;
+		public function __construct($nomEmprunteur,$prenomEmprunteur, $numRueEmprunteur, $nomRueEmprunteur, $villeEmprunteur, $codePostalEmprunteur, $identifiantEmprunteur, $mdpEmprunteur, $telFixeEmprunteur, $telPortableEmprunteur, $numEmprunteur=-1) {
+			$this->numEmprunteur = $numEmprunteur;
+			$this->nomEmprunteur = $nomEmprunteur;
+			$this->prenomEmprunteur = $prenomEmprunteur;
+			$this->numRueEmprunteur = $numRueEmprunteur;
+			$this->nomRueEmprunteur = $nomRueEmprunteur;
+			$this->villeEmprunteur = $villeEmprunteur;
+			$this->codePostalEmprunteur = $codePostalEmprunteur;
+			$this->identifiantEmprunteur = $identifiantEmprunteur;
+			$this->mdpEmprunteur = $mdpEmprunteur;
+			$this->telFixeEmprunteur = $telFixeEmprunteur;
+			$this->telPortableEmprunteur = $telPortableEmprunteur;
+			$this->emailEmprunteur = $emailEmprunteur;
+
 			return $this;
 		}
 
