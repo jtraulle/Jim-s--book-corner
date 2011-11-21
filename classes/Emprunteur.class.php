@@ -45,19 +45,19 @@ class Emprunteur extends Table{
 
 		public function supprimer(){
 			return;
-			$sql="DELETE FROM Membre WHERE id='{$this->id}'";
+			$sql="DELETE FROM emprunteur WHERE numEmprunteur='{$this->numEmprunteur}'";
 			$this->db->exec($sql);
-			$this->id=-1;
+			$this->numEmprunteur=-1;
 		}
 		
 		public static function chercherParId($id){
-			$sql="SELECT * from Membres WHERE id=?";
+			$sql="SELECT * from emprunteur WHERE numEmprunteur=?";
 			$res=$this->db->prepare($sql);
 			$r=$res->execute(array($id));
 			//gérer les erreurs éventuelles
 
-			$m= $r->fetch();			
-			return new Membre($m[1],$m[2],$m[3],$m[4],$m[5],$m[0]);			
+			$e= $r->fetch();			
+			return new Emprunteur($e[1],$e[2],$e[3],$e[4],$e[5],$e[6],$e[7],$e[8],$e[9],$e[10],$e[11],$e[0]);
 		}
 		public function chercherParNom(){}
 		public function liste(){}   		
@@ -68,14 +68,14 @@ class Emprunteur extends Table{
 		//fonctions privées-----------------------------------------------
 		function inserer(){
 			return;
-			$sql="INSERT INTO Membres VALUES('','{$this->login}','{$this->nom}','{$this->prenom}','{$this->mail}','{$this->pass}')";
+			$sql="INSERT INTO emprunteur VALUES('','{$this->nomEmprunteur}','{$this->prenomEmprunteur}','{$this->numRueEmprunteur}','{$this->nomRueEmprunteur}','{$this->villeEmpruneur}','{$this->codePostalEmprunteur}','{$this->identifiantEmprunteur}','{$this->mdpEmprunteur}','{$this->telFixeEmprunteur}','{$this->telPortableEmprunteur}','{$this->emailEmprunteur}')";
 			$res=DB::sql($sql);
 			return mysql_insert_id();
 		}
 
 		function modifier(){
 			return;
-			$sql="UPDATE Membres SET login='{$this->login}',nom='{$this->nom}',prenom='{$this->prenom}',mail='{$this->mail}',pass='{$this->pass}')";
+			$sql="UPDATE emprunteur SET(nomEmprunteur='{$this->nomEmprunteur}',prenomEmprunteur='{$this->prenomEmprunteur}',numRueEmprunteur='{$this->numRueEmprunteur}',nomRueEmprunteur='{$this->nomRueEmprunteur}',villeEmpruneur='{$this->villeEmpruneur}',codePostalEmprunteur='{$this->codePostalEmprunteur}',identifiantEmprunteur='{$this->identifiantEmprunteur}',mdpEmprunteur='{$this->mdpEmprunteur}',telFixeEmprunteur='{$this->telFixeEmprunteur}',telPortableEmprunteur='{$this->telPortableEmprunteur}',emailEmprunteur='{$this->emailEmprunteur}')";
 
 			$res=DB::sql($sql);
 			
