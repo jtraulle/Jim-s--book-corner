@@ -57,15 +57,15 @@ class Form{
 
 	//remplissage des champs avec les valeurs issues de _REQUEST
 	function populate(){
-		echo "<h2>populate</h2>";
-		print_r($_REQUEST);echo "<br />";
+		echo "<h2>populate</h2><pre>";
+		print_r($_REQUEST);echo "</pre><br />";
 
 		foreach($this->fields as $k=>$arr){
 			$k=key($arr);
 			$f=current($arr);
 
 			if(isset($_REQUEST[$k])){
-				echo "<li>$k = ".$_REQUEST[$k]."</li>";
+				//echo "<li>$k = ".$_REQUEST[$k]."</li>";
 				if($f->type==RADIO){
 					if($f->value == $_REQUEST[$k])
 						$f->check();
