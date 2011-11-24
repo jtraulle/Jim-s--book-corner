@@ -11,13 +11,16 @@ class Emprunteur extends Table{
 		public $mdpEmprunteur;
 		public $telFixeEmprunteur;
 		public $telPortableEmprunteur;
-		public $emailEmprunteur
+		public $emailEmprunteur;
 
 		//etc.
 
 		
 		//fonctions publiques---------------------------------------------------------------		
-		public function __construct($nomEmprunteur,$prenomEmprunteur, $numRueEmprunteur, $nomRueEmprunteur, $villeEmprunteur, $codePostalEmprunteur, $identifiantEmprunteur, $mdpEmprunteur, $telFixeEmprunteur, $telPortableEmprunteur, $numEmprunteur=-1) {
+		public function __construct($nomEmprunteur, $prenomEmprunteur, $numRueEmprunteur, $nomRueEmprunteur, $villeEmprunteur, $codePostalEmprunteur, $identifiantEmprunteur, $mdpEmprunteur, $telFixeEmprunteur, $telPortableEmprunteur, $emailEmprunteur, $numEmprunteur=-1) {
+			
+			parent::__construct();
+
 			$this->numEmprunteur = $numEmprunteur;
 			$this->nomEmprunteur = $nomEmprunteur;
 			$this->prenomEmprunteur = $prenomEmprunteur;
@@ -36,10 +39,12 @@ class Emprunteur extends Table{
 
 
 		function enregistrer(){
-			if($this->id==-1)
-				$this->id=$this->inserer();			
+			if($this->numEmprunteur==-1) {
+				$this->numEmprunteur=$this->inserer();	
+				return $this->numEmprunteur;
+			}	
 			else
-				$this->modifier();
+				return $this->modifier();
 		}
 
 
@@ -67,14 +72,31 @@ class Emprunteur extends Table{
 
 		//fonctions privées-----------------------------------------------
 		function inserer(){
-			return;
-			$sql="INSERT INTO emprunteur VALUES('','{$this->nomEmprunteur}','{$this->prenomEmprunteur}','{$this->numRueEmprunteur}','{$this->nomRueEmprunteur}','{$this->villeEmpruneur}','{$this->codePostalEmprunteur}','{$this->identifiantEmprunteur}','{$this->mdpEmprunteur}','{$this->telFixeEmprunteur}','{$this->telPortableEmprunteur}','{$this->emailEmprunteur}')";
-			$res=DB::sql($sql);
-			return mysql_insert_id();
+			
+			//la requête préparée nettoie les champs avant insertion
+			$sql="INSERT INTO emprunteur VALUES('',?,?,?,?,?,?,?,?,?,?,?)";
+			
+			$res=$this->db->prepare($sql);
+			
+			$res->execute(array(
+				$this->nomEmprunteur,
+				$this->prenomEmprunteur,
+				$this->numRueEmprunteur,
+				$this->nomRueEmprunteur,
+				$this->villeEmprunteur,
+				$this->codePostalEmprunteur,
+				$this->identifiantEmprunteur,
+				$this->mdpEmprunteur,
+				$this->telFixeEmprunteur,
+				$this->telPortableEmprunteur,
+				$this->emailEmprunteur
+			));			
+			
+			return $this->db->lastInsertId();
 		}
 
 		function modifier(){
-			return;
+			
 			$sql="UPDATE emprunteur SET(nomEmprunteur='{$this->nomEmprunteur}',prenomEmprunteur='{$this->prenomEmprunteur}',numRueEmprunteur='{$this->numRueEmprunteur}',nomRueEmprunteur='{$this->nomRueEmprunteur}',villeEmpruneur='{$this->villeEmpruneur}',codePostalEmprunteur='{$this->codePostalEmprunteur}',identifiantEmprunteur='{$this->identifiantEmprunteur}',mdpEmprunteur='{$this->mdpEmprunteur}',telFixeEmprunteur='{$this->telFixeEmprunteur}',telPortableEmprunteur='{$this->telPortableEmprunteur}',emailEmprunteur='{$this->emailEmprunteur}')";
 
 			$res=DB::sql($sql);
