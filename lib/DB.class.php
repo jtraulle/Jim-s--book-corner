@@ -12,6 +12,7 @@ class DB{
 	private function __construct(){
  
 		self::$Base=new PDO("mysql:host=".DB_HOST.";dbname=".BASE,DB_USER,DB_PASS);
+		self::$Base->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
  
 	}
 	
