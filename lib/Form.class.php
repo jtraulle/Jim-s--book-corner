@@ -57,8 +57,8 @@ class Form{
 
 	//remplissage des champs avec les valeurs issues de _REQUEST
 	function populate(){
-		echo "<h2>populate</h2><pre>";
-		print_r($_REQUEST);echo "</pre><br />";
+		echo "<h6>$"."_REQUEST"."</h6><pre>";
+		print_r($_REQUEST);echo "</pre>";
 
 		foreach($this->fields as $k=>$arr){
 			$k=key($arr);

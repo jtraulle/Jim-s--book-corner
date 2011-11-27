@@ -53,18 +53,26 @@ $tpl->display('main.tpl');
 //Gestion d'erreurs
 //--------------------------------------------------------------------------------------------
 
+echo'<div class="container"><div class="row"><div class="span16">';
 
-//affichage des erreurs résiduelles
-echo "<div class='echo' style='background:#FFF9C4;border:5px red dotted;margin-top:20px'>Zone affichage debug<br />";
+if(!empty($debugs))
+{
+	//affichage des erreurs résiduelles
+	echo "<div class='alert-message error'><h5>Erreurs d'exécution</h5>";
+	foreach($debugs as $d)
+		echo "<div>$d</div>";
+	echo "</div>";
+}
 
-foreach($debugs as $d)
-	echo "<div>$d</div>";
-echo "</div>";
-//affichages parasites
-echo "<div class='echo' style='background:#FFF9C4;border:5px red dotted;margin-top:20px'>Zone affichages divers dans code";
-	echo  $echx;
-echo "</div>";
+if(!empty($echx))
+{
+	//affichages parasites
+	echo "<div class='alert-message'><h5>Informations d'exécution</h5>";
+		echo  $echx;
+	echo "</div>";	
+}
 
+echo "</div></div></div>";
 
 //gestionnaire d'exceptions
 function exc($exc){

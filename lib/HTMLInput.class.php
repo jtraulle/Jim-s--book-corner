@@ -48,14 +48,12 @@ class HTMLInput{
 		return $this;
 	}
 
-
-
 	function __toString(){
 		
 		switch($this->type){
-			case TEXT : return "<label>{$this->label}</label><input type='text' value='{$this->value}' id='{$this->id}' name='{$this->id}' />" ; break;
+			case TEXT : return "<div class='clearfix'><label for='{$this->id}'>{$this->label}</label><div class='input'><input class='xlarge' type='text' value='{$this->value}' id='{$this->id}' name='{$this->id}' /></div></div>" ; break;
 			case TEXTAREA :return "<label>{$this->label}</label><textarea id='{$this->id}' name='{$this->id}'>{$this->value}</textarea>" ; break;
-			case PASSWORD : return "<label>{$this->label}</label><input type='password' value='{$this->value}' id='{$this->id}' name='{$this->id}' />" ; break;
+			case PASSWORD : return "<div class='clearfix'><label for='{$this->id}'>{$this->label}</label><div class='input'><input class='xlarge' type='password' value='{$this->value}' id='{$this->id}' name='{$this->id}' /></div></div>" ; break;
 			case CHECK : return "<label>{$this->label}</label><input type='checkbox' ".($this->checked?"checked='checked'":'')." value='{$this->value}' id='{$this->id}' name='{$this->name}' />" ; break;
 			case RADIO : return "<label>{$this->label}</label>  <input type='radio' ".($this->checked?"checked='checked'":'')." value='{$this->value}' id='{$this->id}' name='{$this->name}' /><span>{$this->value}</span>" ; break;
 			case SELECT : $s="<label>{$this->label}</label><select id='{$this->id}' name='{$this->id}'>";

@@ -80,20 +80,21 @@ class Site{
 	 
 		switch($type){
 			case INFO: 
-				$class='info';
+				$class='alert-message info';
 			break;
 			case ERREUR: 
-				$class='erreur';
+				$class='alert-message error';
 				$message="<b>$message</b><pre>\n".self::trace(debug_backtrace())."</pre>";
 			break;
 			case OK: 
-				$class='ok';
+				$class='alert-message success';
 			break;
 			case ALERTE: 
-				$class='alerte';
+				$class='alert-message warning';
+				$message="<strong>Attention !</strong> $message";
 			break;
 			default:
-				$class='info';
+				$class='alert-message info';
 		}
 	 
 		return <<< ENDOFMESSAGE

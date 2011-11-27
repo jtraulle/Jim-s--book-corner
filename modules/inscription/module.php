@@ -30,24 +30,32 @@ class inscription extends Module{
 
 		$this->set_title("Ajouter un emprunteur");
 
-		$nouvelEmprunteur = new Emprunteur(
-			$this->req->nomEmprunteur,
-			$this->req->prenomEmprunteur, 
-			$this->req->numRueEmprunteur, 
-			$this->req->nomRueEmprunteur, 
-			$this->req->villeEmprunteur, 
-			$this->req->codePostalEmprunteur, 
-			$this->req->identifiantEmprunteur, 
-			$this->req->mdpEmprunteur, 
-			$this->req->telFixeEmprunteur, 
-			$this->req->telPortableEmprunteur,
-			$this->req->emailEmprunteur
-		);
+		if($this->req->nomEmprunteur != 'ok'){
+			$this->site->ajouter_message('Il faut taper ok dans la zone de texte Nom pour passer la validation !',1);		
+			$form=$this->session->form;
+			$form->populate();
+			$this->tpl->assign("form",$form);
+		}
+		else{
+			$nouvelEmprunteur = new Emprunteur(
+				$this->req->nomEmprunteur,
+				$this->req->prenomEmprunteur, 
+				$this->req->numRueEmprunteur, 
+				$this->req->nomRueEmprunteur, 
+				$this->req->villeEmprunteur, 
+				$this->req->codePostalEmprunteur, 
+				$this->req->identifiantEmprunteur, 
+				$this->req->mdpEmprunteur, 
+				$this->req->telFixeEmprunteur, 
+				$this->req->telPortableEmprunteur,
+				$this->req->emailEmprunteur
+			);
 
-		$nouvelEmprunteur->enregistrer();
+			$nouvelEmprunteur->enregistrer();
 
-		$this->site->ajouter_message('Le nouvel emprunteur a été ajouté avec succès =)');			
-		$this->site->redirect('index');	
+			$this->site->ajouter_message('Le nouvel emprunteur a été ajouté avec succès =)',4);			
+			$this->site->redirect('index');	
+		}
 	}
 }
 ?>
