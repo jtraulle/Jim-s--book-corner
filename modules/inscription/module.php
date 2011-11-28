@@ -7,6 +7,9 @@ class inscription extends Module{
 
 		$this->set_title("IND/IND");		
 		$f=new Form("?module=inscription&action=valide","form1");
+		$f->add_radio("rad1","r1","Civilité")->set_value("Melle");		
+		$f->add_radio("rad1","r2")->set_value("Mme");		
+		$f->add_radio("rad1","r3")->set_value("M");	
 		$f->add_text("nomEmprunteur","nomEmprunteur","Nom");
 		$f->add_text("prenomEmprunteur","prenomEmprunteur","Prénom");
 		$f->add_text("numRueEmprunteur","numRueEmprunteur","Numéro de rue");
