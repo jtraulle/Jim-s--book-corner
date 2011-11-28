@@ -9,9 +9,9 @@ class Form{
 	protected $fields;
 	protected $action='?';
 	protected $method='POST';
+        protected $erreurs;
 
-	
-	public function __construct($action,$id){
+        public function __construct($action,$id){
 		$this->id=$id;
 		$this->action=$action;
 	} 
@@ -89,12 +89,33 @@ class Form{
 	}
         
         function validate(){
+            $this->erreurs = 0;
             foreach($this->fields as $k=>$arr){
-			$k=key($arr);
-			$f=current($arr);
+                $k=key($arr);
+                $f=current($arr);
 
-			//Mettre ici le switch case permettant de verifier les conditions
+                if(isset($_REQUEST[$k])){
+                    switch ($f->rule) {
+                        case "alphaNumAccentue":
+                            if (!preg_match('#^[a-zA-ZâêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü ]{1,23}$#', $_REQUEST[$k])){
+                                $f->value = $_REQUEST[$k];
+                                $f->error = true;
+                                $this->erreurs += 1;
+                            } else { 
+                                $f->value = $_REQUEST[$k];
+                                $f->error = false;
+                            }
+                            break;
+                        case "identifiant":
+                            echo "On vérifie que c'est bien un identifiant";
+                            break;
+                        case 2:
+                            echo "i égal 2";
+                            break;
+                    }
+                }    
             }
+            echo "<h1>Nombres d'erreurs du formulaire :".$this->erreurs."</h1>";
         }
 
 	//génération HTML du formulaire

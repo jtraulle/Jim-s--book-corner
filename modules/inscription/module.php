@@ -44,7 +44,10 @@ class inscription extends Module{
 		$f->add_text(
                         "villeEmprunteur",
                         "villeEmprunteur",
-                        "Ville"
+                        "Ville",
+                        true,
+                        "alphaNumAccentue",
+                        "Vous devez saisir une chaîne alphanumérique (accents autorisés)"
                 );
 		$f->add_text(
                         "codePostalEmprunteur",
@@ -102,16 +105,15 @@ class inscription extends Module{
 	}
 
 	public function action_valide(){
+                
+                $this->set_title("Ajouter un emprunteur");
+            
+                $form=$this->session->form;
+                $form->validate();
+                $form->populate();
+                $this->tpl->assign("form",$form);
 
-		$this->set_title("Ajouter un emprunteur");
-
-		if($this->req->nomEmprunteur != 'ok'){
-			$this->site->ajouter_message('Il faut taper ok dans la zone de texte Nom pour passer la validation !',1);		
-			$form=$this->session->form;
-			$form->populate();
-			$this->tpl->assign("form",$form);
-		}
-		else{
+		/*
 			$nouvelEmprunteur = new Emprunteur(
 				$this->req->nomEmprunteur,
 				$this->req->prenomEmprunteur, 
@@ -130,7 +132,7 @@ class inscription extends Module{
 
 			$this->site->ajouter_message('Le nouvel emprunteur a été ajouté avec succès =)',4);			
 			$this->site->redirect('index');	
-		}
+		*/
 	}
 }
 ?>
