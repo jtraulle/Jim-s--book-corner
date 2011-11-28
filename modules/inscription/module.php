@@ -6,17 +6,91 @@ class inscription extends Module{
 	public function action_index(){
 		$this->set_title("IND/IND");		
 		$f=new Form("?module=inscription&action=valide","form1");
-		$f->add_text("nomEmprunteur","nomEmprunteur","Nom");
-		$f->add_text("prenomEmprunteur","prenomEmprunteur","Prénom");
-		$f->add_text("numRueEmprunteur","numRueEmprunteur","Numéro de rue");
-		$f->add_text("nomRueEmprunteur","nomRueEmprunteur","Nom de rue");
-		$f->add_text("villeEmprunteur","villeEmprunteur","Ville");
-		$f->add_text("codePostalEmprunteur","codePostalEmprunteur","Code postal");
-		$f->add_text("identifiantEmprunteur","identifiantEmprunteur","Identifiant");
-		$f->add_password("mdpEmprunteur","mdpEmprunteur","Mot de passe");
-		$f->add_text("telFixeEmprunteur","telFixeEmprunteur","Téléphone fixe");	
-		$f->add_text("telPortableEmprunteur","telPortableEmprunteur","Téléphone portable");
-		$f->add_text("emailEmprunteur","emailEmprunteur","Email");	
+		$f->add_text(
+                        "nomEmprunteur",
+                        "nomEmprunteur",
+                        "Nom",
+                        true,
+                        "alphaNumAccentue",
+                        "Vous devez saisir une chaîne alphanumérique (accents autorisés)."
+                );
+		$f->add_text(
+                        "prenomEmprunteur",
+                        "prenomEmprunteur",
+                        "Prénom",
+                        true,
+                        "alphaNumAccentue",
+                        "Vous devez saisir une chaîne alphanumérique (accents autorisés)."
+                );
+		$f->add_text(
+                        "numRueEmprunteur",
+                        "numRueEmprunteur",
+                        "Numéro de rue",
+                        true,
+                        "numeric",
+                        "Vous devez saisir une nombre."
+                );
+		$f->add_text(
+                        "nomRueEmprunteur",
+                        "nomRueEmprunteur",
+                        "Nom de rue",
+                        true,
+                        "alphaNumAccentue",
+                        "Vous devez saisir une chaîne alphanumérique (accents autorisés)"
+                );
+		$f->add_text(
+                        "villeEmprunteur",
+                        "villeEmprunteur",
+                        "Ville"
+                );
+		$f->add_text(
+                        "codePostalEmprunteur",
+                        "codePostalEmprunteur",
+                        "Code postal",
+                        true,
+                        "codePostal",
+                        "Vous devez saisir un code postal valide"
+                );
+		$f->add_text(
+                        "identifiantEmprunteur",
+                        "identifiantEmprunteur",
+                        "Identifiant",
+                        true,
+                        "identifiant",
+                        "Vous devez saisir une chaîne alphanumérique (les accents et caractères spéciaux sont interdits, longueur minimale de 6 caractères)"
+                );
+		$f->add_password(
+                        "mdpEmprunteur",
+                        "mdpEmprunteur",
+                        "Mot de passe",
+                        true,
+                        "motdepasse",
+                        "Vous devez saisir une chaîne alphanumérique (au moins une lettre et un chiffre, longueur minimale de 6 caractères)"
+                );
+		$f->add_text(
+                        "telFixeEmprunteur",
+                        "telFixeEmprunteur",
+                        "Téléphone fixe",
+                        false,
+                        "telfixe",
+                        "Saisissez un numéro de téléphone fixe valide"
+                );	
+		$f->add_text(
+                        "telPortableEmprunteur",
+                        "telPortableEmprunteur",
+                        "Téléphone portable",
+                        false,
+                        "telmobile",
+                        "Saisissez un numéro de téléphone portable valide"
+                );
+		$f->add_text(
+                        "emailEmprunteur",
+                        "emailEmprunteur",
+                        "Email",
+                        false,
+                        "email",
+                        "Saisissez un email valide"
+                );	
 		
 		$f->add_submit("Valider","sub")->set_value('Valider');		
 
