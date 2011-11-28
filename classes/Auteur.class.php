@@ -48,21 +48,29 @@ class Auteur extends Table{
 		public function desactiver(){}
 		public function activer(){}
 
-		//fonctions privées-----------------------------------------------
-		function inserer(){
-			return;
-			$sql="INSERT INTO auteur VALUES('','{$this->numAuteur}','{$this->prenomAuteur}','{$this->nomAuteur}')";
-			$res=DB::sql($sql);
-			return mysql_insert_id();
-		}
+	//fonctions privées-----------------------------------------------
+	function inserer(){
+		
+		$sql="INSERT INTO auteur VALUES('',?,?)";
+		
+		$res=$this->db->prepare($sql);
+		
+		$res->execute(array(
+			$this->prenomAuteur,
+			$this->nomAuteur
+		));			
+		
+		return $this->db->lastInsertId();
+	}
 
-		function modifier(){
-			return;
-			$sql="UPDATE auteur SET numAuteur='{$this->numAuteur}',prenomAuteur='{$this->prenomAuteur}',nom='{$this->nom}'";
-
-			$res=DB::sql($sql);
-			
-			}		
+	function modifier(){
+		$sql="UPDATE auteur SET prenomAuteur=?,nomAuteur=?";
+		$res=$this->db->prepare($sql);
+		$res->execute(array(
+			$this->prenomAuteur,
+			$this->nomAuteur
+		));		
+	}		
 
 
 			

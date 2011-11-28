@@ -53,20 +53,35 @@ class Emprunteur extends Table{
 		public function desactiver(){}
 		public function activer(){}
 
-		//fonctions privées-----------------------------------------------
-		function inserer(){
-			return;
-			$sql="INSERT INTO livre VALUES('','{$this->titreLivre}','{$this->resumeLivre}','{$this->langueLivre}','{$this->nbExemplaireLivre}','{$this->numEditeur}')";
-			$res=DB::sql($sql);
-			return mysql_insert_id();
-		}
+	//fonctions privées-----------------------------------------------
+	function inserer(){
+		
+		$sql="INSERT INTO livre VALUES('',?,?,?,?,?)";
+		
+		$res=$this->db->prepare($sql);
+		
+		$res->execute(array(
+			$this->titreLivre,
+			$this->resumeLivre,
+			$this->langueLivre,
+			$this->nbExemplaireLivre,
+			$this->numEditeur
+		));			
+		
+		return $this->db->lastInsertId();
+	}
 
-		function modifier(){
-			return;
-			$sql="UPDATE livre SET titreLivre='{$this->titreLivre}',resumeLivre='{$this->resumeLivre}',langueLivre='{$this->langueLivre}',nbExemplaireLivre='{$this->nbExemplaireLivre}',numEditeur='{$this->numEditeur}')";
-
-			$res=DB::sql($sql);	
-		}		
+	function modifier(){
+		$sql="UPDATE livre SET titreLivre=?,resumeLivre=?,langueLivre=?,nbExemplaireLivre=?,numEditeur=?";
+		$res=$this->db->prepare($sql);
+		$res->execute(array(
+			$this->titreLivre,
+			$this->resumeLivre,
+			$this->langueLivre,
+			$this->nbExemplaireLivre,
+			$this->numEditeur
+		));		
+	}	
 }
 
 ?>
