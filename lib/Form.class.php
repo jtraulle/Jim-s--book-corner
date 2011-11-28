@@ -16,25 +16,25 @@ class Form{
 		$this->action=$action;
 	} 
 
-	function add_select($name,$id,$label='&nbsp;',$options=array()){
-		$s =  new HTMLInput(SELECT,$name,$id,$label,$options);
+	function add_select($name,$id,$label,$options=array()){
+		$s = new HTMLInput(SELECT,$name,$id,$label,$options);
 		$this->fields[][$name]=$s;
 		return $s;		
 	}
 
-	function add_text($name,$id,$label='&nbsp;'){
-		$s =  new HTMLInput(TEXT,$name,$id,$label);
+	function add_text($name,$id,$label='',$required=false,$rule='',$message=''){
+		$s = new HTMLInput(TEXT,$name,$id,$label,null,$required,$rule,$message);
 		$this->fields[][$name]=$s;
 		return $s;		
 	}
 
-	function add_password($name,$id,$label='&nbsp;'){
-		$s =  new HTMLInput(PASSWORD,$name,$id,$label);
+	function add_password($name,$id,$label){
+		$s = new HTMLInput(PASSWORD,$name,$id,$label);
 		$this->fields[][$name]=$s;
 		return $s;		
 	}
 
-	function add_submit($name,$id,$label='&nbsp;'){
+	function add_submit($name,$id,$label=''){
 		$s =  new HTMLInput(SUBMIT,$name,$id,$label);
 		$this->fields[][$name]=$s;
 		return $s;		
@@ -61,6 +61,10 @@ class Form{
 		print_r($_REQUEST);
 		echo "</pre>";
 
+		echo "<h6>$"."this->fields"."</h6><pre>";
+		print_r($this->fields);
+		echo "</pre>";
+
 		foreach($this->fields as $k=>$arr){
 			$k=key($arr);
 			$f=current($arr);
@@ -76,13 +80,22 @@ class Form{
 				elseif($f->type==CHECK)
 						$f->check();
 				else{
-					$f->set_value( $_REQUEST[$k]  ) ;
+					$f->set_value($_REQUEST[$k]) ;
 				}
 			}
 			else
 				$f->check(FALSE);
 		}
 	}
+        
+        function validate(){
+            foreach($this->fields as $k=>$arr){
+			$k=key($arr);
+			$f=current($arr);
+
+			//Mettre ici le switch case permettant de verifier les conditions
+            }
+        }
 
 	//génération HTML du formulaire
 	function __toString(){

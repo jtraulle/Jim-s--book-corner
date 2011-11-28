@@ -22,15 +22,20 @@ class HTMLInput{
 	public $options;
 	public $checked=false;
 	public $selected="";
-	public $required=false;
+	public $required=false;           //Le champ est-il requis ?
+        public $rule;                     //Définir une règle pour la validation
+        public $message;                  //Message à afficher si la validation échoue
 	public $error=false;
 		
-	public function __construct($type,$name='',$id='',$label='&nbsp;',$options=array()){
+	public function __construct($type,$name='',$id='',$label='&nbsp;',$options=array(),$required=false,$rule='',$message=''){
 		$this->type=$type;
 		$this->name=$name;
 		$this->id=$id;
 		$this->label=$label;		
 		$this->options=$options;
+                $this->required = $required;
+                $this->rule = $rule;
+                $this->message = $message;
 	}
 	
 	public function check($bool=TRUE){
@@ -40,11 +45,6 @@ class HTMLInput{
 
 	public function set_value($val){
 		$this->value=htmlspecialchars($val,ENT_QUOTES);
-		return $this;
-	}
-
-	public function set_required($val=true){
-		$this->required=$val;
 		return $this;
 	}
 
