@@ -58,7 +58,8 @@ class Form{
 	//remplissage des champs avec les valeurs issues de _REQUEST
 	function populate(){
 		echo "<h6>$"."_REQUEST"."</h6><pre>";
-		print_r($_REQUEST);echo "</pre>";
+		print_r($_REQUEST);
+		echo "</pre>";
 
 		foreach($this->fields as $k=>$arr){
 			$k=key($arr);
@@ -80,10 +81,8 @@ class Form{
 			}
 			else
 				$f->check(FALSE);
-				
 		}
 	}
-
 
 	//génération HTML du formulaire
 	function __toString(){
@@ -95,6 +94,5 @@ class Form{
 		$s.="</form>";
 					
 		return $s;
-	}
- 
+	} 
 }

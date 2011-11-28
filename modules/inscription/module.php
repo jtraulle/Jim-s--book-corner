@@ -4,7 +4,6 @@ class inscription extends Module{
 	public function init(){}
 
 	public function action_index(){
-
 		$this->set_title("IND/IND");		
 		$f=new Form("?module=inscription&action=valide","form1");
 		$f->add_text("nomEmprunteur","nomEmprunteur","Nom");
@@ -23,7 +22,6 @@ class inscription extends Module{
 
 		$this->tpl->assign("form",$f);	
 		$this->session->form = $f;		
-		
 	}
 
 	public function action_valide(){
