@@ -50,7 +50,6 @@
 		{/if}
 		
 		<div id='contenu'>
-			Dans cette zone, on affiche le contenu généré par <b>{$module}->{$action}()</b>
 			<div id='module'>
 
 				{$bloc_contenu}

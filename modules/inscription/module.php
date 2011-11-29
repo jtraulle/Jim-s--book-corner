@@ -6,9 +6,8 @@ class inscription extends Module{
 	public function action_index(){
 		$this->set_title("IND/IND");		
 		$f=new Form("?module=inscription&action=valide","form1");
-		$f->add_radio("rad1","r1","Civilité")->set_value("Melle");		
-		$f->add_radio("rad1","r2")->set_value("Mme");		
-		$f->add_radio("rad1","r3")->set_value("M");	
+                $f->add_legend("leg1", "Ma belle légende");
+		$f->add_select("civilite","civilite","Civilité",array("Monsieur","Madame","Mademoiselle"));			
 		$f->add_text(
                         "nomEmprunteur",
                         "nomEmprunteur",
@@ -57,7 +56,8 @@ class inscription extends Module{
                         "codePostal",
                         "Vous devez saisir un code postal valide"
                 );
-		$f->add_text(
+                $f->add_endfieldset("endfieldset");
+                $f->add_text(
                         "identifiantEmprunteur",
                         "identifiantEmprunteur",
                         "Identifiant",
@@ -98,7 +98,7 @@ class inscription extends Module{
                         "Saisissez un email valide"
                 );	
 		
-		$f->add_submit("Valider","sub")->set_value('Valider');		
+		$f->add_submit("sub","sub")->set_value('S\'enregister');		
 
 		$this->tpl->assign("form",$f);	
 		$this->session->form = $f;		

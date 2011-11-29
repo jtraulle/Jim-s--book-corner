@@ -21,6 +21,19 @@ class Form{
 		$this->fields[][$name]=$s;
 		return $s;		
 	}
+        
+        function add_legend($name,$value){
+                $s = new HTMLInput(LEGEND,$name);
+                $s->set_value($value);
+                $this->fields[][$name]=$s;
+		return $s;		
+	}
+        
+        function add_endfieldset($name){
+                $s = new HTMLInput(FINFIELDSET,$name);
+                $this->fields[][$name]=$s;
+		return $s;		
+	}
 
 	function add_text($name,$id,$label='',$required=false,$rule='',$message=''){
 		$s = new HTMLInput(TEXT,$name,$id,$label,null,$required,$rule,$message);
