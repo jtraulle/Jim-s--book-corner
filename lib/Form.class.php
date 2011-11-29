@@ -112,11 +112,12 @@ class Form{
                         case "alphaNumAccentue":
                             if (!preg_match('#^[a-zA-ZâêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü ]{1,23}$#', $_REQUEST[$k])){
                                 $f->value = $_REQUEST[$k];
-                                $f->error = true;
+                                $f->class = "error";
                                 $this->erreurs += 1;
                             } else { 
                                 $f->value = $_REQUEST[$k];
-                                $f->error = false;
+                                $f->class = "success";
+                                $f->message = "";
                             }
                             break;
                         case "identifiant":

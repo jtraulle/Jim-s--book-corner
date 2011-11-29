@@ -6,7 +6,7 @@ class inscription extends Module{
 	public function action_index(){
 		$this->set_title("IND/IND");		
 		$f=new Form("?module=inscription&action=valide","form1");
-                $f->add_legend("leg1", "Ma belle légende");
+                $f->add_legend("leg1", "Informations personnelles");
 		$f->add_select("civilite","civilite","Civilité",array("Monsieur","Madame","Mademoiselle"));			
 		$f->add_text(
                         "nomEmprunteur",
@@ -14,7 +14,7 @@ class inscription extends Module{
                         "Nom",
                         true,
                         "alphaNumAccentue",
-                        "Vous devez saisir une chaîne alphanumérique (accents autorisés)."
+                        "Vous devez saisir une chaîne alphabétique (accents autorisés)."
                 );
 		$f->add_text(
                         "prenomEmprunteur",
@@ -22,7 +22,7 @@ class inscription extends Module{
                         "Prénom",
                         true,
                         "alphaNumAccentue",
-                        "Vous devez saisir une chaîne alphanumérique (accents autorisés)."
+                        "Vous devez saisir une chaîne alphabétique (accents autorisés)."
                 );
 		$f->add_text(
                         "numRueEmprunteur",
@@ -57,6 +57,7 @@ class inscription extends Module{
                         "Vous devez saisir un code postal valide"
                 );
                 $f->add_endfieldset("endfieldset");
+                $f->add_legend("leg2", "Informations de connexion au site");
                 $f->add_text(
                         "identifiantEmprunteur",
                         "identifiantEmprunteur",
@@ -73,6 +74,8 @@ class inscription extends Module{
                         "motdepasse",
                         "Vous devez saisir une chaîne alphanumérique (au moins une lettre et un chiffre, longueur minimale de 6 caractères)"
                 );
+                $f->add_endfieldset("endfieldset");
+                $f->add_legend("leg3", "Restons en contact");
 		$f->add_text(
                         "telFixeEmprunteur",
                         "telFixeEmprunteur",
@@ -97,7 +100,7 @@ class inscription extends Module{
                         "email",
                         "Saisissez un email valide"
                 );	
-		
+		$f->add_endfieldset("endfieldset");
 		$f->add_submit("sub","sub")->set_value('S\'enregister');		
 
 		$this->tpl->assign("form",$f);	
