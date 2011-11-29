@@ -74,9 +74,9 @@ class Form{
 		print_r($_REQUEST);
 		echo "</pre>";
 
-		echo "<h6>$"."this->fields"."</h6><pre>";
-		print_r($this->fields);
-		echo "</pre>";
+		//echo "<h6>$"."this->fields"."</h6><pre>";
+		//print_r($this->fields);
+		//echo "</pre>";
 
 		foreach($this->fields as $k=>$arr){
 			$k=key($arr);
@@ -129,7 +129,10 @@ class Form{
                     }
                 }    
             }
-            echo "<h1>Nombres d'erreurs du formulaire :".$this->erreurs."</h1>";
+            if($this->erreurs > 0) 
+                return false; 
+            else 
+                return true;
         }
 
 	//génération HTML du formulaire

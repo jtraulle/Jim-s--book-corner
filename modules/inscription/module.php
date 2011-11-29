@@ -110,11 +110,16 @@ class inscription extends Module{
 	public function action_valide(){
                 
                 $this->set_title("Ajouter un emprunteur");
-            
                 $form=$this->session->form;
-                $form->validate();
-                $form->populate();
-                $this->tpl->assign("form",$form);
+                
+                if($form->validate())
+                {
+                    
+                }else{
+                    $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
+                    $form->populate();
+                    $this->tpl->assign("form",$form);
+                }
 
 		/*
 			$nouvelEmprunteur = new Emprunteur(
