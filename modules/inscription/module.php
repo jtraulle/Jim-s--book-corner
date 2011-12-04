@@ -4,7 +4,10 @@ class inscription extends Module{
 	public function init(){}
 
 	public function action_index(){
-		$this->set_title("IND/IND");		
+		$this->set_title("IND/IND");	
+		
+		Emprunteur::liste();
+			
 		$f=new Form("?module=inscription&action=valide","form1");
                 $f->add_legend("leg1", "Informations personnelles");
 		$f->add_select("civilite","civilite","Civilité",array("Monsieur","Madame","Mademoiselle"));			
@@ -109,20 +112,12 @@ class inscription extends Module{
 
 	public function action_valide(){
                 
-                $this->set_title("Ajouter un emprunteur");
-                $form=$this->session->form;
-                
-                if($form->validate())
-                {
-                    
-                }else{
-                    $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
-                    $form->populate();
-                    $this->tpl->assign("form",$form);
-                }
-
-		/*
-			$nouvelEmprunteur = new Emprunteur(
+        $this->set_title("Ajouter un emprunteur");
+        $form=$this->session->form;
+        
+        if($form->validate())
+        {
+            $nouvelEmprunteur = new Emprunteur(
 				$this->req->nomEmprunteur,
 				$this->req->prenomEmprunteur, 
 				$this->req->numRueEmprunteur, 
@@ -135,12 +130,16 @@ class inscription extends Module{
 				$this->req->telPortableEmprunteur,
 				$this->req->emailEmprunteur
 			);
-
+            
 			$nouvelEmprunteur->enregistrer();
 
 			$this->site->ajouter_message('Le nouvel emprunteur a été ajouté avec succès =)',4);			
-			$this->site->redirect('index');	
-		*/
+			$this->site->redirect('index');	                    
+        }else{
+            $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
+            $form->populate();
+            $this->tpl->assign("form",$form);
+        }
 	}
 }
 ?>

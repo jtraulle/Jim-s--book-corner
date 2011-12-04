@@ -64,9 +64,18 @@ class Emprunteur extends Table{
 		$e= $r->fetch();			
 		return new Emprunteur($e[1],$e[2],$e[3],$e[4],$e[5],$e[6],$e[7],$e[8],$e[9],$e[10],$e[11],$e[0]);
 	}
+	
+	public function liste(){
+	    $sql="SELECT * FROM emprunteur";
+	    $reponse = $this->db->query($sql);
+	    while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+	        echo '<pre>';
+	        print_r($enregistrement);
+	        echo '</pre>';
+	    }
+	}
 
-	public function chercherParNom(){}
-	public function liste(){}   		
+	public function chercherParNom(){}  		
 	public function listerParStatut(){}
 	public function desactiver(){}
 	public function activer(){}
