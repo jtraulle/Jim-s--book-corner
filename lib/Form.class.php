@@ -122,7 +122,6 @@ class Form{
                         } else {
                             $f->value = $_REQUEST[$k];
                             $f->class = "success";
-                            $f->message = "";
                         }
                     break;
 
@@ -134,7 +133,6 @@ class Form{
                         } else {
                             $f->value = $_REQUEST[$k];
                             $f->class = "success";
-                            $f->message = "";
                         }
                     break;
 
@@ -146,7 +144,6 @@ class Form{
                         } else {
                             $f->value = $_REQUEST[$k];
                             $f->class = "success";
-                            $f->message = "";
                         }
                     break;
 
@@ -158,7 +155,6 @@ class Form{
                         } else {
                             $f->value = $_REQUEST[$k];
                             $f->class = "success";
-                            $f->message = "";
                         }
                     break;
 
@@ -170,7 +166,6 @@ class Form{
                         } else {
                             $f->value = $_REQUEST[$k];
                             $f->class = "success";
-                            $f->message = "";
                         }
                     break;
 
@@ -182,7 +177,6 @@ class Form{
                         } else {
                             $f->value = $_REQUEST[$k];
                             $f->class = "success";
-                            $f->message = "";
                         }
                     break;
 
@@ -194,7 +188,6 @@ class Form{
                         } else {
                             $f->value = $_REQUEST[$k];
                             $f->class = "success";
-                            $f->message = "";
                         }
                     break;
 
@@ -206,13 +199,12 @@ class Form{
                         } else {
                             $f->value = $_REQUEST[$k];
                             $f->class = "success";
-                            $f->message = "";
                         }
                     break;
                 }
             }
         }
-        if($this->erreurs > 0)
+        if($this->erreurs != 0)
             return false;
         else
             return true;

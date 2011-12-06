@@ -4,7 +4,7 @@ class inscription extends Module{
     public function init(){}
 
     public function action_index(){
-        $this->set_title("IND/IND");
+        $this->set_title("S'inscrire | Jim's book corner library");
 
         $f=new Form("?module=inscription&action=valide","form1");
         $f->add_legend("leg1", "Informations personnelles");
@@ -110,7 +110,8 @@ class inscription extends Module{
 
     public function action_valide(){
 
-        $this->set_title("Ajouter un emprunteur");
+        $this->set_title("S'inscrire | Jim's book corner library");
+        
         $form=$this->session->form;
 
         if($form->validate())

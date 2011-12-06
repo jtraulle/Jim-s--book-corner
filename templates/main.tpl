@@ -3,7 +3,24 @@
 	<head>
 		<title>{$titre}</title>
 		<meta http-equiv="Content-type" value="text/html; charset=utf-8">
-		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+		<script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		
+		<script type="text/javascript">
+            $(document).ready(function(){
+		        $('.help-inline').hide();   
+		        $('.error .help-inline').show();    
+		        $("input").focus( function() { 
+		            if ($(this).attr("class") != 'error')
+		                $(this).next().show();
+		        } );
+		        $("input").blur( function() { 
+		            if ($(this).attr("class") != 'error')
+		                $(this).next().hide();
+		        } );
+		     });
+		</script>
+		
+		<link rel="stylesheet" href="https://raw.github.com/twitter/bootstrap/master/bootstrap.min.css">
 
 		<style type ='text/css'>
 		input {
