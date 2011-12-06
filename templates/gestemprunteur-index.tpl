@@ -8,6 +8,7 @@
             <th>#</th>
             <th>Prénom</th>
     		<th>Nom</th>
+    		<th>Actions</th>
     	</tr>
     </thead>
 	<tbody>
@@ -17,6 +18,8 @@
             <td>{$listeEmprunteurs[emprunteurs]->numEmprunteur}</td>
             <td>{$listeEmprunteurs[emprunteurs]->prenomEmprunteur}</td>
         	<td>{$listeEmprunteurs[emprunteurs]->nomEmprunteur}</td>
+        	<td><a href="?module=gestemprunteur&action=modifier&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}">Modifier</a>            
+        	    <a href="?module=gestemprunteur&action=supprimer&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}">Supprimer</a></td>
     	</tr>
 {/section}
 

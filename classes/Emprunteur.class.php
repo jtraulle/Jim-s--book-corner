@@ -51,6 +51,7 @@ class Emprunteur extends Table{
 
     public function supprimer(){
         $sql="DELETE FROM emprunteur WHERE numEmprunteur='{$this->numEmprunteur}'";
+        $db=DB::get_instance();
         $db->exec($sql);
         $this->numEmprunteur=-1;
     }
@@ -59,10 +60,10 @@ class Emprunteur extends Table{
         $sql="SELECT * from emprunteur WHERE numEmprunteur=?";
         $db=DB::get_instance();
         $res=$db->prepare($sql);
-        $r=$res->execute(array($id));
+        $res->execute(array($id));
         //gérer les erreurs éventuelles
 
-        $e= $r->fetch();
+        $e= $res->fetch();
         return new Emprunteur($e[1],$e[2],$e[3],$e[4],$e[5],$e[6],$e[7],$e[8],$e[9],$e[10],$e[11],$e[0]);
     }
 
