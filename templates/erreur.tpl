@@ -1,22 +1,73 @@
-<div class='echo' style='background: #ffcc00;
-	background-repeat: repeat-x;
-	background-image: -moz-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -ms-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#E6B800));
-	background-image: -webkit-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: -o-linear-gradient(top, #ffcc00, #E6B800);
-	background-image: linear-gradient(top, #ffcc00, #E6B800);
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	border: 1px solid rgba(0, 0, 0, 0.2);
-	margin-bottom: 18px;
-	padding: 7px 14px;
-	color: #404040;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);'>
-<strong>Erreur :</strong> {$message|default:"Le site a rencontré un problème."}
-</div>
+<!-- start template-->
+<html>
+	<head>
+		<title>{$titre}</title>
+		<meta http-equiv="Content-type" value="text/html; charset=utf-8">
+		<script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		
+		<link rel="stylesheet" href="https://raw.github.com/twitter/bootstrap/master/bootstrap.min.css">
+
+		<style type ='text/css'>
+		input {
+			height:inherit;
+		}
+
+		.page-header {
+			-webkit-border-radius: 0px 0px 6px 6px;
+   			-moz-border-radius: 0px 0px 6px 6px;
+   			border-radius: 0px 0px 6px 6px;
+        	background-color: #f5f5f5;
+        	padding: 15px 20px 10px;
+      	}
+      	
+      	.floatleft{
+          	float: left;
+          	margin-right: 50px;
+      	}
+
+		</style>
+	</head>
+
+	<body>
+
+	<div class='container'>
+
+		<div class="content">
+
+		<div class="page-header">
+          <h1>Jim's book corner library <small>Integrated library system</small></h1>
+        </div>
+
+        <div class="row">
+          <div class="span16">
+
+		<ul class="tabs">
+  			<li class="active"><a href="?">Accueil</a></li>
+  			<li><a href="?module=gestemprunteur">Gestion emprunteurs</a></li>
+			<li><a href="?module=inscription">Inscription</a></li>
+		</ul>
+
+		{if isset($messages) }
+			{$messages}
+		{/if}
+
+		<div id='contenu'>
+			<div id='module'>
+                <div class="hero-unit">
+                        <img class="floatleft" src="http://www.picardielibre.org/upload/face_surprise.png" alt="Oops" />
+                        <h1>Ooops !</h1>
+                        <h3>Une erreur est survenue ...</h3>
+                        <p>{$message|default:"Le site a rencontré un problème."}</p>
+                        <div class="row"><div class="span-one-third offset-two-thirds"><a class="btn primary large">Retourner à l'accueil »</a></div></div>
+                  </div>
+			</div>
+		</div>
+
+		</div>
+		</div>
+		</div>
+	</div>
+	</body>
+
+</html>
+<!-- end template-->
