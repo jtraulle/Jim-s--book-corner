@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>{$titre}</title>
+		<meta http-equiv="Content-type" value="text/html; charset=utf-8">
 		<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
 
 		<style type ='text/css'>
@@ -16,6 +17,12 @@
         	background-color: #f5f5f5;
         	padding: 15px 20px 10px;
       	}
+
+      	.page-title{
+      		border-bottom : 1 px solid #cacaca;
+      		margin-bottom : 25px;
+      	}
+
 		</style>
 	</head>
 
@@ -24,7 +31,7 @@
 	<div class='container'>
 
 		<div class="content">
-		
+
 		<div class="page-header">
           <h1>Jim's book corner library <small>Integrated library system</small></h1>
         </div>
@@ -36,19 +43,17 @@
 		<div id='login'>
 			{$bloc_login}
 		</div> -->
-	
+
 		<ul class="tabs">
   			<li class="active"><a href="?">Accueil</a></li>
-			<li><a href="?module=ex1">Lien 4</a></li>
-			<li><a href="?module=ex1">Lien 3</a></li>
-			<li><a href="?module=ex1">Lien 2</a></li>
+  			<li><a href="?module=gestemprunteur">Gestion emprunteurs</a></li>
 			<li><a href="?module=inscription">Inscription</a></li>
 		</ul>
-	
-		{if isset($messages) }	
+
+		{if isset($messages) }
 			{$messages}
 		{/if}
-		
+
 		<div id='contenu'>
 			<div id='module'>
 
@@ -61,6 +66,6 @@
 		</div>
 	</div>
 	</body>
-		
+
 </html>
 <!-- end template-->
