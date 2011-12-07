@@ -128,7 +128,7 @@ class Emprunteur extends Table{
     }
 
     function modifier(){
-        $sql="UPDATE emprunteur SET nomEmprunteur=?,prenomEmprunteur=?,numRueEmprunteur=?,nomRueEmprunteur=?,villeEmprunteur=?,codePostalEmprunteur=?,identifiantEmprunteur=?,mdpEmprunteur=?,telFixeEmprunteur=?,telPortableEmprunteur=?,emailEmprunteur=? where numEmprunteur=?";
+        $sql="UPDATE emprunteur SET nomEmprunteur=?,prenomEmprunteur=?,numRueEmprunteur=?,nomRueEmprunteur=?,villeEmprunteur=?,codePostalEmprunteur=?,telFixeEmprunteur=?,telPortableEmprunteur=?,emailEmprunteur=? WHERE numEmprunteur=?";
         $res=$this->db->prepare($sql);
         $res->execute(array(
             $this->nomEmprunteur,
@@ -137,11 +137,10 @@ class Emprunteur extends Table{
             $this->nomRueEmprunteur,
             $this->villeEmprunteur,
             $this->codePostalEmprunteur,
-            $this->identifiantEmprunteur,
-            $this->mdpEmprunteur,
             $this->telFixeEmprunteur,
             $this->telPortableEmprunteur,
-            $this->emailEmprunteur
+            $this->emailEmprunteur,
+            $this->numEmprunteur
         ));
     }
 }

@@ -37,8 +37,9 @@ class Form{
         return $s;
     }
 
-    function add_text($name,$id,$label='',$required=false,$rule='',$message=''){
+    function add_text($name,$id,$label='',$required=false,$rule='',$message='',$value=''){
         $s = new HTMLInput(TEXT,$name,$id,$label,null,$required,$rule,$message);
+        $s->set_value($value);
         $this->fields[][$name]=$s;
 
         return $s;
