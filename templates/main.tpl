@@ -73,8 +73,12 @@
 
 		<ul class="tabs">
   			<li {if $module == 'index'}class="active"{/if}><a href="?">Accueil</a></li>
+  			<li {if $module == 'gestevenements'}class="active"{/if}><a href="?module=gestevenements">Événements</a></li>
   			<li {if $module == 'gestemprunteur'}class="active"{/if}><a href="?module=gestemprunteur">Gestion emprunteurs</a></li>
-			<li {if $module == 'inscription'}class="active"{/if}><a href="?module=inscription">Inscription</a></li>
+  			<li {if $module == 'gestlivre'}class="active"{/if}><a href="?module=gestlivre">Gestion livres</a></li>
+  			<li {if $module == 'gestreservations'}class="active"{/if}><a href="?module=gestreservations">Gestion réservations</a></li>
+  			<li {if $module == 'gestlivre'}class="active"{/if}><a href="?module=gestemprunts">Emprunter</a></li>
+  			<li {if $module == 'recherche'}class="active"{/if}><a href="?module=recherche">Rechercher</a></li>
 		</ul>
 
 		{if isset($messages) }
