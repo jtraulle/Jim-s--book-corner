@@ -58,7 +58,7 @@
                         <h1>Ooops !</h1>
                         <h3>Une erreur est survenue ...</h3>
                         <p>{$message|default:"Le site a rencontré un problème."}</p>
-                        <div class="row"><div class="span-one-third offset-two-thirds"><a class="btn primary large">Retourner à l'accueil »</a></div></div>
+                        <div class="row"><div class="span-one-third offset-two-thirds"><a class="btn primary large" href="?module=index">Retourner à l'accueil »</a></div></div>
                   </div>
 			</div>
 		</div>

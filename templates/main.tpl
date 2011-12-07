@@ -20,6 +20,7 @@
 		     });
 		</script>
 		
+		<link rel="shortcut icon" href="images/favicon.ico" />
 		<link rel="stylesheet" href="https://raw.github.com/twitter/bootstrap/master/bootstrap.min.css">
 
 		<style type ='text/css'>
@@ -38,6 +39,15 @@
       	.page-title{
       		border-bottom : 1 px solid #cacaca;
       		margin-bottom : 25px;
+      	}
+      	
+      	.floatleft{
+      		float: left;
+      		margin-right: 50px;
+      	}
+      	
+      	.tweak-hero{
+      	    padding: 30px;
       	}
 
 		</style>
@@ -62,9 +72,9 @@
 		</div> -->
 
 		<ul class="tabs">
-  			<li class="active"><a href="?">Accueil</a></li>
-  			<li><a href="?module=gestemprunteur">Gestion emprunteurs</a></li>
-			<li><a href="?module=inscription">Inscription</a></li>
+  			<li {if $module == 'index'}class="active"{/if}><a href="?">Accueil</a></li>
+  			<li {if $module == 'gestemprunteur'}class="active"{/if}><a href="?module=gestemprunteur">Gestion emprunteurs</a></li>
+			<li {if $module == 'inscription'}class="active"{/if}><a href="?module=inscription">Inscription</a></li>
 		</ul>
 
 		{if isset($messages) }

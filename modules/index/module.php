@@ -2,7 +2,7 @@
 class Index extends Module{
 
 	public function action_index(){
-			//ce module ne fait rien de particulier		
+        $this->set_title("Bienvenue | Jim's book corner library");
 	}
 
 	

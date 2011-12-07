@@ -18,7 +18,10 @@ class Module{
 	protected $tpl_name="";
 
 	public function init(){
-		
+	    if(!empty($this->req->module))
+		    $this->tpl->assign('module',$this->req->module);
+		else
+		    $this->tpl->assign('module','index');
 	}
 	
 	//variables de config du site
