@@ -17,6 +17,14 @@
 		            if ($(this).attr("class") != 'error')
 		                $(this).next().hide();
 		        } );
+		        $('.suppr').click(function(e) {					
+					e.preventDefault();
+					thisHref = $(this).attr('href');
+					if(confirm('Êtes vous sûr(e) de vouloir supprimer cet empunteur ?')) {
+						window.location = thisHref;
+					}
+					
+				});
 		     });
 		</script>
 		
@@ -77,7 +85,7 @@
   			<li {if $module == 'gestemprunteur'}class="active"{/if}><a href="?module=gestemprunteur">Gestion emprunteurs</a></li>
   			<li {if $module == 'gestlivre'}class="active"{/if}><a href="?module=gestlivre">Gestion livres</a></li>
   			<li {if $module == 'gestreservations'}class="active"{/if}><a href="?module=gestreservations">Gestion réservations</a></li>
-  			<li {if $module == 'gestlivre'}class="active"{/if}><a href="?module=gestemprunts">Emprunter</a></li>
+  			<li {if $module == 'gestemprunts'}class="active"{/if}><a href="?module=gestemprunts">Emprunter</a></li>
   			<li {if $module == 'recherche'}class="active"{/if}><a href="?module=recherche">Rechercher</a></li>
 		</ul>
 
