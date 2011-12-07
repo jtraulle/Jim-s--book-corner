@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Gérer les emprunteurs</h2>
+    <h2>Gérer les emprunteurs <a style="position: relative; left: 492px; top: 15px;" class="btn success" href="?module=inscription">+ Ajouter un emprunteur</a></h2>
 </div>
 
 <table class="bordered-table zebra-striped">
@@ -18,8 +18,8 @@
             <td>{$listeEmprunteurs[emprunteurs]->numEmprunteur}</td>
             <td>{$listeEmprunteurs[emprunteurs]->prenomEmprunteur}</td>
         	<td>{$listeEmprunteurs[emprunteurs]->nomEmprunteur}</td>
-        	<td><a href="?module=gestemprunteur&action=modifier&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}">Modifier</a>            
-        	    <a href="?module=gestemprunteur&action=supprimer&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}">Supprimer</a></td>
+        	<td style="width:250px;"><a style="margin-right:40px;" href="?module=gestemprunteur&action=modifier&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}"><img src="images/user_edit.png" /> Voir/Modifier</a>            
+        	    <a href="?module=gestemprunteur&action=supprimer&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}"><img src="images/user_delete.png" /> Supprimer</a></td>
     	</tr>
 {/section}
 
