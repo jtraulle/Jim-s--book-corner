@@ -113,6 +113,11 @@ class inscription extends Module{
         $this->set_title("S'inscrire | Jim's book corner library");
         
         $form=$this->session->form;
+        
+        //Si l'utilisateur essaie de passer la validation directement
+        //en tapant l'URL, on le redirige vers l'action index ;)
+        if($this->req->sub != 'S\'enregister')
+            $this->site->redirect('inscription', 'index');
 
         if($form->validate())
         {
