@@ -5,13 +5,26 @@ class gestemprunteur extends Module{
 
 	public function action_index(){
 		$this->set_title("Gérer les emprunteurs | Jim's book corner library");
-		$this->tpl->assign("listeEmprunteurs",Emprunteur::liste());
-		
+
+		$nbEnregistrementsParPage = 2;
+		$totalPages = Outils::nbPagesTotales('emprunteur',$nbEnregistrementsParPage);
+
+		if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $totalPages){
+			$pageCourante = $_GET['page'];
+		}else{
+			$pageCourante = 1;
+		}
+
+		$this->tpl->assign("totalPages",$totalPages);
+		$this->tpl->assign("pageCourante",$pageCourante);
+		$this->tpl->assign("nbenregistrementsParPage",$nbEnregistrementsParPage);
+		$this->tpl->assign("listeEmprunteurs",Emprunteur::liste($pageCourante, 2));
+
 		echo "<h6>$"."_REQUEST"."</h6><pre>";
 		print_r($_REQUEST);
 		echo "</pre>";
 	}
-	
+
 	public function action_supprimer(){
 	    $emprunteurAsuppr = Emprunteur::chercherParId($_REQUEST['id']);
 	    if(empty($emprunteurAsuppr->numEmprunteur)){
@@ -23,14 +36,14 @@ class gestemprunteur extends Module{
 	    $this->site->ajouter_message('L\'emprunteur "'.$emprunteurAsuppr->prenomEmprunteur.' '.$emprunteurAsuppr->nomEmprunteur.'" a été supprimé avec succès =)',4);
 	    $this->site->redirect('gestemprunteur','index');
 	}
-	
+
 	public function action_modifier(){
 		    $emprunteurAmodif = Emprunteur::chercherParId($_REQUEST['id']);
 		    if(empty($emprunteurAmodif->numEmprunteur)){
 		        $this->site->ajouter_message('Impossible de modifier cet emprunteur, il est inexistant !',1);
 		        $this->site->redirect('gestemprunteur','index');
 		    }
-	
+
 		    $f=new Form("?module=gestemprunteur&action=valide_modif","form1");
             $f->add_legend("leg1", "Informations personnelles");
             $f->add_select("civilite","civilite","Civilité",array("Monsieur","Madame","Mademoiselle"));
@@ -68,7 +81,7 @@ class gestemprunteur extends Module{
                 true,
                 "alphaNumAccentue",
                 "Vous devez saisir une chaîne alphanumérique (accents autorisés)",
-                $emprunteurAmodif->nomRueEmprunteur                
+                $emprunteurAmodif->nomRueEmprunteur
             );
             $f->add_text(
                 "villeEmprunteur",
@@ -78,7 +91,7 @@ class gestemprunteur extends Module{
                 "alphaNumAccentue",
                 "Vous devez saisir une chaîne alphanumérique (accents autorisés)",
                 $emprunteurAmodif->villeEmprunteur
-                
+
             );
             $f->add_text(
                 "codePostalEmprunteur",
@@ -87,9 +100,9 @@ class gestemprunteur extends Module{
                 true,
                 "codepostal",
                 "Vous devez saisir un code postal valide",
-                $emprunteurAmodif->codePostalEmprunteur                
+                $emprunteurAmodif->codePostalEmprunteur
             );
-            $f->add_endfieldset("endfieldset");            
+            $f->add_endfieldset("endfieldset");
             $f->add_legend("leg3", "Informations de contact");
             $f->add_text(
                 "telFixeEmprunteur",
@@ -120,17 +133,17 @@ class gestemprunteur extends Module{
             );
             $f->add_endfieldset("endfieldset");
             $f->add_submit("sub","sub")->set_value('Enregistrer les modifications');
-    
+
             $this->tpl->assign("form",$f);
             $this->session->idEmprunteurAmodif = $emprunteurAmodif->numEmprunteur;
             $this->session->form = $f;
 	}
-		
+
 	public function action_valide_modif(){
 	    $this->set_title("S'inscrire | Jim's book corner library");
-	            
+
         $form=$this->session->form;
-        
+
         //Si l'utilisateur essaie de passer la validation directement
         //en tapant l'URL, on le redirige vers l'action index ;)
         if($this->req->sub != 'Enregistrer les modifications')

@@ -4,30 +4,30 @@
 		<title>{$titre}</title>
 		<meta http-equiv="Content-type" value="text/html; charset=utf-8">
 		<script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		
+
 		<script type="text/javascript">
             $(document).ready(function(){
-		        $('.help-inline').hide();   
-		        $('.error .help-inline').show();    
-		        $("input").focus( function() { 
+		        $('.help-inline').hide();
+		        $('.error .help-inline').show();
+		        $("input").focus( function() {
 		            if ($(this).attr("class") != 'error')
 		                $(this).next().show();
 		        } );
-		        $("input").blur( function() { 
+		        $("input").blur( function() {
 		            if ($(this).attr("class") != 'error')
 		                $(this).next().hide();
 		        } );
-		        $('.suppr').click(function(e) {					
+		        $('.suppr').click(function(e) {
 					e.preventDefault();
 					thisHref = $(this).attr('href');
 					if(confirm('Êtes vous sûr(e) de vouloir supprimer cet empunteur ?')) {
 						window.location = thisHref;
 					}
-					
+
 				});
 		     });
 		</script>
-		
+
 		<link rel="shortcut icon" href="images/favicon.ico" />
 		<link rel="stylesheet" href="https://raw.github.com/twitter/bootstrap/master/bootstrap.min.css">
 
@@ -48,12 +48,12 @@
       		border-bottom : 1 px solid #cacaca;
       		margin-bottom : 25px;
       	}
-      	
+
       	.floatleft{
       		float: left;
       		margin-right: 50px;
       	}
-      	
+
       	.tweak-hero{
       	    padding: 30px;
       	}

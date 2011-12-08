@@ -5,7 +5,5 @@ class Index extends Module{
         $this->set_title("Bienvenue | Jim's book corner library");
 	}
 
-	
-	
-}	
+}
 ?>
