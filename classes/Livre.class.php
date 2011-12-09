@@ -47,7 +47,13 @@ class Emprunteur extends Table{
 			$l= $r->fetch();			
 			return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[0]);			
 		}
-		public function chercherParNom(){}
+		public static function chercherParNom($titreLivre){
+			$sql="SELECT * FROM livre WHERE titreLivre=$titreLivre";
+			$res=$this->db->prepare($sql);
+			$r = $res->execute(array($id));
+			$l=$r->fetch()
+			return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[0]);
+		}
 		public function liste(){}   		
 		public function listerParStatut(){}
 		public function desactiver(){}
