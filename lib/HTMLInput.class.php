@@ -28,6 +28,7 @@ class HTMLInput{
     public $rule;                     //Définir une règle pour la validation
     public $message;                  //Message à afficher si la validation échoue
     public $class='';
+	public $class2='';
 
     public function __construct($type,$name='',$id='',$label='&nbsp;',$options=array(),$required=false,$rule='',$message=''){
         $this->type=$type;
@@ -45,9 +46,11 @@ class HTMLInput{
         return $this;
     }
 
-    public function set_value($val){
+    public function set_value($val, $class=null, $class2=null){
         $this->value=htmlspecialchars($val,ENT_QUOTES);
-        return $this;
+        $this->class=htmlspecialchars($class,ENT_QUOTES);
+    	$this->class2=htmlspecialchars($class2,ENT_QUOTES);
+		return $this;
     }
 
     function __toString(){
@@ -85,13 +88,13 @@ class HTMLInput{
             case SELECT:
                 $s="<div class='clearfix'><label for='{$this->id}'>{$this->label}</label><div class='input'><select id='{$this->id}' name='{$this->id}'>";
                 foreach($this->options as $k=>$v)
-                $s.='<option '.($k===$this->value || $v===$this->value ? "selected='selected'":'').">$v</option>";
+                $s.='<option value="'.$k.'" '.($k===$this->value || $v===$this->value ? "selected='selected'":'').">$v</option>";
                 $s.="</select></div></div>";
                 return $s;
             break;
 
             case SUBMIT:
-                return "<div class='actions'><input type='submit' class='btn primary' value='{$this->value}' id='{$this->id}' name='{$this->id}' /></div>" ;
+                return "<div class='{$this->class}'><input type='submit' class='{$this->class2}' value='{$this->value}' id='{$this->id}' name='{$this->id}' /></div>" ;
             break;
 
             default:
