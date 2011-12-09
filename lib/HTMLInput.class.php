@@ -48,8 +48,10 @@ class HTMLInput{
 
     public function set_value($val, $class=null, $class2=null){
         $this->value=htmlspecialchars($val,ENT_QUOTES);
-        $this->class=htmlspecialchars($class,ENT_QUOTES);
-    	$this->class2=htmlspecialchars($class2,ENT_QUOTES);
+        if(isset($class))
+            $this->class=htmlspecialchars($class,ENT_QUOTES);
+    	if(isset($class2))
+    	    $this->class2=htmlspecialchars($class2,ENT_QUOTES);
 		return $this;
     }
 
