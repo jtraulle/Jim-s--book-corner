@@ -3,7 +3,7 @@
 	<head>
 		<title>{$titre}</title>
 		<meta http-equiv="Content-type" value="text/html; charset=utf-8">
-		<script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript"src="lib/js/jquery.min.js"></script>
 
 		<script type="text/javascript">
             $(document).ready(function(){
@@ -29,7 +29,7 @@
 		</script>
 
 		<link rel="shortcut icon" href="images/favicon.ico" />
-		<link rel="stylesheet" href="https://raw.github.com/twitter/bootstrap/master/bootstrap.min.css">
+		<link rel="stylesheet" href="lib/css/bootstrap.min.css">
 
 		<style type ='text/css'>
 		input {
@@ -56,6 +56,13 @@
 
       	.tweak-hero{
       	    padding: 30px;
+      	}
+
+      	.inline input{
+      		position: relative;
+      		left: 380px;
+      		top: -47px;
+      		margin-bottom: -40px;
       	}
 
 		</style>
