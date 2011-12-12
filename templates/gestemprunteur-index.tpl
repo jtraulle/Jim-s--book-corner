@@ -2,6 +2,8 @@
     <h2>Gérer les emprunteurs <a style="position: relative; left: 492px; top: 15px;" class="btn success" href="?module=inscription">+ Ajouter un emprunteur</a></h2>
 </div>
 
+{$champ_recherche}
+
 <table class="bordered-table zebra-striped">
     <thead>
       	<tr>

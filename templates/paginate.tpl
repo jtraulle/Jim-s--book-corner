@@ -17,7 +17,7 @@
 		{if $pageCourante < $totalPages }
 		<li class="prev"><a href="?module={$module}&action=index&page={$pageCourante+1}">Suivant &rarr;</a></li>
 		{else}
-		<li class="prev disabled"><a href="#">&larr; Précédent</a></li>
+		<li class="prev disabled"><a href="#">Suivant &rarr;</a></li>
 		{/if}
 	</ul>
 </div>

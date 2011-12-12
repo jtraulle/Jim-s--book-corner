@@ -102,7 +102,7 @@ class inscription extends Module{
             "Saisissez un email valide"
         );
         $f->add_endfieldset("endfieldset");
-        $f->add_submit("sub","sub")->set_value('S\'enregister');
+        $f->add_submit("sub","sub")->set_value('S\'enregister','actions','btn primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -111,9 +111,9 @@ class inscription extends Module{
     public function action_valide(){
 
         $this->set_title("S'inscrire | Jim's book corner library");
-        
+
         $form=$this->session->form;
-        
+
         //Si l'utilisateur essaie de passer la validation directement
         //en tapant l'URL, on le redirige vers l'action index ;)
         if($this->req->sub != 'S\'enregister')

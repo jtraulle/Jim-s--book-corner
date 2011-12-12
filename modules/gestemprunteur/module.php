@@ -6,7 +6,7 @@ class gestemprunteur extends Module{
 	public function action_index(){
 		$this->set_title("Gérer les emprunteurs | Jim's book corner library");
 
-		$nbEnregistrementsParPage = 2;
+		$nbEnregistrementsParPage = 10;
 		$totalPages = Outils::nbPagesTotales('emprunteur',$nbEnregistrementsParPage);
 
 		if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $totalPages){
@@ -18,11 +18,20 @@ class gestemprunteur extends Module{
 		$this->tpl->assign("totalPages",$totalPages);
 		$this->tpl->assign("pageCourante",$pageCourante);
 		$this->tpl->assign("nbenregistrementsParPage",$nbEnregistrementsParPage);
-		$this->tpl->assign("listeEmprunteurs",Emprunteur::liste($pageCourante, 2));
 
-		echo "<h6>$"."_REQUEST"."</h6><pre>";
-		print_r($_REQUEST);
-		echo "</pre>";
+		$listeEmprunteurs = Emprunteur::liste();
+
+		foreach($listeEmprunteurs as $emprunteur){
+			$tab[$emprunteur->numEmprunteur]=$emprunteur->nomEmprunteur.' '.$emprunteur->prenomEmprunteur;
+		}
+
+		$f=new Form("?module=gestemprunteur&action=modifier","rech");
+		$f->add_select("id","id","Recherche rapide",$tab);
+		$f->add_submit("sub","sub")->set_value('Consulter/Modifier','inline','btn');
+
+		$this->tpl->assign("champ_recherche",$f);
+
+		$this->tpl->assign("listeEmprunteurs",Emprunteur::liste($pageCourante, 10));
 	}
 
 	public function action_supprimer(){

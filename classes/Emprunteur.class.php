@@ -66,10 +66,13 @@ class Emprunteur extends Table{
         return new Emprunteur($e[1],$e[2],$e[3],$e[4],$e[5],$e[6],$e[7],$e[8],$e[9],$e[10],$e[11],$e[0]);
     }
 
-    public static function liste($pageCourante, $nbEnregistrementsParPage){
+    public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){
 
-    	//On définit notre requête (on récupère l'ensemble des enregistrements)
-        $sql="SELECT * FROM emprunteur LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+    	if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+    		$sql="SELECT * FROM emprunteur";
+    	else
+    		//On définit notre requête (on récupère l'ensemble des enregistrements)
+        	$sql="SELECT * FROM emprunteur LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
 
         //Comme on est dans un contexte statique, on récupère l'instance de la BDD
         $db=DB::get_instance();

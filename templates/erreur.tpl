@@ -1,11 +1,12 @@
 <!-- start template-->
 <html>
 	<head>
-		<title>{$titre}</title>
+		<title>Une erreur est survenue | Jim's book corner library</title>
 		<meta http-equiv="Content-type" value="text/html; charset=utf-8">
-		<script type="text/javascript"src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		
-		<link rel="stylesheet" href="https://raw.github.com/twitter/bootstrap/master/bootstrap.min.css">
+		<script type="lib/js/jquery.min.js"></script>
+
+		<link rel="shortcut icon" href="images/favicon.ico" />
+		<link rel="stylesheet" href="lib/css/bootstrap.min.css">
 
 		<style type ='text/css'>
 		input {
@@ -19,7 +20,7 @@
         	background-color: #f5f5f5;
         	padding: 15px 20px 10px;
       	}
-      	
+
       	.floatleft{
           	float: left;
           	margin-right: 50px;
@@ -58,7 +59,7 @@
 		<div id='contenu'>
 			<div id='module'>
                 <div class="hero-unit">
-                        <img class="floatleft" src="http://www.picardielibre.org/upload/face_surprise.png" alt="Oops" />
+                        <img class="floatleft" src="images/ooops.png" alt="Oops" />
                         <h1>Ooops !</h1>
                         <h3>Une erreur est survenue ...</h3>
                         <p>{$message|default:"Le site a rencontré un problème."}</p>
