@@ -44,6 +44,14 @@ class Form{
 
         return $s;
     }
+    
+    function add_textarea($name,$id,$label='',$required=false,$rule='',$message='',$value=''){
+        $s = new HTMLInput(TEXTAREA,$name,$id,$label,null,$required,$rule,$message);
+        $s->set_value($value);
+        $this->fields[][$name]=$s;
+
+        return $s;
+    }
 
     function add_password($name,$id,$label='',$required=false,$rule='',$message=''){
         $s = new HTMLInput(PASSWORD,$name,$id,$label,null,$required,$rule,$message);
