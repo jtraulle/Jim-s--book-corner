@@ -69,6 +69,50 @@ class gestlivre extends Module{
         $this->session->form = $f;
     }
     
+    public function action_modifier(){
+        
+        $livreAmodif = Livre::chercherParId($_REQUEST['id']);
+        if(empty($livreAmodif->numLivre)){
+            $this->site->ajouter_message('Impossible de modifier ce livre, il est inexistant !',1);
+            $this->site->redirect('gestlivre','index');
+        }
+        
+        $f=new Form("?module=gestlivre&action=valide_modif","form1");
+        $f->add_text(
+            "titreLivre",
+            "titreLivre",
+            "Titre du livre",
+            true,
+            "alphaNumAccentue",
+            "Vous devez saisir une chaîne alphabétique (accents autorisés).",
+            $livreAmodif->titreLivre
+        );
+        $f->add_textarea(
+            "resumeLivre",
+            "resumeLivre",
+            "Résumé du livre",
+            true,
+            null,
+            null,
+            $livreAmodif->resumeLivre
+        );
+        $f->add_select("langueLivre","langueLivre","Langue",array("Français" => "Français","Anglais" => "Anglais"),$livreAmodif->langueLivre);
+        $f->add_text(
+            "nbExemplaireLivre",
+            "nbExemplaireLivre",
+            "Nombre d'exemplaires",
+            true,
+            "numeric",
+            "Vous devez saisir le nombre d'exemplaires en stock.",
+            $livreAmodif->nbExemplaireLivre
+        );
+        $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn primary');
+
+        $this->tpl->assign("form",$f);
+        $this->session->idLivreAmodif = $livreAmodif->numLivre;
+        $this->session->form = $f;
+    }
+    
     public function action_valide(){
 
         $this->set_title("Ajouter un livre | Jim's book corner library");
@@ -100,6 +144,36 @@ class gestlivre extends Module{
         }
     }
     
+    public function action_valide_modif(){
+	    $this->set_title("Modifier un livre | Jim's book corner library");
+
+        $form=$this->session->form;
+
+        //Si l'utilisateur essaie de passer la validation directement
+        //en tapant l'URL, on le redirige vers l'action index ;)
+        if($this->req->sub != 'Enregistrer les modifications')
+            $this->site->redirect('gestlivre', 'index');
+
+        if($form->validate()){
+            $livreAmodif = new Livre(
+                $this->req->titreLivre,
+                $this->req->resumeLivre,
+                $this->req->langueLivre,
+                $this->req->nbExemplaireLivre,
+                $this->session->idLivreAmodif
+            );
+
+            $livreAmodif->enregistrer();
+
+            $this->site->ajouter_message('Le livre "'.$livreAmodif->titreLivre.'" a été modifié avec succès =)',4);
+            $this->site->redirect('gestlivre','index');
+        }else{
+            $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
+            $form->populate();
+            $this->tpl->assign("form",$form);
+        }
+	}
+
     public function action_supprimer(){
 	    $livreAsuppr = Livre::chercherParId($_REQUEST['id']);
 	    if(empty($livreAsuppr->numLivre)){

@@ -16,8 +16,9 @@ class Form{
         $this->action=$action;
     }
 
-    function add_select($name,$id,$label,$options=array()){
+    function add_select($name,$id,$label,$options=array(),$value=''){
         $s = new HTMLInput(SELECT,$name,$id,$label,$options);
+        $s->set_value($value);
         $this->fields[][$name]=$s;
         return $s;
     }
@@ -124,7 +125,7 @@ class Form{
                 switch ($f->rule) {
 
                     case "alphaNumAccentue":
-                        if (!preg_match('#^[a-zA-Z\'âêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü ]{1,23}$#', $_REQUEST[$k])){
+                        if (!preg_match('#^[a-zA-Z\'âêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü1234567890 ]{1,23}$#', $_REQUEST[$k])){
                             $f->value = $_REQUEST[$k];
                             $f->class = "error";
                             $this->erreurs += 1;

@@ -102,7 +102,6 @@
 
 		<div id='contenu'>
 			<div id='module'>
-
 				{$bloc_contenu}
 			</div>
 		</div>
