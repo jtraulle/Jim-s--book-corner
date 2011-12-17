@@ -15,6 +15,16 @@ class Outils{
 
 		return ceil($res->rowCount()/$nbEnregistrementsParPages);
 	}
+	
+	public static function getVersionBDD(){
+	    $sql="SELECT valeur FROM config WHERE identifiant='versionbdd'";
+	    
+	    $db=DB::get_instance();
+	    $res = $db->query($sql);
+	    $res = $res->fetch();
+	    	    
+	    return $res[0];
+	}
 }
 
 ?>

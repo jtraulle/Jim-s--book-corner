@@ -143,7 +143,7 @@ class gestemprunteur extends Module{
                 $emprunteurAmodif->emailEmprunteur
             );
             $f->add_endfieldset("endfieldset");
-            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications');
+            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn primary');
 
             $this->tpl->assign("form",$f);
             $this->session->idEmprunteurAmodif = $emprunteurAmodif->numEmprunteur;

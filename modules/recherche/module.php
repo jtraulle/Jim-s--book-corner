@@ -7,31 +7,16 @@ class Recherche extends Module{
 
 		$this->set_title("Recherche d'un livre");		
 		$f=new Form("?module=recherche&action=valide","form1");
-		$f->add_text("titre recherché","titre recherché:","titre :");
-		$f->add_text("auteur recherché","auteur recherché:","auteur :");
-		$f->add_select("statut","statut","statut",array("Disponible","Non Disponible"))->set_value("Disponible");
-		$f->add_submit("Valider","sub")->set_value('Valider');		
+		$f->add_text("titre","titre","Titre recherchÃ©");
+		$f->add_text("auteur","auteur","Auteur recherchÃ©");
+		$f->add_select("statut","statut","Statut",array("Disponible","IndiffÃ©rent"))->set_value("Disponible");
+		$f->add_submit("Valider","sub")->set_value('Chercher','actions','btn primary');		
 
 		$this->tpl->assign("form",$f);	
 		$this->session->form = $f;
-
-		$listeLivre = Livre::liste();
 		
 	}
 	public function action_valide(){
-
-		$this->set_title("Recherche d'un livre");
-
-		if($this->req->text1 != 'ok'){
-			$this->site->ajouter_message('la recherche fonctionne correctement');			
-			$form=$this->session->form;
-			$form->populate();
-			$this->tpl->assign("form",$form);
-		}
-		else{
-			$this->site->ajouter_message('tout s\'est bien passé dans le formulaire précédent');			
-			$this->site->redirect('index');
-		}
 			
 	}
 }

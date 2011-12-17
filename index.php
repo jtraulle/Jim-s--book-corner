@@ -45,6 +45,9 @@ $moteur->load_content($tpl);
 //récupère les affichages "parasites" (echo, print, var_dump...)
 $echx = ob_get_clean();
 
+if(Outils::getVersionBDD() != 0.8)
+    throw new Exception('<p>La structure de la base de données n\'est pas à jour ! Effectuez la mise à jour vers la dernière version à partir du fichier structure.sql</p>');
+
 //affiche le template
 $tpl->display('main.tpl');
 

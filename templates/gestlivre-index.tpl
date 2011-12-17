@@ -36,7 +36,7 @@
 <div class="alert-message block-message info">
   <p style="margin-bottom:10px;"><strong>Aucun livre à afficher</strong></p> <p>Vous n'avez encore ajouté aucun livre !<br />Vous devriez commencer par en ajouter quelques uns ...</p>
   <div class="alert-actions">
-    <a class="btn small" href="?module=gestlivre&action=ajouter">Ajouter un livre</a> <a class="btn small" href="#">Importer des données d'exemple</a>
+    <a class="btn small" href="?module=gestlivre&action=ajouter">Ajouter un livre</a>
   </div>
 </div>
 

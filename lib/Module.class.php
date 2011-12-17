@@ -17,7 +17,7 @@ class Module{
 	//nom par dfaut du template  charger
 	protected $tpl_name="";
 
-	public function init(){
+	public function init(){    
 	    if(!empty($this->req->module))
 		    $this->tpl->assign('module',$this->req->module);
 		else

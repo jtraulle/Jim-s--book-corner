@@ -107,7 +107,7 @@ class Emprunteur extends Table{
             $this->villeEmprunteur,
             $this->codePostalEmprunteur,
             $this->identifiantEmprunteur,
-            $this->mdpEmprunteur,
+            sha1($this->mdpEmprunteur),
             $this->telFixeEmprunteur,
             $this->telPortableEmprunteur,
             $this->emailEmprunteur
