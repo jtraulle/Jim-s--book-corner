@@ -2,6 +2,8 @@
     <h2>Gérer les emprunteurs <a style="position: relative; left: 492px; top: 15px;" class="btn success" href="?module=inscription">+ Ajouter un emprunteur</a></h2>
 </div>
 
+{if isset($listeEmprunteurs)}
+
 {$champ_recherche}
 
 <table class="bordered-table zebra-striped">
@@ -28,3 +30,14 @@
 </table>
 
 {include file="paginate.tpl"}
+
+{else}
+
+<div class="alert-message block-message info">
+  <p style="margin-bottom:10px;"><strong>Aucun emprunteur à afficher</strong></p> <p>Vous n'avez encore ajouté aucun emprunteur !<br />Vous devriez commencer par en ajouter quelques uns ...</p>
+  <div class="alert-actions">
+    <a class="btn small" href="?module=inscription">Ajouter un emprunteur</a> <a class="btn small" href="?module=exampledata&action=importemprunteurs">Importer des données d'exemple</a>
+  </div>
+</div>
+
+{/if}

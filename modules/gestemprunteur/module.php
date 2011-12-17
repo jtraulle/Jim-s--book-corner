@@ -21,16 +21,18 @@ class gestemprunteur extends Module{
 
 		$listeEmprunteurs = Emprunteur::liste();
 
-		foreach($listeEmprunteurs as $emprunteur){
-			$tab[$emprunteur->numEmprunteur]=$emprunteur->nomEmprunteur.' '.$emprunteur->prenomEmprunteur;
-		}
+        if(isset($listeEmprunteurs)){
+            foreach($listeEmprunteurs as $emprunteur){
+                $tab[$emprunteur->numEmprunteur]=$emprunteur->nomEmprunteur.' '.$emprunteur->prenomEmprunteur;
+            }
+                
+            $f=new Form("?module=gestemprunteur&action=modifier","rech");
+            $f->add_select("id","id","Recherche rapide",$tab);
+            $f->add_submit("sub","sub")->set_value('Consulter/Modifier','inline','btn');
 
-		$f=new Form("?module=gestemprunteur&action=modifier","rech");
-		$f->add_select("id","id","Recherche rapide",$tab);
-		$f->add_submit("sub","sub")->set_value('Consulter/Modifier','inline','btn');
-
-		$this->tpl->assign("champ_recherche",$f);
-
+            $this->tpl->assign("champ_recherche",$f);
+        }
+        
 		$this->tpl->assign("listeEmprunteurs",Emprunteur::liste($pageCourante, 10));
 	}
 

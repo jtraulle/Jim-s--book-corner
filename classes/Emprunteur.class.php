@@ -14,14 +14,11 @@ class Emprunteur extends Table{
     public $telPortableEmprunteur;
     public $emailEmprunteur;
 
-    //etc.
-
-
     //fonctions publiques---------------------------------------------------------------
     public function __construct($nomEmprunteur, $prenomEmprunteur, $numRueEmprunteur, $nomRueEmprunteur, $villeEmprunteur, $codePostalEmprunteur, $identifiantEmprunteur, $mdpEmprunteur, $telFixeEmprunteur, $telPortableEmprunteur, $emailEmprunteur, $numEmprunteur=-1) {
 
         parent::__construct();
-
+        
         $this->numEmprunteur = $numEmprunteur;
         $this->nomEmprunteur = $nomEmprunteur;
         $this->prenomEmprunteur = $prenomEmprunteur;
@@ -37,35 +34,17 @@ class Emprunteur extends Table{
 
         return $this;
     }
-
-
-    function enregistrer(){
-        if($this->numEmprunteur==-1) {
-            $this->numEmprunteur=$this->inserer();
-            return $this->numEmprunteur;
-        }
-        else
-            return $this->modifier();
-    }
-
-
-    public function supprimer(){
-        $sql="DELETE FROM emprunteur WHERE numEmprunteur='{$this->numEmprunteur}'";
-        $this->db->exec($sql);
-        $this->numEmprunteur=-1;
-    }
-
+    
     public static function chercherParId($id){
         $sql="SELECT * from emprunteur WHERE numEmprunteur=?";
         $db=DB::get_instance();
         $res=$db->prepare($sql);
         $res->execute(array($id));
-        //gérer les erreurs éventuelles
 
         $e= $res->fetch();
         return new Emprunteur($e[1],$e[2],$e[3],$e[4],$e[5],$e[6],$e[7],$e[8],$e[9],$e[10],$e[11],$e[0]);
     }
-
+    
     public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){
 
     	if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -96,16 +75,24 @@ class Emprunteur extends Table{
 
             $liste[]=$emprunteur;
         }
-
-        return $liste;
+        
+        if(isset($liste))
+            return $liste;
+        else
+            return null;
     }
 
-    public function chercherParNom(){}
-    public function listerParStatut(){}
-    public function desactiver(){}
-    public function activer(){}
-
     //fonctions privées-----------------------------------------------
+    
+    function enregistrer(){
+        if($this->numEmprunteur==-1) {
+            $this->numEmprunteur=$this->inserer();
+            return $this->numEmprunteur;
+        }
+        else
+            return $this->modifier();
+    }
+
     function inserer(){
 
         $sql="INSERT INTO emprunteur VALUES('',?,?,?,?,?,?,?,?,?,?,?)";
@@ -144,6 +131,12 @@ class Emprunteur extends Table{
             $this->emailEmprunteur,
             $this->numEmprunteur
         ));
+    }
+    
+    function supprimer(){
+        $sql="DELETE FROM emprunteur WHERE numEmprunteur='{$this->numEmprunteur}'";
+        $this->db->exec($sql);
+        $this->numEmprunteur=-1;
     }
 }
 

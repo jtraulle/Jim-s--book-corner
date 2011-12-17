@@ -20,7 +20,7 @@
 		        $('.suppr').click(function(e) {
 					e.preventDefault();
 					thisHref = $(this).attr('href');
-					if(confirm('Êtes vous sûr(e) de vouloir supprimer cet empunteur ?')) {
+					if(confirm('Êtes vous sûr(e) de vouloir supprimer cet enregistrement ?')) {
 						window.location = thisHref;
 					}
 
@@ -102,7 +102,6 @@
 
 		<div id='contenu'>
 			<div id='module'>
-
 				{$bloc_contenu}
 			</div>
 		</div>

@@ -64,7 +64,7 @@ class HTMLInput{
             break;
 
             case TEXTAREA:
-                return "<label>{$this->label}</label><textarea id='{$this->id}' name='{$this->id}'>{$this->value}</textarea>" ;
+                return "<div class='clearfix {$this->class}'><label for='{$this->id}'>{$this->label}</label><div class='input'><textarea id='{$this->id}' name='{$this->id}' class='xxlarge' rows='4'>{$this->value}</textarea><span class='help-inline'>{$this->message}</span> </div></div>" ;
             break;
 
             case LEGEND:

@@ -1,3 +1,5 @@
 lib/tpl/templates_c/
 Jim's book corner.PHPEditProject
 .DS_Store
+.geanyprj
+Params.ini.php
