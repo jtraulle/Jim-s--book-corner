@@ -1,26 +1,13 @@
--- phpMyAdmin SQL Dump
--- version 3.2.4
--- http://www.phpmyadmin.net
---
--- Serveur: localhost
--- Généré le : Dim 20 Novembre 2011 à 20:59
--- Version du serveur: 5.1.44
--- Version de PHP: 5.3.1
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
---
--- Base de données: `omgl3_pjt`
---
-CREATE DATABASE `omgl3_pjt` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `omgl3_pjt`;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `auteur`
---
-
+DROP TABLE IF EXISTS `auteur`;
 CREATE TABLE IF NOT EXISTS `auteur` (
   `numAuteur` int(10) NOT NULL AUTO_INCREMENT,
   `prenomAuteur` varchar(50) NOT NULL,
@@ -28,17 +15,7 @@ CREATE TABLE IF NOT EXISTS `auteur` (
   PRIMARY KEY (`numAuteur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Contenu de la table `auteur`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `auteur_livre`
---
-
+DROP TABLE IF EXISTS `auteur_livre`;
 CREATE TABLE IF NOT EXISTS `auteur_livre` (
   `numAuteur` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
@@ -46,17 +23,18 @@ CREATE TABLE IF NOT EXISTS `auteur_livre` (
   KEY `numLivre` (`numLivre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `auteur_livre`
---
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE IF NOT EXISTS `config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `identifiant` varchar(255) NOT NULL,
+  `valeur` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
+INSERT INTO `config` (`id`, `identifiant`, `valeur`) VALUES
+(1, 'versionbdd', '0.8');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `critiquer`
---
-
+DROP TABLE IF EXISTS `critiquer`;
 CREATE TABLE IF NOT EXISTS `critiquer` (
   `numEmprunteur` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
@@ -67,34 +45,7 @@ CREATE TABLE IF NOT EXISTS `critiquer` (
   KEY `numLivre` (`numLivre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `critiquer`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `editeur`
---
-
-CREATE TABLE IF NOT EXISTS `editeur` (
-  `numEditeur` int(10) NOT NULL AUTO_INCREMENT,
-  `editeur` varchar(50) NOT NULL,
-  PRIMARY KEY (`numEditeur`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-
---
--- Contenu de la table `editeur`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `emprunter`
---
-
+DROP TABLE IF EXISTS `emprunter`;
 CREATE TABLE IF NOT EXISTS `emprunter` (
   `numEmprunteur` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
@@ -104,17 +55,7 @@ CREATE TABLE IF NOT EXISTS `emprunter` (
   KEY `numLivre` (`numLivre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `emprunter`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `emprunteur`
---
-
+DROP TABLE IF EXISTS `emprunteur`;
 CREATE TABLE IF NOT EXISTS `emprunteur` (
   `numEmprunteur` int(10) NOT NULL AUTO_INCREMENT,
   `nomEmprunteur` varchar(50) NOT NULL,
@@ -127,20 +68,11 @@ CREATE TABLE IF NOT EXISTS `emprunteur` (
   `mdpEmprunteur` varchar(50) NOT NULL,
   `telFixeEmprunteur` varchar(10) NOT NULL,
   `telPortableEmprunteur` varchar(10) NOT NULL,
+  `emailEmprunteur` varchar(150) NOT NULL,
   PRIMARY KEY (`numEmprunteur`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Contenu de la table `emprunteur`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `evenement`
---
-
+DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
   `numEvenement` int(10) NOT NULL AUTO_INCREMENT,
   `nomEvenement` varchar(150) NOT NULL,
@@ -153,34 +85,14 @@ CREATE TABLE IF NOT EXISTS `evenement` (
   KEY `numGestionnaire` (`numGestionnaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Contenu de la table `evenement`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `genre`
---
-
+DROP TABLE IF EXISTS `genre`;
 CREATE TABLE IF NOT EXISTS `genre` (
   `numGenre` int(10) NOT NULL AUTO_INCREMENT,
   `genre` varchar(50) NOT NULL,
   PRIMARY KEY (`numGenre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Contenu de la table `genre`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `genre_livre`
---
-
+DROP TABLE IF EXISTS `genre_livre`;
 CREATE TABLE IF NOT EXISTS `genre_livre` (
   `numGenre` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
@@ -188,17 +100,7 @@ CREATE TABLE IF NOT EXISTS `genre_livre` (
   KEY `numLivre` (`numLivre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `genre_livre`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `gestionnaire`
---
-
+DROP TABLE IF EXISTS `gestionnaire`;
 CREATE TABLE IF NOT EXISTS `gestionnaire` (
   `numGestionnaire` int(10) NOT NULL AUTO_INCREMENT,
   `pseudoGestionnaire` varchar(50) NOT NULL,
@@ -210,39 +112,17 @@ CREATE TABLE IF NOT EXISTS `gestionnaire` (
   PRIMARY KEY (`numGestionnaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Contenu de la table `gestionnaire`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `livre`
---
-
+DROP TABLE IF EXISTS `livre`;
 CREATE TABLE IF NOT EXISTS `livre` (
   `numLivre` int(11) NOT NULL AUTO_INCREMENT,
   `titreLivre` varchar(150) NOT NULL,
   `resumeLivre` text NOT NULL,
   `langueLivre` varchar(50) NOT NULL,
   `nbExemplaireLivre` tinyint(4) NOT NULL,
-  `numEditeur` int(10) NOT NULL,
-  PRIMARY KEY (`numLivre`),
-  KEY `numEditeur` (`numEditeur`)
+  PRIMARY KEY (`numLivre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
---
--- Contenu de la table `livre`
---
-
-
--- --------------------------------------------------------
-
---
--- Structure de la table `reserver`
---
-
+DROP TABLE IF EXISTS `reserver`;
 CREATE TABLE IF NOT EXISTS `reserver` (
   `numEmprunteur` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
@@ -252,58 +132,30 @@ CREATE TABLE IF NOT EXISTS `reserver` (
   KEY `numLivre` (`numLivre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `reserver`
---
 
-
---
--- Contraintes pour les tables exportées
---
-
---
--- Contraintes pour la table `auteur_livre`
---
 ALTER TABLE `auteur_livre`
-  ADD CONSTRAINT `auteur_livre_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`),
-  ADD CONSTRAINT `auteur_livre_ibfk_1` FOREIGN KEY (`numAuteur`) REFERENCES `auteur` (`numAuteur`);
+  ADD CONSTRAINT `auteur_livre_ibfk_1` FOREIGN KEY (`numAuteur`) REFERENCES `auteur` (`numAuteur`),
+  ADD CONSTRAINT `auteur_livre_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
 
---
--- Contraintes pour la table `critiquer`
---
 ALTER TABLE `critiquer`
-  ADD CONSTRAINT `critiquer_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`),
-  ADD CONSTRAINT `critiquer_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`);
+  ADD CONSTRAINT `critiquer_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`),
+  ADD CONSTRAINT `critiquer_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
 
---
--- Contraintes pour la table `emprunter`
---
 ALTER TABLE `emprunter`
-  ADD CONSTRAINT `emprunter_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`),
-  ADD CONSTRAINT `emprunter_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`);
+  ADD CONSTRAINT `emprunter_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`),
+  ADD CONSTRAINT `emprunter_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
 
---
--- Contraintes pour la table `evenement`
---
 ALTER TABLE `evenement`
   ADD CONSTRAINT `evenement_ibfk_1` FOREIGN KEY (`numGestionnaire`) REFERENCES `gestionnaire` (`numGestionnaire`);
 
---
--- Contraintes pour la table `genre_livre`
---
 ALTER TABLE `genre_livre`
-  ADD CONSTRAINT `genre_livre_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`),
-  ADD CONSTRAINT `genre_livre_ibfk_1` FOREIGN KEY (`numGenre`) REFERENCES `genre` (`numGenre`);
+  ADD CONSTRAINT `genre_livre_ibfk_1` FOREIGN KEY (`numGenre`) REFERENCES `genre` (`numGenre`),
+  ADD CONSTRAINT `genre_livre_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
 
---
--- Contraintes pour la table `livre`
---
-ALTER TABLE `livre`
-  ADD CONSTRAINT `livre_ibfk_1` FOREIGN KEY (`numEditeur`) REFERENCES `editeur` (`numEditeur`);
-
---
--- Contraintes pour la table `reserver`
---
 ALTER TABLE `reserver`
-  ADD CONSTRAINT `reserver_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`),
-  ADD CONSTRAINT `reserver_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`);
+  ADD CONSTRAINT `reserver_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`),
+  ADD CONSTRAINT `reserver_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
