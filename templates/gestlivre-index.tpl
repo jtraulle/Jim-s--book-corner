@@ -11,6 +11,7 @@
       	<tr>
             <th>#</th>
             <th>Titre</th>
+            <th>Auteur</th>
     		<th>Langue</th>
     		<th>Actions</th>
     	</tr>
@@ -21,7 +22,8 @@
       	<tr>
             <td>{$listeLivres[livres]->numLivre}</td>
             <td>{$listeLivres[livres]->titreLivre}</td>
-        	<td>{$listeLivres[livres]->langueLivre}</td>
+            <td>{$listeLivres[livres]->prenomAuteur} {$listeLivres[livres]->nomAuteur}</td>
+        	<td>{if $listeLivres[livres]->langueLivre == "Anglais"}<img src="images/book_eng.png" /> {else}<img src="images/book_fre.png" /> {/if}{$listeLivres[livres]->langueLivre}</td>
         	<td style="width:250px;"><a style="margin-right:40px;" href="?module=gestlivre&action=modifier&id={$listeLivres[livres]->numLivre}"><img src="images/user_edit.png" /> Voir/Modifier</a>
         	    <a class="suppr" href="?module=gestlivre&action=supprimer&id={$listeLivres[livres]->numLivre}"><img src="images/user_delete.png" /> Supprimer</a></td>
     	</tr>

@@ -48,6 +48,16 @@ class gestlivre extends Module{
             "alphaNumAccentue",
             "Vous devez saisir une chaîne alphabétique (accents autorisés)."
         );
+        
+        $listeAuteurs = Auteur::liste();
+        
+        if(isset($listeAuteurs)){
+            foreach($listeAuteurs as $auteur){
+                $tab[$auteur->numAuteur]=$auteur->nomAuteur." ".$auteur->prenomAuteur;
+            }
+        }
+        
+        $f->add_select("numAuteur","numAuteur","Auteur",$tab);
         $f->add_textarea(
             "resumeLivre",
             "resumeLivre",
@@ -87,6 +97,17 @@ class gestlivre extends Module{
             "Vous devez saisir une chaîne alphabétique (accents autorisés).",
             $livreAmodif->titreLivre
         );
+        
+        $listeAuteurs = Auteur::liste();
+        
+        if(isset($listeAuteurs)){
+            foreach($listeAuteurs as $auteur){
+                $tab[$auteur->numAuteur]=$auteur->nomAuteur." ".$auteur->prenomAuteur;
+            }
+        }
+        
+        $f->add_select("numAuteur","numAuteur","Auteur",$tab,$livreAmodif->numAuteur);
+
         $f->add_textarea(
             "resumeLivre",
             "resumeLivre",
@@ -128,6 +149,9 @@ class gestlivre extends Module{
         {
             $nouveauLivre = new Livre(
                 $this->req->titreLivre,
+                $this->req->numAuteur,
+                null,
+                null,
                 $this->req->resumeLivre,
                 $this->req->langueLivre,
                 $this->req->nbExemplaireLivre
@@ -157,6 +181,9 @@ class gestlivre extends Module{
         if($form->validate()){
             $livreAmodif = new Livre(
                 $this->req->titreLivre,
+                $this->req->numAuteur,
+                null,
+                null,
                 $this->req->resumeLivre,
                 $this->req->langueLivre,
                 $this->req->nbExemplaireLivre,
