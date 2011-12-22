@@ -10,6 +10,9 @@ class Auteur extends Table{
 		
 		//fonctions publiques---------------------------------------------------------------		
 		public function __construct($prenomAuteur,$nomAuteur, $numAuteur=-1) {
+		
+		    parent::__construct();
+		
 			$this->numAuteur = $numAuteur;
 			$this->prenomAuteur = $prenomAuteur;
 			$this->nomAuteur = $nomAuteur;
@@ -35,18 +38,42 @@ class Auteur extends Table{
 		
 		public static function chercherParId($id){
 			$sql="SELECT * from auteur WHERE numAuteur=?";
-			$res=$this->db->prepare($sql);
-			$r=$res->execute(array($numAuteur));
-			//gérer les erreurs éventuelles
-
-			$a= $r->fetch();			
+			$db=DB::get_instance();
+	        $res=$db->prepare($sql);
+	        $res->execute(array($id));
+	
+	        $a= $res->fetch();
+		
 			return new Auteur($a[1],$a[2],$a[0]);			
 		}
-		public function chercherParNom(){}
-		public function liste(){}   		
-		public function listerParStatut(){}
-		public function desactiver(){}
-		public function activer(){}
+
+        public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){
+        
+        	if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+        		$sql="SELECT * FROM auteur";
+        	else
+        		//On définit notre requête (on récupère l'ensemble des enregistrements)
+            	$sql="SELECT * FROM auteur LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+    
+            //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+            $db=DB::get_instance();
+            $reponse = $db->query($sql);
+    
+            while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+                $auteur = new Auteur(
+                    $enregistrement['prenomAuteur'],
+                    $enregistrement['nomAuteur'],
+                    $enregistrement['numAuteur']
+                );
+    
+                $liste[]=$auteur;
+            }
+            
+            if(isset($liste))
+                return $liste;
+            else
+                return null;
+        }
 
 	//fonctions privées-----------------------------------------------
 	function inserer(){
@@ -64,11 +91,12 @@ class Auteur extends Table{
 	}
 
 	function modifier(){
-		$sql="UPDATE auteur SET prenomAuteur=?,nomAuteur=?";
+		$sql="UPDATE auteur SET prenomAuteur=?,nomAuteur=? WHERE numAuteur=?";
 		$res=$this->db->prepare($sql);
 		$res->execute(array(
 			$this->prenomAuteur,
-			$this->nomAuteur
+			$this->nomAuteur,
+			$this->numAuteur
 		));		
 	}		
 
