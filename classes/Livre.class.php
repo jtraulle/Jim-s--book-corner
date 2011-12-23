@@ -70,6 +70,43 @@ class Livre extends Table{
         else
             return null;
     }
+    
+    public static function listeParAuteur($pageCourante=null, $nbEnregistrementsParPage=null, $idAuteur){
+    
+        	if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+        		$sql="SELECT numlivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre FROM livre,auteur WHERE auteur.numAuteur = livre.numAuteur AND livre.numAuteur=?";
+        	else
+        		//On définit notre requête (on récupère l'ensemble des enregistrements)
+            	$sql="SELECT numlivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre FROM livre,auteur WHERE auteur.numAuteur = livre.numAuteur AND livre.numAuteur=? LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+    
+            //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+            $db=DB::get_instance();
+            $reponse = $db->prepare($sql);
+            $reponse->execute(array(
+            	$idAuteur
+            ));	
+            
+            while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+                $livre = new Livre(
+                    $enregistrement['titreLivre'],
+                    $enregistrement['numAuteur'],
+                    $enregistrement['prenomAuteur'],
+                    $enregistrement['nomAuteur'],
+                    $enregistrement['resumeLivre'],
+                    $enregistrement['langueLivre'],
+                    $enregistrement['nbExemplaireLivre'],
+                    $enregistrement['numlivre']
+                );
+    
+                $liste[]=$livre;
+                
+            }
+            
+            if(isset($liste))
+                return $liste;
+            else
+                return null;
+        }
 
 	//fonctions privées-----------------------------------------------
     function enregistrer(){

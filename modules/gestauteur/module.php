@@ -73,6 +73,38 @@ class gestauteur extends Module{
 	    $this->site->ajouter_message('L\'auteur "'.$auteurAsuppr->prenomAuteur.' '.$auteurAsuppr->nomAuteur.'" a été supprimé avec succès =)',4);
 	    $this->site->redirect('gestauteur','index');
 	}
+	
+	public function action_voir(){
+	    $auteurAvoir = Auteur::chercherParId($_REQUEST['id']);
+	    if(empty($auteurAvoir->numAuteur)){
+	        $this->site->ajouter_message('Impossible de consulter cet auteur, il est inexistant !',1);
+	        $this->site->redirect('gestauteur','index');
+	    }
+	    
+        $remoteconfig = array(
+            'remote_store_endpoint' => 'http://dbpedia.org/sparql',
+        );
+    
+        $remotestore = ARC2::getRemoteStore($remoteconfig);
+       
+        $query="SELECT ?abstract
+        WHERE {
+        { <http://dbpedia.org/resource/".$auteurAvoir->prenomAuteur."_".ucwords(strtolower($auteurAvoir->nomAuteur))."> <http://dbpedia.org/ontology/abstract> ?abstract .
+        FILTER langMatches( lang(?abstract), 'fr') }
+        }";
+    			
+        $result = $remotestore->query($query, 'row');
+        if(isset($result['abstract']))
+            $this->tpl->assign("infoAuteur",$result['abstract']);
+	    
+        $this->tpl->assign("nomAuteur",$auteurAvoir->nomAuteur);
+        $this->tpl->assign("prenomAuteur",$auteurAvoir->prenomAuteur);
+        
+        $this->tpl->assign("listeParAuteur",Livre::listeParAuteur(null, null, $auteurAvoir->numAuteur));
+        
+        //$this->session->idAuteurAvoir = $auteurAvoir->numAuteur;
+
+	}
 
 	public function action_modifier(){
 		    $auteurAmodif = Auteur::chercherParId($_REQUEST['id']);
