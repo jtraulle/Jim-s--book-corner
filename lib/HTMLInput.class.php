@@ -88,7 +88,7 @@ class HTMLInput{
             break;
 
             case SELECT:
-                $s="<div class='clearfix'><label for='{$this->id}'>{$this->label}</label><div class='input'><select id='{$this->id}' name='{$this->id}'>";
+                $s="<div class='clearfix' style='display:inline-block; clear:none;'><label for='{$this->id}'>{$this->label}</label><div class='input'><select id='{$this->id}' name='{$this->id}'>";
                 foreach($this->options as $k=>$v)
                 $s.='<option value="'.$k.'" '.($k==$this->value || $v==$this->value ? "selected='selected'":'').">$v</option>";
                 $s.="</select></div></div>";

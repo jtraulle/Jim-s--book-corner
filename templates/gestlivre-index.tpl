@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Gérer les livres <a style="position: relative; left: 623px; top: 15px;" class="btn success" href="?module=gestlivre&action=ajouter">+ Ajouter un livre</a></h2>
+    <h2>Gérer les livres</h2><a class="ontitle btn success" href="?module=gestlivre&action=ajouter">+ Ajouter un livre</a><a class="btn ontitle" href="?module=gestauteur">Gérer les auteurs</a>
 </div>
 
 {if isset($listeLivres)}
@@ -17,7 +17,7 @@
     	</tr>
     </thead>
 	<tbody>
-
+<div id="tab">
 {section name=livres loop=$listeLivres}
       	<tr>
             <td>{$listeLivres[livres]->numLivre}</td>
@@ -32,7 +32,7 @@
 </table>
 
 {include file="paginate.tpl"}
-
+</div>
 {else}
 
 <div class="alert-message block-message info">
