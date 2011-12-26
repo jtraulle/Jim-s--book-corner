@@ -8,6 +8,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 
         <script type="text/javascript"src="lib/js/jquery.min.js"></script>
+        
+        <script type="text/javascript">
+           var nomPrenomAuteur = "{$nomPrenomAuteur}";
+        </script>
+        
         <script type="text/javascript"src="lib/js/custom.js"></script>
 
         <link rel="shortcut icon" href="images/favicon.ico" />

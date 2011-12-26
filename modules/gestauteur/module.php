@@ -81,22 +81,7 @@ class gestauteur extends Module{
 	        $this->site->redirect('gestauteur','index');
 	    }
 	    
-        $remoteconfig = array(
-            'remote_store_endpoint' => 'http://dbpedia.org/sparql',
-        );
-    
-        $remotestore = ARC2::getRemoteStore($remoteconfig);
-       
-        $query="SELECT ?abstract
-        WHERE {
-        { <http://dbpedia.org/resource/".$auteurAvoir->prenomAuteur."_".ucwords(strtolower($auteurAvoir->nomAuteur))."> <http://dbpedia.org/ontology/abstract> ?abstract .
-        FILTER langMatches( lang(?abstract), 'en') }
-        }";
-    			
-        $result = $remotestore->query($query, 'row');
-        if(isset($result['abstract']))
-            $this->tpl->assign("infoAuteur",$result['abstract']);
-	    
+	    $this->tpl->assign("nomPrenomAuteur",$auteurAvoir->prenomAuteur."_".ucwords(strtolower($auteurAvoir->nomAuteur)));
         $this->tpl->assign("nomAuteur",$auteurAvoir->nomAuteur);
         $this->tpl->assign("prenomAuteur",$auteurAvoir->prenomAuteur);
         

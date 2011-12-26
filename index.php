@@ -16,9 +16,6 @@ require_once("lib/Autoload.php");
 
 //classes outils----------------------------------------------------------
 
-//rdf system
-require_once('lib/arc2/ARC2.php');
-
 //moteur de template
 require_once('lib/Smarty-3.1.1/libs/Smarty.class.php');
 $tpl = new Smarty();
