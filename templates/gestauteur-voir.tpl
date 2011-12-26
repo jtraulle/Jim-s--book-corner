@@ -5,7 +5,12 @@
 <p>Nom : {$nomAuteur}</p>
 <p>Prénom : {$prenomAuteur}</p>
 
-{if isset($infoAuteur)}{$infoAuteur}{/if}
+{if isset($infoAuteur)}
+<blockquote style="margin-top:30px; margin-bottom:50px;">
+  <p>{$infoAuteur}</p>
+  <small>Wikipédia, l'encyclopédie libre et gratuite.</small>
+</blockquote>
+{/if}
 
 <div class="page-title">
     <h2>Livres rédigés par cet auteur possédés</h2>

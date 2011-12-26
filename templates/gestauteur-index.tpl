@@ -22,7 +22,8 @@
             <td>{$listeAuteurs[auteurs]->numAuteur}</td>
             <td>{$listeAuteurs[auteurs]->prenomAuteur}</td>
         	<td>{$listeAuteurs[auteurs]->nomAuteur}</td>
-        	<td style="width:250px;"><a style="margin-right:40px;" href="?module=gestauteur&action=modifier&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_edit.png" /> Voir/Modifier</a>
+        	<td style="width:300px;"><a style="margin-right:40px;" href="?module=gestauteur&action=voir&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/view.png" /> Voir</a>
+        	<a style="margin-right:40px;" href="?module=gestauteur&action=modifier&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_edit.png" /> Modifier</a>
         	    <a class="suppr" href="?module=gestauteur&action=supprimer&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_delete.png" /> Supprimer</a></td>
     	</tr>
 {/section}
