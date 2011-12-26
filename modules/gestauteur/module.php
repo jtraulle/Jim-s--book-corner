@@ -90,7 +90,7 @@ class gestauteur extends Module{
         $query="SELECT ?abstract
         WHERE {
         { <http://dbpedia.org/resource/".$auteurAvoir->prenomAuteur."_".ucwords(strtolower($auteurAvoir->nomAuteur))."> <http://dbpedia.org/ontology/abstract> ?abstract .
-        FILTER langMatches( lang(?abstract), 'fr') }
+        FILTER langMatches( lang(?abstract), 'en') }
         }";
     			
         $result = $remotestore->query($query, 'row');
