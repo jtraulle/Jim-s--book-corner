@@ -8,10 +8,11 @@ class Livre extends Table{
 		public $resumeLivre;
 		public $langueLivre;
 		public $nbExemplaireLivre;
+        public $nbEmprunte;
 		
     //fonctions publiques---------------------------------------------------------------	
     	
-    public function __construct($titreLivre, $numAuteur, $prenomAuteur, $nomAuteur, $resumeLivre, $langueLivre, $nbExemplaireLivre, $numLivre=-1) {
+    public function __construct($titreLivre, $numAuteur, $prenomAuteur, $nomAuteur, $resumeLivre, $langueLivre, $nbExemplaireLivre, $nbEmprunte, $numLivre=-1) {
         
         parent::__construct();
         
@@ -23,6 +24,7 @@ class Livre extends Table{
         $this->resumeLivre = $resumeLivre;
         $this->langueLivre = $langueLivre;
         $this->nbExemplaireLivre = $nbExemplaireLivre;
+        $this->nbEmprunte = $nbEmprunte;
 
         return $this;
     }
@@ -34,16 +36,16 @@ class Livre extends Table{
         $res->execute(array($id));
 
         $l= $res->fetch();			
-        return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[7],$l[0]);			
+        return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[7],null,$l[0]);			
     }
     
     public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){
 
     	if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
-    		$sql="SELECT numlivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre FROM livre,auteur WHERE auteur.numAuteur = livre.numAuteur";
+    		$sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre, COUNT(numEmprunteur) AS nbEmprunte FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre WHERE dateEmprunt IS NULL OR dateRetour IS NULL GROUP BY numLivre";
     	else
     		//On définit notre requête (on récupère l'ensemble des enregistrements)
-        	$sql="SELECT numlivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre FROM livre,auteur WHERE auteur.numAuteur = livre.numAuteur LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+        	$sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre, COUNT(numEmprunteur) AS nbEmprunte FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre WHERE dateEmprunt IS NULL OR dateRetour IS NULL GROUP BY numLivre LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
 
         //Comme on est dans un contexte statique, on récupère l'instance de la BDD
         $db=DB::get_instance();
@@ -58,7 +60,8 @@ class Livre extends Table{
                 $enregistrement['resumeLivre'],
                 $enregistrement['langueLivre'],
                 $enregistrement['nbExemplaireLivre'],
-                $enregistrement['numlivre']
+                $enregistrement['nbEmprunte'],
+                $enregistrement['numLivre']
             );
 
             $liste[]=$livre;
