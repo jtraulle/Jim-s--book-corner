@@ -9,9 +9,11 @@
 
         <script type="text/javascript"src="lib/js/jquery.min.js"></script>
         
+        {if isset($nomPrenomAuteur)}
         <script type="text/javascript">
            var nomPrenomAuteur = "{$nomPrenomAuteur}";
         </script>
+        {/if}
         
         <script type="text/javascript"src="lib/js/custom.js"></script>
 
@@ -25,6 +27,11 @@
             <div class="content">
                 <div class="page-header">
                     <h1>Jim's book corner library <small>Integrated library system</small></h1>
+                    {if isset($login)}
+                    <div class="login"><p><em>Vous êtes identifié en tant que {$login}</em></p><p><a href="?module=gestEmprunteur&action=deco"><img src="images/key.png" /> Fermer la session</a></p></div>
+                    {else}
+                    <div class="login"><p><a href="?module=inscription"><img src="images/user_add.png" /> S'inscrire</a></p><p><a href="?module=gestEmprunteur&action=connect"><img src="images/user_go.png" /> S'identifier</a></p></div>
+                    {/if}
                 </div>
 
                 <div class="row">

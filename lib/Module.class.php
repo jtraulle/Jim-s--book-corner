@@ -22,6 +22,9 @@ class Module{
 		    $this->tpl->assign('module',$this->req->module);
 		else
 		    $this->tpl->assign('module','index');
+
+		if($this->session->ouverte())
+			$this->tpl->assign('login',$this->session->user->identifiantEmprunteur);
 	}
 	
 	//variables de config du site

@@ -55,3 +55,18 @@
 .success{
 	font-weight:bold;
 }
+
+h1{
+	display:inline-block;	
+}
+
+.login{
+	display:inline-block;
+	vertical-align:middle;
+	text-align:right;
+	width:330px;
+}
+
+.login p{
+	margin:0px;
+}

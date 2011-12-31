@@ -3,6 +3,57 @@ class gestemprunteur extends Module{
 
 	public function init(){}
 
+    public function action_connect(){
+        $this->set_title("Se connecter | Jim's book corner library");
+
+        $f=new Form("?module=gestemprunteur&action=valide_connect","form1");
+        $f->add_text(
+            "identifiantEmprunteur",
+            "identifiantEmprunteur",
+            "Identifiant",
+            true,
+            "",
+            ""
+        );
+        $f->add_password(
+            "mdpEmprunteur",
+            "mdpEmprunteur",
+            "Mot de passe",
+            true,
+            "",
+            ""
+        );
+        $f->add_endfieldset("endfieldset");
+        $f->add_submit("sub","sub")->set_value('Se connecter','actions','btn primary');
+
+        $this->tpl->assign("form",$f);
+        $this->session->form = $f;
+    }
+
+    public function action_valide_connect(){
+        $this->set_title("Se connecter | Jim's book corner library");
+
+        $form=$this->session->form;
+
+        $emprunteur = Emprunteur::chercherParIdentifiant($_POST['identifiantEmprunteur']);
+
+        if($emprunteur->mdpEmprunteur == sha1($_POST['mdpEmprunteur'])) { 
+            $this->session->ouvrir($emprunteur);
+            $this->tpl->assign('login',$this->session->user->identifiantEmprunteur);
+            $this->site->ajouter_message('Vous êtes maintenant identifié sur le site =)',4);
+            $this->site->redirect('gestlivre');
+        } else {
+            $this->site->ajouter_message('Les identifiants saisis sont incorrects, mais comme nous sommes sympa , vous avez le droit à une deuxième chance ;)',1);
+            $this->site->redirect('gestemprunteur','connect');
+        }        
+    }
+
+    public function action_deco(){     
+        $this->session->fermer();
+        $this->site->ajouter_message('Vous êtes maintenant déconnecté',4);       
+        $this->site->redirect("index");
+    }
+
 	public function action_index(){
 		$this->set_title("Gérer les emprunteurs | Jim's book corner library");
 

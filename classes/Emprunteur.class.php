@@ -16,8 +16,6 @@ class Emprunteur extends Table{
 
     //fonctions publiques---------------------------------------------------------------
     public function __construct($nomEmprunteur, $prenomEmprunteur, $numRueEmprunteur, $nomRueEmprunteur, $villeEmprunteur, $codePostalEmprunteur, $identifiantEmprunteur, $mdpEmprunteur, $telFixeEmprunteur, $telPortableEmprunteur, $emailEmprunteur, $numEmprunteur=-1) {
-
-        parent::__construct();
         
         $this->numEmprunteur = $numEmprunteur;
         $this->nomEmprunteur = $nomEmprunteur;
@@ -82,6 +80,21 @@ class Emprunteur extends Table{
             return null;
     }
 
+    public static function chercherParIdentifiant($id){
+        $sql="SELECT * from emprunteur WHERE identifiantEmprunteur=?";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($id));
+
+        $a= $res->fetch();
+        print_r($a);
+        if(isset($a)){
+            return new Emprunteur($a[1],$a[2],$a[3],$a[4],$a[5],$a[6],$a[7],$a[8],$a[9],$a[10],$a[11],$a[0]);
+        } else {
+            return NULL;
+        }
+    }
+
     //fonctions privées-----------------------------------------------
     
     function enregistrer(){
@@ -94,6 +107,8 @@ class Emprunteur extends Table{
     }
 
     function inserer(){
+
+        $this->db=DB::get_instance();
 
         $sql="INSERT INTO emprunteur VALUES('',?,?,?,?,?,?,?,?,?,?,?)";
 
@@ -117,6 +132,7 @@ class Emprunteur extends Table{
     }
 
     function modifier(){
+        $this->db=DB::get_instance();
         $sql="UPDATE emprunteur SET nomEmprunteur=?,prenomEmprunteur=?,numRueEmprunteur=?,nomRueEmprunteur=?,villeEmprunteur=?,codePostalEmprunteur=?,telFixeEmprunteur=?,telPortableEmprunteur=?,emailEmprunteur=? WHERE numEmprunteur=?";
         $res=$this->db->prepare($sql);
         $res->execute(array(
@@ -134,6 +150,7 @@ class Emprunteur extends Table{
     }
     
     function supprimer(){
+        $this->db=DB::get_instance();
         $sql="DELETE FROM emprunteur WHERE numEmprunteur='{$this->numEmprunteur}'";
         $this->db->exec($sql);
         $this->numEmprunteur=-1;

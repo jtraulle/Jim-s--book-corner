@@ -38,7 +38,7 @@ class Session{
 		}
 	}
 	function __toString(){
-		return (self::$user->login);
+		return (self::$user->identifiantEmprunteur);
 	}
 	
 	
