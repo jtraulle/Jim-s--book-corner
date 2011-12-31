@@ -22,12 +22,6 @@ Class FrontController{
 		//vérifie si une action est requise, sinon : index
 		$action= ( $this->req->action != '')   ? $this->req->action : 'index';	
 
-		require("modules/Login/module.php");
-		$bloc_login=new Login();
-		$bloc_login->set_variables($this->config);
-		$bloc_login->init();
-		$this->tpl->assign('bloc_login',$this->tpl->fetch("login.tpl"));
-		
 		$this->tpl->assign('titre','Titre par défaut');
 		$this->tpl->assign('module',$module);
 		$this->tpl->assign('action',$action);
