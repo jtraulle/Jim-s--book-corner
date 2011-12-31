@@ -1,8 +1,6 @@
 <?php
 class gestemprunteur extends Module{
 
-	public function init(){}
-
     public function action_connect(){
         $this->set_title("Se connecter | Jim's book corner library");
 

@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Gérer les auteurs</h2> <a class="ontitle btn success" href="?module=inscription">+ Ajouter un auteur</a>
+    <h2>Gérer les auteurs</h2> <a class="ontitle btn success" href="?module=gestauteur&action=ajouter">+ Ajouter un auteur</a>
 </div>
 
 {if isset($listeAuteurs)}

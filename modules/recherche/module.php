@@ -1,8 +1,6 @@
 <?php
 class Recherche extends Module{
 
-	public function init(){}
-
 	public function action_index(){
 
 		$this->set_title("Recherche d'un livre");		

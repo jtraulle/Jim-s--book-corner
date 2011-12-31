@@ -1,8 +1,6 @@
 <?php
 class inscription extends Module{
 
-    public function init(){}
-
     public function action_index(){
         $this->set_title("S'inscrire | Jim's book corner library");
 

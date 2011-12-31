@@ -1,8 +1,6 @@
 <?php
 class gestauteur extends Module{
 
-	public function init(){}
-
 	public function action_index(){
 		$this->set_title("Gérer les auteurs | Jim's book corner library");
 		

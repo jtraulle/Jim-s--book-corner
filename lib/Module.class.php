@@ -17,12 +17,7 @@ class Module{
 	//nom par dfaut du template  charger
 	protected $tpl_name="";
 
-	public function init(){    
-	    if(!empty($this->req->module))
-		    $this->tpl->assign('module',$this->req->module);
-		else
-		    $this->tpl->assign('module','index');
-
+	public function init(){ 
 		if($this->session->ouverte())
 			$this->tpl->assign('login',$this->session->user->identifiantEmprunteur);
 	}

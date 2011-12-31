@@ -1,8 +1,6 @@
 <?php
 class exampledata extends Module{
 
-	public function init(){}
-
 	public function action_importemprunteurs(){
         $fichier = file_get_contents('lib/examples/emprunteurs.sql');
         $db = DB::get_instance();
