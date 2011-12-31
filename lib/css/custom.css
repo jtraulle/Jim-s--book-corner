@@ -62,7 +62,7 @@ h1{
 
 .login{
 	display:inline-block;
-	vertical-align:middle;
+	vertical-align:top;
 	text-align:right;
 	width:330px;
 }
