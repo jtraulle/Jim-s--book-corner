@@ -53,6 +53,7 @@ class gestgestionnaire extends Module{
     }
 
 	public function action_index(){
+
 		$this->set_title("Gérer les gestionnaires | Jim's book corner library");
 
 		$nbEnregistrementsParPage = 10;
@@ -185,9 +186,16 @@ class gestgestionnaire extends Module{
 	        $this->site->redirect('gestgestionnaire','index');
 	    }
 
-	    $gestionnaireAsuppr->supprimer();
-	    $this->site->ajouter_message('Le gestionnaire "'.$gestionnaireAsuppr->prenomGestionnaire.' '.$gestionnaireAsuppr->nomGestionnaire.'" a été supprimé avec succès =)',4);
-	    $this->site->redirect('gestgestionnaire','index');
+        if(Gestionnaire::compter() != 1){
+            $gestionnaireAsuppr->supprimer();
+            $this->site->ajouter_message('Le gestionnaire "'.$gestionnaireAsuppr->prenomGestionnaire.' '.$gestionnaireAsuppr->nomGestionnaire.'" a été supprimé avec succès =)',4);
+            $this->site->redirect('gestgestionnaire','index');
+        }else{
+            $this->site->ajouter_message('Impossible de supprimer "'.$gestionnaireAsuppr->prenomGestionnaire.' '.$gestionnaireAsuppr->nomGestionnaire.'". Vous devez conserver au moins un gestionnaire pour administrer le site !',1);
+            $this->site->redirect('gestgestionnaire','index');
+        }
+
+	    
 	}
 
 	public function action_modifier(){

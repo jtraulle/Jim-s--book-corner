@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Ajouter un auteur</h2>
+    <h2>Ajouter un gestionnaire</h2>
 </div>
 
 {$form}

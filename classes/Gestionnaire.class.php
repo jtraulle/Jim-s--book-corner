@@ -22,6 +22,15 @@ class Gestionnaire extends Table{
         return $this;
     }
 
+    public static function compter(){
+        $sql="SELECT COUNT(*) FROM gestionnaire";
+        $db=DB::get_instance();
+        $res = $db->query($sql);
+        $res = $res->fetch();
+
+        return $res[0];
+    }
+
     public static function chercherParId($numGest){
         $sql="SELECT * from gestionnaire WHERE numGestionnaire=?";
         $db=DB::get_instance();
