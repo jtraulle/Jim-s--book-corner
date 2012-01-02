@@ -193,9 +193,7 @@ class gestgestionnaire extends Module{
         }else{
             $this->site->ajouter_message('Impossible de supprimer "'.$gestionnaireAsuppr->prenomGestionnaire.' '.$gestionnaireAsuppr->nomGestionnaire.'". Vous devez conserver au moins un gestionnaire pour administrer le site !',1);
             $this->site->redirect('gestgestionnaire','index');
-        }
-
-	    
+        }   
 	}
 
 	public function action_modifier(){

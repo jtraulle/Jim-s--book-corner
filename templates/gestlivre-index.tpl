@@ -8,29 +8,29 @@
 
 <table class="bordered-table zebra-striped">
     <thead>
-      	<tr>
+        <tr>
             <th style="vertical-align:middle; text-align:center;">#</th>
             <th>Titre</th>
             <th>Auteur</th>
-    		<th style="vertical-align:middle; text-align:center;">Langue</th>
-    		<th>Actions</th>
-    	</tr>
+            <th style="vertical-align:middle; text-align:center;">Langue</th>
+            <th>Actions</th>
+        </tr>
     </thead>
-	<tbody>
+    <tbody>
 <div id="tab">
 {section name=livres loop=$listeLivres}
 {$nbDispo = $listeLivres[livres]->nbExemplaireLivre - $listeLivres[livres]->nbEmprunte}
-      	<tr>
+        <tr>
             <td style="vertical-align:middle; text-align:center;">{$listeLivres[livres]->numLivre}</td>
             <td style="vertical-align:middle;">{$listeLivres[livres]->titreLivre}</td>
-            <td style="vertical-align:middle;">{$listeLivres[livres]->prenomAuteur} {$listeLivres[livres]->nomAuteur}</td>
-        	<td style="vertical-align:middle; text-align:center;">{if $listeLivres[livres]->langueLivre == "Anglais"}<img src="images/book_eng.png" /> {else}<img src="images/book_fre.png" /> {/if}{$listeLivres[livres]->langueLivre}</td>
-        	<td style="width:230px;"><a style="margin-right:40px;" href="?module=gestlivre&action=modifier&id={$listeLivres[livres]->numLivre}"><img src="images/book_edit.png" /> Voir/Modifier</a>
-        	    <a class="suppr" href="?module=gestlivre&action=supprimer&id={$listeLivres[livres]->numLivre}"><img src="images/book_delete.png" /> Supprimer</a>
-                <br />{if $nbDispo > 0}<img src="images/bullet_green.png" />{else}<img src="images/bullet_red.png" />{/if} {$nbDispo} disponible(s) {if $nbDispo > 0}<a style="margin-left:28px;" href="?module=gestlivre&action=emprunter&id={$listeLivres[livres]->numLivre}"><img src="images/book_out.png" /> Emprunter</a>{else}<a style="margin-left:28px;" href="?module=gestlivre&action=reserver&id={$listeLivres[livres]->numLivre}"><img src="images/book.png" /> Réserver</a>{/if}</td>
-    	</tr>
+            <td style="vertical-align:middle;"><a href="?module=gestauteur&action=voir&id={$listeLivres[livres]->numAuteur}">{$listeLivres[livres]->prenomAuteur} {$listeLivres[livres]->nomAuteur}</a></td>
+            <td style="vertical-align:middle; text-align:center;">{if $listeLivres[livres]->langueLivre == "Anglais"}<img src="images/book_eng.png" /> {else}<img src="images/book_fre.png" /> {/if}{$listeLivres[livres]->langueLivre}</td>
+            <td style="width:250px;">{if $nbDispo > 0}<img src="images/bullet_green.png" />{else}<img src="images/bullet_red.png" />{/if} {$nbDispo} disponible(s) <a style="margin-left:40px;" href="?module=gestlivre&action=modifier&id={$listeLivres[livres]->numLivre}"><img src="images/book_edit.png" /> Voir/Modifier</a><br />{if $nbDispo > 0}<a href="?module=gestlivre&action=emprunter&id={$listeLivres[livres]->numLivre}"><img src="images/book_out.png" /> Emprunter</a>{else}<a style="margin-right:8px;" href="?module=gestlivre&action=reserver&id={$listeLivres[livres]->numLivre}"><img src="images/book.png" /> Réserver</a>{/if}
+            <a style="margin-left:65px;" class="suppr" href="?module=gestlivre&action=supprimer&id={$listeLivres[livres]->numLivre}"><img src="images/book_delete.png" /> Supprimer</a>
+            </td>
+        </tr>
 {/section}
-	</tbody>
+    </tbody>
 </table>
 
 {include file="paginate.tpl"}

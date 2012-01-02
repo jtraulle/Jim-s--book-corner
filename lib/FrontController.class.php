@@ -22,7 +22,7 @@ Class FrontController{
 		//vérifie si une action est requise, sinon : index
 		$action= ( $this->req->action != '')   ? $this->req->action : 'index';	
 
-		$this->tpl->assign('titre','Titre par défaut');
+		$this->tpl->assign('titre','Jim\'s book corner library');
 		$this->tpl->assign('module',$module);
 		$this->tpl->assign('action',$action);
 

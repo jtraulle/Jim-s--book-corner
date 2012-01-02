@@ -50,6 +50,9 @@
                         </div>
                     </div>
                 </div>
+                <footer>
+                    <p style="text-align:center;"><em>Réalisation département Informatique IUT d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a></p>
+                </footer>
             </div>
         </div>
     </body>

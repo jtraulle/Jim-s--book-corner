@@ -63,7 +63,7 @@ class inscription extends Module{
             "Identifiant",
             true,
             "identifiant",
-            "Vous devez saisir une chaîne alphanumérique (les accents et caractères spéciaux sont interdits, longueur minimale de 6 caractères)"
+            "Accents et caractères spéciaux interdits"
         );
         $f->add_password(
             "mdpEmprunteur",
@@ -71,7 +71,7 @@ class inscription extends Module{
             "Mot de passe",
             true,
             "motdepasse",
-            "Vous devez saisir une chaîne alphanumérique (au moins une lettre et un chiffre, longueur minimale de 6 caractères)"
+            "Longueur minimale de 7 caractères (dont une majuscule et un chiffre)"
         );
         $f->add_endfieldset("endfieldset");
         $f->add_legend("leg3", "Restons en contact");
@@ -100,7 +100,7 @@ class inscription extends Module{
             "Saisissez un email valide"
         );
         $f->add_endfieldset("endfieldset");
-        $f->add_submit("sub","sub")->set_value('S\'enregister','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value("Créer le compte",'actions','btn primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -114,7 +114,7 @@ class inscription extends Module{
 
         //Si l'utilisateur essaie de passer la validation directement
         //en tapant l'URL, on le redirige vers l'action index ;)
-        if($this->req->sub != 'S\'enregister')
+        if($_REQUEST['sub'] != 'Créer le compte')
             $this->site->redirect('inscription', 'index');
 
         if($form->validate())

@@ -73,6 +73,38 @@ class Livre extends Table{
         else
             return null;
     }
+
+    public static function cinqDerniersLivres(){
+
+        //On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre, COUNT(numEmprunteur) AS nbEmprunte FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre WHERE dateEmprunt IS NULL OR dateRetour IS NULL GROUP BY numLivre ORDER BY numLivre DESC LIMIT 0,5";
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse = $db->query($sql);
+        
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+            $livre = new Livre(
+                $enregistrement['titreLivre'],
+                $enregistrement['numAuteur'],
+                $enregistrement['prenomAuteur'],
+                $enregistrement['nomAuteur'],
+                $enregistrement['resumeLivre'],
+                $enregistrement['langueLivre'],
+                $enregistrement['nbExemplaireLivre'],
+                $enregistrement['nbEmprunte'],
+                $enregistrement['numLivre']
+            );
+
+            $liste[]=$livre;
+            
+        }
+        
+        if(isset($liste))
+            return $liste;
+        else
+            return null;
+    }
     
     public static function listeParAuteur($pageCourante=null, $nbEnregistrementsParPage=null, $idAuteur){
     
