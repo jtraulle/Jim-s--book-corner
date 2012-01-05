@@ -28,9 +28,9 @@
                 <div class="page-header">
                     <h1>Jim's book corner library <small>Integrated library system</small></h1>
                     {if isset($login)}
-                    <div class="login"><p><em>Vous êtes identifié en tant que {$login}</em></p><p><a href="?module=gestEmprunteur&action=deco"><img src="images/key.png" /> Fermer la session</a></p></div>
+                    <div class="login"><p><em>Vous êtes identifié en tant que {$login}</em></p><p><a href="?module=gestemprunteur&action=deco"><img src="images/key.png" /> Fermer la session</a></p></div>
                     {else}
-                    <div class="login"><p><a href="?module=inscription"><img src="images/user_add.png" /> S'inscrire</a></p><p><a href="?module=gestEmprunteur&action=connect"><img src="images/user_go.png" /> S'identifier</a></p></div>
+                    <div class="login"><p><a href="?module=inscription"><img src="images/user_add.png" /> S'inscrire</a></p><p><a href="?module=gestemprunteur&action=connect"><img src="images/user_go.png" /> S'identifier</a></p></div>
                     {/if}
                 </div>
 
