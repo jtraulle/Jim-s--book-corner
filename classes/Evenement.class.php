@@ -19,7 +19,6 @@ class Evenement extends Table{
 		$this->desEvenement = $desEvenement;
 		$this->numGestionnaire = $numGestionnaire;
 
-
 		return $this;
 	}
 
@@ -36,11 +35,12 @@ class Evenement extends Table{
         $reponse = $db->query($sql);
 
         while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+        	$date = new DateTime($enregistrement['dateEvenement']);
             $evenement = new Evenement(
                 $enregistrement['nomEvenement'],
                 $enregistrement['themeEvenement'],
                 $enregistrement['lieuEvenement'],
-                $enregistrement['dateEvenement'],
+                'le '.$date->format('d/m/Y').' à '.$date->format('H:i'),
                 $enregistrement['desEvenement'],
                 $enregistrement['numGestionnaire'],
                 $enregistrement['numEvenement']
@@ -65,53 +65,55 @@ class Evenement extends Table{
 
 
 	public function supprimer(){
-		return;
-		$sql="DELETE FROM evenement WHERE numEvenement'{$this->numEvenement}'";
-		$this->db->exec($sql);
+		$db=DB::get_instance();
+		$sql="DELETE FROM evenement WHERE numEvenement='{$this->numEvenement}'";
+		$db->exec($sql);
 		$this->numEvenement=-1;
 	}
 	
-	public static function chercherParId($id){
+	public static function chercherParId($numEvenement){
+		$db=DB::get_instance();
 		$sql="SELECT * from evenement WHERE numEvenement=?";
-		$res=$this->db->prepare($sql);
-		$r=$res->execute(array($numEvenement));
+		$res=$db->prepare($sql);
+		$res->execute(array($numEvenement));
 		//gérer les erreurs éventuelles
 
-		$e= $r->fetch();			
-		return new Evenement($e[1],$e[2],$e[3],$e[4],$e[5],$e[6],$e[6],$e[0]);			
+		$e= $res->fetch();			
+		return new Evenement($e[1],$e[2],$e[3],$e[4],$e[5],$e[6],$e[0]);			
 	}
 
 	function inserer(){
 		
 		//la requête préparée nettoie les champs avant insertion
-		$sql="INSERT INTO evenement VALUES('',?,?,?,?,?,?,?)";
+		$sql="INSERT INTO evenement VALUES('',?,?,?,?,?,?)";
 		
-		$res=$this->db->prepare($sql);
+		$db=DB::get_instance();
+		$res=$db->prepare($sql);
 		
 		$res->execute(array(
 			$this->nomEvenement,
 			$this->themeEvenement,
 			$this->lieuEvenement,
 			$this->dateEvenement,
-			$this->heureEvenement,
 			$this->desEvenement,
 			$this->numGestionnaire
 		));			
 		
-		return $this->db->lastInsertId();
+		return $db->lastInsertId();
 	}
 
 	function modifier(){
-		$sql="UPDATE evenement SET nomEvenement=?,themeEvenement=?,lieuEvenement=?,dateEvenement=?,heureEvenement=?,desEvenement=?,numGestionnaire=? WHERE numEvenement=?";
-		$res=$this->db->prepare($sql);
+		$db=DB::get_instance();
+		$sql="UPDATE evenement SET nomEvenement=?,themeEvenement=?,lieuEvenement=?,dateEvenement=?,desEvenement=?,numGestionnaire=? WHERE numEvenement=?";
+		$res=$db->prepare($sql);
 		$res->execute(array(
 			$this->nomEvenement,
 			$this->themeEvenement,
 			$this->lieuEvenement,
 			$this->dateEvenement,
-			$this->heureEvenement,
 			$this->desEvenement,
-			$this->numGestionnaire
+			$this->numGestionnaire,
+			$this->numEvenement
 		));		
 	}			
 }
