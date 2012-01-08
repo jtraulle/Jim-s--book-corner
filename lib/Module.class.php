@@ -18,8 +18,18 @@ class Module{
 	protected $tpl_name="";
 
 	public function init(){ 
-		if($this->session->ouverte())
-			$this->tpl->assign('login',$this->session->user->identifiantEmprunteur);
+
+		if($this->session->ouverte()){
+
+			if(isset($this->session->user->identifiantEmprunteur))
+				$this->tpl->assign('login',$this->session->user->identifiantEmprunteur);
+			if(isset($this->session->user->pseudoGestionnaire))
+				$this->tpl->assign('login',$this->session->user->pseudoGestionnaire);
+			if(isset($this->session->user->statut))
+				$this->tpl->assign('statut',$this->session->user->statut);
+		}
+			
+		
 	}
 	
 	//variables de config du site

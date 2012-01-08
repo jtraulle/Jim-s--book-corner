@@ -38,7 +38,10 @@ class Session{
 		}
 	}
 	function __toString(){
-		return (self::$user->identifiantEmprunteur);
+		if(isset(self::$user->identifiantEmprunteur))
+			return (self::$user->identifiantEmprunteur);
+		if(isset(self::$user->pseudoGestionnaire))
+			return (self::$user->pseudoGestionnaire);
 	}
 	
 	

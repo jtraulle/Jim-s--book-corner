@@ -38,6 +38,8 @@ class gestemprunteur extends Module{
         if($emprunteur->mdpEmprunteur == sha1($_POST['mdpEmprunteur'])) { 
             $this->session->ouvrir($emprunteur);
             $this->tpl->assign('login',$this->session->user->identifiantEmprunteur);
+            $this->session->user->statut = 'emprunteur';
+            $this->tpl->assign('statut',$this->session->user->statut);
             $this->site->ajouter_message('Vous êtes maintenant identifié sur le site =)',4);
             $this->site->redirect('gestlivre');
         } else {

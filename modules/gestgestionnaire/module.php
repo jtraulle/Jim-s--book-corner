@@ -4,7 +4,7 @@ class gestgestionnaire extends Module{
     public function action_connect(){
         $this->set_title("Se connecter | Jim's book corner library");
 
-        $f=new Form("?module=gestemprunteur&action=valide_connect","form1");
+        $f=new Form("?module=gestgestionnaire&action=valide_connect","form1");
         $f->add_text(
             "identifiantGestionnaire",
             "identifiantGestionnaire",
@@ -36,8 +36,10 @@ class gestgestionnaire extends Module{
         $gestionnaire = Gestionnaire::chercherParIdentifiant($_POST['identifiantGestionnaire']);
 
         if($gestionnaire->mdpGestionnaire == sha1($_POST['mdpGestionnaire'])) { 
-            $this->session->ouvrir($emprunteur);
+            $this->session->ouvrir($gestionnaire);
             $this->tpl->assign('login',$this->session->user->pseudoGestionnaire);
+            $this->session->user->statut = 'gestionnaire';
+            $this->tpl->assign('statut',$this->session->user->statut);
             $this->site->ajouter_message('Vous êtes maintenant identifié sur le site =)',4);
             $this->site->redirect('gestlivre');
         } else {

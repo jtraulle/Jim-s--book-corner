@@ -4,7 +4,7 @@
         <h3>au catalogue de la bibliothèque "Jim's book corner" ...</h3>
         <p></p>
         <p>Depuis cette application, vous pouvez rechercher un livre possédé par la bibliothèque et connaître son statut (disponible, emprunté etc.). </p>
-        <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations etc.), nous vous conseillons de vous inscrire dès maintenant.</p><a style="margin-left:750px;" class="btn primary large" href="?module=inscription">Je m'inscris »</a>
+        <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations etc.), nous vous conseillons de vous inscrire dès maintenant.</p><a style="float:right;" class="btn primary large" href="?module=inscription">Je m'inscris »</a> <a style="float:right;" class="btn large success" href="?module=gestemprunteur&action=connect">Déjà inscrit ?</a> 
 </div>
 
 <div class="row">

@@ -41,6 +41,20 @@ class Gestionnaire extends Table{
         return new Gestionnaire($gest['nomGestionnaire'],$gest['prenomGestionnaire'],$gest['pseudoGestionnaire'],$gest['mdpGestionnaire'],$gest['telGestionnaire'],$gest['emailGestionnaire'],$gest[0]);            
     }
 
+    public static function chercherParIdentifiant($id){
+        $sql="SELECT * from gestionnaire WHERE pseudoGestionnaire=?";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($id));
+
+        $gest= $res->fetch();
+        if(isset($gest)){
+            return new Gestionnaire($gest['nomGestionnaire'],$gest['prenomGestionnaire'],$gest['pseudoGestionnaire'],$gest['mdpGestionnaire'],$gest['telGestionnaire'],$gest['emailGestionnaire'],$gest[0]);
+        } else {
+            return NULL;
+        }
+    }
+
     public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){
 
         if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
