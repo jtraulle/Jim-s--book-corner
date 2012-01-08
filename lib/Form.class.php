@@ -84,20 +84,11 @@ class Form{
 
     //remplissage des champs avec les valeurs issues de _REQUEST
     function populate(){
-        echo "<h6>$"."_REQUEST"."</h6><pre>";
-        print_r($_REQUEST);
-        echo "</pre>";
-
-        //echo "<h6>$"."this->fields"."</h6><pre>";
-        //print_r($this->fields);
-        //echo "</pre>";
-
         foreach($this->fields as $k=>$arr){
             $k=key($arr);
             $f=current($arr);
 
             if(isset($_REQUEST[$k])){
-                //echo "<li>$k = ".$_REQUEST[$k]."</li>";
                 if($f->type==RADIO){
                     if($f->value == $_REQUEST[$k])
                         $f->check();
@@ -125,7 +116,7 @@ class Form{
                 switch ($f->rule) {
 
                     case "alphaNumAccentue":
-                        if (!preg_match('#^[a-zA-Z\'âêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü1234567890 ]{1,23}$#', $_REQUEST[$k])){
+                        if (!preg_match('#^[a-zA-Z\'âêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü1234567890\# ]{1,23}$#', $_REQUEST[$k])){
                             $f->value = $_REQUEST[$k];
                             $f->class = "error";
                             $this->erreurs += 1;
@@ -203,6 +194,17 @@ class Form{
 
                     case "email":
                         if (!filter_var($_REQUEST[$k],FILTER_VALIDATE_EMAIL)){
+                            $f->value = $_REQUEST[$k];
+                            $f->class = "error";
+                            $this->erreurs += 1;
+                        } else {
+                            $f->value = $_REQUEST[$k];
+                            $f->class = "success";
+                        }
+                    break;
+
+                    case "datetime":
+                        if (!preg_match('#^(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})$#', $_REQUEST[$k])){
                             $f->value = $_REQUEST[$k];
                             $f->class = "error";
                             $this->erreurs += 1;

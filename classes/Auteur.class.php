@@ -98,10 +98,7 @@ class Auteur extends Table{
 			$this->nomAuteur,
 			$this->numAuteur
 		));		
-	}		
-
-
-			
+	}
 }
 
 ?>
