@@ -33,10 +33,6 @@ Class FrontController{
 			else
 				throw new Exception("Module inconnu : $module");
 
-
-		//============= exécute le module ================================================================================
-		//c'est ici qu'il faudrait vérifier la gestion des droits d'accès au module et à l'action demandée
-		//================================================================================================================
 		$m=new $module();
 		//nom du template à appeler, par défaut
 		$m->set_tpl_name("$module"."-$action");
@@ -46,20 +42,24 @@ Class FrontController{
 		$m->set_variables($this->config);
 		$m->init();
 
-		if(method_exists($module,$action))
-			$m->$action();
+		if(method_exists($module,$action)){
+			//Si le statut de l'utilisateur est différent de gestionnaire 
+			//ou qu'il n'existe pas (invité) ET que cet utilisateur cherche 
+			//à accéder aux fonctions action_modifier, action_supprimer, etc.
+			//on lui en interdit l'accès en levant une exception ! 
+			if((!isset($this->session->user->statut) OR $this->session->user->statut != 'gestionnaire') && 
+			($action == 'action_modifier' OR $action == 'action_supprimer' OR $action == 'action_ajouter'))
+				throw new Exception("Vous n'avez pas l'autorisation d'accéder à cette page ou votre session a expiré.");
+			else //sinon on exécute l'action demandée.
+				$m->$action();
+		}		
 		else
 			throw new Exception("Action inconnue : $module::$action");
-
 
 		$res=$this->tpl->fetch($m->get_tpl_name().".tpl");
 		$this->tpl->assign('bloc_contenu',$res);
 		$this->tpl->assign('messages',$this->site->liste_messages());
-
 	}	
-	
-	
-
 }
 
 ?>

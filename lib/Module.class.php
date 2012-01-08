@@ -19,8 +19,9 @@ class Module{
 
 	public function init(){ 
 
-		if($this->session->ouverte()){
+		$this->tpl->assign('statut','invite');
 
+		if($this->session->ouverte()){
 			if(isset($this->session->user->identifiantEmprunteur))
 				$this->tpl->assign('login',$this->session->user->identifiantEmprunteur);
 			if(isset($this->session->user->pseudoGestionnaire))
