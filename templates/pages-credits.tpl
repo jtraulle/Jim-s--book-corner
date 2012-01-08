@@ -11,6 +11,9 @@
 		<li><a href="http://www.smarty.net">Moteur de template Smarty</a>
 		<li><a href="https://github.com/semsol/arc2/wiki">Resource Description Framework Arc2</a>
 		<li><a href="http://jquery.com/">Framework javascript jQuery</a>
+        <li><a href="http://jqueryui.com/">Framework javascript jQuery UI</a>
+        <li><a href="http://jqueryui.com/">Thème Aristo for jQuery UI</a>
+        <li><a href="">timepicker plugin for jQuery UI</a>
 		<li><a href="http://www.famfamfam.com/lab/icons/silk/">Silk icons par famfamfam</a>
 	</ul>
 	</p>

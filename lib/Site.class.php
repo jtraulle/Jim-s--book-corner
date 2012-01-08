@@ -68,8 +68,7 @@ class Site{
 		unset($this->session->_messages);
 	}
 
-
-				 
+			 
 	/**
 	* affiche un message utilisateur dans la zone de message
 	*
@@ -80,26 +79,28 @@ class Site{
 	 
 		switch($type){
 			case INFO: 
-				$class='alert-message info';
+				$class='alert-message info fade in';
 			break;
 			case ERREUR: 
-				$class='alert-message error';
+				$class='alert-message error fade in';
 				$message="<b>$message</b><pre>\n".self::trace(debug_backtrace())."</pre>";
 			break;
 			case OK: 
-				$class='alert-message success';
+				$class='alert-message success fade in';
+				$message="<strong>Effectué !</strong> $message";
 			break;
 			case ALERTE: 
-				$class='alert-message warning';
+				$class='alert-message warning fade in';
 				$message="<strong>Attention !</strong> $message";
 			break;
 			default:
-				$class='alert-message info';
+				$class='alert-message info fade in';
 		}
 	 
 		return <<< ENDOFMESSAGE
 	 
-			<div class='$class'>
+			<div class='$class' data-alert='alert'>
+				<a class="close" href="#">×</a>
 				$message
 			</div>
 		 
