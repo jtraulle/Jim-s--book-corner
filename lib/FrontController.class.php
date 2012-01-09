@@ -42,16 +42,57 @@ Class FrontController{
 		$m->set_variables($this->config);
 		$m->init();
 
+		//Ce tableau permet de définir les permissions d'accès pour les invités
+		$allowGuest = array(
+			'index' => array(
+				'action_index'
+			),
+			'gestemprunteur' => array(
+				'action_connect',
+				'action_valide_connect'
+			),
+			'gestgestionnaire' => array(
+				'action_connect',
+				'action_valide_connect'
+			),
+			'gestevenement' => array(
+				'action_index'
+			)
+		);
+
+		//Ce tableau permet de définir les permissions d'accès pour les membres enregistrés
+		$allowRegistered = array(
+			'gestemprunteur' => array(
+				'action_moncompte'
+			)
+		);
+
+		$permissionGuest = null;
+		$permissionRegistered = null;
+
+		foreach($allowGuest as $moduleAautoriser => $actions){
+			foreach($actions as $actionAautoriser){
+				if($module==$moduleAautoriser && $action==$actionAautoriser)
+					$permissionGuest = true;
+			}
+		}
+
+		foreach($allowRegistered as $moduleAautoriser => $actions){
+			foreach($actions as $actionAautoriser){
+				if($module==$moduleAautoriser && $action==$actionAautoriser)
+					$permissionRegistered = true;
+			}
+		}
+
 		if(method_exists($module,$action)){
-			//Si le statut de l'utilisateur est différent de gestionnaire 
-			//ou qu'il n'existe pas (invité) ET que cet utilisateur cherche 
-			//à accéder aux fonctions action_modifier, action_supprimer, etc.
-			//on lui en interdit l'accès en levant une exception ! 
-			if((!isset($this->session->user->statut) OR $this->session->user->statut != 'gestionnaire') && 
-			($action == 'action_modifier' OR $action == 'action_supprimer' OR $action == 'action_ajouter'))
-				throw new Exception("Vous n'avez pas l'autorisation d'accéder à cette page ou votre session a expiré.");
-			else //sinon on exécute l'action demandée.
+			if((!isset($this->session->user->statut)) && $permissionGuest)
 				$m->$action();
+			elseif ($this->session->user->statut == 'emprunteur' && ($permissionGuest OR $permissionRegistered))
+				$m->$action();
+			elseif ($this->session->user->statut == 'gestionnaire')
+				$m->$action();
+			else
+				throw new Exception("Vous n'avez pas l'autorisation d'accéder à cette page ou votre session a expiré.");
 		}		
 		else
 			throw new Exception("Action inconnue : $module::$action");

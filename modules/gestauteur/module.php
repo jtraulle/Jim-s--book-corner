@@ -80,6 +80,7 @@ class gestauteur extends Module{
 	    }
 	    
 	    $this->tpl->assign("nomPrenomAuteur",$auteurAvoir->prenomAuteur."_".ucwords(strtolower($auteurAvoir->nomAuteur)));
+        $this->tpl->assign("numAuteur",$auteurAvoir->numAuteur);
         $this->tpl->assign("nomAuteur",$auteurAvoir->nomAuteur);
         $this->tpl->assign("prenomAuteur",$auteurAvoir->prenomAuteur);
         

@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Consulter un auteur</h2>
+    <h2>Consulter un auteur</h2> {if $statut == 'gestionnaire'}<a class="ontitle btn" href="?module=gestauteur&action=modifier&id={$numAuteur}"><img style="vertical-align:top;" src="images/user_edit.png" /> Modifier cet auteur</a>{/if}
 </div>
 
 <p>Nom : {$nomAuteur}</p>
@@ -7,7 +7,6 @@
 
 
 <blockquote id="infosAuteur" style="margin-top:30px; margin-bottom:50px;"><p><img src="images/loading.gif" /> Tentative de récupération d'informations sur l'auteur depuis Wikipédia ...</p></blockquote>
-
 
 <div class="page-title">
     <h2>Livres rédigés par cet auteur possédés</h2>

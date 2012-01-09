@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Gérer les auteurs</h2> <a class="ontitle btn success" href="?module=gestauteur&action=ajouter">+ Ajouter un auteur</a>
+    <h2>Auteurs</h2> {if $statut == 'gestionnaire'}<a class="ontitle btn success" href="?module=gestauteur&action=ajouter">+ Ajouter un auteur</a>{/if}
 </div>
 
 {if isset($listeAuteurs)}
@@ -8,26 +8,26 @@
 
 <table class="bordered-table zebra-striped">
     <thead>
-      	<tr>
+        <tr>
             <th>#</th>
             <th>Prénom</th>
-    		<th>Nom</th>
-    		<th>Actions</th>
-    	</tr>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
     </thead>
-	<tbody>
+    <tbody>
 
 {section name=auteurs loop=$listeAuteurs}
-      	<tr>
+        <tr>
             <td>{$listeAuteurs[auteurs]->numAuteur}</td>
             <td>{$listeAuteurs[auteurs]->prenomAuteur}</td>
-        	<td>{$listeAuteurs[auteurs]->nomAuteur}</td>
-        	<td style="width:300px;"><a style="margin-right:40px;" href="?module=gestauteur&action=voir&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/view.png" /> Voir</a>
-        	<a style="margin-right:40px;" href="?module=gestauteur&action=modifier&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_edit.png" /> Modifier</a>
-        	    <a class="suppr" href="?module=gestauteur&action=supprimer&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_delete.png" /> Supprimer</a></td>
-    	</tr>
+            <td>{$listeAuteurs[auteurs]->nomAuteur}</td>
+            <td {if $statut == 'gestionnaire'}style="width:300px;"{else}style="width:90px;"{/if}><a style="margin-right:40px;" href="?module=gestauteur&action=voir&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/view.png" /> Voir</a>
+            {if $statut == 'gestionnaire'}<a style="margin-right:40px;" href="?module=gestauteur&action=modifier&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_edit.png" /> Modifier</a>
+                <a class="suppr" href="?module=gestauteur&action=supprimer&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_delete.png" /> Supprimer</a></td>{/if}
+        </tr>
 {/section}
-	</tbody>
+    </tbody>
 </table>
 
 {include file="paginate.tpl"}
