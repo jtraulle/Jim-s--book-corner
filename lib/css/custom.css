@@ -34,6 +34,7 @@
 /* Faire en sorte que le texte ne soit pas collé au bord dans le hero */
 .tweak-hero{
 	padding: 30px;
+	padding-bottom: 70px;
 }
 
 /* Positionnons correctement le bouton d'action des recherches rapides */
@@ -74,6 +75,11 @@ h1{
 footer{
 	padding-top: 5px;
 	margin-bottom: 20px;
+}
+
+.mainCallToActionBtn{
+	margin-left:20px;
+	margin-top:10px;
 }
 
 /* css for timepicker */

@@ -55,6 +55,36 @@ class Evenement extends Table{
             return null;
     }
 
+    public static function dernierEvenement(){
+
+    	//On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql="SELECT * FROM evenement ORDER BY dateEvenement, numEvenement DESC LIMIT 0,1";
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse = $db->query($sql);
+
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+        	$date = new DateTime($enregistrement['dateEvenement']);
+            $evenement = new Evenement(
+                $enregistrement['nomEvenement'],
+                $enregistrement['themeEvenement'],
+                $enregistrement['lieuEvenement'],
+                'le '.$date->format('d/m/Y').' à '.$date->format('H:i'),
+                $enregistrement['desEvenement'],
+                $enregistrement['numGestionnaire'],
+                $enregistrement['numEvenement']
+            );
+
+            $liste[]=$evenement;
+        }
+        
+        if(isset($liste))
+            return $liste[0];
+        else
+            return null;
+    }
+
 
 	function enregistrer(){
 		if($this->numEvenement==-1)

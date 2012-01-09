@@ -35,7 +35,7 @@
                     <div class="login"><p><em>Vous êtes identifié en tant que {$login}</em> {if $statut == 'gestionnaire'}<img class="infobulle" src="images/bricks.png" data-placement="below" rel='twipsy' title="Vous possédez les droits de gestion"/>{/if}</p>
                     <p><a href="?module=gestemprunteur&action=deco"><img src="images/key.png" /> Fermer la session</a></p></div>
                     {else}
-                    <div class="login"><p><a href="?module=inscription"><img src="images/user_add.png" /> S'inscrire</a></p><p><a href="?module=gestemprunteur&action=connect"><img src="images/user_go.png" /> S'identifier</a></p></div>
+                    <div class="login"><p><a href="?module=inscription"><img src="images/user_add.png" /> S'inscrire</a></p><p><a href="?module=gestemprunteur&action=connect"><img src="images/user_go.png" /> Mon compte lecteur</a></p></div>
                     {/if}
                 </div>
 

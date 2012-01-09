@@ -4,7 +4,7 @@
         <h3>au catalogue de la bibliothèque "Jim's book corner" ...</h3>
         <p></p>
         <p>Depuis cette application, vous pouvez rechercher un livre possédé par la bibliothèque et connaître son statut (disponible, emprunté etc.). </p>
-        <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations etc.), nous vous conseillons de vous inscrire dès maintenant.</p><a style="float:right;" class="btn primary large" href="?module=inscription">Je m'inscris »</a> <a style="float:right;" class="btn large success" href="?module=gestemprunteur&action=connect">Déjà inscrit ?</a> 
+        <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations etc.), nous vous conseillons de vous inscrire dès maintenant.</p><a style="float:right;" class="btn primary large mainCallToActionBtn" href="?module=inscription">Je m'inscris »</a> <a style="float:right;" class="btn large success mainCallToActionBtn" href="?module=gestemprunteur&action=connect">Déjà inscrit ?</a> 
 </div>
 
 <div class="row">
@@ -32,7 +32,11 @@
     </div>
     <div class="span8">
       <h2>Dernier événement</h2>
-       <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+       <div class="well">
+        <h3 style="display:inline-block;">{$dernierEvenement->nomEvenement}</h3>
+        <p><img class="infobulle" data-placement="below" rel='twipsy' title="Thème de l'événement" src="images/asterisk_yellow.png" /> {$dernierEvenement->themeEvenement} <img class="infobulle" data-placement="below" rel='twipsy' title="Lieu de l'évenement" src="images/home.png" /> {$dernierEvenement->lieuEvenement} <img class="infobulle" data-placement="below" rel='twipsy' title="Date et heure de rendez-vous" src="images/date.png" /> {$dernierEvenement->dateEvenement}</p>
+         <p>{$dernierEvenement->desEvenement}</p>
+</div>
       <p><a class="btn" href="?module=gestevenement">Voir plus »</a></p>
    </div>        
 </div>
