@@ -11,6 +11,7 @@
         <script type="text/javascript"src="lib/js/jquery-ui.min.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-twipsy.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-alerts.js"></script>
+        <script type="text/javascript"src="lib/js/chosen/chosen.jquery.min.js"></script>
         
         {if isset($nomPrenomAuteur)}
         <script type="text/javascript">
@@ -23,7 +24,8 @@
         <link rel="shortcut icon" href="images/favicon.ico" />
         <link rel="stylesheet" href="lib/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/css/Aristo/Aristo.css">
-        <link rel="stylesheet" href="lib/css/custom.css">       
+        <link rel="stylesheet" href="lib/css/custom.css">  
+        <link rel="stylesheet" href="lib/js/chosen/chosen.css">       
     </head>
 
     <body>

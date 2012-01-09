@@ -78,7 +78,7 @@ class gestemprunteur extends Module{
             }
                 
             $f=new Form("?module=gestemprunteur&action=modifier","rech");
-            $f->add_select("id","id","Recherche rapide",$tab);
+            $f->add_select("id","id","Recherche rapide",$tab)->set_value(null,'chzn-select');
             $f->add_submit("sub","sub")->set_value('Consulter/Modifier','inline','btn');
 
             $this->tpl->assign("champ_recherche",$f);
