@@ -47,6 +47,14 @@ Class FrontController{
 			'index' => array(
 				'action_index'
 			),
+			'gestlivre' => array(
+				'action_index',
+				'action_voir'
+			),
+			'gestauteur' => array(
+				'action_index',
+				'action_voir'
+			),
 			'gestemprunteur' => array(
 				'action_connect',
 				'action_valide_connect'
@@ -63,7 +71,8 @@ Class FrontController{
 		//Ce tableau permet de définir les permissions d'accès pour les membres enregistrés
 		$allowRegistered = array(
 			'gestemprunteur' => array(
-				'action_moncompte'
+				'action_moncompte',
+				'action_deco'
 			)
 		);
 
