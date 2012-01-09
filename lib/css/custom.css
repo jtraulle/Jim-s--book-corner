@@ -82,6 +82,14 @@ footer{
 	margin-top:10px;
 }
 
+.center{
+	display: inline-block;
+}
+
+.centrer{
+	text-align:center;
+}
+
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; padding-left:10px; }
