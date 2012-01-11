@@ -1,4 +1,4 @@
-<div class="page-title">
+  <div class="page-title">
     <h2>Gérer les emprunteurs</h2> <a class="ontitle btn success" href="?module=inscription">+ Ajouter un emprunteur</a>
 </div>
 
