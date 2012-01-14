@@ -74,6 +74,109 @@ class Livre extends Table{
             return null;
     }
 
+    public static function livresEmpruntes($pageCourante=null, $nbEnregistrementsParPage=null){
+
+        if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+            $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateEmprunt
+                FROM livre 
+                LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur 
+                LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre
+                LEFT JOIN emprunteur ON emprunter.numEmprunteur = emprunteur.numEmprunteur 
+                WHERE dateEmprunt IS NOT NULL 
+                AND dateRetour IS NULL";
+        else
+            //On définit notre requête (on récupère l'ensemble des enregistrements)
+            $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateEmprunt
+                FROM livre 
+                LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur 
+                LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre
+                LEFT JOIN emprunteur ON emprunter.numEmprunteur = emprunteur.numEmprunteur 
+                WHERE dateEmprunt IS NOT NULL 
+                AND dateRetour IS NULL 
+                LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse = $db->query($sql);
+        
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+            $date = new DateTime($enregistrement['dateEmprunt']);
+            $livreEmprunte = array(
+                'numLivre' => $enregistrement['numLivre'],
+                'titreLivre' => $enregistrement['titreLivre'],
+                'numAuteur' => $enregistrement['numAuteur'],
+                'prenomAuteur' => $enregistrement['prenomAuteur'],
+                'nomAuteur' => $enregistrement['nomAuteur'],
+                'resumeLivre' => $enregistrement['resumeLivre'],
+                'langueLivre' => $enregistrement['langueLivre'],
+                'numEmprunteur' => $enregistrement['numEmprunteur'],
+                'prenomEmprunteur' => $enregistrement['prenomEmprunteur'],
+                'nomEmprunteur' => $enregistrement['nomEmprunteur'],
+                'dateH' => Outils::formatDateDiff($date),
+                'dateEmprunt' => 'le '.$date->format('d/m/Y').' à '.$date->format('H:i')
+            );
+
+            $liste[]=$livreEmprunte;
+            
+        }
+        
+        if(isset($liste))
+            return $liste;
+        else
+            return null;
+    }
+
+    public static function livresEnAttente($pageCourante=null, $nbEnregistrementsParPage=null){
+
+        if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+            $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateDemande
+                FROM livre 
+                LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur 
+                LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre
+                LEFT JOIN emprunteur ON emprunter.numEmprunteur = emprunteur.numEmprunteur 
+                WHERE dateDemande IS NOT NULL 
+                AND dateEmprunt IS NULL";
+        else
+            //On définit notre requête (on récupère l'ensemble des enregistrements)
+            $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateDemande
+                FROM livre 
+                LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur 
+                LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre
+                LEFT JOIN emprunteur ON emprunter.numEmprunteur = emprunteur.numEmprunteur 
+                WHERE dateDemande IS NOT NULL 
+                AND dateEmprunt IS NULL 
+                LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse = $db->query($sql);
+        
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+            $date = new DateTime($enregistrement['dateDemande']);
+            $livreEnAttente = array(
+                'numLivre' => $enregistrement['numLivre'],
+                'titreLivre' => $enregistrement['titreLivre'],
+                'numAuteur' => $enregistrement['numAuteur'],
+                'prenomAuteur' => $enregistrement['prenomAuteur'],
+                'nomAuteur' => $enregistrement['nomAuteur'],
+                'resumeLivre' => $enregistrement['resumeLivre'],
+                'langueLivre' => $enregistrement['langueLivre'],
+                'numEmprunteur' => $enregistrement['numEmprunteur'],
+                'prenomEmprunteur' => $enregistrement['prenomEmprunteur'],
+                'nomEmprunteur' => $enregistrement['nomEmprunteur'],
+                'dateDemande' => 'le '.$date->format('d/m/Y').' à '.$date->format('H:i')
+            );
+
+            $liste[]=$livreEnAttente;
+            
+        }
+        
+        if(isset($liste))
+            return $liste;
+        else
+            return null;
+    }
+
     public static function cinqDerniersLivres(){
 
         //On définit notre requête (on récupère l'ensemble des enregistrements)
