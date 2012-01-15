@@ -30,13 +30,30 @@ class Livre extends Table{
     }
     
     public static function chercherParId($id){
-        $sql="SELECT numlivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre FROM livre,auteur WHERE auteur.numAuteur = livre.numAuteur AND numLivre=?";
+        $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre, COUNT(numEmprunteur) AS nbEmprunte 
+FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre WHERE (dateDemande IS NULL 
+OR dateRetour IS NULL) AND livre.numLivre = ? GROUP BY numLivre";
         $db=DB::get_instance();
         $res=$db->prepare($sql);
         $res->execute(array($id));
 
         $l= $res->fetch();			
-        return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[7],null,$l[0]);			
+        return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[7],$l[8],$l[0]);			
+    }
+
+    public static function dispoReelle($idLivre){
+
+        //On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql="SELECT nbExemplaireLivre, COUNT(numEmprunt)  AS nbEmprunte
+FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.numLivre = ? AND (dateEmprunt IS NOT NULL AND dateRetour IS NULL)";
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $res = $db->prepare($sql);        
+        $res->execute(array($idLivre));
+
+        $l= $res->fetch();          
+        return($l[0] - $l[1]);
     }
     
     public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){
@@ -83,7 +100,8 @@ class Livre extends Table{
                 LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre
                 LEFT JOIN emprunteur ON emprunter.numEmprunteur = emprunteur.numEmprunteur 
                 WHERE dateEmprunt IS NOT NULL 
-                AND dateRetour IS NULL";
+                AND dateRetour IS NULL
+                ORDER BY dateEmprunt DESC";
         else
             //On définit notre requête (on récupère l'ensemble des enregistrements)
             $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateEmprunt
@@ -92,7 +110,8 @@ class Livre extends Table{
                 LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre
                 LEFT JOIN emprunteur ON emprunter.numEmprunteur = emprunteur.numEmprunteur 
                 WHERE dateEmprunt IS NOT NULL 
-                AND dateRetour IS NULL 
+                AND dateRetour IS NULL
+                ORDER BY dateEmprunt DESC
                 LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
 
         //Comme on est dans un contexte statique, on récupère l'instance de la BDD
@@ -129,7 +148,7 @@ class Livre extends Table{
     public static function livresEnAttente($pageCourante=null, $nbEnregistrementsParPage=null){
 
         if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
-            $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateDemande
+            $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateDemande, numEmprunt
                 FROM livre 
                 LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur 
                 LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre
@@ -138,7 +157,7 @@ class Livre extends Table{
                 AND dateEmprunt IS NULL";
         else
             //On définit notre requête (on récupère l'ensemble des enregistrements)
-            $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateDemande
+            $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, emprunteur.numEmprunteur, prenomEmprunteur, nomEmprunteur, dateDemande, numEmprunt
                 FROM livre 
                 LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur 
                 LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre
@@ -161,10 +180,57 @@ class Livre extends Table{
                 'nomAuteur' => $enregistrement['nomAuteur'],
                 'resumeLivre' => $enregistrement['resumeLivre'],
                 'langueLivre' => $enregistrement['langueLivre'],
+                'numEmprunt' => $enregistrement['numEmprunt'],
                 'numEmprunteur' => $enregistrement['numEmprunteur'],
                 'prenomEmprunteur' => $enregistrement['prenomEmprunteur'],
                 'nomEmprunteur' => $enregistrement['nomEmprunteur'],
                 'dateDemande' => 'le '.$date->format('d/m/Y').' à '.$date->format('H:i')
+            );
+
+            $liste[]=$livreEnAttente;
+            
+        }
+        
+        if(isset($liste))
+            return $liste;
+        else
+            return null;
+    }
+
+    public static function reservationEnAttente($pageCourante=null, $nbEnregistrementsParPage=null){
+
+        if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+            $sql="SELECT numReservation, reserver.numEmprunteur, prenomEmprunteur, nomEmprunteur, reserver.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, dateReservation, retireReservation FROM reserver, emprunteur, livre, auteur 
+                WHERE livre.numAuteur = auteur.numAuteur 
+                AND reserver.numLivre = livre.numLivre
+                AND reserver.numEmprunteur = emprunteur.numEmprunteur
+                AND retireReservation = 0";
+        else
+            //On définit notre requête (on récupère l'ensemble des enregistrements)
+            $sql="SELECT numReservation, reserver.numEmprunteur, prenomEmprunteur, nomEmprunteur, reserver.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, dateReservation FROM reserver, emprunteur, livre, auteur 
+                WHERE livre.numAuteur = auteur.numAuteur 
+                AND reserver.numLivre = livre.numLivre
+                AND reserver.numEmprunteur = emprunteur.numEmprunteur
+                AND retireReservation = 0
+                LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse = $db->query($sql);
+        
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+            $date = new DateTime($enregistrement['dateReservation']);
+            $livreEnAttente = array(
+                'numReservation' => $enregistrement['numReservation'],
+                'numEmprunteur' => $enregistrement['numEmprunteur'],
+                'prenomEmprunteur' => $enregistrement['prenomEmprunteur'],
+                'nomEmprunteur' => $enregistrement['nomEmprunteur'],
+                'numLivre' => $enregistrement['numLivre'],
+                'titreLivre' => $enregistrement['titreLivre'],
+                'numAuteur' => $enregistrement['numAuteur'],
+                'prenomAuteur' => $enregistrement['prenomAuteur'],
+                'nomAuteur' => $enregistrement['nomAuteur'],
+                'dateReservation' => 'le '.$date->format('d/m/Y').' à '.$date->format('H:i')
             );
 
             $liste[]=$livreEnAttente;
@@ -244,7 +310,69 @@ class Livre extends Table{
                 return $liste;
             else
                 return null;
-        }
+    }
+
+    public static function enregistrerPret($numEmprunteur,$numLivre){
+        
+        $sql="INSERT INTO emprunter VALUES('',?,?,null,Now(),null,0)";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numEmprunteur,
+            $numLivre
+        ));         
+        
+        return $db->lastInsertId();
+    }
+
+    public static function reserver($numEmprunteur,$numLivre){
+        
+        $sql="INSERT INTO reserver VALUES('',?,?,Now(),0)";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numEmprunteur,
+            $numLivre
+        ));         
+        
+        return $db->lastInsertId();
+    }
+
+    public static function dejaEmprunte($numEmprunteur,$numLivre){
+        
+        $sql="SELECT COUNT(numEmprunt) AS dejaEmprunte FROM emprunter WHERE numEmprunteur = ? AND numLivre = ? AND dateEmprunt IS NOT NULL AND dateRetour IS NULL";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numEmprunteur,
+            $numLivre
+        ));         
+        
+        $l= $res->fetch();          
+        return($l[0]);
+    }
+
+    public static function dejaReserve($numEmprunteur,$numLivre){
+        
+        $sql="SELECT COUNT(numReservation) AS dejaReserve FROM reserver WHERE numEmprunteur = ? AND numLivre = ? AND retireReservation = 0";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numEmprunteur,
+            $numLivre
+        ));         
+        
+        $l= $res->fetch();          
+        return($l[0]);
+    }
 
 	//fonctions privées-----------------------------------------------
     function enregistrer(){

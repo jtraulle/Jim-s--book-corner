@@ -73,6 +73,9 @@ Class FrontController{
 			'gestemprunteur' => array(
 				'action_moncompte',
 				'action_deco'
+			),
+			'gestemprunt' => array(
+				'action_reserver'
 			)
 		);
 

@@ -33,7 +33,7 @@
         <div class='container'>
             <div class="content">
                 <div class="page-header">
-                    <h1>Jim's book corner library <small>Integrated library system</small></h1>
+                    <h1>Jim's book corner library <small>Integrated library system <sub>βeta</sub></small></h1>
                     {if isset($login)}
                     <div class="login"><p><em>Vous êtes identifié en tant que {$login}</em> {if $statut == 'gestionnaire'}<img class="infobulle" src="images/bricks.png" data-placement="below" rel='twipsy' title="Vous possédez les droits de gestion"/>{/if}</p>
                     <p><a href="?module=gestemprunteur&action=deco"><img src="images/key.png" /> Fermer la session</a></p></div>
