@@ -61,7 +61,7 @@
     </div>
     <div class="modal-footer">
         <a href="?module=gestemprunt&action=validerPret&id=" class="btn success">Confirmer le prêt</a>
-        <a href="#" onclick="$('#modal-suppr').modal('hide')" class="btn secondary">Annuler</a>
+        <a href="#" onclick="$('#modal-from-dom').modal('hide')" class="btn secondary">Annuler</a>
     </div>
 </div>
 
