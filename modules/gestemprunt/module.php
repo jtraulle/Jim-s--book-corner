@@ -16,6 +16,24 @@ class gestemprunt extends Module{
 		$this->tpl->assign("listeEmprunts",Livre::livresEmpruntes());
     }
 
+    public function action_rendre(){
+		$this->set_title("Rendre un ouvrage | Jim's book corner library");
+		if(Livre::isPretEnCours($_GET['idemprunteur'],$_GET['idlivre'])){
+			Livre::rendre($_GET['idemprunteur'],$_GET['idlivre']);
+			$this->site->ajouter_message('L\'ouvrage a été correctement restitué. Il est maintenant possible de le ranger.',4);
+			if(Livre::isReserve($_GET['idlivre'])){
+				Livre::enregistrerDemande(Livre::quelEmprunteurReservation($_GET['idlivre']),$_GET['idlivre']);
+				Livre::majReservationDispo(Livre::reservationAValider($_GET['idlivre']));
+				// @TOTO -- ICI ENVOYER UN MAIL A L'EMPRUNTEUR POUR LE PREVENIR
+				$this->site->ajouter_message('Cet ouvrage a été réservé par un autre lecteur. Gardez le de côté le temps que celui-ci vienne le chercher. Un courriel a été envoyé automatiquement pour le prévenir.',1);
+			}
+		}else{
+			$this->site->ajouter_message('Impossible de rendre cet ouvrage, il n\'a pas été emprunté par ce lecteur !',1);
+	        $this->site->redirect('gestemprunt','pretsEnCours');
+		}
+			
+    }
+
     public function action_preter(){
 		$this->set_title("Prêter un ouvrage | Jim's book corner library");
 		$ouvrageAPreter = Livre::chercherParId($_REQUEST['id']);

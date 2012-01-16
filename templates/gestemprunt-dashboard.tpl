@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Gérer les emprunts</h2><a class="ontitle btn" href="?module=gestemprunt">Gérer les réservations</a>
+    <h2>Gérer les emprunts</h2><a class="ontitle btn" href="?module=gestreservation"><img style="vertical-align:top;" src="images/date.png" /> Gérer les réservations</a>
 </div>
 
 <div class="well">

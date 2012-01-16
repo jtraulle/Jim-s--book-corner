@@ -41,6 +41,56 @@ OR dateRetour IS NULL) AND livre.numLivre = ? GROUP BY numLivre";
         return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[7],$l[8],$l[0]);			
     }
 
+    public static function isPretEnCours($numEmprunteur,$numLivre){
+        $sql="SELECT COUNT(numEmprunt) FROM emprunter WHERE numEmprunteur=? AND numLivre=? AND dateRetour IS NULL";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($numEmprunteur, $numLivre));
+
+        $l= $res->fetch();
+                
+        return($l[0]);            
+    }
+
+    //Cette méthode retourne vrai si le livre passé en paramètre est actuellement réservé. Faux sinon.
+    public static function isReserve($numLivre){
+        $sql="SELECT COUNT(numReservation) FROM reserver WHERE numLivre=? AND retireReservation=0";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($numLivre));
+
+        $l= $res->fetch();
+        
+        if($l[0] > 0)        
+            return 1;
+        else
+            return 0;            
+    }
+
+    //Cette méthode permet de savoir quelle réservation est à mettre à jour lors de la restitution d'un ouvrage déjà emprunté.
+    public static function reservationAValider($numLivre){
+        $sql="SELECT numReservation FROM reserver WHERE numLivre=? AND retireReservation=0 ORDER BY dateReservation ASC LIMIT 0,1";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($numLivre));
+
+        $l= $res->fetch();
+              
+        return $l[0];           
+    }
+
+    //Cette méthode permet de savoir quel est l'emprunteur qui dispose de la réservation lors de la restitution d'un ouvrage déjà emprunté.
+    public static function quelEmprunteurReservation($numLivre){
+        $sql="SELECT numEmprunteur FROM reserver WHERE numLivre=? AND retireReservation=0 ORDER BY dateReservation ASC LIMIT 0,1";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($numLivre));
+
+        $l= $res->fetch();
+              
+        return $l[0];           
+    }
+
     public static function dispoReelle($idLivre){
 
         //On définit notre requête (on récupère l'ensemble des enregistrements)
@@ -204,7 +254,8 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
                 WHERE livre.numAuteur = auteur.numAuteur 
                 AND reserver.numLivre = livre.numLivre
                 AND reserver.numEmprunteur = emprunteur.numEmprunteur
-                AND retireReservation = 0";
+                AND retireReservation = 0
+                ORDER BY dateReservation DESC";
         else
             //On définit notre requête (on récupère l'ensemble des enregistrements)
             $sql="SELECT numReservation, reserver.numEmprunteur, prenomEmprunteur, nomEmprunteur, reserver.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, dateReservation FROM reserver, emprunteur, livre, auteur 
@@ -212,6 +263,55 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
                 AND reserver.numLivre = livre.numLivre
                 AND reserver.numEmprunteur = emprunteur.numEmprunteur
                 AND retireReservation = 0
+                ORDER BY dateReservation DESC
+                LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse = $db->query($sql);
+        
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+            $date = new DateTime($enregistrement['dateReservation']);
+            $livreEnAttente = array(
+                'numReservation' => $enregistrement['numReservation'],
+                'numEmprunteur' => $enregistrement['numEmprunteur'],
+                'prenomEmprunteur' => $enregistrement['prenomEmprunteur'],
+                'nomEmprunteur' => $enregistrement['nomEmprunteur'],
+                'numLivre' => $enregistrement['numLivre'],
+                'titreLivre' => $enregistrement['titreLivre'],
+                'numAuteur' => $enregistrement['numAuteur'],
+                'prenomAuteur' => $enregistrement['prenomAuteur'],
+                'nomAuteur' => $enregistrement['nomAuteur'],
+                'dateReservation' => 'le '.$date->format('d/m/Y').' à '.$date->format('H:i')
+            );
+
+            $liste[]=$livreEnAttente;
+            
+        }
+        
+        if(isset($liste))
+            return $liste;
+        else
+            return null;
+    }
+
+    public static function reservationDispo($pageCourante=null, $nbEnregistrementsParPage=null){
+
+        if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+            $sql="SELECT numReservation, reserver.numEmprunteur, prenomEmprunteur, nomEmprunteur, reserver.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, dateReservation, retireReservation FROM reserver, emprunteur, livre, auteur 
+                WHERE livre.numAuteur = auteur.numAuteur 
+                AND reserver.numLivre = livre.numLivre
+                AND reserver.numEmprunteur = emprunteur.numEmprunteur
+                AND retireReservation = 1
+                ORDER BY dateReservation ASC";
+        else
+            //On définit notre requête (on récupère l'ensemble des enregistrements)
+            $sql="SELECT numReservation, reserver.numEmprunteur, prenomEmprunteur, nomEmprunteur, reserver.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, dateReservation FROM reserver, emprunteur, livre, auteur 
+                WHERE livre.numAuteur = auteur.numAuteur 
+                AND reserver.numLivre = livre.numLivre
+                AND reserver.numEmprunteur = emprunteur.numEmprunteur
+                AND retireReservation = 1
+                ORDER BY dateReservation ASC
                 LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
 
         //Comme on est dans un contexte statique, on récupère l'instance de la BDD
@@ -327,6 +427,21 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
         return $db->lastInsertId();
     }
 
+    public static function enregistrerDemande($numEmprunteur,$numLivre){
+        
+        $sql="INSERT INTO emprunter VALUES('',?,?,Now(),null,null,0)";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numEmprunteur,
+            $numLivre
+        ));         
+        
+        return $db->lastInsertId();
+    }
+
     public static function reserver($numEmprunteur,$numLivre){
         
         $sql="INSERT INTO reserver VALUES('',?,?,Now(),0)";
@@ -340,6 +455,56 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
         ));         
         
         return $db->lastInsertId();
+    }
+
+    public static function validerPret($numEmprunt){
+        
+        $sql="UPDATE emprunter SET dateEmprunt=Now() WHERE numEmprunt=?";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numEmprunt,
+        ));         
+    }
+
+    //Permet de mettre à jour une réservation pour indiquer à l'emprunteur que le livre est disponible.
+    public static function majReservationDispo($numReservation){
+        
+        $sql="UPDATE reserver SET retireReservation=1 WHERE numReservation=?";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numReservation,
+        ));         
+    }
+
+    public static function rendre($numEmprunteur, $numLivre){
+        
+        $sql="UPDATE emprunter SET dateRetour=Now() WHERE numEmprunteur=? AND numLivre=? AND dateRetour IS NULL";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numEmprunteur,
+            $numLivre
+        ));         
+    }
+
+    function supprimerDemande(){
+        $sql="DELETE FROM emprunter WHERE numEmprunt=?";
+        $this->db->exec($sql);
+        $this->numLivre=-1;
+    }
+
+    function supprimerReservation($id){
+        $sql="DELETE FROM reserver WHERE numReservation=".$id;
+        $this->db->exec($sql);
+        $this->numLivre=-1;
     }
 
     public static function dejaEmprunte($numEmprunteur,$numLivre){
