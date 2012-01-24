@@ -21,6 +21,7 @@ class gestemprunt extends Module{
 		if(Livre::isPretEnCours($_GET['idemprunteur'],$_GET['idlivre'])){
 			Livre::rendre($_GET['idemprunteur'],$_GET['idlivre']);
 			$this->site->ajouter_message('L\'ouvrage a été correctement restitué. Il est maintenant possible de le ranger.',4);
+			$this->site->redirect('gestemprunt');
 			if(Livre::isReserve($_GET['idlivre'])){
 				Livre::enregistrerDemande(Livre::quelEmprunteurReservation($_GET['idlivre']),$_GET['idlivre']);
 				Livre::majReservationDispo(Livre::reservationAValider($_GET['idlivre']));
