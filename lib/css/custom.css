@@ -1,4 +1,4 @@
-﻿input {
+input {
 	height:inherit;
 }
 
@@ -61,11 +61,18 @@ h1{
 	display:inline-block;	
 }
 
+.page-header{
+	position:relative;
+}
+
 .login{
 	display:inline-block;
 	vertical-align:top;
 	text-align:right;
-	width:300px;
+	position:absolute;
+	right:25px;
+	top:12px;
+	z-index:2;
 }
 
 .login p{

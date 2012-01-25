@@ -74,7 +74,11 @@ class Outils{
 	        } else { 
 	            $format[] = "%s ".$doPlural($interval->s, "seconde"); 
 	        } 
-	    } 
+	    }
+	    else
+	    {
+	    	return "Il y a quelques instants ..."; 
+	    }
 	    
 	    // We use the two biggest parts 
 	    if(count($format) > 1) { 
