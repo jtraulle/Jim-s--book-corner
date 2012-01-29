@@ -87,6 +87,24 @@ class gestemprunteur extends Module{
 		$this->tpl->assign("listeEmprunteurs",Emprunteur::liste($pageCourante, 10));
 	}
 
+    public function action_voir(){
+
+        $this->set_title("Consulter une fiche lecteur | Jim's book corner library");
+
+        $emprunteurAconsulter = Emprunteur::chercherParId($_REQUEST['id']);
+        if(empty($emprunteurAconsulter->numEmprunteur)){
+            $this->site->ajouter_message('Impossible de visualiser cet emprunteur, il est inexistant !',1);
+            $this->site->redirect('gestemprunteur','index');
+        }
+
+        $this->tpl->assign("emprunteurAconsulter",$emprunteurAconsulter);
+
+        $this->tpl->assign("listeEmprunts",Livre::livresEmpruntesLecteur(null,null,$emprunteurAconsulter->numEmprunteur));
+        $this->tpl->assign("listeEnAttente",Livre::livresEnAttenteLecteur(null,null,$emprunteurAconsulter->numEmprunteur));
+        $this->tpl->assign("listeReservationsEnAttente",Livre::reservationEnAttenteLecteur(null,null,$emprunteurAconsulter->numEmprunteur)); 
+        $this->tpl->assign("listeReservationsDispo",Livre::reservationDispoLecteur(null,null,$emprunteurAconsulter->numEmprunteur)); 
+    }
+
 	public function action_supprimer(){
 	    $emprunteurAsuppr = Emprunteur::chercherParId($_REQUEST['id']);
 	    if(empty($emprunteurAsuppr->numEmprunteur)){

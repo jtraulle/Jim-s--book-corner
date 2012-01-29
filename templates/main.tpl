@@ -61,7 +61,7 @@
                 <footer>
                     {if $statut == 'invite'}<p><em>Réalisation département Informatique IUT d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a><span style="float:right;"><img style="vertical-align:top;" src="images/cog.png" /> <a href="?module=gestgestionnaire&action=connect">Interface de gestion</a></span></p>
                     {else}
-                    <p style="text-align:center;"><em>Réalisation département Informatique IUT d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a></p>
+                    <p style="text-align:center;"><em>Réalisation département informatique de l'<strong>I</strong>nstitut <strong>U</strong>niversitaire de <strong>T</strong>echnologie d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a></p>
                     {/if}
                 </footer>
             </div>

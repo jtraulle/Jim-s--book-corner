@@ -75,6 +75,9 @@ Class FrontController{
 				'action_deco'
 			),
 			'gestemprunt' => array(
+				'action_demande_pret'
+			),
+			'gestreservation' => array(
 				'action_reserver'
 			)
 		);
