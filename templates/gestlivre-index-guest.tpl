@@ -19,7 +19,7 @@
     <tbody>
 <div id="tab">
 {section name=livres loop=$listeLivres}
-{$nbDispo = $listeLivres[livres]->nbExemplaireLivre - $listeLivres[livres]->nbEmprunte}
+{$nbDispo = $listeLivres[livres]->nbExemplaireLivre - $listeLivres[livres]->nbEmprunte()}
         <tr>
             <td style="vertical-align:middle; text-align:center;">{$listeLivres[livres]->numLivre}</td>
             <td style="vertical-align:middle;">{$listeLivres[livres]->titreLivre}</td>
