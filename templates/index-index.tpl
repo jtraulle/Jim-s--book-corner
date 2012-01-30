@@ -20,7 +20,6 @@
     <tbody>
 <div id="tab">
 {section name=livres loop=$listeLivres}
-{$nbDispo = $listeLivres[livres]->nbExemplaireLivre - $listeLivres[livres]->nbEmprunte}
         <tr>
             <td style="vertical-align:middle;">{$listeLivres[livres]->titreLivre}</td>
             <td style="vertical-align:middle;"><a href="?module=gestauteur&action=voir&id={$listeLivres[livres]->numAuteur}">{$listeLivres[livres]->prenomAuteur} {$listeLivres[livres]->nomAuteur}</a></td>
