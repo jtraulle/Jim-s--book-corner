@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Consulter un auteur</h2> {if $statut == 'gestionnaire'}<a class="ontitle btn" href="?module=gestauteur&action=modifier&id={$numAuteur}"><img style="vertical-align:top;" src="images/user_edit.png" /> Modifier cet auteur</a>{/if}
+    <h2>Consulter un auteur</h2> {if $statut == 'gestionnaire'}<a class="ontitle btn" href="?module=gestauteur&action=modifier&id={$numAuteur}"><img style="vertical-align:top;" src="images/user_edit.png" /> Modifier cet auteur</a>{/if} <a class="ontitle btn" href="?module=gestauteur">← retour à la gestion des auteurs</a>
 </div>
 
 <p>Nom : {$nomAuteur}</p>

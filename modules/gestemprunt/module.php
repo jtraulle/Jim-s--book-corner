@@ -127,6 +127,13 @@ class gestemprunt extends Module{
 		$this->site->ajouter_message('La demande de prêt a été supprimée avec succès.',4);
 	    $this->site->redirect('gestemprunt');
     }
+
+    public function action_validerPret(){
+
+		Livre::validerPret($_GET['id']);
+		$this->site->ajouter_message('L\'ouvrage <em>'.$livre->titreLivre.'</em> a été prêté.<br /> Le lecteur peut désormais emporter le livre ;)',4);
+	    $this->site->redirect('gestemprunt','pretsEnCours');
+    }
 }
 
 ?>

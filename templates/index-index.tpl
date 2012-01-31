@@ -1,3 +1,4 @@
+{if $statut == 'invite'}
 <div class="hero-unit tweak-hero">
         <img class="floatleft" src="images/hero-index.png" alt="Oops" />
         <h1>Bienvenue !</h1>
@@ -6,6 +7,7 @@
         <p>Depuis cette application, vous pouvez rechercher un livre possédé par la bibliothèque et connaître son statut (disponible, emprunté etc.). </p>
         <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations etc.), nous vous conseillons de vous inscrire dès maintenant.</p><a style="float:right;" class="btn primary large mainCallToActionBtn" href="?module=inscription">Je m'inscris »</a> <a style="float:right;" class="btn large success mainCallToActionBtn" href="?module=gestemprunteur&action=connect">Déjà inscrit ?</a> 
 </div>
+{/if}
 
 <div class="row">
     <div class="span8">

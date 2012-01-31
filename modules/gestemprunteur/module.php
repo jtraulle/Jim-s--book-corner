@@ -256,5 +256,22 @@ class gestemprunteur extends Module{
         }
 	}
 
+    public function action_moncompte(){
+        $this->set_title("Mon compte lecteur | Jim's book corner library");
+
+        $emprunteurAconsulter = Emprunteur::chercherParId($this->session->user->numEmprunteur);
+        if(empty($emprunteurAconsulter->numEmprunteur)){
+            $this->site->ajouter_message('Impossible de visualiser cet emprunteur, il est inexistant !',1);
+            $this->site->redirect('gestemprunteur','index');
+        }
+
+        $this->tpl->assign("emprunteurAconsulter",$emprunteurAconsulter);
+
+        $this->tpl->assign("listeEmprunts",Livre::livresEmpruntesLecteur(null,null,$emprunteurAconsulter->numEmprunteur));
+        $this->tpl->assign("listeEnAttente",Livre::livresEnAttenteLecteur(null,null,$emprunteurAconsulter->numEmprunteur));
+        $this->tpl->assign("listeReservationsEnAttente",Livre::reservationEnAttenteLecteur(null,null,$emprunteurAconsulter->numEmprunteur)); 
+        $this->tpl->assign("listeReservationsDispo",Livre::reservationDispoLecteur(null,null,$emprunteurAconsulter->numEmprunteur));
+    }
+
 }
 ?>
