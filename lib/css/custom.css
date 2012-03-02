@@ -102,6 +102,21 @@ footer{
 	vertical-align:top;
 }
 
+.etroit{
+	width:600px;
+	padding:50px;
+	margin: auto;
+}
+
+.manuscrit{
+	font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    line-height: 140%;
+    text-align: justify;
+    text-indent: 50px;
+    padding-bottom: 20px;
+}
+
 /* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; padding-left:10px; }

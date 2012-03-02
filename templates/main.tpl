@@ -27,6 +27,9 @@
         <link rel="stylesheet" href="lib/css/Aristo/Aristo.css">
         <link rel="stylesheet" href="lib/css/custom.css">  
         <link rel="stylesheet" href="lib/js/chosen/chosen.css">       
+        <link rel="stylesheet" href="lib/js/chosen/chosen.css"> 
+        <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Dancing+Script' rel='stylesheet' type='text/css'>
+              
     </head>
 
     <body>

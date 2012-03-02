@@ -65,6 +65,11 @@ Class FrontController{
 			),
 			'gestevenement' => array(
 				'action_index'
+			),
+			'pages' => array(
+				'action_credits',
+				'action_lettre',
+				'action_lettre_manuscrite'
 			)
 		);
 
