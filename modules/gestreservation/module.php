@@ -25,14 +25,14 @@ class gestreservation extends Module{
 	        $this->site->redirect('gestlivre');
 	    }
 	    	
-	    if(($livre->nbExemplaireLivre - $livre->nbEmprunte) > 0){
+	    if(($livre->nbExemplaireLivre - $livre->nbEmprunte()) > 0){
     		$this->site->ajouter_message('Impossible de réserver cet ouvrage, des exemplaire sont encore en stock !',1);
     		$this->site->redirect('gestlivre');
 		}
 
 		if(Livre::dejaEmprunte($emprunteur->numEmprunteur,$livre->numLivre) == 1){
 			$this->site->ajouter_message('Impossible de réserver cet ouvrage à pour emprunteur, il possède déjà un exemplaire de ce livre !',1);
-	    	$this->site->redirect('gestemprunt','pretsEnCours');
+	    	$this->site->redirect('gestlivre');
 	    }
 
 		if(Livre::dejaReserve($emprunteur->numEmprunteur,$livre->numLivre) == 1){
