@@ -20,12 +20,12 @@ class gestemprunt extends Module{
 		if(Livre::isPretEnCours($_GET['idemprunteur'],$_GET['idlivre'])){
 			Livre::rendre($_GET['idemprunteur'],$_GET['idlivre']);
 			$this->site->ajouter_message('L\'ouvrage a été correctement restitué. Il est maintenant possible de le ranger.',4);
-			$this->site->redirect('gestemprunt');
 			if(Livre::isReserve($_GET['idlivre'])){
 				Livre::enregistrerDemande(Livre::quelEmprunteurReservation($_GET['idlivre']),$_GET['idlivre']);
 				Livre::majReservationDispo(Livre::reservationAValider($_GET['idlivre']));
 				// @TOTO -- ICI ENVOYER UN MAIL A L'EMPRUNTEUR POUR LE PREVENIR
 				$this->site->ajouter_message('Cet ouvrage a été réservé par un autre lecteur. Gardez le de côté le temps que celui-ci vienne le chercher. Un courriel a été envoyé automatiquement pour le prévenir.',1);
+				$this->site->redirect('gestemprunt');
 			}
 		}else{
 			$this->site->ajouter_message('Impossible de rendre cet ouvrage, il n\'a pas été emprunté par ce lecteur !',1);
