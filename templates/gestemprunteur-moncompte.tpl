@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Mon compte lecteur</h2> <a class="ontitle btn" href="?module=index">← retour à l'accueil</a>
+    <h2>Mon compte lecteur</h2> <a class="ontitle btn" href="?module=gestemprunteur&action=modifier_identifiant"><img style="vertical-align:top;" src="images/user_edit.png" /> Modifier mon identifiant</a> <a class="ontitle btn" href="?module=gestemprunteur&action=modifier_pass"><img style="vertical-align:top;" src="images/key.png" /> Modifier mon mot de passe</a>
 </div>
 
 <div id="accordion">

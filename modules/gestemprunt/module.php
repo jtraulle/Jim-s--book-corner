@@ -79,6 +79,9 @@ class gestemprunt extends Module{
 		    		$this->site->ajouter_message('Impossible de prêter cet ouvrage à cet emprunteur, il possède déjà un exemplaire de ce livre !',1);
 	    			$this->site->redirect('gestemprunt','pretsEnCours');
 		    	}else{
+		    		if(Livre::isReservationDisponible($livre->numLivre, $emprunteur->numEmprunteur)){
+		    			Livre::majReservationTerminee($livre->numLivre, $emprunteur->numEmprunteur)
+		    		}
 		    		Livre::enregistrerPret($emprunteur->numEmprunteur,$livre->numLivre);
 		    		$this->site->ajouter_message('L\'ouvrage <em>'.$livre->titreLivre.'</em> a été prêté à '.$emprunteur->prenomEmprunteur.' '.$emprunteur->nomEmprunteur.'.<br /> Le lecteur peut désormais emporter le livre ;)',4);
 	    			$this->site->redirect('gestemprunt','pretsEnCours');
@@ -119,10 +122,9 @@ class gestemprunt extends Module{
     }
 
     public function action_supprimerDemande(){
-
-    	// @TODO -- EFFECTUER UN CONTROLE POUR S'ASSURER QUE L'UTILISATEUR NE TENTE PAS
-    	// DE SUPPRIMER UNE RESERVATION A RETIRER (statut 1)
-
+    	if(Livre::isReservationDisponible($livre->numLivre, $emprunteur->numEmprunteur)){
+			Livre::majReservationTerminee($livre->numLivre, $emprunteur->numEmprunteur)
+		}
 		Livre::supprimerDemande($_GET['id']);
 		$this->site->ajouter_message('La demande de prêt a été supprimée avec succès.',4);
 	    $this->site->redirect('gestemprunt');

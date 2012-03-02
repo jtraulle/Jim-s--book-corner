@@ -65,6 +65,21 @@ OR dateRetour IS NULL) AND livre.numLivre = ? GROUP BY numLivre";
             return 0;            
     }
 
+    //Cette méthode retourne vrai s'il existe une réservation disponible pour le livre et l'emprunteur spécifiés.
+    public static function isReservationDisponible($numLivre, $numEmprunteur){
+        $sql="SELECT COUNT(numReservation) FROM reserver WHERE numLivre=? AND numEmprunteur=? AND retireReservation=1";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($numLivre, $numEmprunteur));
+
+        $l= $res->fetch();
+        
+        if($l[0] > 0)        
+            return 1;
+        else
+            return 0;            
+    }
+
     //Cette méthode permet de savoir quelle réservation est à mettre à jour lors de la restitution d'un ouvrage déjà emprunté.
     public static function reservationAValider($numLivre){
         $sql="SELECT numReservation FROM reserver WHERE numLivre=? AND retireReservation=0 ORDER BY dateReservation ASC LIMIT 0,1";
@@ -700,6 +715,20 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
         
         $res->execute(array(
             $numReservation,
+        ));         
+    }
+
+    //Permet de mettre à jour une réservation pour indiquer qu'elle est terminée.
+    public static function majReservationTerminee($numLivre, $numEmprunteur){
+        
+        $sql="UPDATE reserver SET retireReservation=2 WHERE numLivre=? AND numEmprunteur=? AND retireReservation=1";
+        
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        
+        $res->execute(array(
+            $numLivre,
+            $numEmprunteur
         ));         
     }
 
