@@ -26,7 +26,6 @@
         <link rel="stylesheet" href="lib/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/css/Aristo/Aristo.css">
         <link rel="stylesheet" href="lib/css/custom.css">  
-        <link rel="stylesheet" href="lib/js/chosen/chosen.css">       
         <link rel="stylesheet" href="lib/js/chosen/chosen.css"> 
         <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Dancing+Script' rel='stylesheet' type='text/css'>
               
@@ -62,9 +61,9 @@
                     </div>
                 </div>
                 <footer>
-                    {if $statut == 'invite'}<p><em>Réalisation département Informatique IUT d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a><span style="float:right;"><img style="vertical-align:top;" src="images/cog.png" /> <a href="?module=gestgestionnaire&action=connect">Interface de gestion</a></span></p>
+                    {if $statut == 'invite'}<p><em>Réalisation département Informatique IUT d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a><span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="?module=pages&action=signaleranomalie">Signaler une anomalie</a> - <img style="vertical-align:top;" src="images/cog.png" /> <a href="?module=gestgestionnaire&action=connect">Interface de gestion</a></span></p>
                     {else}
-                    <p style="text-align:center;"><em>Réalisation département informatique de l'<strong>I</strong>nstitut <strong>U</strong>niversitaire de <strong>T</strong>echnologie d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a></p>
+                    <p><em>Réalisation département informatique de l'<strong>I</strong>nstitut <strong>U</strong>niversitaire de <strong>T</strong>echnologie d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a> <span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="?module=pages&action=signaleranomalie">Signaler une anomalie</a></span></p>
                     {/if}
                 </footer>
             </div>
