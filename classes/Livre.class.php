@@ -730,7 +730,7 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
 
     public static function dejaEmprunte($numEmprunteur,$numLivre){
         
-        $sql="SELECT COUNT(numEmprunt) AS dejaEmprunte FROM emprunter WHERE numEmprunteur = ? AND numLivre = ? AND dateEmprunt IS NOT NULL AND dateRetour IS NULL";
+        $sql="SELECT COUNT(numEmprunt) AS dejaEmprunte FROM emprunter WHERE numEmprunteur = ? AND numLivre = ? AND (dateDemande IS NOT NULL OR dateEmprunt IS NOT NULL) AND dateRetour IS NULL";
         
         $db=DB::get_instance();
         $res=$db->prepare($sql);
