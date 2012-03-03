@@ -273,5 +273,132 @@ class gestemprunteur extends Module{
         $this->tpl->assign("listeReservationsDispo",Livre::reservationDispoLecteur(null,null,$emprunteurAconsulter->numEmprunteur));
     }
 
+    public function action_modifier_pass(){
+        $this->set_title("Modifier mon mot de passe | Jim's book corner library");
+
+        $f=new Form("?module=gestemprunteur&action=valide_modifier_pass","form1");
+            $f->add_password(
+                "mdpActuel",
+                "mdpActuel",
+                "Mot de passe actuel",
+                true,
+                null,
+                "Saisissez le mot de passe actuel du compte"
+            );
+            $f->add_password(
+                "mdpNouveau1",
+                "mdpNouveau1",
+                "Nouveau mot de passe",
+                true,
+                "motdepasse",
+                "Longueur minimale de 7 caractères (dont une majuscule et un chiffre)"
+            );
+            $f->add_password(
+                "mdpNouveau2",
+                "mdpNouveau2",
+                "Retapez le nouveau mot de passe",
+                true,
+                "motdepasse",
+                "Longueur minimale de 7 caractères (dont une majuscule et un chiffre)"
+            );
+            $f->add_submit("sub","sub")->set_value('Changer de mot de passe','actions','btn primary');
+
+            $this->tpl->assign("form",$f);
+            $this->session->form = $f;
+    }
+
+    public function action_valide_modifier_pass(){
+        $this->set_title("Modifier mon mot de passe | Jim's book corner library");
+
+        $form=$this->session->form;
+
+        //Si l'utilisateur essaie de passer la validation directement
+        //en tapant l'URL, on le redirige vers l'action modifier_pass ;)
+        if($this->req->sub != 'Changer de mot de passe')
+            $this->site->redirect('gestemprunteur', 'modifier_pass');
+
+        if($form->validate()){   
+            $emprunteurAconsulter = Emprunteur::chercherParId($this->session->user->numEmprunteur);
+
+            if(sha1($this->req->mdpActuel) == $emprunteurAconsulter->mdpEmprunteur){
+                if($this->req->mdpNouveau1 == $this->req->mdpNouveau2){
+                    Emprunteur::modifierMotDePasse(sha1($this->req->mdpNouveau2), $this->session->user->numEmprunteur);
+                    $this->site->ajouter_message('Votre mot de passe a bien été modifié !',4);
+                    $this->site->redirect('gestemprunteur','moncompte');
+                } else {
+                    $this->site->ajouter_message('Le nouveau mot de passe n\'est pas identique !',1);
+                    $this->site->redirect('gestemprunteur','modifier_pass');
+                }
+            } else {
+                $this->site->ajouter_message('Le mot de passe actuel que vous avez saisi ne correspond pas !',1);
+                $this->site->redirect('gestemprunteur','modifier_pass');
+            }
+        }else{
+            $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
+            $form->populate();
+            $this->tpl->assign("form",$form);
+        }
+    }
+
+    public function action_modifier_identifiant(){
+        $this->set_title("Modifier mon identifiant | Jim's book corner library");
+
+        $f=new Form("?module=gestemprunteur&action=valide_modifier_identifiant","form1");
+            $f->add_password(
+                "mdpActuel",
+                "mdpActuel",
+                "Mot de passe actuel",
+                true,
+                null,
+                "Saisissez le mot de passe actuel du compte"
+            );
+            $f->add_text(
+                "identifiantEmprunteur",
+                "identifiantEmprunteur",
+                "Nouvel identifiant",
+                true,
+                "identifiant",
+                "Accents et caractères spéciaux interdits"
+            );
+            $f->add_submit("sub","sub")->set_value('Changer mon identifiant','actions','btn primary');
+
+            $this->tpl->assign("form",$f);
+            $this->session->form = $f;
+    }
+
+    public function action_valide_modifier_identifiant(){
+        $this->set_title("Modifier mon identifiant | Jim's book corner library");
+
+        $form=$this->session->form;
+
+        //Si l'utilisateur essaie de passer la validation directement
+        //en tapant l'URL, on le redirige vers l'action modifier_pass ;)
+        if($this->req->sub != 'Changer mon identifiant')
+            $this->site->redirect('gestemprunteur', 'modifier_identifiant');
+
+        if($form->validate()){   
+            $emprunteurAconsulter = Emprunteur::chercherParId($this->session->user->numEmprunteur);
+
+            if(sha1($this->req->mdpActuel) == $emprunteurAconsulter->mdpEmprunteur){
+                if(Emprunteur::isIdentifiantDispo($this->req->identifiantEmprunteur)){
+                    Emprunteur::modifierIdentifiant($this->req->identifiantEmprunteur, $this->session->user->numEmprunteur);
+                    $this->session->user->identifiantEmprunteur = $this->req->identifiantEmprunteur;
+                    $this->site->ajouter_message('Votre identifiant a bien été modifié !',4);
+                    $this->site->redirect('gestemprunteur','moncompte');
+                } else {
+                    $this->site->ajouter_message('L\'identifiant que vous avez choisi n\'est pas disponible. !',1);
+                    $this->site->redirect('gestemprunteur','modifier_identifiant');
+                }
+            } else {
+                $this->site->ajouter_message('Le mot de passe actuel que vous avez saisi ne correspond pas !',1);
+                $this->site->redirect('gestemprunteur','modifier_identifiant');
+            }
+        }else{
+            $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
+            $form->populate();
+            $this->tpl->assign("form",$form);
+        }
+    }
+
 }
 ?>

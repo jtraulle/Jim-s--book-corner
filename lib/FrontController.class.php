@@ -77,7 +77,11 @@ Class FrontController{
 		$allowRegistered = array(
 			'gestemprunteur' => array(
 				'action_moncompte',
-				'action_deco'
+				'action_deco',
+				'action_modifier_pass',
+				'action_valide_modifier_pass',
+				'action_modifier_identifiant',
+				'action_valide_modifier_identifiant'
 			),
 			'gestemprunt' => array(
 				'action_demande_pret'

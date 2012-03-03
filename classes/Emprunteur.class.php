@@ -95,6 +95,42 @@ class Emprunteur extends Table{
         }
     }
 
+    public static function modifierMotDePasse($nouveauPass, $numEmprunteur){
+        $this->db=DB::get_instance();
+        $sql="UPDATE emprunteur SET mdpEmprunteur=? WHERE numEmprunteur=?";
+        $res=$this->db->prepare($sql);
+        $res->execute(array(
+            $nouveauPass,
+            $numEmprunteur
+        ));
+    }
+
+    //Cette fonction permet de savoir si l'identifiant spécifié est disponible où non.
+    public static function isIdentifiantDispo($identifiant){
+        $sql="SELECT COUNT(identifiantEmprunteur) FROM emprunteur WHERE identifiantEmprunteur=?";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($identifiant));
+
+        $l= $res->fetch();
+        
+        if($l[0] > 0)        
+            return 0;
+        else
+            return 1;            
+    }
+
+    //Permet de modifier l'identifiant d'un emprunteur
+    public static function modifierIdentifiant($nouvelIdentifiant, $numEmprunteur){
+        $db=DB::get_instance();
+        $sql="UPDATE emprunteur SET identifiantEmprunteur=? WHERE numEmprunteur=?";
+        $res=$db->prepare($sql);
+        $res->execute(array(
+            $nouvelIdentifiant,
+            $numEmprunteur
+        ));
+    }
+
     //fonctions privées-----------------------------------------------
     
     function enregistrer(){
