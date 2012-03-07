@@ -51,6 +51,10 @@ Class FrontController{
 				'action_index',
 				'action_voir'
 			),
+			'inscription' => array(
+				'action_index',
+				'action_voir'
+			),
 			'gestauteur' => array(
 				'action_index',
 				'action_voir'
@@ -82,6 +86,10 @@ Class FrontController{
 				'action_valide_modifier_pass',
 				'action_modifier_identifiant',
 				'action_valide_modifier_identifiant'
+			),
+			'gestlivre' => array(
+				'action_rediger_critique',
+				'action_ajouter_critique'
 			),
 			'gestemprunt' => array(
 				'action_demande_pret'

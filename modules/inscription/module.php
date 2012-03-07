@@ -119,24 +119,30 @@ class inscription extends Module{
 
         if($form->validate())
         {
-            $nouvelEmprunteur = new Emprunteur(
-                $this->req->nomEmprunteur,
-                $this->req->prenomEmprunteur,
-                $this->req->numRueEmprunteur,
-                $this->req->nomRueEmprunteur,
-                $this->req->villeEmprunteur,
-                $this->req->codePostalEmprunteur,
-                $this->req->identifiantEmprunteur,
-                $this->req->mdpEmprunteur,
-                $this->req->telFixeEmprunteur,
-                $this->req->telPortableEmprunteur,
-                $this->req->emailEmprunteur
-            );
+            if(isIdentifiantDispo($this->req->identifiantEmprunteur)){
+                $nouvelEmprunteur = new Emprunteur(
+                    $this->req->nomEmprunteur,
+                    $this->req->prenomEmprunteur,
+                    $this->req->numRueEmprunteur,
+                    $this->req->nomRueEmprunteur,
+                    $this->req->villeEmprunteur,
+                    $this->req->codePostalEmprunteur,
+                    $this->req->identifiantEmprunteur,
+                    $this->req->mdpEmprunteur,
+                    $this->req->telFixeEmprunteur,
+                    $this->req->telPortableEmprunteur,
+                    $this->req->emailEmprunteur
+                );
 
-            $nouvelEmprunteur->enregistrer();
+                $nouvelEmprunteur->enregistrer();
 
-            $this->site->ajouter_message('Le nouvel emprunteur a été ajouté avec succès =)',4);
-            $this->site->redirect('index');
+                $this->site->ajouter_message('Le nouvel emprunteur a été ajouté avec succès =)',4);
+                $this->site->redirect('index');                
+            } else {
+                $this->site->ajouter_message('L\'identifiant que vous avez choisi est déjà utilisé !',1);
+                $form->populate();
+                $this->tpl->assign("form",$form);
+            }            
         }else{
             $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
             $form->populate();

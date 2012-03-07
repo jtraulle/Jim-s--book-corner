@@ -12,6 +12,7 @@
         <script type="text/javascript"src="lib/js/bootstrap-twipsy.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-alerts.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-modal.js"></script>
+        <script type="text/javascript"src="lib/js/jquery.rating.js"></script>
         <script type="text/javascript"src="lib/js/chosen/chosen.jquery.min.js"></script>
         
         {if isset($nomPrenomAuteur)}
@@ -25,8 +26,9 @@
         <link rel="shortcut icon" href="images/favicon.ico" />
         <link rel="stylesheet" href="lib/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/css/Aristo/Aristo.css">
+        <link rel="stylesheet" href="lib/css/jquery.rating.css"> 
         <link rel="stylesheet" href="lib/css/custom.css">  
-        <link rel="stylesheet" href="lib/js/chosen/chosen.css"> 
+        <link rel="stylesheet" href="lib/js/chosen/chosen.css">
         <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Dancing+Script' rel='stylesheet' type='text/css'>
               
     </head>
