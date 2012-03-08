@@ -1,22 +1,43 @@
+-- phpMyAdmin SQL Dump
+-- version 3.4.9
+-- http://www.phpmyadmin.net
+--
+-- Client: localhost
+-- Généré le : Jeu 08 Mars 2012 à 20:42
+-- Version du serveur: 5.5.9
+-- Version de PHP: 5.3.6
+
 SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-DROP DATABASE IF EXISTS `omgl3_pjt`;
-CREATE DATABASE `omgl3_pjt` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `omgl3_pjt`;
+--
+-- Base de données: `omgl3_pjt`
+--
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `auteur`
+--
+
+DROP TABLE IF EXISTS `auteur`;
 CREATE TABLE IF NOT EXISTS `auteur` (
   `numAuteur` int(10) NOT NULL AUTO_INCREMENT,
   `prenomAuteur` varchar(50) NOT NULL,
   `nomAuteur` varchar(50) NOT NULL,
   PRIMARY KEY (`numAuteur`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=286 ;
+
+--
+-- Contenu de la table `auteur`
+--
 
 INSERT INTO `auteur` (`numAuteur`, `prenomAuteur`, `nomAuteur`) VALUES
 (1, 'Chinua', 'ACHEBE'),
@@ -303,8 +324,15 @@ INSERT INTO `auteur` (`numAuteur`, `prenomAuteur`, `nomAuteur`) VALUES
 (282, 'Richard ', 'WRIGHT'),
 (283, 'W. B.', 'YEATS'),
 (284, 'Francis Brett', 'YOUNG'),
-(285, 'Theodore ', 'ZELDIN');
+(285, 'Theodore', 'ZELDIN');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `config`
+--
+
+DROP TABLE IF EXISTS `config`;
 CREATE TABLE IF NOT EXISTS `config` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `identifiant` varchar(255) NOT NULL,
@@ -312,32 +340,84 @@ CREATE TABLE IF NOT EXISTS `config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
-INSERT INTO `config` (`id`, `identifiant`, `valeur`) VALUES
-(1, 'versionbdd', '1.0');
+--
+-- Contenu de la table `config`
+--
 
+INSERT INTO `config` (`id`, `identifiant`, `valeur`) VALUES
+(1, 'versionbdd', '2.0');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `critiquer`
+--
+
+DROP TABLE IF EXISTS `critiquer`;
 CREATE TABLE IF NOT EXISTS `critiquer` (
   `numEmprunteur` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
   `noteCritique` tinyint(1) NOT NULL,
   `commentaireCritique` text NOT NULL,
-  `visibiliteCritique` tinyint(1) NOT NULL,
   PRIMARY KEY (`numEmprunteur`,`numLivre`),
   KEY `numLivre` (`numLivre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `critiquer`
+--
+
+INSERT INTO `critiquer` (`numEmprunteur`, `numLivre`, `noteCritique`, `commentaireCritique`) VALUES
+(2, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(3, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(4, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(5, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(6, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(7, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(8, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(9, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(10, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(11, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(12, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(13, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(14, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(15, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.'),
+(22, 1, 4, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed tortor id risus tempus sollicitudin non sed ligula. Quisque rutrum tortor non augue mattis malesuada. Aenean eleifend ligula in nisi lobortis gravida. Sed semper mi id purus pharetra sed sodales dolor mollis. Phasellus sapien quam, eleifend ac rhoncus ac, placerat ut erat. In gravida ullamcorper ornare. Donec sit amet ornare orci.');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `emprunter`
+--
+
+DROP TABLE IF EXISTS `emprunter`;
 CREATE TABLE IF NOT EXISTS `emprunter` (
+  `numEmprunt` int(11) NOT NULL AUTO_INCREMENT,
   `numEmprunteur` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
-  `dateEmprunt` datetime NOT NULL,
+  `dateDemande` datetime DEFAULT NULL,
+  `dateEmprunt` datetime DEFAULT NULL,
   `dateRetour` datetime DEFAULT NULL,
   `nbRappels` tinyint(1) NOT NULL,
-  PRIMARY KEY (`numEmprunteur`,`numLivre`,`dateEmprunt`),
-  KEY `numLivre` (`numLivre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`numEmprunt`),
+  KEY `numLivre` (`numLivre`),
+  KEY `numEmprunteur` (`numEmprunteur`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
-INSERT INTO `emprunter` (`numEmprunteur`, `numLivre`, `dateEmprunt`, `dateRetour`, `nbRappels`) VALUES
-(11, 1, '2011-12-29 08:45:33', NULL, 0);
+--
+-- Contenu de la table `emprunter`
+--
 
+INSERT INTO `emprunter` (`numEmprunt`, `numEmprunteur`, `numLivre`, `dateDemande`, `dateEmprunt`, `dateRetour`, `nbRappels`) VALUES
+(1, 22, 1, '2012-03-07 16:00:15', '2012-03-07 16:19:25', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `emprunteur`
+--
+
+DROP TABLE IF EXISTS `emprunteur`;
 CREATE TABLE IF NOT EXISTS `emprunteur` (
   `numEmprunteur` int(10) NOT NULL AUTO_INCREMENT,
   `nomEmprunteur` varchar(50) NOT NULL,
@@ -353,6 +433,10 @@ CREATE TABLE IF NOT EXISTS `emprunteur` (
   `emailEmprunteur` varchar(150) NOT NULL,
   PRIMARY KEY (`numEmprunteur`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+
+--
+-- Contenu de la table `emprunteur`
+--
 
 INSERT INTO `emprunteur` (`numEmprunteur`, `nomEmprunteur`, `prenomEmprunteur`, `numRueEmprunteur`, `nomRueEmprunteur`, `villeEmprunteur`, `CodePostalEmprunteur`, `identifiantEmprunteur`, `mdpEmprunteur`, `telFixeEmprunteur`, `telPortableEmprunteur`, `emailEmprunteur`) VALUES
 (1, 'Aduriz', 'Xavier', 21, 'rue du vieux chêne', 'ARBOUSIER', '23453', 'toto', 'ecc3ce882decc0c462925dd6867a7acf968f347a', '0123456789', '0612345789', 'email@example.org'),
@@ -381,24 +465,52 @@ INSERT INTO `emprunteur` (`numEmprunteur`, `nomEmprunteur`, `prenomEmprunteur`, 
 (24, 'Tardy', 'Denis', 21, 'rue du vieux chêne', 'ARBOUSIER', '23453', 'toto23', 'ecc3ce882decc0c462925dd6867a7acf968f347a', '0123456789', '0612345789', 'email@example.org'),
 (25, 'Vidal', 'Nicolas', 21, 'rue du vieux chêne', 'ARBOUSIER', '23453', 'toto24', 'ecc3ce882decc0c462925dd6867a7acf968f347a', '0123456789', '0612345789', 'email@example.org');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `evenement`
+--
+
+DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
   `numEvenement` int(10) NOT NULL AUTO_INCREMENT,
   `nomEvenement` varchar(150) NOT NULL,
   `themeEvenement` varchar(50) NOT NULL,
   `lieuEvenement` varchar(50) NOT NULL,
-  `dateEvenement` date NOT NULL,
-  `heureEvenement` time NOT NULL,
+  `dateEvenement` datetime NOT NULL,
+  `desEvenement` text NOT NULL,
   `numGestionnaire` int(10) NOT NULL,
   PRIMARY KEY (`numEvenement`),
   KEY `numGestionnaire` (`numGestionnaire`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
+--
+-- Contenu de la table `evenement`
+--
+
+INSERT INTO `evenement` (`numEvenement`, `nomEvenement`, `themeEvenement`, `lieuEvenement`, `dateEvenement`, `desEvenement`, `numGestionnaire`) VALUES
+(3, 'Rencontre littéraire 2', 'Rencontre', 'Maison des langues', '2012-01-10 18:30:00', 'Lorem ipsum dolor sit amet, ea mel iuvaret nusquam nominavi. Nec possim commodo eu, pri at ferri graece iuvaret. In mel brute nemore, quo te dicam everti omnesque. Pri sanctus albucius te, exerci munere comprehensam est et, at quodsi debitis similique eos. Ei pro repudiandae contentiones, no mei deleniti consectetuer. An vis simul veniam, te autem indoctum suscipiantur eum. Cum ex commodo vocibus laboramus, dolore perpetua definitiones no vis, cu malis choro putent eos.', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `genre`
+--
+
+DROP TABLE IF EXISTS `genre`;
 CREATE TABLE IF NOT EXISTS `genre` (
   `numGenre` int(10) NOT NULL AUTO_INCREMENT,
   `genre` varchar(50) NOT NULL,
   PRIMARY KEY (`numGenre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `genre_livre`
+--
+
+DROP TABLE IF EXISTS `genre_livre`;
 CREATE TABLE IF NOT EXISTS `genre_livre` (
   `numGenre` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
@@ -406,6 +518,13 @@ CREATE TABLE IF NOT EXISTS `genre_livre` (
   KEY `numLivre` (`numLivre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `gestionnaire`
+--
+
+DROP TABLE IF EXISTS `gestionnaire`;
 CREATE TABLE IF NOT EXISTS `gestionnaire` (
   `numGestionnaire` int(10) NOT NULL AUTO_INCREMENT,
   `pseudoGestionnaire` varchar(50) NOT NULL,
@@ -415,8 +534,22 @@ CREATE TABLE IF NOT EXISTS `gestionnaire` (
   `nomGestionnaire` varchar(50) NOT NULL,
   `prenomGestionnaire` varchar(50) NOT NULL,
   PRIMARY KEY (`numGestionnaire`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
+--
+-- Contenu de la table `gestionnaire`
+--
+
+INSERT INTO `gestionnaire` (`numGestionnaire`, `pseudoGestionnaire`, `mdpGestionnaire`, `telGestionnaire`, `emailGestionnaire`, `nomGestionnaire`, `prenomGestionnaire`) VALUES
+(1, 'jtraulle', '275bc61dd8cf894576b838bbb94e52c7d19720cb', '0617777487', 'jtraulle@gmail.com', 'Traullé', 'Jean');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `livre`
+--
+
+DROP TABLE IF EXISTS `livre`;
 CREATE TABLE IF NOT EXISTS `livre` (
   `numLivre` int(11) NOT NULL AUTO_INCREMENT,
   `titreLivre` varchar(150) NOT NULL,
@@ -428,9 +561,13 @@ CREATE TABLE IF NOT EXISTS `livre` (
   KEY `numAuteur` (`numAuteur`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=645 ;
 
+--
+-- Contenu de la table `livre`
+--
+
 INSERT INTO `livre` (`numLivre`, `titreLivre`, `numAuteur`, `resumeLivre`, `langueLivre`, `nbExemplaireLivre`) VALUES
 (1, 'Arrow of God', 1, '', 'Anglais', 1),
-(2, 'Chatterton    ', 2, '', 'Anglais', 1),
+(2, 'Chatterton', 2, '', 'Anglais', 2),
 (3, 'Dan Lenox and the Limehouse Golem    ', 2, '', 'Anglais', 1),
 (4, 'English Music    ', 2, '', 'Anglais', 1),
 (5, 'London : The Biography  ', 2, '', 'Anglais', 1),
@@ -1074,34 +1211,64 @@ INSERT INTO `livre` (`numLivre`, `titreLivre`, `numAuteur`, `resumeLivre`, `lang
 (643, 'The Crescent Moon', 284, '', 'Anglais', 1),
 (644, 'The French', 285, '', 'Anglais', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reserver`
+--
+
+DROP TABLE IF EXISTS `reserver`;
 CREATE TABLE IF NOT EXISTS `reserver` (
+  `numReservation` int(11) NOT NULL AUTO_INCREMENT,
   `numEmprunteur` int(10) NOT NULL,
   `numLivre` int(10) NOT NULL,
   `dateReservation` datetime NOT NULL,
   `retireReservation` tinyint(1) NOT NULL,
-  PRIMARY KEY (`numEmprunteur`,`numLivre`),
-  KEY `numLivre` (`numLivre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`numReservation`),
+  KEY `numLivre` (`numLivre`),
+  KEY `numEmprunteur` (`numEmprunteur`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+--
+-- Contraintes pour les tables exportées
+--
 
+--
+-- Contraintes pour la table `critiquer`
+--
 ALTER TABLE `critiquer`
   ADD CONSTRAINT `critiquer_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`),
   ADD CONSTRAINT `critiquer_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
 
+--
+-- Contraintes pour la table `emprunter`
+--
 ALTER TABLE `emprunter`
   ADD CONSTRAINT `emprunter_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`),
   ADD CONSTRAINT `emprunter_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
 
+--
+-- Contraintes pour la table `evenement`
+--
 ALTER TABLE `evenement`
   ADD CONSTRAINT `evenement_ibfk_1` FOREIGN KEY (`numGestionnaire`) REFERENCES `gestionnaire` (`numGestionnaire`);
 
+--
+-- Contraintes pour la table `genre_livre`
+--
 ALTER TABLE `genre_livre`
   ADD CONSTRAINT `genre_livre_ibfk_1` FOREIGN KEY (`numGenre`) REFERENCES `genre` (`numGenre`),
   ADD CONSTRAINT `genre_livre_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
 
+--
+-- Contraintes pour la table `livre`
+--
 ALTER TABLE `livre`
   ADD CONSTRAINT `livre_ibfk_1` FOREIGN KEY (`numAuteur`) REFERENCES `auteur` (`numAuteur`);
 
+--
+-- Contraintes pour la table `reserver`
+--
 ALTER TABLE `reserver`
   ADD CONSTRAINT `reserver_ibfk_1` FOREIGN KEY (`numEmprunteur`) REFERENCES `emprunteur` (`numEmprunteur`),
   ADD CONSTRAINT `reserver_ibfk_2` FOREIGN KEY (`numLivre`) REFERENCES `livre` (`numLivre`);
