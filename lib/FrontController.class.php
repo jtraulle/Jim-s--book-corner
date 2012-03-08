@@ -25,6 +25,8 @@ Class FrontController{
 		$this->tpl->assign('titre','Jim\'s book corner library');
 		$this->tpl->assign('module',$module);
 		$this->tpl->assign('action',$action);
+                $chemin = preg_replace("/(&page=[0-9]*)/", "", $_SERVER['QUERY_STRING']);
+                $this->tpl->assign('chemin',$chemin);
 
 		//inclue le module en question
 		if(!class_exists($module))
@@ -70,6 +72,9 @@ Class FrontController{
 			'gestevenement' => array(
 				'action_index'
 			),
+                        'gestcritique' => array(
+                                'action_voir'
+                        ),
 			'pages' => array(
 				'action_credits',
 				'action_lettre',
@@ -87,9 +92,11 @@ Class FrontController{
 				'action_modifier_identifiant',
 				'action_valide_modifier_identifiant'
 			),
-			'gestlivre' => array(
+			'gestcritique' => array(
 				'action_rediger_critique',
-				'action_ajouter_critique'
+				'action_ajouter_critique',
+                                'action_modifier_critique',
+                                'action_valide_modifier_critique'
 			),
 			'gestemprunt' => array(
 				'action_demande_pret'
