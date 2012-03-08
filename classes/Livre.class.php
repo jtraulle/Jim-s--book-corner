@@ -38,7 +38,24 @@ OR dateRetour IS NULL) AND livre.numLivre = ? GROUP BY numLivre";
         $l= $res->fetch();			
         return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[7],$l[0]);			
     }
+    
+    //Cette fonction permet de savoir si le livre a déjà été emprunté par l'emprunteur
+    //Cela permet de savoir s'il peut rédiger une critique ou non ...
+    public static function isOuvrageEmprunte($numEmprunteur,$numLivre){
+        $sql="SELECT COUNT(numEmprunt) FROM emprunter WHERE numEmprunteur=? AND numLivre=? AND dateEmprunt IS NOT NULL";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($numEmprunteur, $numLivre));
 
+        $l= $res->fetch();
+                
+        if($l[0] == 0){
+            return false;
+        } else {
+            return true;
+        }                       
+    }
+    
     public static function isPretEnCours($numEmprunteur,$numLivre){
         $sql="SELECT COUNT(numEmprunt) FROM emprunter WHERE numEmprunteur=? AND numLivre=? AND dateRetour IS NULL";
         $db=DB::get_instance();
