@@ -13,11 +13,23 @@
         <script type="text/javascript"src="lib/js/bootstrap-alerts.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-modal.js"></script>
         <script type="text/javascript"src="lib/js/jquery.rating.js"></script>
+        <script type="text/javascript"src="lib/js/highcharts.js"></script>
+        <script type="text/javascript"src="lib/js/exporting.js"></script>
         <script type="text/javascript"src="lib/js/chosen/chosen.jquery.min.js"></script>
         
         {if isset($nomPrenomAuteur)}
         <script type="text/javascript">
            var nomPrenomAuteur = "{$nomPrenomAuteur}";
+        </script>
+        {/if}
+
+        {if isset($note1)}
+        <script type="text/javascript">
+            var note1 = {$note1};
+            var note2 = {$note2};
+            var note3 = {$note3};
+            var note4 = {$note4};
+            var note5 = {$note5};
         </script>
         {/if}
         
