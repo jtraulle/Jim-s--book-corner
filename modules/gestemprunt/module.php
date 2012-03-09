@@ -24,12 +24,12 @@ class gestemprunt extends Module{
 				Livre::enregistrerDemande(Livre::quelEmprunteurReservation($_GET['idlivre']),$_GET['idlivre']);
 				Livre::majReservationDispo(Livre::reservationAValider($_GET['idlivre']));
 				// @TOTO -- ICI ENVOYER UN MAIL A L'EMPRUNTEUR POUR LE PREVENIR
-				$this->site->ajouter_message('Cet ouvrage a été réservé par un autre lecteur. Gardez le de côté le temps que celui-ci vienne le chercher. Un courriel a été envoyé automatiquement pour le prévenir.',1);
-				$this->site->redirect('gestemprunt');
+				$this->site->ajouter_message('Cet ouvrage a été réservé par un autre lecteur. Gardez le de côté le temps que celui-ci vienne le chercher. Un courriel a été envoyé automatiquement pour le prévenir.',1);				
 			}
+                        $this->site->redirect('gestemprunt');
 		}else{
-			$this->site->ajouter_message('Impossible de rendre cet ouvrage, il n\'a pas été emprunté par ce lecteur !',1);
-	        $this->site->redirect('gestemprunt','pretsEnCours');
+                    $this->site->ajouter_message('Impossible de rendre cet ouvrage, il n\'a pas été emprunté par ce lecteur !',1);
+                    $this->site->redirect('gestemprunt','pretsEnCours');
 		}
 			
     }
@@ -53,7 +53,7 @@ class gestemprunt extends Module{
                 
             $f=new Form("?module=gestemprunt&action=valide_pret","pret");
             $f->add_select("numEmprunteur","numEmprunteur","Emprunteur",$tab)->set_value(null,'chzn-select');
-            if(($ouvrageAPreter->nbExemplaireLivre - $ouvrageAPreter->nbEmprunte) < 1)
+            if(($ouvrageAPreter->nbExemplaireLivre - $ouvrageAPreter->nbEmprunte()) < 1)
             	$f->add_submit("sub","sub")->set_value('Prêter','actions','btn primary showmodal');
             else
             	$f->add_submit("sub","sub")->set_value('Prêter','actions','btn primary');
@@ -71,7 +71,7 @@ class gestemprunt extends Module{
 	        $this->site->redirect('gestlivre');
 	    }else{
 	    	$livre = Livre::chercherParId($this->session->idLivre);
-	    	if(($livre->nbExemplaireLivre - $livre->nbEmprunte) < 1){
+	    	if(($livre->nbExemplaireLivre - $livre->nbEmprunte()) < 1){
 	    		$this->site->ajouter_message('Impossible de prêter cet ouvrage, plus aucun exemplaire en stock !',1);
 	    		$this->site->redirect('gestlivre');
 		    }else{
@@ -106,7 +106,7 @@ class gestemprunt extends Module{
 	        $this->site->redirect('gestlivre');
 	    }
 	    	
-	    if(($livre->nbExemplaireLivre - $livre->nbEmprunte) < 1){
+	    if(($livre->nbExemplaireLivre - $livre->nbEmprunte()) < 1){
     		$this->site->ajouter_message('Impossible de réserver cet ouvrage, des exemplaire sont encore en stock !',1);
     		$this->site->redirect('gestlivre');
 		}
