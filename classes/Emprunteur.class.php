@@ -96,9 +96,9 @@ class Emprunteur extends Table{
     }
 
     public static function modifierMotDePasse($nouveauPass, $numEmprunteur){
-        $this->db=DB::get_instance();
+        $db=DB::get_instance();
         $sql="UPDATE emprunteur SET mdpEmprunteur=? WHERE numEmprunteur=?";
-        $res=$this->db->prepare($sql);
+        $res=$db->prepare($sql);
         $res->execute(array(
             $nouveauPass,
             $numEmprunteur
