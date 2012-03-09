@@ -10,6 +10,7 @@ define ("PASSWORD","password");
 define ("CHECK","checkbox");
 define ("RADIO","radio");
 define ("SELECT","select");
+define ("SELECTMULTIPLE","selectmultiple");
 define ("SUBMIT","submit");
 define ("LEGEND","legend");
 define ("FINFIELDSET","finfieldset");
@@ -28,7 +29,7 @@ class HTMLInput{
     public $rule;                     //Définir une règle pour la validation
     public $message;                  //Message à afficher si la validation échoue
     public $class='';
-	public $class2='';
+    public $class2='';
 
     public function __construct($type,$name='',$id='',$label='&nbsp;',$options=array(),$required=false,$rule='',$message=''){
         $this->type=$type;
@@ -52,6 +53,11 @@ class HTMLInput{
             $this->class=htmlspecialchars($class,ENT_QUOTES);
     	if(isset($class2))
     	    $this->class2=htmlspecialchars($class2,ENT_QUOTES);
+		return $this;
+    }
+    
+    public function set_value_noverif($val){
+        $this->value[]= $val;
 		return $this;
     }
 
@@ -88,9 +94,17 @@ class HTMLInput{
             break;
 
             case SELECT:
-                $s="<div class='clearfix' style='display:inline-block; clear:none;'><label for='{$this->id}'>{$this->label}</label><div class='input'><select class='{$this->class}'' id='{$this->id}' name='{$this->id}'>";
+                $s="<div class='clearfix' style='display:inline-block; clear:none;'><label for='{$this->id}'>{$this->label}</label><div class='input'><select class='{$this->class}' id='{$this->id}' name='{$this->id}'>";
                 foreach($this->options as $k=>$v)
                 $s.='<option value="'.$k.'" '.($k==$this->value || $v==$this->value ? "selected='selected'":'').">$v</option>";
+                $s.="</select></div></div>";
+                return $s;
+            break;
+            
+            case SELECTMULTIPLE:
+                $s="<div class='clearfix'><label for='{$this->id}'>{$this->label}</label><div class='input'><select class='chzn-select' multiple id='{$this->id}' name='{$this->id}'>";
+                foreach($this->options as $k=>$v)
+                $s.='<option value="'.$k.'" '.(isset($this->value) && in_array($k, $this->value) ? "selected='selected'":'').">$v</option>";
                 $s.="</select></div></div>";
                 return $s;
             break;

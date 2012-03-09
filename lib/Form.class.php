@@ -22,6 +22,17 @@ class Form{
         $this->fields[][$name]=$s;
         return $s;
     }
+    
+    function add_select_multiple($name,$id,$label,$options=array(),$tabvalues=array()){
+        $s = new HTMLInput(SELECTMULTIPLE,$name,$id,$label,$options);
+        if(isset($tabvalues)){
+            foreach ($tabvalues as $value) {
+                $s->set_value_noverif($value);
+            }
+        }
+        $this->fields[][$name]=$s;
+        return $s;
+    }
 
     function add_legend($name,$value){
         $s = new HTMLInput(LEGEND,$name);
@@ -87,7 +98,13 @@ class Form{
         foreach($this->fields as $k=>$arr){
             $k=key($arr);
             $f=current($arr);
-
+            
+            if($f->type==SELECTMULTIPLE){
+                $k = str_replace("[]","",$k);
+            }
+            
+            
+            
             if(isset($_REQUEST[$k])){
                 if($f->type==RADIO){
                     if($f->value == $_REQUEST[$k])
@@ -97,7 +114,14 @@ class Form{
                 }
                 elseif($f->type==CHECK)
                         $f->check();
-                else{
+                elseif($f->type==SELECTMULTIPLE){
+                        $f->set_value("");
+                        foreach($_REQUEST[$k] as $value){
+                            $f->set_value_noverif($value);
+                        }     
+                        
+                        echo '<pre>'; print_r($f->value); echo '</pre>';
+                }else{
                     $f->set_value($_REQUEST[$k]) ;
                 }
             }
@@ -117,6 +141,17 @@ class Form{
 
                     case "alphaNumAccentue":
                         if (!preg_match('#^[a-zA-Z\'âêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü1234567890\# ]{1,23}$#', $_REQUEST[$k])){
+                            $f->value = $_REQUEST[$k];
+                            $f->class = "error";
+                            $this->erreurs += 1;
+                        } else {
+                            $f->value = $_REQUEST[$k];
+                            $f->class = "success";
+                        }
+                    break;
+                    
+                    case "titreLivre":
+                        if (!preg_match('#^[a-zA-Z\'âêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü1234567890:\?!\# ]{1,70}$#', $_REQUEST[$k])){
                             $f->value = $_REQUEST[$k];
                             $f->class = "error";
                             $this->erreurs += 1;

@@ -824,6 +824,7 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
 		
 		$res->execute(array(
 			$this->titreLivre,
+                        $this->numAuteur,
 			$this->resumeLivre,
 			$this->langueLivre,
 			$this->nbExemplaireLivre

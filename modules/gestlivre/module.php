@@ -63,7 +63,7 @@ class gestlivre extends Module{
             "titreLivre",
             "Titre du livre",
             true,
-            "alphaNumAccentue",
+            "titreLivre",
             "Vous devez saisir une chaîne alphabétique (accents autorisés)."
         );
         
@@ -76,6 +76,17 @@ class gestlivre extends Module{
         }
         
         $f->add_select("numAuteur","numAuteur","Auteur",$tab);
+        
+        $listeGenres = Genre::liste();
+        
+        if(isset($listeGenres)){
+            foreach($listeGenres as $genre){
+                $tabGenres[$genre->numGenre]=$genre->genre;
+            }
+        }
+        
+        $f->add_select_multiple("numGenre[]","numGenre[]","Genre",$tabGenres);
+        
         $f->add_textarea(
             "resumeLivre",
             "resumeLivre",
@@ -125,6 +136,16 @@ class gestlivre extends Module{
         }
         
         $f->add_select("numAuteur","numAuteur","Auteur",$tab,$livreAmodif->numAuteur);
+        
+        $listeGenres = Genre::liste();
+        
+        if(isset($listeGenres)){
+            foreach($listeGenres as $genre){
+                $tabGenres[$genre->numGenre]=$genre->genre;
+            }
+        }
+        
+        $f->add_select_multiple("numGenre[]","numGenre[]","Genre",$tabGenres,Genre::recupererGenreLivre($livreAmodif->numLivre));
 
         $f->add_textarea(
             "resumeLivre",
@@ -157,7 +178,7 @@ class gestlivre extends Module{
         $this->set_title("Ajouter un livre | Jim's book corner library");
 
         $form=$this->session->form;
-
+        
         //Si l'utilisateur essaie de passer la validation directement
         //en tapant l'URL, on le redirige vers l'action index ;)
         if($this->req->sub != 'Ajouter le livre')
@@ -175,7 +196,13 @@ class gestlivre extends Module{
                 $this->req->nbExemplaireLivre
             );
 
-            $nouveauLivre->enregistrer();
+            $numLivre = $nouveauLivre->enregistrer();
+            
+            //On enregistre maintenant les genre associés
+            foreach($this->req->numGenre as $numGenre)
+            {
+                Genre::associerGenreLivre($numGenre, $numLivre);
+            }
 
             $this->site->ajouter_message('Le nouveau livre a été ajouté avec succès =)',4);
             $this->site->redirect('gestlivre');
@@ -209,6 +236,15 @@ class gestlivre extends Module{
             );
 
             $livreAmodif->enregistrer();
+            
+            //On supprime les genres précédemment associés
+            Genre::supprimerGenreLivre($this->session->idLivreAmodif);
+            
+            //On enregistre maintenant les genre associés
+            foreach($this->req->numGenre as $numGenre)
+            {
+                Genre::associerGenreLivre($numGenre, $this->session->idLivreAmodif);
+            }
 
             $this->site->ajouter_message('Le livre "'.$livreAmodif->titreLivre.'" a été modifié avec succès =)',4);
             $this->site->redirect('gestlivre','index');
