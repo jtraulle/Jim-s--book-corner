@@ -119,7 +119,7 @@ class inscription extends Module{
 
         if($form->validate())
         {
-            if(isIdentifiantDispo($this->req->identifiantEmprunteur)){
+            if(Emprunteur::isIdentifiantDispo($this->req->identifiantEmprunteur)){
                 $nouvelEmprunteur = new Emprunteur(
                     $this->req->nomEmprunteur,
                     $this->req->prenomEmprunteur,

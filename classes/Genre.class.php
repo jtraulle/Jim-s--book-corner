@@ -1,6 +1,6 @@
 <?php
 class Genre extends Table{
-	public $numGenre
+	public $numGenre;
 	public $genre;
 
 	
