@@ -55,7 +55,7 @@ Class FrontController{
 			),
 			'inscription' => array(
 				'action_index',
-				'action_voir'
+				'action_valide'
 			),
 			'gestauteur' => array(
 				'action_index',

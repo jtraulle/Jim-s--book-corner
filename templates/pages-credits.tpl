@@ -1,10 +1,15 @@
 <div class="page-title">
     <h2>Crédits</h2>
+</div>
     
+    <h3>Paternité</h3>
     
-    <h3>Droits de paternité</h3>
+    Ce projet a été réalisé par 3 étudiants (Adeline Blin, Dorine Talfer et Jean Traullé), dans le cadre d'un projet tutoré.
+    
+    <h3>Projets tiers</h3>
 
-    <p>Pour réaliser ce projet, nous avons utilisé plusieurs logiciels ou ressources disponibles sous licences libres.
+    <p>Pour réaliser ce projet, nous avons utilisé plusieurs logiciels ou ressources disponibles sous licences libres.<br />
+    C'est aussi grâce aux développeurs talentueux de ces logiciels que ce projet a pu voir le jour, merci à eux !
     <ul>
         <li><a href="http://durand.iut-amiens.fr/omgl3:index">Framework PHP (David Durand)</a>
         <li><a href="http://twitter.github.com/bootstrap/">Framework CSS Bootstrap from Twitter</a>
@@ -21,7 +26,8 @@
 
     <h3>Licence</h3>
 
-<pre style="width:520px; overflow:auto; height:250px;">
+<pre style="display:inline-block; width:520px; overflow:auto; height:250px;">
+
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
@@ -685,4 +691,4 @@ For more information on this, and how to apply and follow the GNU AGPL, see
 <http://www.gnu.org/licenses/>.
 </pre>
 
-</div>
+<img style="display:inline-block; position: relative; left: 120px; bottom: 120px;" src="images/agpl-logo.png" />
