@@ -84,8 +84,8 @@ class gestcritique extends Module{
             $critique = new Critique(
                 $this->session->user->numEmprunteur,
                 $this->session->numLivre,
-                $this->req->noteLivre,
-                $this->req->critiqueLivre
+                htmlspecialchars($this->req->noteLivre),
+                htmlspecialchars($this->req->critiqueLivre)
             );
 
             $critique->ajouterCritique();
@@ -112,7 +112,7 @@ class gestcritique extends Module{
 
             $f->add_select("noteLivre","noteLivre","Votre note",array("1" => "Je n'ai pas du tout aimé","2" => "J'ai aimé un peu","3" => "J'ai aimé beaucoup","4" => "J'ai adoré","5" => "Je trouve que c'est un chef d'oeuvre !"))->set_value($critique->noteCritique,'rating');
 
-            $f->add_textarea("critiqueLivre", "critiqueLivre", "Votre critique", true, null, null, $critique->commentaireCritique);
+            $f->add_textarea("critiqueLivre", "critiqueLivre", "Votre critique", true, null, null, htmlspecialchars_decode($critique->commentaireCritique));
 
             $f->add_submit("sub","sub")->set_value('Modifier ma critique','actions','btn primary');
 
@@ -139,8 +139,8 @@ class gestcritique extends Module{
             $critique = new Critique(
                 $this->session->user->numEmprunteur,
                 $this->session->numLivre,
-                $this->req->noteLivre,
-                $this->req->critiqueLivre
+                htmlspecialchars($this->req->noteLivre),
+                htmlspecialchars($this->req->critiqueLivre)
             );
 
             $critique->modifierCritique();
