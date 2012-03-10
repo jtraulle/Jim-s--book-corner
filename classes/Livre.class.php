@@ -7,7 +7,7 @@ class Livre extends Table{
 		public $nomAuteur;
 		public $resumeLivre;
 		public $langueLivre;
-        public $nbExemplaireLivre;
+                public $nbExemplaireLivre;
 		
     //fonctions publiques---------------------------------------------------------------	
     	
@@ -29,8 +29,7 @@ class Livre extends Table{
     
     public static function chercherParId($id){
         $sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre
-FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur LEFT JOIN emprunter ON emprunter.numLivre = livre.numLivre WHERE (dateDemande IS NULL 
-OR dateRetour IS NULL) AND livre.numLivre = ? GROUP BY numLivre";
+FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.numLivre = ? GROUP BY numLivre";
         $db=DB::get_instance();
         $res=$db->prepare($sql);
         $res->execute(array($id));
