@@ -78,15 +78,16 @@ class gestauteur extends Module{
 	        $this->site->ajouter_message('Impossible de consulter cet auteur, il est inexistant !',1);
 	        $this->site->redirect('gestauteur','index');
 	    }
+            
+        $nomFormate = str_replace(" ", "_", trim(ucwords(strtolower($auteurAvoir->nomAuteur))));
+        $prenomFormate = str_replace(" ", "_", trim(ucwords(strtolower($auteurAvoir->prenomAuteur))));
 	    
-	    $this->tpl->assign("nomPrenomAuteur",$auteurAvoir->prenomAuteur."_".ucwords(strtolower($auteurAvoir->nomAuteur)));
+	$this->tpl->assign("nomPrenomAuteur",$prenomFormate."_".$nomFormate);
         $this->tpl->assign("numAuteur",$auteurAvoir->numAuteur);
         $this->tpl->assign("nomAuteur",$auteurAvoir->nomAuteur);
         $this->tpl->assign("prenomAuteur",$auteurAvoir->prenomAuteur);
         
         $this->tpl->assign("listeParAuteur",Livre::listeParAuteur(null, null, $auteurAvoir->numAuteur));
-        
-        //$this->session->idAuteurAvoir = $auteurAvoir->numAuteur;
 
 	}
 
