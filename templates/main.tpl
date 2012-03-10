@@ -39,6 +39,7 @@
         <link rel="stylesheet" href="lib/css/bootstrap.min.css">
         <link rel="stylesheet" href="lib/css/Aristo/Aristo.css">
         <link rel="stylesheet" href="lib/css/jquery.rating.css"> 
+        <link rel="stylesheet" href="lib/css/font-awesome.css">  
         <link rel="stylesheet" href="lib/css/custom.css">  
         <link rel="stylesheet" href="lib/js/chosen/chosen.css">
         <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Dancing+Script' rel='stylesheet' type='text/css'>
