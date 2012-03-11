@@ -6,30 +6,30 @@ class Genre extends Table{
 	
 	//fonctions publiques---------------------------------------------------------------		
 	public function __construct($genre, $numGenre=-1) {
+		parent::__construct();
 		$this->numGenre = $numGenre;
 		$this->genre = $genre;
-
+		
 		return $this;
 	}
         
-        public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){
-        
+        public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){        
         	if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
         		$sql="SELECT * FROM genre";
         	else
         		//On définit notre requête (on récupère l'ensemble des enregistrements)
             	$sql="SELECT * FROM genre LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
-    
+				
             //Comme on est dans un contexte statique, on récupère l'instance de la BDD
             $db=DB::get_instance();
             $reponse = $db->query($sql);
-    
+			
             while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
                 $genre = new Genre(
                     $enregistrement['genre'],
                     $enregistrement['numGenre']
                 );
-    
+				
                 $liste[]=$genre;
             }
             
@@ -103,11 +103,14 @@ class Genre extends Table{
 	
 	public static function chercherParId($numGenre){
 		$sql="SELECT * from genre WHERE numGenre=?";
-		$res=$this->db->prepare($sql);
-		$r=$res->execute(array($numGenre));
+		
+		//Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+		$res=$db->prepare($sql);
+		$res->execute(array($numGenre));
 		//gérer les erreurs éventuelles
 
-		$g= $r->fetch();			
+		$g= $res->fetch();			
 		return new Genre($g[1],$g[0]);			
 	}
 
@@ -126,10 +129,11 @@ class Genre extends Table{
 	}
 
 	function modifier(){
-		$sql="UPDATE genre SET genre=?";
+		$sql="UPDATE genre SET genre=? WHERE numGenre=?";
 		$res=$this->db->prepare($sql);
 		$res->execute(array(
-			$this->genre
+			$this->genre,
+			$this->numGenre
 		));		
 	}		
 }
