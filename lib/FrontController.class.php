@@ -61,6 +61,9 @@ Class FrontController{
 				'action_index',
 				'action_voir'
 			),
+            'gestgenre' => array(
+				'action_voir'
+			),
 			'gestemprunteur' => array(
 				'action_connect',
 				'action_valide_connect'
@@ -72,9 +75,9 @@ Class FrontController{
 			'gestevenement' => array(
 				'action_index'
 			),
-                        'gestcritique' => array(
-                                'action_voir'
-                        ),
+            'gestcritique' => array(
+                'action_voir'
+            ),
 			'pages' => array(
 				'action_credits',
 				'action_lettre',
@@ -95,8 +98,9 @@ Class FrontController{
 			'gestcritique' => array(
 				'action_rediger_critique',
 				'action_ajouter_critique',
-                                'action_modifier_critique',
-                                'action_valide_modifier_critique'
+                'action_modifier_critique',
+                'action_valide_modifier_critique',
+                'action_mescritiques'
 			),
 			'gestemprunt' => array(
 				'action_demande_pret'

@@ -115,6 +115,35 @@ class Critique extends Table{
         else
             return null;
     }
+       
+    public static function CritiquesParEmprunteur($numEmprunteur, $pageCourante, $nbEnregistrementsParPage){
+
+        //On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql="SELECT * FROM critiquer WHERE numEmprunteur =? LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse=$db->prepare($sql);
+        $reponse->execute(array($numEmprunteur));
+        
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+            $critique = new Critique(
+                $enregistrement['numEmprunteur'],
+                $enregistrement['numLivre'],
+                $enregistrement['noteCritique'],
+                $enregistrement['commentaireCritique']
+            );
+            
+            $critique->infosLivre = Livre::chercherParId($enregistrement['numLivre']);
+
+            $liste[]=$critique;
+        }
+            
+            if(isset($liste))
+                return $liste;
+            else
+                return null;
+    }
     
     public static function liste($numLivre, $pageCourante, $nbEnregistrementsParPage){
 

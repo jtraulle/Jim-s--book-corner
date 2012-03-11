@@ -24,7 +24,7 @@ class gestcritique extends Module{
                     true
                 );
 
-                $f->add_submit("sub","sub")->set_value('Ajouter ma critique','actions','btn primary');
+                $f->add_submit("sub","sub")->set_value('Ajouter ma critique','actions','btn btn-primary');
 
                 $this->tpl->assign("form",$f);
 
@@ -61,6 +61,31 @@ class gestcritique extends Module{
         $this->tpl->assign("nbenregistrementsParPage",$nbEnregistrementsParPage);
 
         $listeCritique = Critique::liste($_GET['id'],$pageCourante,10);
+        if(isset($listeCritique)){
+            $this->tpl->assign("critiques",$listeCritique);
+        } else {
+            $this->site->ajouter_message('Aucune critique n\'a encore été rédigée pour ce livre ;)',1);
+            $this->site->redirect('gestlivre', 'voir&id='.$_GET['id']);
+        }     
+    }
+    
+    public function action_mescritiques(){
+        $this->set_title("Consulter mes critiques | Jim's book corner library");
+
+        $nbEnregistrementsParPage = 10;
+        $totalPages = Outils::nbPagesTotales("critiquer WHERE numEmprunteur=".$this->session->user->numEmprunteur,$nbEnregistrementsParPage);
+
+        if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $totalPages){
+                $pageCourante = $_GET['page'];
+        }else{
+                $pageCourante = 1;
+        }
+
+        $this->tpl->assign("totalPages",$totalPages);
+        $this->tpl->assign("pageCourante",$pageCourante);
+        $this->tpl->assign("nbenregistrementsParPage",$nbEnregistrementsParPage);
+
+        $listeCritique = Critique::CritiquesParEmprunteur($this->session->user->numEmprunteur,$pageCourante,10);
         if(isset($listeCritique)){
             $this->tpl->assign("critiques",$listeCritique);
         } else {
@@ -114,7 +139,7 @@ class gestcritique extends Module{
 
             $f->add_textarea("critiqueLivre", "critiqueLivre", "Votre critique", true, null, null, htmlspecialchars_decode($critique->commentaireCritique));
 
-            $f->add_submit("sub","sub")->set_value('Modifier ma critique','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Modifier ma critique','actions','btn btn-primary');
 
             $this->tpl->assign("form",$f);
 
