@@ -1,0 +1,222 @@
+body
+{
+   background-color: #BABDB6;
+}
+
+#page
+{
+width: 760px;
+margin: auto;
+margin-top: 20px;
+border: 1px solid #888888;
+font-family: Verdana,Arial,sans-serif;
+background-color: #ffffff;
+font-size: 0.70em;
+}
+
+#corps
+{
+margin: 10px;
+margin-left:20px;
+margin-right:20px;
+margin-bottom:20px;
+
+position:relative;
+
+}
+
+.error
+{
+   color: red;
+   background-color: #FFE7E7;
+   border: 1px solid red;
+   margin-top: 10px;
+   padding: 5px;
+}
+
+li.error
+{
+   list-style-type: none;
+   background-image: url("img/cross.png");
+   background-repeat: no-repeat;
+   background-position: 1% 50%;
+   padding-left: 30px;
+}
+
+li.terminee
+{
+   list-style-type: none;
+   background-image: url("img/tick.png");
+   background-repeat: no-repeat;
+   background-position: 1% 50%;
+   padding-left: 25px;
+   margin-bottom:3px;
+   font-style:italic;
+   background-color:#E6FFCD;
+}
+
+li.encours
+{
+   list-style-type: none;
+   background-image: url("img/arrow_right.png");
+   background-repeat: no-repeat;
+   background-position: 1% 50%;
+   padding-left: 25px;
+   margin-bottom:3px;
+   background-color:#FFF2BE;
+}
+
+li.afaire
+{
+   list-style-type: none;
+   background-image: url("img/bullet_black.png");
+   background-repeat: no-repeat;
+   background-position: 3% 50%;
+   padding-left: 25px;
+   margin-bottom:3px;
+}
+
+.ok
+{
+   color: green;
+   background-color: #E6FFCD;
+   border: 1px solid green;
+   margin-top: 10px;
+   padding: 5px;
+}
+
+
+li.ok
+{
+   list-style-type: none;
+   background-image: url("img/tick.png");
+   background-repeat: no-repeat;
+   background-position: 1% 50%;
+   padding-left: 30px;
+}
+
+/*** Permet d'éviter le décalage du à l'utilisation de puces ***/
+ul
+{
+   margin: 0px;
+   padding: 0px;
+}
+
+#menu
+{
+   float: left;
+   width: 200px;
+   margin-right: 20px;
+}
+
+#en_tete
+{
+  /* border:1px solid #cacaca;*/
+   margin:30px;
+   font-variant:small-caps;
+   font-size: 2em;
+   color:#3A3A3A;
+   text-shadow: 2px 2px 4px #cacaca;
+
+}
+
+#en_tete p
+{
+   text-align:center;
+}
+
+fieldset
+{
+border: 1px solid #cacaca;
+text-align:justify;
+}
+
+legend
+{
+font-variant:small-caps;
+font-size: 1.3em;
+}
+
+p.bottomform
+{
+	text-align:right;
+	border-top:1px solid #cacaca;
+	margin-top:30px;
+	padding-top:10px;
+}
+
+#pied_de_page p
+{
+margin-top:5px;
+padding:0px;
+text-align:center;
+font-family: Verdana,Arial,sans-serif;
+font-size: 0.70em;
+}
+
+
+
+
+a.bouton
+{
+    margin-left:5px;
+	outline:1px outset #999;
+	border:1px solid #fff;
+	background-color:#ADADAD;
+	color:#fff;
+	height:24px;
+	cursor:pointer;
+	font-size:11px;
+	text-decoration:none;
+	padding:4px;
+	padding-left:8px;
+	padding-right:8px;
+}
+
+a:hover.bouton
+{
+	outline:1px outset #999;
+	border:1px solid #fff;
+	background-color:#C8C8C8;
+	color:#fff;
+	height:24px;
+	cursor:pointer;
+	font-size:11px;
+	text-decoration:none;
+	padding:4px;
+	padding-left:8px;
+	padding-right:8px;
+}
+
+a:active.bouton
+{
+	outline:1px outset #999;
+	border:1px solid #fff;
+	background-color:#222;
+	color:#fff;
+	height:24px;
+	cursor:pointer;
+	font-size:11px;
+	text-decoration:none;
+	padding: 4px;
+	padding-left:9px;
+	padding-right:7px;
+}
+
+a.bouton
+{
+   	-moz-border-radius:4px;
+	-moz-outline-radius:4px;
+}
+
+a:hover.bouton
+{
+	-moz-border-radius:4px;
+	-moz-outline-radius:4px;
+}
+
+a:active.bouton
+{
+	-moz-border-radius:4px;
+	-moz-outline-radius:4px;
+}
