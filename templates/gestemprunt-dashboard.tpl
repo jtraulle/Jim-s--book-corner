@@ -60,7 +60,7 @@
         <p>Lorsque vous aurez cliqué sur "Confirmer le prêt" le prêt sera enregistré et l'emprunteur pourra emporter l'ouvrage.</p>
     </div>
     <div class="modal-footer">
-        <a href="?module=gestemprunt&action=validerPret&id=" class="btn success">Confirmer le prêt</a>
+        <a href="?module=gestemprunt&action=validerPret&id=" class="btn btn-success">Confirmer le prêt</a>
         <a href="#" onclick="$('#modal-from-dom').modal('hide')" class="btn secondary">Annuler</a>
     </div>
 </div>
@@ -75,7 +75,7 @@
         <p>Cette opération est irréversible alors <strong>je vous le redemande</strong>, êtes vous réellement sûr(e) de vouloir supprimer cette demande de prêt ?</p>
     </div>
     <div class="modal-footer">
-        <a href="?module=gestemprunt&action=supprimerDemande&id=" class="btn danger">Oui, supprimer</a>
+        <a href="?module=gestemprunt&action=supprimerDemande&id=" class="btn btn-danger">Oui, supprimer</a>
         <a href="#" onclick="$('#modal-suppr').modal('hide')" class="btn secondary">Annuler</a>
     </div>
 </div>

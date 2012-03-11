@@ -54,9 +54,9 @@ class gestemprunt extends Module{
             $f=new Form("?module=gestemprunt&action=valide_pret","pret");
             $f->add_select("numEmprunteur","numEmprunteur","Emprunteur",$tab)->set_value(null,'chzn-select');
             if(($ouvrageAPreter->nbExemplaireLivre - $ouvrageAPreter->nbEmprunte()) < 1)
-            	$f->add_submit("sub","sub")->set_value('Prêter','actions','btn primary showmodal');
+            	$f->add_submit("sub","sub")->set_value('Prêter','actions','btn btn-primary showmodal');
             else
-            	$f->add_submit("sub","sub")->set_value('Prêter','actions','btn primary');
+            	$f->add_submit("sub","sub")->set_value('Prêter','actions','btn btn-primary');
 
             $this->session->idLivre = $ouvrageAPreter->numLivre;
             $this->tpl->assign("form",$f);
@@ -107,7 +107,7 @@ class gestemprunt extends Module{
 	    }
 	    	
 	    if(($livre->nbExemplaireLivre - $livre->nbEmprunte()) < 1){
-    		$this->site->ajouter_message('Impossible de réserver cet ouvrage, des exemplaire sont encore en stock !',1);
+    		$this->site->ajouter_message('Impossible de réserver cet ouvrage, plus aucun exemplaire en stock !',1);
     		$this->site->redirect('gestlivre');
 		}
 
@@ -118,7 +118,7 @@ class gestemprunt extends Module{
 
 		Livre::enregistrerDemande($emprunteur->numEmprunteur,$livre->numLivre);
 		$this->site->ajouter_message('La demande de prêt pour l\'ouvrage <em>'.$livre->titreLivre.'</em> a bien été effectuée pour '.$emprunteur->prenomEmprunteur.' '.$emprunteur->nomEmprunteur.'.',4);
-		$this->site->redirect('gestlivre');	    
+		$this->site->redirect('gestlivre');    
     }
 
     public function action_supprimerDemande(){

@@ -47,7 +47,7 @@ class gestgenre extends Module{
             "Vous devez saisir une chaîne alphabétique (accents autorisés)."
         );
        
-        $f->add_submit("sub","sub")->set_value('Ajouter le nouveau genre','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value('Ajouter le nouveau genre','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -133,7 +133,7 @@ class gestgenre extends Module{
                 "Vous devez saisir une chaîne alphabétique (accents autorisés).",
                 $genreAmodif->genre
             );
-            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
 			
             $this->tpl->assign("form",$f);
             $this->session->idGenreAmodif = $genreAmodif->numGenre;

@@ -53,7 +53,7 @@ class gestauteur extends Module{
             true
         );
        
-        $f->add_submit("sub","sub")->set_value('Ajouter le nouvel auteur','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value('Ajouter le nouvel auteur','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -108,7 +108,7 @@ class gestauteur extends Module{
         $nomFormate = str_replace(" ", "_", trim(ucwords(strtolower($auteurAvoir->nomAuteur))));
         $prenomFormate = str_replace(" ", "_", trim(ucwords(strtolower($auteurAvoir->prenomAuteur))));
 	    
-	$this->tpl->assign("nomPrenomAuteur",$prenomFormate."_".$nomFormate);
+        $this->tpl->assign("nomPrenomAuteur",$prenomFormate."_".$nomFormate);
         $this->tpl->assign("numAuteur",$auteurAvoir->numAuteur);
         $this->tpl->assign("nomAuteur",$auteurAvoir->nomAuteur);
         $this->tpl->assign("prenomAuteur",$auteurAvoir->prenomAuteur);
@@ -143,7 +143,7 @@ class gestauteur extends Module{
                 "Vous devez saisir une chaîne alphabétique (accents autorisés).",
                 $auteurAmodif->prenomAuteur
             );
-            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
 
             $this->tpl->assign("form",$f);
             $this->session->idAuteurAmodif = $auteurAmodif->numAuteur;

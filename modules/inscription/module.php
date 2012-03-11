@@ -100,7 +100,7 @@ class inscription extends Module{
             "Saisissez un email valide"
         );
         $f->add_endfieldset("endfieldset");
-        $f->add_submit("sub","sub")->set_value("Créer le compte",'actions','btn primary');
+        $f->add_submit("sub","sub")->set_value("Créer le compte",'actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;

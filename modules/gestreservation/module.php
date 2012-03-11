@@ -64,7 +64,7 @@ class gestreservation extends Module{
                 
             $f=new Form("?module=gestreservation&action=valide_reservation","pret");
             $f->add_select("numEmprunteur","numEmprunteur","Emprunteur",$tab)->set_value(null,'chzn-select');
-            $f->add_submit("sub","sub")->set_value('Réserver','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Réserver','actions','btn btn-primary');
 
             $this->session->idLivre = $ouvrageAReserver->numLivre;
             $this->tpl->assign("form",$f);

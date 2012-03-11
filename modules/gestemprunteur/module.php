@@ -22,7 +22,7 @@ class gestemprunteur extends Module{
             ""
         );
         $f->add_endfieldset("endfieldset");
-        $f->add_submit("sub","sub")->set_value('Se connecter','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value('Se connecter','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -212,7 +212,7 @@ class gestemprunteur extends Module{
                 $emprunteurAmodif->emailEmprunteur
             );
             $f->add_endfieldset("endfieldset");
-            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
 
             $this->tpl->assign("form",$f);
             $this->session->idEmprunteurAmodif = $emprunteurAmodif->numEmprunteur;
@@ -301,7 +301,7 @@ class gestemprunteur extends Module{
                 "motdepasse",
                 "Longueur minimale de 7 caractères (dont une majuscule et un chiffre)"
             );
-            $f->add_submit("sub","sub")->set_value('Changer de mot de passe','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Changer de mot de passe','actions','btn btn-primary');
 
             $this->tpl->assign("form",$f);
             $this->session->form = $f;
@@ -360,7 +360,7 @@ class gestemprunteur extends Module{
                 "identifiant",
                 "Accents et caractères spéciaux interdits"
             );
-            $f->add_submit("sub","sub")->set_value('Changer mon identifiant','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Changer mon identifiant','actions','btn btn-primary');
 
             $this->tpl->assign("form",$f);
             $this->session->form = $f;

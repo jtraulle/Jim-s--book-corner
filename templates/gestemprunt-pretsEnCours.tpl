@@ -22,7 +22,7 @@
             <td>{$listeEmprunts[emprunts]['prenomAuteur']} {$listeEmprunts[emprunts]['nomAuteur']}</td>
             <td>{$listeEmprunts[emprunts]['prenomEmprunteur']} {$listeEmprunts[emprunts]['nomEmprunteur']}</td>
             <td class="infobulle" data-placement="left" rel='twipsy' title="{$listeEmprunts[emprunts]['dateEmprunt']}">{$listeEmprunts[emprunts]['dateH']}</td>
-            <td><a href="?module=gestemprunt&action=rendre&idemprunteur={$listeEmprunts[emprunts]['numEmprunteur']}&idlivre={$listeEmprunts[emprunts]['numLivre']}">Enregistrer retour</a></td>
+            <td><a href="?module=gestemprunt&action=rendre&idemprunteur={$listeEmprunts[emprunts]['numEmprunteur']}&idlivre={$listeEmprunts[emprunts]['numLivre']}"><i class="icon-arrow-down"></i> Enregistrer retour</a></td>
         </tr>
 {/section}
     </tbody>

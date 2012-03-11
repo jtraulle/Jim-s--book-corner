@@ -10,6 +10,7 @@
         <script type="text/javascript"src="lib/js/jquery.min.js"></script>
         <script type="text/javascript"src="lib/js/jquery-ui.min.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-twipsy.js"></script>
+        <script type="text/javascript"src="lib/js/bootstrap-dropdown.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-alerts.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-modal.js"></script>
         <script type="text/javascript"src="lib/js/jquery.rating.js"></script>

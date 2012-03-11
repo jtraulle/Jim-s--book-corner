@@ -25,6 +25,12 @@ class Outils{
 	    	    
 	    return $res[0];
 	}
+        
+        public static function debug($var){
+            echo '<pre>';
+            print_r($var);
+            echo '</pre>';
+        }
 
 	/** 
 	 * A sweet interval formatting, will use the two biggest interval parts. 

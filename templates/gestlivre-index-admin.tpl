@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Gérer les livres</h2><a class="ontitle btn success" href="?module=gestlivre&action=ajouter"><i class="icon-plus-sign"></i> Ajouter un livre</a><a class="btn ontitle" href="?module=gestauteur"><i class="icon-user"></i> Gérer les auteurs</a><a class="btn ontitle" href="?module=gestgenre"><i class="icon-tags"></i> Gérer les genres</a>
+    <h2>Gérer les livres</h2><a class="ontitle btn btn-success" href="?module=gestlivre&action=ajouter"><i class="icon-plus"></i> Ajouter un livre</a><a class="btn ontitle" href="?module=gestauteur"><i class="icon-user"></i> Gérer les auteurs</a><a class="btn ontitle" href="?module=gestgenre"><i class="icon-tags"></i> Gérer les genres</a>
 </div>
 
 {if isset($listeLivres)}

@@ -22,7 +22,7 @@ class gestgestionnaire extends Module{
             ""
         );
         $f->add_endfieldset("endfieldset");
-        $f->add_submit("sub","sub")->set_value('Se connecter','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value('Se connecter','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -142,7 +142,7 @@ class gestgestionnaire extends Module{
             "Vous devez saisir une chaîne alphanumérique (au moins une lettre et un chiffre, longueur minimale de 6 caractères)"
         );
         
-        $f->add_submit("sub","sub")->set_value('Ajouter un gestionnaire','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value('Ajouter un gestionnaire','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -243,7 +243,7 @@ class gestgestionnaire extends Module{
                 $gestionnaireAmodif->emailGestionnaire
             );
             $f->add_endfieldset("endfieldset");
-            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
 
             $this->tpl->assign("form",$f);
             $this->session->idGestionnaireAmodif = $gestionnaireAmodif->numGestionnaire;

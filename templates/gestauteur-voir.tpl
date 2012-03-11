@@ -19,7 +19,7 @@
       	<tr>
             <th>Titre</th>
             <th>Langue</th>
-            <th>Nombre d'exemplaires</th>
+            <th>Actions</th>
     	</tr>
     </thead>
 	<tbody>
@@ -28,7 +28,7 @@
       	<tr>
             <td>{$listeParAuteur[auteurs]->titreLivre}</td>
             <td>{if $listeParAuteur[auteurs]->langueLivre == "Anglais"}<img src="images/book_eng.png" /> {else}<img src="images/book_fre.png" /> {/if}{$listeParAuteur[auteurs]->langueLivre}</td>
-        	<td>{$listeParAuteur[auteurs]->nbExemplaireLivre}</td>
+        	<td><a href="?module=gestlivre&action=voir&id={$listeParAuteur[auteurs]->numLivre}"><i class="icon-eye-open"></i> Consulter la fiche</a></td>
     	</tr>
 {/section}
 	</tbody>

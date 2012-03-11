@@ -46,7 +46,7 @@
 			                        <p>{$message|default:"Le site a rencontré un problème."}</p>
 			                        <div class="row">
 			                        	<div class="span-one-third offset-two-thirds">
-			                        		<a class="btn primary large" href="?module=index">Retourner à l'accueil »</a>
+			                        		<a class="btn btn-primary large" href="?module=index">Retourner à l'accueil »</a>
 			                        	</div>
 			                        </div>
                 				</div>

@@ -66,7 +66,7 @@ class gestevenement extends Module{
             true
         );
        
-        $f->add_submit("sub","sub")->set_value('Ajouter le nouvel événement','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value('Ajouter le nouvel événement','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -159,7 +159,7 @@ class gestevenement extends Module{
             null,
             $evenementAmodif->desEvenement
         );
-            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn primary');
+            $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
 
             $this->tpl->assign("form",$f);
             $this->session->idEvenementAmodif = $evenementAmodif->numEvenement;

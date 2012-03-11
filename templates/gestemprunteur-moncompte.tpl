@@ -1,5 +1,12 @@
 <div class="page-title">
-    <h2>Mon compte lecteur</h2> <a class="ontitle btn" href="?module=gestemprunteur&action=modifier_identifiant"><img style="vertical-align:top;" src="images/user_edit.png" /> Modifier mon identifiant</a> <a class="ontitle btn" href="?module=gestemprunteur&action=modifier_pass"><img style="vertical-align:top;" src="images/key.png" /> Modifier mon mot de passe</a>
+    <h2>Mon compte lecteur</h2>
+
+<div class="btn-group ontitle">
+  <a class="btn" href="?module=gestemprunteur&action=modifier_identifiant"><i class="icon-pencil"></i> Modifier mon identifiant</a>
+  <a class="btn" href="?module=gestemprunteur&action=modifier_pass"><i class="icon-key"></i> Modifier mon mot de passe</a>
+</div>
+<a class="ontitle btn" href="?module=gestcritique&action=mescritiques"><i class="icon-comments"></i> Voir mes critiques</a>
+
 </div>
 
 <div id="accordion">
@@ -30,7 +37,7 @@
 		            <td>{$listeEmprunts[emprunts]['titreLivre']}</td>
 		            <td>{$listeEmprunts[emprunts]['prenomAuteur']} {$listeEmprunts[emprunts]['nomAuteur']}</td>
 		            <td class="infobulle" data-placement="left" rel='twipsy' title="{$listeEmprunts[emprunts]['dateEmprunt']}">{$listeEmprunts[emprunts]['dateH']}</td>
-		            <td><a href="?module=gestcritique&action=rediger_critique&idlivre={$listeEmprunts[emprunts]['numLivre']}">Rédiger une critique</a></td>
+		            <td><a href="?module=gestcritique&action=rediger_critique&idlivre={$listeEmprunts[emprunts]['numLivre']}"><i class="icon-comment"></i> Rédiger une critique</a></td>
 		        </tr>
 		{/section}
 		    </tbody>

@@ -24,7 +24,7 @@ class gestlivre extends Module{
                 $tab[$livre->numLivre]=$livre->titreLivre;
             }
                 
-            $f=new Form("?module=gestlivre&action=modifier","rech");
+            $f=new Form("?module=gestlivre&action=voir","rech");
             $f->add_select("id","id","Recherche rapide",$tab)->set_value(null,'chzn-select');
             $f->add_submit("sub","sub")->set_value('Consulter','inline','btn');
 
@@ -35,6 +35,7 @@ class gestlivre extends Module{
 	}
         
     public function action_voir(){
+        $this->set_title("Consulter une fiche ouvrage | Jim's book corner library");        
         
         $livreAConsulter = Livre::chercherParId($_REQUEST['id']);
         if(empty($livreAConsulter->numLivre)){
@@ -105,7 +106,7 @@ class gestlivre extends Module{
             "numeric",
             "Vous devez saisir le nombre d'exemplaires en stock."
         );
-        $f->add_submit("sub","sub")->set_value('Ajouter le livre','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value('Ajouter le livre','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->form = $f;
@@ -169,7 +170,7 @@ class gestlivre extends Module{
             "Vous devez saisir le nombre d'exemplaires en stock.",
             $livreAmodif->nbExemplaireLivre
         );
-        $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn primary');
+        $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
         $this->session->idLivreAmodif = $livreAmodif->numLivre;
