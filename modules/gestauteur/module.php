@@ -46,7 +46,7 @@ class gestauteur extends Module{
             "alphaNumAccentue",
             "Vous devez saisir une chaîne alphabétique (accents autorisés)."
         );
-        $f->add_textarea(
+        $f->add_text(
             "prenomAuteur",
             "prenomAuteur",
             "Prénom de l'auteur",
@@ -59,6 +59,32 @@ class gestauteur extends Module{
         $this->session->form = $f;
     }
     
+	public function action_valide(){
+	    $this->set_title("Ajouter un auteur | Jim's book corner library");
+
+        $form=$this->session->form;
+
+        //Si l'utilisateur essaie de passer la validation directement
+        //en tapant l'URL, on le redirige vers l'action index ;)
+        if($this->req->sub != 'Ajouter le nouvel auteur')
+            $this->site->redirect('gestauteur', 'index');
+
+        if($form->validate()){
+            $auteurAajouter = new Auteur(
+                $this->req->prenomAuteur,
+                $this->req->nomAuteur
+            );
+
+            $auteurAajouter->enregistrer();
+
+            $this->site->ajouter_message('L\'auteur "'.$auteurAajouter->prenomAuteur.' '.$auteurAajouter->nomAuteur.'" a été ajouté avec succès =)',4);
+            $this->site->redirect('gestauteur','index');
+        }else{
+            $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
+            $form->populate();
+            $this->tpl->assign("form",$form);
+        }
+	}
 
 	public function action_supprimer(){
 	    $auteurAsuppr = Auteur::chercherParId($_REQUEST['id']);
