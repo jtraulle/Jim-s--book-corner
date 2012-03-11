@@ -37,7 +37,7 @@ FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.nu
         $l= $res->fetch();			
         return new Livre($l[1],$l[2],$l[3],$l[4],$l[5],$l[6],$l[7],$l[0]);			
     }
-    
+      
     //Cette fonction permet de savoir si le livre a déjà été emprunté par l'emprunteur
     //Cela permet de savoir s'il peut rédiger une critique ou non ...
     public static function isOuvrageEmprunte($numEmprunteur,$numLivre){
@@ -163,6 +163,41 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
         	$sql="SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre 
                 FROM livre 
                 LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur 
+                LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse = $db->query($sql);
+        
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+            $livre = new Livre(
+                $enregistrement['titreLivre'],
+                $enregistrement['numAuteur'],
+                $enregistrement['prenomAuteur'],
+                $enregistrement['nomAuteur'],
+                $enregistrement['resumeLivre'],
+                $enregistrement['langueLivre'],
+                $enregistrement['nbExemplaireLivre'],
+                $enregistrement['numLivre']
+            );
+
+            $liste[]=$livre;
+            
+        }
+        
+        if(isset($liste))
+            return $liste;
+        else
+            return null;
+    }
+    
+    public static function listeGenre($idgenre, $pageCourante=null, $nbEnregistrementsParPage=null){
+
+    	if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+    		$sql="SELECT livre.numLivre, livre.titreLivre, auteur.numAuteur, auteur.prenomAuteur, auteur.nomAuteur, genre.numGenre, genre.genre, livre.resumeLivre, livre.langueLivre, livre.nbExemplaireLivre FROM genre_livre LEFT JOIN livre ON livre.numLivre = genre_livre.numLivre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur LEFT JOIN genre ON genre.numGenre = genre_livre.numGenre WHERE genre.numGenre = ".$idgenre." ORDER BY auteur.nomAuteur, auteur.prenomAuteur, livre.titrelivre";
+    	else
+    		//On définit notre requête (on récupère l'ensemble des enregistrements)
+        	$sql="SELECT livre.numLivre, livre.titreLivre, auteur.numAuteur, auteur.prenomAuteur, auteur.nomAuteur, genre.numGenre, genre.genre, livre.resumeLivre, livre.langueLivre, livre.nbExemplaireLivre FROM genre_livre LEFT JOIN livre ON livre.numLivre = genre_livre.numLivre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur LEFT JOIN genre ON genre.numGenre = genre_livre.numGenre WHERE genre.numGenre = ".$idgenre." ORDER BY auteur.nomAuteur, auteur.prenomAuteur, livre.titrelivre
                 LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
 
         //Comme on est dans un contexte statique, on récupère l'instance de la BDD

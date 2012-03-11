@@ -85,10 +85,10 @@ class Critique extends Table{
         return new Critique($c[0],$c[1],$c[2],$c[3]);			
     }
     
-    public static function cinqPremieresCritiques($numLivre){
+    public static function troisPremieresCritiques($numLivre){
 
         //On définit notre requête (on récupère l'ensemble des enregistrements)
-        $sql="SELECT * FROM critiquer WHERE numLivre =? LIMIT 0,5";
+        $sql="SELECT * FROM critiquer WHERE numLivre =? LIMIT 0,3";
 
         //Comme on est dans un contexte statique, on récupère l'instance de la BDD
         $db=DB::get_instance();

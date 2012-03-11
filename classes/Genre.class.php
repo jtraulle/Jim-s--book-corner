@@ -77,6 +77,29 @@ class Genre extends Table{
             else
                 return null;
         }
+        
+        public static function recupererGenreLivreComplet($numLivre){
+            
+            //la requête préparée nettoie les champs avant insertion
+            $sql="SELECT genre.numGenre, genre FROM genre_livre, genre WHERE genre.numGenre = genre_livre.numGenre AND numLivre = ?";
+
+            //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+            $db=DB::get_instance();
+            $reponse = $db->prepare($sql);
+            $reponse->execute(array(
+            	$numLivre
+            ));	
+            
+            while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+                $tabvalues[$enregistrement['numGenre']] = $enregistrement['genre'];               
+            }
+            
+            if(isset($tabvalues))
+                return $tabvalues;
+            else
+                return null;
+        }
+ 
 
 	function enregistrer(){
 		if($this->numGenre==-1)

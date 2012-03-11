@@ -91,15 +91,29 @@ class gestgenre extends Module{
 	    $this->site->redirect('gestgenre','index');
 	}
 	
-	public function action_voir(){
-	    $auteurAvoir = Genre::chercherParId($_REQUEST['id']);
+	public function action_voir(){       
+	    $genreAvoir = Genre::chercherParId($_REQUEST['id']);
 	    if(empty($genreAvoir->numGenre)){
 	        $this->site->ajouter_message('Impossible de consulter ce genre, il est inexistant !',1);
 	        $this->site->redirect('gestgenre','index');
 	    }
-            
-        //@TODO
+        
+        $this->tpl->assign("genre",$genreAvoir->genre);
+		
+		$nbEnregistrementsParPage = 10;
+		$totalPages = Outils::nbPagesTotales('genre',$nbEnregistrementsParPage);
 
+		if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $totalPages){
+			$pageCourante = $_GET['page'];
+		}else{
+			$pageCourante = 1;
+		}
+
+		$this->tpl->assign("totalPages",$totalPages);
+		$this->tpl->assign("pageCourante",$pageCourante);
+		$this->tpl->assign("nbenregistrementsParPage",$nbEnregistrementsParPage);
+        
+		$this->tpl->assign("listeGenres",Livre::listeGenre($_REQUEST['id'], $pageCourante, 10));
 	}
 
 	public function action_modifier(){

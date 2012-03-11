@@ -44,6 +44,9 @@ class gestlivre extends Module{
         
         $this->tpl->assign("livre",$livreAConsulter);
         
+        $genres = Genre::recupererGenreLivreComplet($_REQUEST['id']);
+        $this->tpl->assign("genres", $genres);
+        
         $notes = Critique::recupererNotes($livreAConsulter->numLivre);
         $this->tpl->assign("note1",$notes[5]);
         $this->tpl->assign("note2",$notes[4]);
@@ -51,7 +54,7 @@ class gestlivre extends Module{
         $this->tpl->assign("note4",$notes[2]);
         $this->tpl->assign("note5",$notes[1]);
         
-        $this->tpl->assign("critiques",Critique::cinqPremieresCritiques($livreAConsulter->numLivre));                   
+        $this->tpl->assign("critiques",Critique::troisPremieresCritiques($livreAConsulter->numLivre));                   
     }
     
     public function action_ajouter(){
