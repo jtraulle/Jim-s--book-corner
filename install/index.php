@@ -4,10 +4,10 @@
  * ========================================================================
  * Copyright (C) 2010 Traullé Jean
  *
- * This file is part of Jim\'s book corner library ILS.
+ * This file is part of Jim's book corner library ILS.
  *
- * Jim\'s book corner library ILS is free software; you can redistribute it 
- * and/or modify it under the terms of the GNU General Public License as 
+ * Jim\'s book corner library ILS is free software; you can redistribute it
+ * and/or modify it under the terms of the GNU General Public License as
  * published by the Free Software Foundation; either version 2 of the License,
  * or (at your option) any later version.
  *
@@ -21,15 +21,13 @@
  * ========================================================================
  */
 
-/***********************************************************
- * Fichier d'installation de Jim\'s book corner library ILS *
- ***********************************************************/
-
-//Si l'utilisateur a demandé l'étape 1, on l'affiche
-if (isset($_GET['step1']))
-{
-	//La première étape souhaite la bienvenue à l'utilisateur
-?>
+/**
+* Fichier d'installation de Jim's book corner library ILS *
+*/
+// Si l'utilisateur a demandé l'étape 1, on l'affiche
+if (isset($_GET['step1'])) {
+    // La première étape souhaite la bienvenue à l'utilisateur
+    ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
    <head>
@@ -72,25 +70,21 @@ if (isset($_GET['step1']))
 	    </div>
     	<div id="pied_de_page">
             <p style="color:#4A4A4A;">Jim's book corner library ILS est distribué dans l'espoir qu'il sera utile, mais SANS AUCUNE GARANTIE.<br />
-            Pour plus de informations, reportez vous à la licence GNU/AGPL.</p>
+            Pour plus d'informations, reportez vous à la licence GNU/AGPL.</p>
         </div>
     </body>
 </html>
-<?
+<?php
 }
-
-//Sinon si l'utilisateur a demandé l'étape 2, on l'affiche
-elseif (isset($_GET['step2']))
-{
-	//Dans le cas ou la licence a été acceptée, on redirige l'utilisateur vers l'étape 3
-	if (isset ($_POST['licenceok']))
-	{
-		header('Location: index.php?step3');
-	}
-	//Sinon, on affiche l'étape 2
-	else
-	{
-		echo'
+// Sinon si l'utilisateur a demandé l'étape 2, on l'affiche
+elseif (isset($_GET['step2'])) {
+    // Dans le cas ou la licence a été acceptée, on redirige l'utilisateur vers l'étape 3
+    if (isset ($_POST['licenceok'])) {
+        header('Location: index.php?step3');
+    }
+    // Sinon, on affiche l'étape 2
+    else {
+        echo'
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
    <head>
@@ -121,25 +115,21 @@ elseif (isset($_GET['step2']))
 
 		<fieldset style="padding:15px;">
 					<legend>Licence utilisateur</legend>';
-
-		//Si l'utilisateur a cliqué sur le bouton Suivant >> de l'étape 2
-		if (isset ($_POST['step2']))
-		{
-			// ET SI la licence n'a pas été acceptée, alors, on surligne en rouge la phrase "Pour installer Jim's book corner library ILS, vous devez accepter les termes de la Licence Publique Générale GNU après en avoir pris connaissance.".
-			if (!isset ($_POST['licenceok']))
-			{
-				echo'<ul><li class="error" style="margin-top:0px;">
+        // Si l'utilisateur a cliqué sur le bouton Suivant >> de l'étape 2
+        if (isset ($_POST['step2'])) {
+            // ET SI la licence n'a pas été acceptée, alors, on surligne en rouge la phrase "Pour installer Jim's book corner library ILS, vous devez accepter les termes de la Licence Publique Générale GNU après en avoir pris connaissance.".
+            if (!isset ($_POST['licenceok'])) {
+                echo'<ul><li class="error" style="margin-top:0px;">
 					<p style="margin-top:5px; margin-bottom:5px; margin-right:5px;">Pour installer Jim\'s book corner library ILS, vous devez accepter les termes de la Licence Publique Générale Affero GNU après en avoir pris connaissance.</p>
 					</li></ul>';
-			}
-		}
-		//Sinon, on affiche simplement cette phrase.
-		else
-		{
-			echo'<p style="margin-top:0px;">Pour installer Jim\'s book corner library ILS, vous devez accepter les termes de la Licence Publique Générale Affero GNU après en avoir pris connaissance.</p>';
-		}
-		// PUIS, on affiche le reste de la page.
-		echo'<p></p><div style="border: 1px solid rgb(223, 223, 223); width: auto; height: 340px; overflow-y: scroll; background-color: rgb(241, 244, 241); color:#3A3A3A; padding:10px;">
+            }
+        }
+        // Sinon, on affiche simplement cette phrase.
+        else {
+            echo'<p style="margin-top:0px;">Pour installer Jim\'s book corner library ILS, vous devez accepter les termes de la Licence Publique Générale Affero GNU après en avoir pris connaissance.</p>';
+        }
+        // PUIS, on affiche le reste de la page.
+        echo'<p></p><div style="border: 1px solid rgb(223, 223, 223); width: auto; height: 340px; overflow-y: scroll; background-color: rgb(241, 244, 241); color:#3A3A3A; padding:10px;">
             <p style="text-align: center; font-variant:small-caps; font-size: 18px;">GNU Affero General Public License</p>
 <p style="text-align: center;">Version 3, 19 November 2007</p>
 
@@ -835,14 +825,11 @@ For more information on this, and how to apply and follow the GNU AGPL, see
    </body>
 </html>
 	';
-	}
-
+    }
 }
-
-//Sinon si l'utilisateur a demandé l'étape 3, on l'affiche
-elseif (isset($_GET['step3']))
-{
-	echo'
+// Sinon si l'utilisateur a demandé l'étape 3, on l'affiche
+elseif (isset($_GET['step3'])) {
+    echo'
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
    <head>
@@ -876,65 +863,52 @@ elseif (isset($_GET['step3']))
 		<fieldset style="padding:15px;">
 					<legend>Vérification des droits</legend>
 					<p style="margin-top:0;">L\'installateur va maintenant déterminer si certains dossiers de Jim\'s book corner library ILS sont accessibles en écriture. Si les dossiers qui doivent-être inscriptibles ne le sont pas, l\'installateur tentera de changer leurs permissions automatiquement. S\'il n\'y parvient pas, vous devrez réaliser cette opération manuellement</p>';
+    // On définit la fonction de vérification des droits verifdroits()
+    function verifdroits($cheminfichier, $nomfichier, $nomvariable)
+    {
+        // Si le fichier existe
+        if (file_exists($cheminfichier)) {
+            // ET SI il est inscriptible, alors c'est bon
+            if (is_writable($cheminfichier)) {
+                echo'<ul><li class="ok">' . $nomfichier . ' est inscriptible</li></ul>';
+                $GLOBALS[$nomvariable] = 'inscriptible';
+            }else {
+                // SINON, on tente un chmod 777 sur le fichier (si on a les permissions).
+                @chmod($cheminfichier, 777);
+                // On teste à nouveau si le fichier est inscriptible ; si il est inscriptible, alors c'est bon
+                if (is_writable ($cheminfichier)) {
+                    echo'<ul><li class="ok">' . $nomfichier . ' est inscriptible</li></ul>';
+                    $GLOBALS[$nomvariable] = 'inscriptible';
+                }
+                // SINON, on demande à l'utilisateur de définir les droits manuellement.
+                else {
+                    echo'<ul><li class="error"><span style="font-weight:bold;">' . $nomfichier . ' n\'est pas inscriptible</span><br />Appliquez manuellement un chmod 777 sur le dossier ' . $nomfichier . '</li></ul>';
+                    $GLOBALS[$nomvariable] = 'noninscriptible';
+                }
+            }
+        }
+        // SINON, si le fichier n'existe pas, on demande à l'utilisateur de téléverser à nouveau l'ensemble des fichiers.
+        else {
+            echo'<ul><li class="error" style="background-position: 1% 9%;">' . $nomfichier . ' n\'a pas été trouvé sur le serveur<br /><br />Veuillez supprimer les fichiers téléversés et téléverser à nouveau <span style="font-weight:bold;">l\'ensemble des fichiers</span> de Jim\'s book corner library ILS sur le serveur !</li></ul>';
+            $GLOBALS[$nomvariable] = 'fichierintrouvable';
+        }
+    }
+    // On vérifie les droits pour chaque fichier ou dossier avec la fonction.
+    verifdroits('../lib', '/lib', 'lib');
 
-					//On définit la fonction de vérification des droits verifdroits()
-					function verifdroits($cheminfichier, $nomfichier, $nomvariable)
-					{
-						//Si le fichier existe
-						if(file_exists($cheminfichier))
-						{
-							// ET SI il est inscriptible, alors c'est bon
-							if (is_writable($cheminfichier))
-							{
-								echo'<ul><li class="ok">' . $nomfichier . ' est inscriptible</li></ul>';
-								$GLOBALS[$nomvariable] = 'inscriptible';
-							}
-							else
-							{
-								//SINON, on tente un chmod 777 sur le fichier (si on a les permissions).
-								@chmod($cheminfichier,777);
-
-								//On teste à nouveau si le fichier est inscriptible ; si il est inscriptible, alors c'est bon
-								if (is_writable  ($cheminfichier))
-								{
-									echo'<ul><li class="ok">' . $nomfichier . ' est inscriptible</li></ul>';
-									$GLOBALS[$nomvariable] = 'inscriptible';
-								}
-								//SINON, on demande à l'utilisateur de définir les droits manuellement.
-								else
-								{
-									echo'<ul><li class="error"><span style="font-weight:bold;">' . $nomfichier . ' n\'est pas inscriptible</span><br />Appliquez manuellement un chmod 777 sur le dossier ' . $nomfichier . '</li></ul>';
-									$GLOBALS[$nomvariable] = 'noninscriptible';
-								}
-							}
-						}
-						//SINON, si le fichier n'existe pas, on demande à l'utilisateur de téléverser à nouveau l'ensemble des fichiers.
-						else
-						{
-							echo'<ul><li class="error" style="background-position: 1% 9%;">' . $nomfichier . ' n\'a pas été trouvé sur le serveur<br /><br />Veuillez supprimer les fichiers téléversés et téléverser à nouveau <span style="font-weight:bold;">l\'ensemble des fichiers</span> de Jim\'s book corner library ILS sur le serveur !</li></ul>';
-							$GLOBALS[$nomvariable] = 'fichierintrouvable';
-						}
-					}
-
-					//On vérifie les droits pour chaque fichier ou dossier avec la fonction.
-					verifdroits('../lib', '/lib', 'lib');
-
-					echo'<form method="post" action="index.php?step4">
+    echo'<form method="post" action="index.php?step4">
 					<p class="bottomform" style="margin-bottom:0px;">';
-
-					//Si chaque fichier/dossier testé est inscriptible, on détruit les variables globales créées avant et on affiche le bouton pour passer à l'étape 4
-					if ($GLOBALS['lib'] == 'inscriptible')
-					{
-						unset($GLOBALS);
-						echo'<input name="step3" id="step3" type="submit" value="Suivant >>" />';
-					}
-					//Sinon, on affiche un lien pour permettre à l'utilisateur de vérifier à nouveau ...
-					else
-					{
-						unset($GLOBALS);
-						echo'<a href="index.php?step3">Vérifier à nouveau</a>';
-					}
-					echo'</p>
+    // Si chaque fichier/dossier testé est inscriptible, on détruit les variables globales créées avant et on affiche le bouton pour passer à l'étape 4
+    if ($GLOBALS['lib'] == 'inscriptible') {
+        unset($GLOBALS);
+        echo'<input name="step3" id="step3" type="submit" value="Suivant >>" />';
+    }
+    // Sinon, on affiche un lien pour permettre à l'utilisateur de vérifier à nouveau ...
+    else {
+        unset($GLOBALS);
+        echo'<a href="index.php?step3">Vérifier à nouveau</a>';
+    }
+    echo'</p>
 					</form>
 			</fieldset>
 		</div>
@@ -943,11 +917,9 @@ elseif (isset($_GET['step3']))
 </html>
 	';
 }
-
-//Sinon si l'utilisateur a demandé l'étape 4, on l'affiche
-elseif (isset($_GET['step4']))
-{
-echo'
+// Sinon si l'utilisateur a demandé l'étape 4, on l'affiche
+elseif (isset($_GET['step4'])) {
+    echo'
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
    <head>
@@ -982,10 +954,9 @@ echo'
 					<legend>Connexion à la Base de données</legend>
 					<p style="margin-top:0px;">Cette étape permet de générer un fichier de configuration qui contiendra les identifiants permettant de se connecter à votre serveur de base de données. Les tables nécessaires au bon fonctionnement de Jim\'s book corner library ILS seront automatiquement crées.</p><p>Si vous ne connaissez pas les informations demandées ci-dessous, contactez votre hébergeur qui vous les transmettra.</p>
 					<form method="post" action="index.php?step4">';
-					//Si l'utilisateur n'a pas cliqué sur le bouton suivant de cette étape, alors on affiche les champs de formulaire.
-					if (!isset($_POST['step4']))
-					{
-						echo'<label for="hote">Hôte :</label>
+    // Si l'utilisateur n'a pas cliqué sur le bouton suivant de cette étape, alors on affiche les champs de formulaire.
+    if (!isset($_POST['step4'])) {
+        echo'<label for="hote">Hôte :</label>
 						<input type="text" name="hote" maxlength="40" /><br />
 						<label for="login">Utilisateur :</label>
 						<input type="text" name="login" maxlength="40" /><br />
@@ -995,30 +966,23 @@ echo'
 						<input type="text" name="base" maxlength="40" /><br />
 						<label for="prefixe">Prefixe des tables :</label>
 						<input type="text" name="prefixe" value="jbcl_" maxlength="40" />';
-					}
-
-					//SINON, si l'utilisateur a cliqué sur le bouton suivant de l'étape, alors on vérifie les informations transmises.
-					if (isset($_POST['step4']))
-					{
-						//Si le fichier config.php existe, on interrompt l'installation pour des raisons de sécurité
-						if(file_exists('../lib/Params.ini.php') AND filesize('../Params.ini.php') > 0)
-						{
-							exit('<ul><li class="error">Une précédente installation de Jim\'s book corner library ILS a été détectée, par mesure de sécurité, si vous souhaitez réinstaller l\'application, vous devez supprimer manuellement le fichier Params.ini.php du répertoire /core !</li></ul><p>L\'installateur refusera de poursuivre la procédure d\'installation tant que ce fichier sera présent sur votre serveur.</p><p>Cliquez sur "Retour" un fois le fichier config.php supprimé.</p><p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step4">Retour</a></p>');
-						}
-						else
-						{
-							// on crée nos variables
-							$caracteresasupprimer = array(" ");
-							$hote = str_replace($caracteresasupprimer, "", $_POST['hote']);
-							$login = str_replace($caracteresasupprimer, "", $_POST['login']);
-							$mdp = str_replace($caracteresasupprimer, "", $_POST['mdp']);
-							$base = str_replace($caracteresasupprimer, "", $_POST['base']);
-							$prefixe = str_replace($caracteresasupprimer, "", $_POST['prefixe']);
-
-							// si on arrive pas à se connecter à mysql, on affiche un message à l'utilisateur.
-							if(!@mysql_connect($hote, $login, $mdp))
-							{
-								echo('<label for="hote">Hôte :</label>
+    }
+    // SINON, si l'utilisateur a cliqué sur le bouton suivant de l'étape, alors on vérifie les informations transmises.
+    if (isset($_POST['step4'])) {
+        // Si le fichier config.php existe, on interrompt l'installation pour des raisons de sécurité
+        if (file_exists('../lib/Params.ini.php') AND filesize('../lib/Params.ini.php') > 0) {
+            exit('<ul><li class="error">Une précédente installation de Jim\'s book corner library ILS a été détectée, par mesure de sécurité, si vous souhaitez réinstaller l\'application, vous devez supprimer manuellement le fichier Params.ini.php du répertoire /lib !</li></ul><p>L\'installateur refusera de poursuivre la procédure d\'installation tant que ce fichier sera présent sur votre serveur.</p><p>Cliquez sur "Retour" un fois le fichier Params.ini.php supprimé.</p><p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step4">Retour</a></p>');
+        }else {
+            // on crée nos variables
+            $caracteresasupprimer = array(" ");
+            $hote = str_replace($caracteresasupprimer, "", $_POST['hote']);
+            $login = str_replace($caracteresasupprimer, "", $_POST['login']);
+            $mdp = str_replace($caracteresasupprimer, "", $_POST['mdp']);
+            $base = str_replace($caracteresasupprimer, "", $_POST['base']);
+            $prefixe = str_replace($caracteresasupprimer, "", $_POST['prefixe']);
+            // si on arrive pas à se connecter à mysql, on affiche un message à l'utilisateur.
+            if (!@mysql_connect($hote, $login, $mdp)) {
+                echo('<label for="hote">Hôte :</label>
 							<input type="text" name="hote" maxlength="40" /><br />
 							<label for="login">Utilisateur :</label>
 							<input type="text" name="login" maxlength="40" /><br />
@@ -1027,27 +991,70 @@ echo'
 							<label for="base">Nom de la base :</label>
 							<input type="text" name="base" maxlength="40" />
 							<ul><li class="error">Il est impossible de se connecter à la Base de données.<br />Saisissez de nouveau vos identifiants !</li></ul>');
-							}
-							else
-							{
-								//Si on arrive pas à selectionner la base
-								if(!@mysql_select_db($base))
-								{
-									//On essaye de la créer
-									@mysql_query('CREATE DATABASE ' . $base);
-
-									//Puis on teste à nouveau si on arrive pas à selectionner la base.
-									//Si c'est le cas, on affiche un message d'erreur à l'utilisateur
-									if(!@mysql_select_db($base))
-									{
-										echo('<ul><li class="ok">La connexion à la base de données a été effectuée avec succès.</li>');
-										exit('<li class="error">Il est impossible de sélectionner la base de données ' . $base . '.<br />La base n\'existe pas et l\'installateur n\'a pas pu la créer automatiquement.</li></ul><p>Cliquez sur "Retour" puis indiquez un nom de base existante ou bien créez une nouvelle base manuellement avec un outil tel que phpMyAdmin et renseignez le nom de cette base nouvellement créée.</p>
+            }else {
+                // Si on arrive pas à selectionner la base
+                if (!@mysql_select_db($base)) {
+                    // On essaye de la créer
+                    @mysql_query('CREATE DATABASE ' . $base);
+                    // Puis on teste à nouveau si on arrive pas à selectionner la base.
+                    // Si c'est le cas, on affiche un message d'erreur à l'utilisateur
+                    if (!@mysql_select_db($base)) {
+                        echo('<ul><li class="ok">La connexion à la base de données a été effectuée avec succès.</li>');
+                        exit('<li class="error">Il est impossible de sélectionner la base de données ' . $base . '.<br />La base n\'existe pas et l\'installateur n\'a pas pu la créer automatiquement.</li></ul><p>Cliquez sur "Retour" puis indiquez un nom de base existante ou bien créez une nouvelle base manuellement avec un outil tel que phpMyAdmin et renseignez le nom de cette base nouvellement créée.</p>
 										<p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step4">Retour</a></p>');
-									}
-									//Sinon, on écrit le fichier de configuration
-									else
-									{
-										$texte = '<?php
+                    }
+                    // Sinon, on écrit le fichier de configuration
+                    else {
+                    	$texte = '<?php
+
+define("DB_HOST","'.$hote.'");
+define("DB_USER","'.$login.'");
+define("DB_PASS","'.$mdp.'");
+define("BASE","'.$base.'");
+
+
+define(\'DEBUG\',0);
+
+define(\'CLASSES\',dirname($_SERVER["SCRIPT_FILENAME"])."/classes");
+
+?>';
+                        // on définit le chemin du fichier de config
+                        $fichier = '../lib/Params.ini.php';
+
+                        if (!$ouvrir = fopen($fichier, 'w')) {
+                            exit('Impossible d\'ouvrir le fichier : <strong>' . $fichier . '</strong>.' . RETOUR);
+                        }
+                        // s'il est possible d'écrire dans le fichier alors on ne se gêne pas
+                        if (fwrite($ouvrir, $texte) == false) {
+                            exit('Impossible d\'écrire dans le fichier : <strong>' . $fichier . '</strong>.' . RETOUR);
+                        }
+
+                        $requetes = ''; // on crée une variable vide car on va s'en servir après
+
+                        $sql = file('./base.sql'); // on charge le fichier SQL qui contient des requêtes
+                        foreach($sql as $lecture) { // on le lit
+                            if (substr(trim($lecture), 0, 2) != '--') { // suppression des commentaires et des espaces
+                                    $requetes .= $lecture; // nous avons nos requêtes dans la variable
+                            }
+                        }
+
+                        $reqs = preg_split('/;/', $requetes); // on sépare les requêtes
+                        foreach($reqs as $req) { // et on les exécute
+                            if (!mysql_query($req) AND trim($req) != '') { // si la requête fonctionne bien
+                                    exit('ERREUR : ' . $req); // message d'erreur
+                            }
+                        }
+
+                        echo('<ul><li class="ok">La connexion à la base de données a été effectuée avec succès.</li>');
+                        echo('<li class="ok">La base de données ' . $base . ' a été créée et selectionnée avec succès.</li></ul>');
+                        echo('<li class="ok">Le fichier de configuration a été écrit avec succès.</li>');
+                        echo('<li class="ok">Les tables nécessaires au bon fonctionnement de Jim\'s book corner library ILS ont été créées avec succès.</li></ul>');
+                        exit('<p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step5">>> Suivant</a></p>');
+                    }
+                }
+                // Sinon, si on arrive à selectionner la base, on fait les même opération qu'à partir de la ligne 383
+                else {
+                	$texte = '<?php
 
 define("DB_HOST","'.$hote.'");
 define("DB_USER","'.$login.'");
@@ -1061,107 +1068,43 @@ define(\'CLASSES\',dirname($_SERVER["SCRIPT_FILENAME"])."/classes");
 
 ?>';
 
-										//on définit le chemin du fichier de config
-										$fichier = '../lib/Params.ini.php';
+                    $fichier = '../lib/Params.ini.php';
 
-										if(!$ouvrir = fopen($fichier, 'w'))
-										{
-											exit('Impossible d\'ouvrir le fichier : <strong>'. $fichier .'</strong>.'. RETOUR);
-										}
+                    if (!$ouvrir = fopen($fichier, 'w')) {
+                        exit('Impossible d\'ouvrir le fichier : <strong>' . $fichier . '</strong>.' . RETOUR);
+                    }
+                    // s'il est possible d'écrire dans le fichier alors on ne se gêne pas
+                    if (fwrite($ouvrir, $texte) == false) {
+                        exit('Impossible d\'écrire dans le fichier : <strong>' . $fichier . '</strong>.' . RETOUR);
+                    }
 
-										// s'il est possible d'écrire dans le fichier alors on ne se gêne pas
-										if(fwrite($ouvrir, $texte) == FALSE)
-										{
-											exit('Impossible d\'écrire dans le fichier : <strong>'. $fichier .'</strong>.'. RETOUR);
-										}
+                    $requetes = ''; // on crée une variable vide car on va s'en servir après
 
-										$requetes = ''; // on crée une variable vide car on va s'en servir après
+                    $sql = file('./base.sql'); // on charge le fichier SQL qui contient des requêtes
+                    foreach($sql as $lecture) { // on le lit
+                        if (substr(trim($lecture), 0, 2) != '--') { // suppression des commentaires et des espaces
+                                $requetes .= $lecture; // nous avons nos requêtes dans la variable
+                        }
+                    }
 
-										$sql = file('./base.sql'); // on charge le fichier SQL qui contient des requêtes
-										foreach($sql as $lecture) // on le lit
-										{
-											if(substr(trim($lecture), 0, 2) != '--') // suppression des commentaires et des espaces
-											{
-												$requetes .= $lecture; // nous avons nos requêtes dans la variable
-											}
-										}
+                    $reqs = preg_split('/;/', $requetes); // on sépare les requêtes
+                    foreach($reqs as $req) { // et on les exécute
+                        if (!mysql_query($req) AND trim($req) != '') { // si la requête fonctionne bien
+                                exit('ERREUR : ' . $req); // message d'erreur
+                        }
+                    }
 
-										$reqs = preg_split('/;/', $requetes); // on sépare les requêtes
-										foreach($reqs as $req) // et on les exécute
-										{
-											if(!mysql_query($req) AND trim($req) != '') // si la requête fonctionne bien
-											{
-												exit('ERREUR : '. $req); // message d'erreur
-											}
-										}
+                    echo('<ul><li class="ok">La connexion à la base de données a été effectuée avec succès.</li>');
+                    echo('<li class="ok">La base de données ' . $base . ' a été selectionnée avec succès.</li>');
+                    echo('<li class="ok">Le fichier de configuration a été écrit avec succès.</li>');
+                    echo('<li class="ok">Les tables nécessaires au bon fonctionnement de Jim\'s book corner library ILS ont été créées avec succès.</li></ul>');
+                    exit('<p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step5">>> Suivant</a></p>');
+                }
+            }
+        }
+    }
 
-										echo('<ul><li class="ok">La connexion à la base de données a été effectuée avec succès.</li>');
-										echo('<li class="ok">La base de données ' . $base . ' a été créée et selectionnée avec succès.</li></ul>');
-										echo('<li class="ok">Le fichier de configuration a été écrit avec succès.</li>');
-										echo('<li class="ok">Les tables nécessaires au bon fonctionnement de Jim\'s book corner library ILS ont été créées avec succès.</li></ul>');
-										exit('<p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step5">>> Suivant</a></p>');
-									}
-								}
-								//Sinon, si on arrive à selectionner la base, on fait les même opération qu'à partir de la ligne 383
-								else
-								{
-										$texte = '<?php
-
-define("DB_HOST","'.$hote.'");
-define("DB_USER","'.$login.'");
-define("DB_PASS","'.$mdp.'");
-define("BASE","'.$base.'");
-
-
-define(\'DEBUG\',0);
-
-define(\'CLASSES\',dirname($_SERVER["SCRIPT_FILENAME"])."/classes");
-
-?>';
-
-									$fichier = '../lib/Params.ini.php';
-
-									if(!$ouvrir = fopen($fichier, 'w')) {
-									exit('Impossible d\'ouvrir le fichier : <strong>'. $fichier .'</strong>.'. RETOUR);
-									}
-
-									// s'il est possible d'écrire dans le fichier alors on ne se gêne pas
-									if(fwrite($ouvrir, $texte) == FALSE) {
-									exit('Impossible d\'écrire dans le fichier : <strong>'. $fichier .'</strong>.'. RETOUR);
-									}
-
-									$requetes = ''; // on crée une variable vide car on va s'en servir après
-
-									$sql = file('./base.sql'); // on charge le fichier SQL qui contient des requêtes
-									foreach($sql as $lecture) // on le lit
-									{
-										if(substr(trim($lecture), 0, 2) != '--') // suppression des commentaires et des espaces
-										{
-											$requetes .= $lecture; // nous avons nos requêtes dans la variable
-										}
-									}
-
-									$reqs = preg_split('/;/', $requetes); // on sépare les requêtes
-									foreach($reqs as $req) // et on les exécute
-									{
-										if(!mysql_query($req) AND trim($req) != '') // si la requête fonctionne bien
-										{
-											exit('ERREUR : '. $req); // message d'erreur
-										}
-									}
-
-									echo('<ul><li class="ok">La connexion à la base de données a été effectuée avec succès.</li>');
-									echo('<li class="ok">La base de données ' . $base . ' a été selectionnée avec succès.</li>');
-									echo('<li class="ok">Le fichier de configuration a été écrit avec succès.</li>');
-									echo('<li class="ok">Les tables nécessaires au bon fonctionnement de Jim\'s book corner library ILS ont été créées avec succès.</li></ul>');
-									exit('<p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step5">>> Suivant</a></p>');
-
-								}
-							}
-						}
-					}
-
-					echo'
+    echo'
 					<p class="bottomform" style="margin-bottom:0px;">
 					<input name="step4" id="step4" type="submit" value="Suivant >>" />
 					</p>
@@ -1173,11 +1116,9 @@ define(\'CLASSES\',dirname($_SERVER["SCRIPT_FILENAME"])."/classes");
 </html>
 	';
 }
-
-//Sinon si l'utilisateur a demandé l'étape 5, on l'affiche
-elseif (isset($_GET['step5']))
-{
-	echo'
+// Sinon si l'utilisateur a demandé l'étape 5, on l'affiche
+elseif (isset($_GET['step5'])) {
+    echo'
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
    <head>
@@ -1210,79 +1151,58 @@ elseif (isset($_GET['step5']))
 					<legend>Créer l\'identifiant administrateur</legend>
 					<p style="margin-top:0px;">Pour terminer, il vous faut créer l\'identifiant administrateur.</p>
 					<p>Nous vous conseillons de choisir un mot de passe fort, comportant à la fois des majuscules, des minuscules et des chiffres.</p><p>Le mot de passe doit comporter au moins 6 caractères.</p>';
+    // Si l'utilisateur a posté le formulaire, on vérifie les informations transmises
+    if (isset($_POST['step5'])) {
+        // Si les champs passadmin et passadmin ne sont pas vide
+        if (isset($_POST['passadmin']) && ($_POST['passadmin2'])) {
+            // Si les deux mots de passe correspondent
+            if ($_POST['passadmin'] == $_POST['passadmin2']) {
+                // Si les mots de passe saisis comportent au moins 6 caractères.
+                if (strlen($_POST['passadmin']) >= 6) {
+                    include("../lib/Params.ini.php");
+                    try {
+                        $bdd = new PDO("mysql:host=" . DB_HOST . ";dbname=" . BASE, DB_USER, DB_PASS);
+                        $bdd->exec('SET CHARACTER SET utf8');
+                        $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    }
+                    catch (PDOException $e) {
+                        print "Erreur ! : " . $e->getMessage() . "<br />";
+                        die();
+                    }
+                    // On vérifie qu'il n'existe pas déjà un administrateur
+                    $reponse = $bdd->query("SELECT * FROM gestionnaire");
 
-					//Si l'utilisateur a posté le formulaire, on vérifie les informations transmises
-					if (isset($_POST['step5']))
-					{
-						//Si les champs passadmin et passadmin ne sont pas vide
-						if (isset($_POST['passadmin']) && ($_POST['passadmin2']))
-						{
-							//Si les deux mots de passe correspondent
-							if ($_POST['passadmin'] == $_POST['passadmin2'])
-							{
-								//Si les mots de passe saisis comportent au moins 6 caractères.
-								if (strlen($_POST['passadmin']) >= 6)
-								{
-									include("../lib/Params.ini.php");
-									try 
-									{
-										$bdd = new PDO("mysql:host=".DB_HOST.";dbname=".BASE,DB_USER,DB_PASS);
-										$bdd->exec('SET CHARACTER SET utf8');
-										$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-									}
-									catch (PDOException $e)
-									{
-										print "Erreur ! : " . $e->getMessage() . "<br />";
-										die();
-									}
-
-									//On vérifie qu'il n'existe pas déjà un administrateur
-
-									$reponse = $bdd->query("SELECT * FROM gestionnaire");
-																																				
-									if ($reponse->rowCount() >= 1)
-									{										
-										exit('<ul><li class="error">Un identifiant administrateur a déjà été créé pour cette installation de Jim\'s book corner library ILS !</li></ul>
+                    if ($reponse->rowCount() >= 1) {
+                        exit('<ul><li class="error">Un identifiant administrateur a déjà été créé pour cette installation de Jim\'s book corner library ILS !</li></ul>
 										<p>Par mesure de sécurité, il n\'est pas possible de créer un second compte administrateur.</p>
 										<p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step5">Retour</a></p>');
-									}
-									else
-									{
-										//On  hâche le mot de passe.
-										$hashmotdepasse = sha1($_POST['passadmin']);
+                    }else {
+                        // On  hâche le mot de passe.
+                        $hashmotdepasse = sha1($_POST['passadmin']);
 
-                                        $pseudoGestionnaire = $_POST['loginadmin'];
-										$nomGestionnaire = $_POST['nomadmin'];
-										$prenomGestionnaire = $_POST['prenomadmin'];
-										$emailGestionnaire = $_POST['emailadmin'];
+                        $pseudoGestionnaire = $_POST['loginadmin'];
+                        $nomGestionnaire = $_POST['nomadmin'];
+                        $prenomGestionnaire = $_POST['prenomadmin'];
+                        $emailGestionnaire = $_POST['emailadmin'];
+                        // Pour pouvoir manipuler les accents sans problème, utf8
+                        // On ajoute l'administrateur à la BDD
+                        $bdd->exec("INSERT INTO gestionnaire (pseudoGestionnaire, mdpGestionnaire, emailGestionnaire, prenomGestionnaire, nomGestionnaire) VALUES ('$pseudoGestionnaire', '$hashmotdepasse', '$emailGestionnaire', '$prenomGestionnaire', '$nomGestionnaire');");
 
-										//Pour pouvoir manipuler les accents sans problème, utf8
-										
-										//On ajoute l'administrateur à la BDD
-										$bdd->exec("INSERT INTO gestionnaire (pseudoGestionnaire, mdpGestionnaire, emailGestionnaire, prenomGestionnaire, nomGestionnaire) VALUES ('$pseudoGestionnaire', '$hashmotdepasse', '$emailGestionnaire', '$prenomGestionnaire', '$nomGestionnaire');");
-
-										exit('<ul><li class="ok">L\'identifiant administrateur de Jim\'s book corner library ILS a été créé avec succès</li></ul>
+                        exit('<ul><li class="ok">L\'identifiant administrateur de Jim\'s book corner library ILS a été créé avec succès</li></ul>
 										<p class="bottomform" style="margin-bottom:0px;"><a href="index.php?step6">>> Suivant</a></p>');
-									}
+                    }
+                }else {
+                    echo'<ul><li class="error">Le mot de passe doit être de 6 caractères minimum !</li></ul>';
+                }
+            }else {
+                echo'<ul><li class="error">Les mots de passe saisis ne correspondent pas !</li></ul>';
+            }
+        }else {
+            echo'<ul><li class="error">Vous devez compléter l\'ensemble des champs du formulaire !</li></ul>';
+        }
+    }
 
-								}
-								else
-								{
-									echo'<ul><li class="error">Le mot de passe doit être de 6 caractères minimum !</li></ul>';
-								}
-							}
-							else
-							{
-								echo'<ul><li class="error">Les mots de passe saisis ne correspondent pas !</li></ul>';
-							}
-						}
-						else
-						{
-							echo'<ul><li class="error">Vous devez compléter l\'ensemble des champs du formulaire !</li></ul>';
-						}
-					}
-
-					echo'<form method="post" action="index.php?step5">
+    echo'<form method="post" action="index.php?step5">
 					<p><label for="prenomadmin">Prénom de l\'administrateur :</label>
 					<input type="text" name="prenomadmin" maxlength="40" /></p>
 					<p><label for="nomadmin">Nom de l\'administrateur :</label>
@@ -1306,11 +1226,9 @@ elseif (isset($_GET['step5']))
 </html>
 	';
 }
-
-//Sinon si l'utilisateur a demandé l'étape 6, on l'affiche
-elseif (isset($_GET['step6']))
-{
-	echo'
+// Sinon si l'utilisateur a demandé l'étape 6, on l'affiche
+elseif (isset($_GET['step6'])) {
+    echo'
 	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
    <head>
@@ -1356,12 +1274,9 @@ elseif (isset($_GET['step6']))
 </html>
 	';
 }
-
-//Sinon, l'utilisateur n'a demandé aucune étape ; on le redirige vers l'étape 1
-else
-{
-	header('Location: index.php?step1');
+// Sinon, l'utilisateur n'a demandé aucune étape ; on le redirige vers l'étape 1
+else {
+    header('Location: index.php?step1');
 }
-
 
 ?>

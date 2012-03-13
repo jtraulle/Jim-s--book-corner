@@ -1,5 +1,8 @@
 <?php
 
+if(!file_exists('lib/Params.ini.php'))
+	header('Location: install/introInstall.html');
+
 header('Content-type:text/html; charset=utf-8');
 ini_set('display_errors',1);
 
@@ -57,7 +60,7 @@ $tpl->display('main.tpl');
 //--------------------------------------------------------------------------------------------
 
 if(!empty($debugs) OR !empty($echx)){
-	
+
 	echo'<div class="container"><div class="row"><div class="span16">';
 
 	if(!empty($debugs))
@@ -74,9 +77,9 @@ if(!empty($debugs) OR !empty($echx)){
 		//affichages parasites
 		echo "<div class='alert-message'><h5>Informations d'exécution</h5>";
 			echo  $echx;
-		echo "</div>";	
+		echo "</div>";
 	}
-	
+
 	echo "</div></div></div>";
 }
 

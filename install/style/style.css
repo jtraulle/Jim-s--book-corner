@@ -1,6 +1,7 @@
 body
 {
-   background-color: #BABDB6;
+
+background-image:url(img/stripe.png);
 }
 
 #page
@@ -8,10 +9,12 @@ body
 width: 760px;
 margin: auto;
 margin-top: 20px;
-border: 1px solid #888888;
+border: 1px solid #cacaca;
 font-family: Verdana,Arial,sans-serif;
 background-color: #ffffff;
 font-size: 0.70em;
+border-radius: 15px;
+box-shadow: 2px 3px 5px silver;
 }
 
 #corps
@@ -148,7 +151,7 @@ p.bottomform
 #pied_de_page p
 {
 margin-top:5px;
-padding:0px;
+margin-top:15px;
 text-align:center;
 font-family: Verdana,Arial,sans-serif;
 font-size: 0.70em;
