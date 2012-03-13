@@ -3,11 +3,6 @@
 </div>
 
 <div class="well">
-    <div><img src="images/ball-red.png" /> <h3 class="titresPrets">Prêts nécessitant une intervention</h3></div>
-        <p>La durée d'emprunt étant illimitée, cette rubrique signale les conflits.<br />Par exemple, lorsque un lecteur souhaite emprunter un livre mais que ce dernier est déjà emprunté par un autre lecteur.</p>
-</div>
-
-<div class="well">
     <div><img src="images/ball-yellow.png" /> <h3 class="titresPrets">Prêts en attente de validation</h3></div>
         <p style="color:gray; font-style:italic;">Les prêts listés dans cette rubrique sont en attente de validation.<br />Cela signifie que le lecteur a manifesté sa volonté d'emprunter l'ouvrage et que vous devez valider le prêt.</p>
 
@@ -39,15 +34,15 @@
 <div class="row">
     <div class="span8">
         <div class="well">
-            <img src="images/ball-green.png" /> <h3 class="titresPrets">Prêts en cours</h3> <a href="?module=gestemprunt&action=pretsEnCours" class="btn" style="float:right; margin-top:5px;">Voir les xx prêts en cours.</a>
+            <img src="images/ball-green.png" /> <h3 class="titresPrets">Prêts en cours</h3> <a href="?module=gestemprunt&action=pretsEnCours" class="btn" style="float:right; margin-top:5px;">Voir les prêts en cours.</a>
         </div>
-    </div>  
+    </div>
 
-    <div class="span8">      
+    <div class="span8">
         <div class="well">
-            <div><img src="images/history.png" /> <h3 class="titresPrets">Historique des prêts</h3> <a href="" class="btn" style="float:right; margin-top:5px;">Voir les prêts achevés.</a></div> 
+            <div><img src="images/history.png" /> <h3 class="titresPrets">Historique des prêts</h3> <a href="" class="btn" style="float:right; margin-top:5px;">Voir les prêts achevés.</a></div>
         </div>
-   </div>        
+   </div>
 </div>
 
 <div id="modal-from-dom" class="modal hide fade">
