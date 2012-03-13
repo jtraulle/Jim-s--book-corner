@@ -3,8 +3,8 @@ class gestreservation extends Module{
 
 	public function action_index(){
 		$this->set_title("Gérer les emprunts | Jim's book corner library");
-		$this->tpl->assign("listeReservationsEnAttente",Livre::reservationEnAttente());	
-		$this->tpl->assign("listeReservationsDispo",Livre::reservationDispo());		
+		$this->tpl->assign("listeReservationsEnAttente",Livre::reservationEnAttente());
+		$this->tpl->assign("listeReservationsDispo",Livre::reservationDispo());
     }
 
     public function action_reserver(){
@@ -24,7 +24,7 @@ class gestreservation extends Module{
 	        $this->site->ajouter_message('Impossible de prêter cet ouvrage à cet emprunteur, il est inexistant !',1);
 	        $this->site->redirect('gestlivre');
 	    }
-	    	
+
 	    if(($livre->nbExemplaireLivre - $livre->nbEmprunte()) > 0){
     		$this->site->ajouter_message('Impossible de réserver cet ouvrage, des exemplaire sont encore en stock !',1);
     		$this->site->redirect('gestlivre');
@@ -42,7 +42,7 @@ class gestreservation extends Module{
 
 		Livre::reserver($emprunteur->numEmprunteur,$livre->numLivre);
 		$this->site->ajouter_message('L\'ouvrage <em>'.$livre->titreLivre.'</em> a été réservé pour '.$emprunteur->prenomEmprunteur.' '.$emprunteur->nomEmprunteur.'.',4);
-		$this->site->redirect('gestlivre');	    
+		$this->site->redirect('gestlivre');
     }
 
     public function action_reserver_pour(){
@@ -61,7 +61,7 @@ class gestreservation extends Module{
             foreach($listeEmprunteurs as $emprunteur){
                 $tab[$emprunteur->numEmprunteur]=$emprunteur->prenomEmprunteur.' '.$emprunteur->nomEmprunteur;
             }
-                
+
             $f=new Form("?module=gestreservation&action=valide_reservation","pret");
             $f->add_select("numEmprunteur","numEmprunteur","Emprunteur",$tab)->set_value(null,'chzn-select');
             $f->add_submit("sub","sub")->set_value('Réserver','actions','btn btn-primary');
@@ -79,7 +79,7 @@ class gestreservation extends Module{
 	        $this->site->redirect('gestlivre');
 	    }else{
 	    	$livre = Livre::chercherParId($this->session->idLivre);
-	    	if(($livre->nbExemplaireLivre - $livre->nbEmprunte) < 1){
+	    	if(($livre->nbExemplaireLivre - $livre->nbEmprunte()) < 1){
 	    		if(Livre::dejaReserve($emprunteur->numEmprunteur,$livre->numLivre) == 1){
 		    		$this->site->ajouter_message('Impossible de réserver cet ouvrage pour cet emprunteur, il possède déjà une réservation de ce livre !',1);
 	    			$this->site->redirect('gestreservation');
