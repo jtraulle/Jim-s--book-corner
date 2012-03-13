@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Événements</h2> {if $statut == 'gestionnaire'}<a class="ontitle btn success" href="?module=gestevenement&action=ajouter">+ Ajouter un événement</a>{/if}
+    <h2>Événements</h2> {if $statut == 'gestionnaire'}<a class="ontitle btn btn-success" href="?module=gestevenement&action=ajouter"><i class="icon-plus"></i> Ajouter un événement</a>{/if}
 </div>
 
 {section name=evenements loop=$listeEvenements}

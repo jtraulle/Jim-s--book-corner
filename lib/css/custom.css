@@ -53,7 +53,7 @@ input {
 }
 
 /* Surcharge de la classe success pour afficher en gras le texte des boutons */
-a.success.btn {
+a.btn-success {
 	font-weight:bold;
 }
 

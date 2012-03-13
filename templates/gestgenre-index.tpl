@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Genres</h2> {if $statut == 'gestionnaire'}<a class="ontitle btn success" href="?module=gestgenre&action=ajouter">+ Ajouter un genre</a>{/if} <a class="ontitle btn" href="?module=gestlivre">← retour au catalogue</a>
+    <h2>Genres</h2> {if $statut == 'gestionnaire'}<a class="ontitle btn btn-success" href="?module=gestgenre&action=ajouter"><i class="icon-plus"></i> Ajouter un genre</a>{/if} <a class="ontitle btn" href="?module=gestlivre">← retour au catalogue</a>
 </div>
 
 {if isset($listeGenres)}

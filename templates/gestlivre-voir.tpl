@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Consulter la fiche d'un ouvrage</h2>
+    <h2>Consulter la fiche d'un ouvrage</h2>{if $statut == 'gestionnaire'}<a class="ontitle btn" href="?module=gestlivre&action=modifier&id={$livre->numLivre}"><i class="icon-pencil"></i> Modifier cet ouvrage</a>{/if}
 </div>
 
 {$nbDispo = $livre->nbExemplaireLivre - $livre->nbEmprunte()}

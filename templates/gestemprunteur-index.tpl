@@ -1,5 +1,5 @@
   <div class="page-title">
-    <h2>Gérer les emprunteurs</h2> <a class="ontitle btn btn-success" href="?module=inscription">+ Ajouter un emprunteur</a>
+    <h2>Gérer les emprunteurs</h2> <a class="ontitle btn btn-success" href="?module=inscription"><i class="icon-plus"></i> Ajouter un emprunteur</a>
 </div>
 
 {if isset($listeEmprunteurs)}

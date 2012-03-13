@@ -69,7 +69,7 @@
         <p>L'emprunteur ne sera pas informé de cette suppression.</p>
     </div>
     <div class="modal-footer">
-        <a href="?module=gestreservation&action=suppr&id=" class="btn danger">Oui, supprimer</a>
+        <a href="?module=gestreservation&action=suppr&id=" class="btn btn-danger">Oui, supprimer</a>
         <a href="#" onclick="$('#modal-suppr').modal('hide')" class="btn secondary">Annuler</a>
     </div>
 </div>
