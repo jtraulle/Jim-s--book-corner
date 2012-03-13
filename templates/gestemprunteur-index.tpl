@@ -1,5 +1,5 @@
   <div class="page-title">
-    <h2>Gérer les emprunteurs</h2> <a class="ontitle btn success" href="?module=inscription">+ Ajouter un emprunteur</a>
+    <h2>Gérer les emprunteurs</h2> <a class="ontitle btn btn-success" href="?module=inscription">+ Ajouter un emprunteur</a>
 </div>
 
 {if isset($listeEmprunteurs)}
@@ -12,6 +12,7 @@
             <th>#</th>
             <th>Prénom</th>
     		<th>Nom</th>
+    		<th>Identifiant</th>
     		<th>Actions</th>
     	</tr>
     </thead>
@@ -22,6 +23,7 @@
             <td>{$listeEmprunteurs[emprunteurs]->numEmprunteur}</td>
             <td>{$listeEmprunteurs[emprunteurs]->prenomEmprunteur}</td>
         	<td>{$listeEmprunteurs[emprunteurs]->nomEmprunteur}</td>
+        	<td>{$listeEmprunteurs[emprunteurs]->identifiantEmprunteur}</td>
         	<td style="width:250px;"><a style="margin-right:20px;" href="?module=gestemprunteur&action=voir&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}"><img src="images/view.png" /> Voir</a><a style="margin-right:20px;" href="?module=gestemprunteur&action=modifier&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}"><img src="images/user_edit.png" /> Modifier</a>
         	    <a class="suppr" href="?module=gestemprunteur&action=supprimer&id={$listeEmprunteurs[emprunteurs]->numEmprunteur}"><img src="images/user_delete.png" /> Supprimer</a></td>
     	</tr>
