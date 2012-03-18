@@ -17,6 +17,8 @@
         <script type="text/javascript"src="lib/js/highcharts.js"></script>
         <script type="text/javascript"src="lib/js/exporting.js"></script>
         <script type="text/javascript"src="lib/js/chosen/chosen.jquery.min.js"></script>
+        <script type="text/javascript"src="lib/js/markitup/jquery.markitup.js"></script>
+        <script type="text/javascript"src="lib/js/markitup/sets/bbcode/set.js"></script>
         
         {if isset($nomPrenomAuteur)}
         <script type="text/javascript">
@@ -43,6 +45,8 @@
         <link rel="stylesheet" href="lib/css/font-awesome.css">  
         <link rel="stylesheet" href="lib/css/custom.css">  
         <link rel="stylesheet" href="lib/js/chosen/chosen.css">
+        <link rel="stylesheet" type="text/css" href="lib/js/markitup/skins/simple/style.css" />
+        <link rel="stylesheet" type="text/css" href="lib/js/markitup/sets/bbcode/style.css" />
         <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Dancing+Script' rel='stylesheet' type='text/css'>
               
     </head>
