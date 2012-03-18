@@ -2,7 +2,7 @@
     <h2>A propos de Jim et Christiane Mc Crate</h2><a class="ontitle btn" href="?module=pages&action=lettre_manuscrite"><img style="vertical-align:top;" src="images/edit.png" /> Voir le manuscrit</a>
 </div>
 
-<div class="well etroit">
+<div class="well etroit" style ="display:inline-block;">
 
 <p class="manuscrit">Je me souviens de Jim et Christiane Mc Crate,
 <br />oui je me souviens d’eux.</p>
@@ -54,3 +54,5 @@ une belle histoire à laquelle la maladie a douloureusement mis fin.</p>
 <p class="manuscrit">de Liliane Brown.</p>
 
 </div>
+
+<div style ="display:inline-block; position:absolute; margin-left:40px; margin-top:1700px;"><img style="width:170px;" src="images/christiane.png" /></div>
