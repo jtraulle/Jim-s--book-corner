@@ -12,4 +12,8 @@ class pages extends Module{
 	public function action_lettre_manuscrite(){
 		$this->set_title("A propos de Jim et Christiane McCrate | Jim's book corner library");
 	}
+    
+    public function action_infospratiques(){
+		$this->set_title("Informations pratiques | Jim's book corner library");
+	}
 }
