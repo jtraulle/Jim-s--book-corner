@@ -89,8 +89,8 @@ class gestcritique extends Module{
         if(isset($listeCritique)){
             $this->tpl->assign("critiques",$listeCritique);
         } else {
-            $this->site->ajouter_message('Aucune critique n\'a encore été rédigée pour ce livre ;)',1);
-            $this->site->redirect('gestlivre', 'voir&id='.$_GET['id']);
+            $this->site->ajouter_message('Vous n\'avez pas encore rédigé de critique.',1);
+            $this->site->redirect('gestemprunteur', 'moncompte');
         }     
     }
 
@@ -110,13 +110,13 @@ class gestcritique extends Module{
                 $this->session->user->numEmprunteur,
                 $this->session->numLivre,
                 htmlspecialchars($this->req->noteLivre),
-                htmlspecialchars($this->req->critiqueLivre)
+                Outils::sanitize($this->req->critiqueLivre)
             );
 
             $critique->ajouterCritique();
 
             $this->site->ajouter_message('Critique correctement enregistrée',4);
-            $this->site->redirect('gestlivre','index');
+            $this->site->redirect('gestcritique','mescritiques');
         }else{
             $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
             $form->populate();
@@ -137,7 +137,7 @@ class gestcritique extends Module{
 
             $f->add_select("noteLivre","noteLivre","Votre note",array("1" => "Je n'ai pas du tout aimé","2" => "J'ai aimé un peu","3" => "J'ai aimé beaucoup","4" => "J'ai adoré","5" => "Je trouve que c'est un chef d'oeuvre !"))->set_value($critique->noteCritique,'rating');
 
-            $f->add_textarea("critiqueLivre", "critiqueLivre", "Votre critique", true, null, null, htmlspecialchars_decode($critique->commentaireCritique));
+            $f->add_textarea("critiqueLivre", "critiqueLivre", "Votre critique", true, null, null, Outils::unsanitize($critique->commentaireCritique));
 
             $f->add_submit("sub","sub")->set_value('Modifier ma critique','actions','btn btn-primary');
 
@@ -165,18 +165,29 @@ class gestcritique extends Module{
                 $this->session->user->numEmprunteur,
                 $this->session->numLivre,
                 htmlspecialchars($this->req->noteLivre),
-                htmlspecialchars($this->req->critiqueLivre)
+                Outils::sanitize($this->req->critiqueLivre)
             );
 
             $critique->modifierCritique();
 
             $this->site->ajouter_message('Critique correctement enregistrée',4);
-            $this->site->redirect('gestlivre','index');
+            $this->site->redirect('gestcritique','mescritiques');
         }else{
             $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
             $form->populate();
             $this->tpl->assign("form",$form);
         }
+    }
+    
+    public function action_supprimer_critique(){
+        $critiqueASupprimer = Critique::chercherParId($this->session->user->numEmprunteur, $_REQUEST['idlivre']);
+        if(empty($critiqueASupprimer->numLivre)){
+            $this->site->redirect('gestcritique','mescritiques');
+        }
+        
+        $critiqueASupprimer->supprimerCritique();
+        $this->site->ajouter_message('Critique correctement supprimée',4);
+        $this->site->redirect('gestcritique','mescritiques');
     }
     
 }

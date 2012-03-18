@@ -26,11 +26,11 @@ class Outils{
 	    return $res[0];
 	}
         
-        public static function debug($var){
-            echo '<pre>';
-            print_r($var);
-            echo '</pre>';
-        }
+    public static function debug($var){
+        echo '<pre>';
+        print_r($var);
+        echo '</pre>';
+    }
 
 	/** 
 	 * A sweet interval formatting, will use the two biggest interval parts. 
@@ -96,6 +96,60 @@ class Outils{
 	    // Prepend 'since ' or whatever you like 
 	    return $interval->format($format); 
 	} 
+    
+    /**
+	 * Fonction permettant de convertir les balises zCode en HTML et de supprimer les balises HTML non voulues.
+	 *
+	 * @param string $table Le texte à convertir et à nettoyer.
+	 * @return string Le texte converti et nettoyé.
+	 */
+    public static function sanitize($texte){
+        if(isset($texte) && !empty($texte)){            
+            
+            $texte = htmlentities($texte, ENT_NOQUOTES, 'UTF-8');            
+            
+            $conv = array(
+              '\[gras\](.*?)\[\/gras\]' => '<strong>$1</strong>',
+              '\[italique\](.*?)\[\/italique\]' => '<em>$1</em>',
+              '\[souligne\](.*?)\[\/souligne\]' => '<u>$1</u>',
+              '\[lien url="([^\]]*)"\](.*)\[\/lien\]' => '<a href="$1">$2</a>'
+            );
+            
+            foreach($conv as $k => $v)
+            {
+                $texte = preg_replace('/'.$k.'/',$v,$texte);
+            }
+            
+            return nl2br($texte, true);
+        }
+    }
+    
+    /**
+	 * Fonction permettant de convertir les balises zCode en HTML et de supprimer les balises HTML non voulues.
+	 *
+	 * @param string $table Le texte à convertir et à nettoyer.
+	 * @return string Le texte converti et nettoyé.
+	 */
+    public static function unsanitize($texte){
+        if(isset($texte) && !empty($texte)){            
+            
+            $texte = html_entity_decode($texte, ENT_NOQUOTES, 'UTF-8');            
+            
+            $conv = array(
+              '\<strong>(.*?)\<\/strong\>' => '[gras]$1[/gras]',
+              '\<em\>(.*?)\<\/em\>' => '[italique]$1[/italique]',
+              '\<u\>(.*?)\<\/u\>' => '[souligne]$1[/souligne]',
+              '\<a href="([^\>]*)"\>(.*)\<\/a\>' => '[lien url="$1"]$2[/lien]'
+            );
+            
+            foreach($conv as $k => $v)
+            {
+                $texte = preg_replace('/'.$k.'/',$v,$texte);
+            }
+            
+            return str_replace("<br />","",$texte);
+        }
+    }
 }
 
 ?>

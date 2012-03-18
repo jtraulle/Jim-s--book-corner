@@ -81,7 +81,8 @@ Class FrontController{
 			'pages' => array(
 				'action_credits',
 				'action_lettre',
-				'action_lettre_manuscrite'
+				'action_lettre_manuscrite',
+                'action_infospratiques'
 			)
 		);
 
@@ -100,7 +101,8 @@ Class FrontController{
 				'action_ajouter_critique',
                 'action_modifier_critique',
                 'action_valide_modifier_critique',
-                'action_mescritiques'
+                'action_mescritiques',
+                'action_supprimer_critique'
 			),
 			'gestemprunt' => array(
 				'action_demande_pret'

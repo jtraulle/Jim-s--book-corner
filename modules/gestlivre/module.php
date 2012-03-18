@@ -151,7 +151,7 @@ class gestlivre extends Module {
             "titreLivre",
             "Titre du livre",
             true,
-            "alphaNumAccentue",
+            "titreLivre",
             "Vous devez saisir une chaîne alphabétique (accents autorisés).",
             $livreAmodif->titreLivre
             );
@@ -183,7 +183,7 @@ class gestlivre extends Module {
             true,
             null,
             null,
-            $livreAmodif->resumeLivre
+            Outils::unsanitize($livreAmodif->resumeLivre)
             );
         $f->add_select("langueLivre", "langueLivre", "Langue", array("Français" => "Français", "Anglais" => "Anglais"), $livreAmodif->langueLivre);
         $f->add_text(
@@ -223,7 +223,7 @@ class gestlivre extends Module {
                 $this->req->numAuteur,
                 null,
                 null,
-                $this->req->resumeLivre,
+                Outils::sanitize($this->req->resumeLivre),
                 $this->req->langueLivre,
                 $this->req->nbExemplaireLivre
                 );
@@ -264,7 +264,7 @@ class gestlivre extends Module {
                 $this->req->numAuteur,
                 null,
                 null,
-                $this->req->resumeLivre,
+                Outils::sanitize($this->req->resumeLivre),
                 $this->req->langueLivre,
                 $this->req->nbExemplaireLivre,
                 $this->session->idLivreAmodif

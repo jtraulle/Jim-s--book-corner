@@ -32,7 +32,7 @@ class gestevenement extends Module{
             "nomEvenement",
             "Nom de l'événement",
             true,
-            "alphaNumAccentue",
+            "titreLivre",
             "Vous devez saisir une chaîne alphabétique (accents autorisés)."
         );
         $f->add_text(
@@ -90,7 +90,7 @@ class gestevenement extends Module{
                 $this->req->themeEvenement,
                 $this->req->lieuEvenement,
                 $this->req->dateEvenement,
-                $this->req->desEvenement,
+                Outils::sanitize($this->req->desEvenement),
                 $this->session->user->numGestionnaire
             );
 
@@ -157,7 +157,7 @@ class gestevenement extends Module{
             true,
             null,
             null,
-            $evenementAmodif->desEvenement
+            Outils::unsanitize($evenementAmodif->desEvenement)
         );
             $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
 
@@ -182,7 +182,7 @@ class gestevenement extends Module{
                 $this->req->themeEvenement,
                 $this->req->lieuEvenement,
                 $this->req->dateEvenement,
-                $this->req->desEvenement,
+                Outils::sanitize($this->req->desEvenement),
                 $this->session->user->numGestionnaire,
                 $this->session->idEvenementAmodif
             );
