@@ -17,7 +17,7 @@
           </tr>
           <tr>
             <th>Genre(s)</th>
-            <td>{foreach from=$genres key=idgenre item=genre name=genres}<a href="?module=gestgenre&action=voir&id={$idgenre}"><i class="icon-tag"></i> {$genre}</a>{if $smarty.foreach.genres.last}{else}, {/if}{/foreach}</td>
+            <td>{if $genres == null}Aucun genre n'a pour l'instant été associé à cet ouvrage.{else}{foreach from=$genres key=idgenre item=genre name=genres}<a href="?module=gestgenre&action=voir&id={$idgenre}"><i class="icon-tag"></i> {$genre}</a>{if $smarty.foreach.genres.last}{else}, {/if}{/foreach}{/if}</td>
           </tr>
           <tr>
             <th>Langue</th>
