@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Modifier une critique</h2>
+    <h2>Modifier une critique</h2><a class="ontitle btn" href="?module=gestcritique&action=mescritiques">← mes critiques</a>
 </div>
 
 <div class="well">

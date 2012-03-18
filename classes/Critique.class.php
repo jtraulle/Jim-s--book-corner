@@ -202,6 +202,11 @@ class Critique extends Table{
             $this->numLivre
         ));		
 	}
+    
+    function supprimerCritique(){
+        $sql="DELETE FROM critiquer WHERE numLivre='{$this->numLivre}' AND numEmprunteur='{$this->numEmprunteur}'";
+		$this->db->exec($sql);	
+	}
 }
 
 ?>
