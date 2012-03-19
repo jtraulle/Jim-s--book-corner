@@ -115,6 +115,22 @@ class Critique extends Table{
         else
             return null;
     }
+    
+    public static function nbCritiqueOuvrage($numLivre)
+    {
+        $sql = "SELECT COUNT(numLivre) FROM critiquer WHERE numLivre=?";
+        $db = DB::get_instance();
+        $res = $db->prepare($sql);
+        $res->execute(array($numLivre));
+
+        $l = $res->fetch();
+
+        if ($l[0] == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
        
     public static function CritiquesParEmprunteur($numEmprunteur, $pageCourante, $nbEnregistrementsParPage){
 

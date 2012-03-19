@@ -254,6 +254,8 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
                 $enregistrement['nbExemplaireLivre'],
                 $enregistrement['numLivre']
                 );
+            
+            $livre->nbCritique = Critique::nbCritiqueOuvrage($enregistrement['numLivre']);
 
             $liste[] = $livre;
         }
