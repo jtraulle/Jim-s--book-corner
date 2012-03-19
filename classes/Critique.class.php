@@ -176,9 +176,41 @@ class Critique extends Table{
             return null;
     }
     
+    public static function listeComplete($pageCourante, $nbEnregistrementsParPage){
+
+        //On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql="SELECT * FROM critiquer ORDER BY date DESC LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
+
+        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db=DB::get_instance();
+        $reponse=$db->prepare($sql);
+        $reponse->execute();
+        
+        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
+            $critique = new Critique(
+                $enregistrement['numEmprunteur'],
+                $enregistrement['numLivre'],
+                $enregistrement['noteCritique'],
+                $enregistrement['commentaireCritique']
+            );
+            
+            $emprunteur = Emprunteur::chercherParId($enregistrement['numEmprunteur']);
+            $critique->identifiantEmprunteur=$emprunteur->identifiantEmprunteur;
+            $critique->infosLivre = Livre::chercherParId($enregistrement['numLivre']);
+
+            $liste[]=$critique;
+            
+        }
+        
+        if(isset($liste))
+            return $liste;
+        else
+            return null;
+    }
+    
     function ajouterCritique(){
         
-        $sql="INSERT INTO critiquer VALUES(?,?,?,?)";
+        $sql="INSERT INTO critiquer VALUES(?,?,?,?,Now())";
         
         $res=$this->db->prepare($sql);
         

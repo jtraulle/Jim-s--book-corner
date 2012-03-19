@@ -69,6 +69,31 @@ class gestcritique extends Module{
         }     
     }
     
+    public function action_gerer(){
+        $this->set_title("Gérer les critiques | Jim's book corner library");
+
+        $nbEnregistrementsParPage = 10;
+        $totalPages = Outils::nbPagesTotales("critiquer",$nbEnregistrementsParPage);
+
+        if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $totalPages){
+                $pageCourante = $_GET['page'];
+        }else{
+                $pageCourante = 1;
+        }
+
+        $this->tpl->assign("totalPages",$totalPages);
+        $this->tpl->assign("pageCourante",$pageCourante);
+        $this->tpl->assign("nbenregistrementsParPage",$nbEnregistrementsParPage);
+
+        $listeCritique = Critique::listeComplete($pageCourante,10);
+        if(isset($listeCritique)){
+            $this->tpl->assign("critiques",$listeCritique);
+        } else {
+            $this->site->ajouter_message('Aucune critique n\'a pour le moment été rédigée.',1);
+            $this->site->redirect('gestlivre');
+        }     
+    }
+    
     public function action_mescritiques(){
         $this->set_title("Consulter mes critiques | Jim's book corner library");
 
@@ -188,6 +213,17 @@ class gestcritique extends Module{
         $critiqueASupprimer->supprimerCritique();
         $this->site->ajouter_message('Critique correctement supprimée',4);
         $this->site->redirect('gestcritique','mescritiques');
+    }
+    
+    public function action_supprimer_critique_pour(){
+        $critiqueASupprimer = Critique::chercherParId($_REQUEST['idemprunteur'], $_REQUEST['idlivre']);
+        if(empty($critiqueASupprimer->numLivre)){
+            $this->site->redirect('gestcritique','gerer');
+        }
+        
+        $critiqueASupprimer->supprimerCritique();
+        $this->site->ajouter_message('Critique correctement supprimée',4);
+        $this->site->redirect('gestcritique','gerer');
     }
     
 }
