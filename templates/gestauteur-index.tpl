@@ -24,7 +24,7 @@
             <td>{$listeAuteurs[auteurs]->nomAuteur}</td>
             <td {if $statut == 'gestionnaire'}style="width:300px;"{else}style="width:90px;"{/if}><a style="margin-right:40px;" href="?module=gestauteur&action=voir&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/view.png" /> Voir</a>
             {if $statut == 'gestionnaire'}<a style="margin-right:40px;" href="?module=gestauteur&action=modifier&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_edit.png" /> Modifier</a>
-                <a class="suppr" href="?module=gestauteur&action=supprimer&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_delete.png" /> Supprimer</a></td>{/if}
+                <a data-controls-modal="modal-suppr" data-backdrop="true" data-keyboard="true" href="?module=gestauteur&action=supprimer&id={$listeAuteurs[auteurs]->numAuteur}"><img src="images/user_delete.png" /> Supprimer</a></td>{/if}
         </tr>
 {/section}
     </tbody>
@@ -42,3 +42,19 @@
 </div>
 
 {/if}
+
+<div id="modal-suppr" class="modal hide fade">
+    <div class="modal-header">
+        <a href="#" class="close">×</a>
+        <h3>Êtes vous sûr(e) ?</h3>
+    </div>
+    <div class="modal-body">
+        <p>Vous êtes sur le point de supprimer cet auteur.</p>
+        <p><strong>ATTENTION !</strong> Lorsque vous supprimez un auteur, l'ensemble des livres associés à cet auteur seront eux aussi supprimés !</p>
+        <p>Cette opération est irréversible alors <strong>je vous le redemande</strong>, êtes vous réellement sûr(e) de vouloir supprimer cet auteur ?</p>
+    </div>
+    <div class="modal-footer">
+        <a href="?module=gestemprunt&action=supprimerDemande&id=" class="btn btn-danger">Oui, supprimer</a>
+        <a href="#" onclick="$('#modal-suppr').modal('hide')" class="btn secondary">Annuler</a>
+    </div>
+</div>
