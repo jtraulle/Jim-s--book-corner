@@ -86,6 +86,42 @@ class Gestionnaire extends Table{
         else
             return null;
     }
+    
+    public static function modifierMotDePasse($nouveauPass, $numEmprunteur){
+        $db=DB::get_instance();
+        $sql="UPDATE gestionnaire SET mdpGestionnaire=? WHERE numGestionnaire=?";
+        $res=$db->prepare($sql);
+        $res->execute(array(
+            $nouveauPass,
+            $numEmprunteur
+        ));
+    }
+
+    //Cette fonction permet de savoir si l'identifiant spécifié est disponible où non.
+    public static function isIdentifiantDispo($identifiant){
+        $sql="SELECT COUNT(pseudoGestionnaire) FROM gestionnaire WHERE pseudoGestionnaire=?";
+        $db=DB::get_instance();
+        $res=$db->prepare($sql);
+        $res->execute(array($identifiant));
+
+        $l= $res->fetch();
+        
+        if($l[0] > 0)        
+            return 0;
+        else
+            return 1;            
+    }
+
+    //Permet de modifier l'identifiant d'un emprunteur
+    public static function modifierIdentifiant($nouvelIdentifiant, $numEmprunteur){
+        $db=DB::get_instance();
+        $sql="UPDATE gestionnaire SET pseudoGestionnaire=? WHERE numGestionnaire=?";
+        $res=$db->prepare($sql);
+        $res->execute(array(
+            $nouvelIdentifiant,
+            $numEmprunteur
+        ));
+    }
 
     //fonctions privées-----------------------------------------------
     function enregistrer(){

@@ -165,7 +165,7 @@ class gestgestionnaire extends Module{
                 $this->req->nomGestionnaire,
                 $this->req->prenomGestionnaire,
                 $this->req->pseudoGestionnaire,
-                $this->req->mdpGestionnaire,
+                sha1($this->req->mdpGestionnaire),
                 $this->req->telGestionnaire,
                 $this->req->emailGestionnaire
             );
@@ -244,7 +244,8 @@ class gestgestionnaire extends Module{
             );
             $f->add_endfieldset("endfieldset");
             $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
-
+            
+            $this->tpl->assign("numGestionnaire",$gestionnaireAmodif->numGestionnaire);
             $this->tpl->assign("form",$f);
             $this->session->idGestionnaireAmodif = $gestionnaireAmodif->numGestionnaire;
             $this->session->form = $f;
@@ -281,5 +282,108 @@ class gestgestionnaire extends Module{
             $this->tpl->assign("form",$form);
         }
 	}
+    
+    public function action_modifier_pass(){
+        $this->set_title("Modifier le mot de passe | Jim's book corner library");
+
+        $f=new Form("?module=gestgestionnaire&action=valide_modifier_pass","form1");
+            $f->add_password(
+                "mdpNouveau1",
+                "mdpNouveau1",
+                "Nouveau mot de passe",
+                true,
+                "motdepasse",
+                "Longueur minimale de 7 caractères (dont une majuscule et un chiffre)"
+            );
+            $f->add_password(
+                "mdpNouveau2",
+                "mdpNouveau2",
+                "Retapez le nouveau mot de passe",
+                true,
+                "motdepasse",
+                "Longueur minimale de 7 caractères (dont une majuscule et un chiffre)"
+            );
+            $f->add_submit("sub","sub")->set_value('Changer de mot de passe','actions','btn btn-primary');
+
+            $this->tpl->assign("form",$f);
+            $this->session->idGestionnaire = $_REQUEST['id'];
+            $this->session->form = $f;
+    }
+
+    public function action_valide_modifier_pass(){
+        $this->set_title("Modifier mon mot de passe | Jim's book corner library");
+
+        $form=$this->session->form;
+
+        //Si l'utilisateur essaie de passer la validation directement
+        //en tapant l'URL, on le redirige vers l'action modifier_pass ;)
+        if($this->req->sub != 'Changer de mot de passe')
+            $this->site->redirect('gestemprunteur', 'modifier_pass');
+
+        if($form->validate()){   
+            $GestionnaireAconsulter = Gestionnaire::chercherParId($this->session->idGestionnaire);
+            if($this->req->mdpNouveau1 == $this->req->mdpNouveau2){
+                Gestionnaire::modifierMotDePasse(sha1($this->req->mdpNouveau2), $this->session->idGestionnaire);
+                $this->site->ajouter_message('Le mot de passe a bien été modifié !',4);
+                $this->site->redirect('gestgestionnaire');
+            } else {
+                $this->site->ajouter_message('Le nouveau mot de passe n\'est pas identique !',1);
+                $this->site->redirect('gestgestionnaire','modifier_pass&id='.$this->session->idGestionnaire);
+            }
+        }else{
+            $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
+            $form->populate();
+            $this->tpl->assign("form",$form);
+        }
+    }
+
+    public function action_modifier_identifiant(){
+        $this->set_title("Modifier l'identifiant | Jim's book corner library");
+        
+        $this->session->idGestionnaire = $_REQUEST['id'];
+
+        $f=new Form("?module=gestgestionnaire&action=valide_modifier_identifiant","form1");
+            $f->add_text(
+                "pseudoGestionnaire",
+                "pseudoGestionnaire",
+                "Nouvel identifiant",
+                true,
+                "identifiant",
+                "Accents et caractères spéciaux interdits"
+            );
+            $f->add_submit("sub","sub")->set_value('Changer identifiant','actions','btn btn-primary');
+
+            $this->tpl->assign("form",$f);
+            
+            $this->session->form = $f;
+    }
+
+    public function action_valide_modifier_identifiant(){
+        $this->set_title("Modifier mon identifiant | Jim's book corner library");
+
+        $form=$this->session->form;
+
+        //Si l'utilisateur essaie de passer la validation directement
+        //en tapant l'URL, on le redirige vers l'action modifier_pass ;)
+        if($this->req->sub != 'Changer identifiant')
+            $this->site->redirect('gestgestionnaire', 'modifier_identifiant');
+
+        if($form->validate()){   
+            $GestionnaireAconsulter = Gestionnaire::chercherParId($this->session->idGestionnaire);
+            if(Gestionnaire::isIdentifiantDispo($this->req->pseudoGestionnaire)){
+                Gestionnaire::modifierIdentifiant($this->req->pseudoGestionnaire, $this->session->idGestionnaire);
+                $this->session->user->pseudoGestionnaire = $this->req->pseudoGestionnaire;
+                $this->site->ajouter_message('L\'identifiant a bien été modifié !',4);
+                $this->site->redirect('gestgestionnaire');
+            } else {
+                $this->site->ajouter_message('L\'identifiant que vous avez choisi n\'est pas disponible !',1);
+                $this->site->redirect('gestgestionnaire','modifier_identifiant&id='.$this->session->idGestionnaire);
+            }
+        }else{
+            $this->site->ajouter_message('Des erreurs ont été détectées durant la validation du formulaire. Veuillez corriger les erreurs mentionnées.',1);
+            $form->populate();
+            $this->tpl->assign("form",$form);
+        }
+    }
 }
 ?>
