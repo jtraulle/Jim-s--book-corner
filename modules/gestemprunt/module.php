@@ -23,15 +23,20 @@ class gestemprunt extends Module{
 			if(Livre::isReserve($_GET['idlivre'])){
 				Livre::enregistrerDemande(Livre::quelEmprunteurReservation($_GET['idlivre']),$_GET['idlivre']);
 				Livre::majReservationDispo(Livre::reservationAValider($_GET['idlivre']));
-				// @TOTO -- ICI ENVOYER UN MAIL A L'EMPRUNTEUR POUR LE PREVENIR
-				$this->site->ajouter_message('Cet ouvrage a été réservé par un autre lecteur. Gardez le de côté le temps que celui-ci vienne le chercher. Un courriel a été envoyé automatiquement pour le prévenir.',1);				
+
+				//On envoie un courriel au lecteur ayant réservé l'ouvrage pour le prévenir.
+				$emprunteur = Emprunteur::chercherParId($_GET['idemprunteur']);
+				$mail = new Emailing($emprunteur->emailEmprunteur,'Votre réservation',Settings::chercherParCleSetting('msgEmailReservationDispo')->valSetting);
+				$mail->ajouter();
+
+				$this->site->ajouter_message('Cet ouvrage a été réservé par un autre lecteur. Gardez le de côté le temps que celui-ci vienne le chercher. Un courriel a été envoyé automatiquement pour le prévenir.',1);
 			}
                         $this->site->redirect('gestemprunt');
 		}else{
                     $this->site->ajouter_message('Impossible de rendre cet ouvrage, il n\'a pas été emprunté par ce lecteur !',1);
                     $this->site->redirect('gestemprunt','pretsEnCours');
 		}
-			
+
     }
 
     public function action_preter(){
@@ -50,7 +55,7 @@ class gestemprunt extends Module{
             foreach($listeEmprunteurs as $emprunteur){
                 $tab[$emprunteur->numEmprunteur]=$emprunteur->prenomEmprunteur.' '.$emprunteur->nomEmprunteur;
             }
-                
+
             $f=new Form("?module=gestemprunt&action=valide_pret","pret");
             $f->add_select("numEmprunteur","numEmprunteur","Emprunteur",$tab)->set_value(null,'chzn-select');
             if(($ouvrageAPreter->nbExemplaireLivre - $ouvrageAPreter->nbEmprunte()) < 1)
@@ -105,7 +110,7 @@ class gestemprunt extends Module{
 	        $this->site->ajouter_message('Impossible d\'effectuer une demande de prêt pour cet emprunteur, il est inexistant !',1);
 	        $this->site->redirect('gestlivre');
 	    }
-	    	
+
 	    if(($livre->nbExemplaireLivre - $livre->nbEmprunte()) < 1){
     		$this->site->ajouter_message('Impossible de réserver cet ouvrage, plus aucun exemplaire en stock !',1);
     		$this->site->redirect('gestlivre');
@@ -118,7 +123,9 @@ class gestemprunt extends Module{
 
 		Livre::enregistrerDemande($emprunteur->numEmprunteur,$livre->numLivre);
 		$this->site->ajouter_message('La demande de prêt pour l\'ouvrage <em>'.$livre->titreLivre.'</em> a bien été effectuée pour '.$emprunteur->prenomEmprunteur.' '.$emprunteur->nomEmprunteur.'.',4);
-		$this->site->redirect('gestlivre');    
+    	$mail = new Emailing($emprunteur->emailEmprunteur,'Votre demande de prêt',Settings::chercherParCleSetting('msgEmailDemande')->valSetting);
+    	$mail->ajouter();
+		$this->site->redirect('gestlivre');
     }
 
     public function action_supprimerDemande(){

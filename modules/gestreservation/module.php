@@ -41,6 +41,11 @@ class gestreservation extends Module{
 		}
 
 		Livre::reserver($emprunteur->numEmprunteur,$livre->numLivre);
+
+    	//On envoie un courriel au lecteur.
+    	$mail = new Emailing($emprunteur->emailEmprunteur,'Votre réservation',Settings::chercherParCleSetting('msgEmailReservation')->valSetting);
+    	$mail->ajouter();
+
 		$this->site->ajouter_message('L\'ouvrage <em>'.$livre->titreLivre.'</em> a été réservé pour '.$emprunteur->prenomEmprunteur.' '.$emprunteur->nomEmprunteur.'.',4);
 		$this->site->redirect('gestlivre');
     }
