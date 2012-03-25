@@ -1,5 +1,7 @@
 <div class="page-title">
-    <h2>Gérer les livres</h2><a class="btn ontitle" href="?module=gestauteur">Parcourir les auteurs</a>
+	<h2>Consulter le catalogue</h2>
+    <a class="btn ontitle" href="?module=gestgenre"><i class="icon-tags"></i> Parcourir les genres</a>
+    <a class="btn ontitle" href="?module=gestauteur"><i class="icon-user"></i> Parcourir les auteurs</a>
 </div>
 
 {if isset($listeLivres)}

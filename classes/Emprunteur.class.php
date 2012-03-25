@@ -16,7 +16,7 @@ class Emprunteur extends Table{
 
     //fonctions publiques---------------------------------------------------------------
     public function __construct($nomEmprunteur, $prenomEmprunteur, $numRueEmprunteur, $nomRueEmprunteur, $villeEmprunteur, $codePostalEmprunteur, $identifiantEmprunteur, $mdpEmprunteur, $telFixeEmprunteur, $telPortableEmprunteur, $emailEmprunteur, $numEmprunteur=-1) {
-        
+
         $this->numEmprunteur = $numEmprunteur;
         $this->nomEmprunteur = $nomEmprunteur;
         $this->prenomEmprunteur = $prenomEmprunteur;
@@ -32,7 +32,7 @@ class Emprunteur extends Table{
 
         return $this;
     }
-    
+
     public static function chercherParId($id){
         $sql="SELECT * from emprunteur WHERE numEmprunteur=?";
         $db=DB::get_instance();
@@ -42,7 +42,7 @@ class Emprunteur extends Table{
         $e= $res->fetch();
         return new Emprunteur($e[1],$e[2],$e[3],$e[4],$e[5],$e[6],$e[7],$e[8],$e[9],$e[10],$e[11],$e[0]);
     }
-    
+
     public static function liste($pageCourante=null, $nbEnregistrementsParPage=null){
 
     	if(!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -73,7 +73,7 @@ class Emprunteur extends Table{
 
             $liste[]=$emprunteur;
         }
-        
+
         if(isset($liste))
             return $liste;
         else
@@ -87,7 +87,7 @@ class Emprunteur extends Table{
         $res->execute(array($id));
 
         $a= $res->fetch();
-        print_r($a);
+
         if(isset($a)){
             return new Emprunteur($a[1],$a[2],$a[3],$a[4],$a[5],$a[6],$a[7],$a[8],$a[9],$a[10],$a[11],$a[0]);
         } else {
@@ -113,11 +113,11 @@ class Emprunteur extends Table{
         $res->execute(array($identifiant));
 
         $l= $res->fetch();
-        
-        if($l[0] > 0)        
+
+        if($l[0] > 0)
             return 0;
         else
-            return 1;            
+            return 1;
     }
 
     //Permet de modifier l'identifiant d'un emprunteur
@@ -132,7 +132,7 @@ class Emprunteur extends Table{
     }
 
     //fonctions privées-----------------------------------------------
-    
+
     function enregistrer(){
         if($this->numEmprunteur==-1) {
             $this->numEmprunteur=$this->inserer();
@@ -184,7 +184,7 @@ class Emprunteur extends Table{
             $this->numEmprunteur
         ));
     }
-    
+
     function supprimer(){
         $this->db=DB::get_instance();
         $sql="DELETE FROM emprunteur WHERE numEmprunteur='{$this->numEmprunteur}'";

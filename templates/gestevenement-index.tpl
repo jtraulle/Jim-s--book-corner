@@ -10,6 +10,8 @@
 </div>
 {/section}
 
+{include file="paginate.tpl"}
+
 <div id="modal-suppr" class="modal hide fade">
     <div class="modal-header">
         <a href="#" class="close">×</a>

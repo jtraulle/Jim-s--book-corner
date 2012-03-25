@@ -1,12 +1,12 @@
 <?php
 
 class gestevenement extends Module{
-	
+
 	public function action_index(){
         $this->set_title("Événements | Jim's book corner library");
 
         $nbEnregistrementsParPage = 10;
-		$totalPages = Outils::nbPagesTotales('livre',$nbEnregistrementsParPage);
+		$totalPages = Outils::nbPagesTotales('evenement',$nbEnregistrementsParPage);
 
 		if(isset($_GET['page']) && $_GET['page'] > 0 && $_GET['page'] <= $totalPages){
 			$pageCourante = $_GET['page'];
@@ -19,7 +19,7 @@ class gestevenement extends Module{
 		$this->tpl->assign("nbenregistrementsParPage",$nbEnregistrementsParPage);
 
 		$listeEvenements = Evenement::liste();
-      
+
 		$this->tpl->assign("listeEvenements",Evenement::liste($pageCourante, 10));
     }
 
@@ -65,7 +65,7 @@ class gestevenement extends Module{
             "Détail de l'événement",
             true
         );
-       
+
         $f->add_submit("sub","sub")->set_value('Ajouter le nouvel événement','actions','btn btn-primary');
 
         $this->tpl->assign("form",$f);
