@@ -12,15 +12,15 @@ Class FrontController{
 		foreach($config as $var=>$val)
 			$this->$var=$val;
 		$this->config=$config;
-		
+
 	}
 
 	public function load_content(){
 
 		//vérifie si un paramètre de module est passé, sinon : défaut
-		$module= ( $this->req->module != '' ) ? $this->req->module : 'index';	
+		$module= ( $this->req->module != '' ) ? $this->req->module : 'index';
 		//vérifie si une action est requise, sinon : index
-		$action= ( $this->req->action != '')   ? $this->req->action : 'index';	
+		$action= ( $this->req->action != '')   ? $this->req->action : 'index';
 
 		$this->tpl->assign('titre','Jim\'s book corner library');
 		$this->tpl->assign('module',$module);
@@ -57,12 +57,16 @@ Class FrontController{
 				'action_index',
 				'action_valide'
 			),
+			'gestemoignage' => array(
+				'action_index'
+			),
 			'gestauteur' => array(
 				'action_index',
 				'action_voir'
 			),
             'gestgenre' => array(
-				'action_voir'
+				'action_voir',
+				'action_index'
 			),
 			'gestemprunteur' => array(
 				'action_connect',
@@ -104,6 +108,13 @@ Class FrontController{
                 'action_mescritiques',
                 'action_supprimer_critique'
 			),
+			'gestemoignage' => array(
+				'action_ajouter',
+				'action_modifier',
+				'action_valide',
+				'action_valide_modifier',
+				'action_supprimer'
+			),
 			'gestemprunt' => array(
 				'action_demande_pret'
 			),
@@ -138,14 +149,14 @@ Class FrontController{
 				$m->$action();
 			else
 				throw new Exception("Vous n'avez pas l'autorisation d'accéder à cette page ou votre session a expiré.");
-		}		
+		}
 		else
 			throw new Exception("Action inconnue : $module::$action");
 
 		$res=$this->tpl->fetch($m->get_tpl_name().".tpl");
 		$this->tpl->assign('bloc_contenu',$res);
 		$this->tpl->assign('messages',$this->site->liste_messages());
-	}	
+	}
 }
 
 ?>
