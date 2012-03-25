@@ -6,5 +6,5 @@
     <li {if $module == 'gestcritique'}class="active"{/if}><a href="?module=gestcritique&action=gerer"><i class="icon-comments"></i> Critiques</a></li>
     <li {if $module == 'gestemprunteur'}class="active"{/if}><a href="?module=gestemprunteur"><i class="icon-user"></i> Emprunteurs</a></li>
     <li {if $module == 'gestemprunt' OR $module == 'gestreservation'}class="active"{/if}><a href="?module=gestemprunt"><i class="icon-share-alt"></i> Circulation</a></li>
-    <li {if $module == 'gestgestionnaire'}class="active"{/if} style="float:right;"><a href="?module=gestgestionnaire"><i class="icon-cogs"></i> Paramètres</a></li>
+    <li {if $module == 'gestgestionnaire' OR $module == 'gestsettings'}class="active"{/if} style="float:right;"><a href="?module=gestsettings"><i class="icon-cogs"></i> Paramètres</a></li>
 </ul>

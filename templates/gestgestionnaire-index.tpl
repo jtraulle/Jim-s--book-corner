@@ -1,5 +1,5 @@
 <div class="page-title">
-    <h2>Gérer les gestionnaires</h2> <a class="ontitle btn success" href="?module=gestgestionnaire&action=ajouter">+ Ajouter un gestionnaire</a>
+    <h2>Gérer les gestionnaires</h2> <a class="ontitle btn btn-success" href="?module=gestgestionnaire&action=ajouter"><i class="icon-plus"></i> Ajouter un gestionnaire</a> <a class="ontitle btn" href="?module=gestsettings">← retour aux paramètres</a>
 </div>
 
 {if isset($listeGestionnaires)}
