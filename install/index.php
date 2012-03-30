@@ -963,9 +963,7 @@ elseif (isset($_GET['step4'])) {
 						<label for="mdp">Mot de passe :</label>
 						<input type="password" name="mdp" maxlength="40" /><br />
 						<label for="base">Nom de la base :</label>
-						<input type="text" name="base" maxlength="40" /><br />
-						<label for="prefixe">Prefixe des tables :</label>
-						<input type="text" name="prefixe" value="jbcl_" maxlength="40" />';
+						<input type="text" name="base" maxlength="40" />';
     }
     // SINON, si l'utilisateur a cliqué sur le bouton suivant de l'étape, alors on vérifie les informations transmises.
     if (isset($_POST['step4'])) {
@@ -979,7 +977,6 @@ elseif (isset($_GET['step4'])) {
             $login = str_replace($caracteresasupprimer, "", $_POST['login']);
             $mdp = str_replace($caracteresasupprimer, "", $_POST['mdp']);
             $base = str_replace($caracteresasupprimer, "", $_POST['base']);
-            $prefixe = str_replace($caracteresasupprimer, "", $_POST['prefixe']);
             // si on arrive pas à se connecter à mysql, on affiche un message à l'utilisateur.
             if (!@mysql_connect($hote, $login, $mdp)) {
                 echo('<label for="hote">Hôte :</label>

@@ -1,121 +1,161 @@
 <?php
 
-class Critique extends Table{
-		public $numEmprunteur;
-		public $numLivre;
-		public $noteCritique;
-		public $commentaireCritique;
-                public $identifiantEmprunteur;
+class Critique extends Table {
+    public $numEmprunteur;
+    public $numLivre;
+    public $noteCritique;
+    public $commentaireCritique;
+    public $identifiantEmprunteur;
 
-	public function __construct($numEmprunteur, $numLivre, $noteCritique, $commentaireCritique) {
-        
+    /**
+     * Critique::__construct()
+     *
+     * @param Integer $numEmprunteur Le numéro unique identifiant l'emprunteur.
+     * @param Integer $numLivre Le numéro unique identifiant le livre.
+     * @param Integer $noteCritique La note attribuée au livre sur une échelle de 1 à 5.
+     * @param String $commentaireCritique Le commentaire attribué au livre par le lecteur.
+     */
+    public function __construct($numEmprunteur, $numLivre, $noteCritique, $commentaireCritique)
+    {
         parent::__construct();
-        
+
         $this->numEmprunteur = $numEmprunteur;
         $this->numLivre = $numLivre;
         $this->noteCritique = $noteCritique;
         $this->commentaireCritique = $commentaireCritique;
 
         return $this;
-    }       
-    
-    public static function isCritiqueDejaRedigee($numEmprunteur, $numLivre){
-        $sql="SELECT COUNT(*) FROM critiquer WHERE numEmprunteur=? AND numLivre=?";
-        $db=DB::get_instance();
-        $res=$db->prepare($sql);
+    }
+
+    /**
+     * Permet de savoir si un emprunteur a déjà rédigé une critique pour un livre donné.
+     *
+     * @param Integer $numEmprunteur Le numéro unique identifiant l'emprunteur à rechercher.
+     * @param Integer $numLivre Le numéro unique identifiant le livre à rechercher.
+     * @return Boolean Retourne vrai si l'emprunteur a déjà rédigé une critique pour ce livre, non sinon.
+     */
+    public static function isCritiqueDejaRedigee($numEmprunteur, $numLivre)
+    {
+        $sql = "SELECT COUNT(*) FROM critiquer WHERE numEmprunteur=? AND numLivre=?";
+        $db = DB::get_instance();
+        $res = $db->prepare($sql);
         $res->execute(array($numEmprunteur, $numLivre));
 
-        $c= $res->fetch();
-        
-        if($c[0] == 0){
+        $c = $res->fetch();
+
+        if ($c[0] == 0) {
             return false;
         } else {
             return true;
-        }		
+        }
     }
-    
-    public static function recupererNotes($numLivre){
-        $db=DB::get_instance();
-        
-        $sql="SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=1";
-        $res=$db->prepare($sql);
+
+    /**
+     * Permet de récupérer sous forme de tableau indicé le nombre de note (de 1 à 5).
+     *
+     * @param Integer $numLivre Le numéro unique identifiant le livre à rechercher.
+     * @return Integer Un tableau indicé de 1 à 5 contenant le nombre de critique pour chaque note.
+     */
+    public static function recupererNotes($numLivre)
+    {
+        $db = DB::get_instance();
+
+        $sql = "SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=1";
+        $res = $db->prepare($sql);
         $res->execute(array($numLivre));
-        $n1= $res->fetch();
-        
+        $n1 = $res->fetch();
+
         $notes[1] = $n1[0];
-        
-        $sql2="SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=2";
-        $res2=$db->prepare($sql2);
+
+        $sql2 = "SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=2";
+        $res2 = $db->prepare($sql2);
         $res2->execute(array($numLivre));
-        $n2= $res2->fetch();
-        
+        $n2 = $res2->fetch();
+
         $notes[2] = $n2[0];
-        
-        $sql3="SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=3";
-        $res3=$db->prepare($sql3);
+
+        $sql3 = "SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=3";
+        $res3 = $db->prepare($sql3);
         $res3->execute(array($numLivre));
-        $n3= $res3->fetch();
-        
+        $n3 = $res3->fetch();
+
         $notes[3] = $n3[0];
-        
-        $sql4="SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=4";
-        $res4=$db->prepare($sql4);
+
+        $sql4 = "SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=4";
+        $res4 = $db->prepare($sql4);
         $res4->execute(array($numLivre));
-        $n4= $res4->fetch();
-        
+        $n4 = $res4->fetch();
+
         $notes[4] = $n4[0];
-        
-        $sql5="SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=5";
-        $res5=$db->prepare($sql5);
+
+        $sql5 = "SELECT COUNT(*) FROM critiquer WHERE numLivre=? AND noteCritique=5";
+        $res5 = $db->prepare($sql5);
         $res5->execute(array($numLivre));
-        $n5= $res5->fetch();
-        
+        $n5 = $res5->fetch();
+
         $notes[5] = $n5[0];
-        
+
         return $notes;
     }
-    
-    public static function chercherParId($numEmprunteur, $numLivre){
-        $sql="SELECT * FROM critiquer WHERE numEmprunteur=? AND numLivre=?";
-        $db=DB::get_instance();
-        $res=$db->prepare($sql);
+
+    /**
+     * Permet de récuperer les informations associées à une Critique à partir de son Id.
+     *
+     * @param Integer $numEmprunteur Le numéro unique identifiant l'emprunteur à rechercher.
+     * @param Integer $numLivre Le numéro unique identifiant le livre à rechercher.
+     * @return Critique Un objet de type Critique contenant les informations recherchées ou NULL.
+     */
+    public static function chercherParId($numEmprunteur, $numLivre)
+    {
+        $sql = "SELECT * FROM critiquer WHERE numEmprunteur=? AND numLivre=?";
+        $db = DB::get_instance();
+        $res = $db->prepare($sql);
         $res->execute(array($numEmprunteur, $numLivre));
 
-        $c= $res->fetch();			
-        return new Critique($c[0],$c[1],$c[2],$c[3]);			
+        $c = $res->fetch();
+        return new Critique($c[0], $c[1], $c[2], $c[3]);
     }
-    
-    public static function troisPremieresCritiques($numLivre){
 
-        //On définit notre requête (on récupère l'ensemble des enregistrements)
-        $sql="SELECT * FROM critiquer WHERE numLivre =? LIMIT 0,3";
-
-        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
-        $db=DB::get_instance();
-        $reponse=$db->prepare($sql);
+    /**
+     * Permet de récupérer les trois premières critiques.
+     *
+     * @param Integer $numLivre Le numéro unique identifiant le livre à rechercher.
+     * @return Critique Un tableau indicé d'objets de type Critique contenant les 3 dernières critiques.
+     */
+    public static function troisPremieresCritiques($numLivre)
+    {
+        // On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql = "SELECT * FROM critiquer WHERE numLivre =? LIMIT 0,3";
+        // Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db = DB::get_instance();
+        $reponse = $db->prepare($sql);
         $reponse->execute(array($numLivre));
-        
-        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
-            $critique = new Critique(
-                $enregistrement['numEmprunteur'],
+
+        while ($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)) {
+            $critique = new Critique($enregistrement['numEmprunteur'],
                 $enregistrement['numLivre'],
                 $enregistrement['noteCritique'],
                 $enregistrement['commentaireCritique']
-            );
-            
-            $emprunteur = Emprunteur::chercherParId($enregistrement['numEmprunteur']);
-            $critique->identifiantEmprunteur=$emprunteur->identifiantEmprunteur;
+                );
 
-            $liste[]=$critique;
-            
+            $emprunteur = Emprunteur::chercherParId($enregistrement['numEmprunteur']);
+            $critique->identifiantEmprunteur = $emprunteur->identifiantEmprunteur;
+
+            $liste[] = $critique;
         }
-        
-        if(isset($liste))
+
+        if (isset($liste))
             return $liste;
         else
             return null;
     }
-    
+
+    /**
+     * Permet de savoir si un ouvrage a déjà été critiqué où non.
+     *
+     * @param Integer $numLivre Le numéro unique identifiant le livre à rechercher.
+     * @return Boolean Vrai si l'ouvrage possède des critiques associées, non sinon.
+     */
     public static function nbCritiqueOuvrage($numLivre)
     {
         $sql = "SELECT COUNT(numLivre) FROM critiquer WHERE numLivre=?";
@@ -131,130 +171,160 @@ class Critique extends Table{
             return true;
         }
     }
-       
-    public static function CritiquesParEmprunteur($numEmprunteur, $pageCourante, $nbEnregistrementsParPage){
 
-        //On définit notre requête (on récupère l'ensemble des enregistrements)
-        $sql="SELECT * FROM critiquer WHERE numEmprunteur =? LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
-
-        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
-        $db=DB::get_instance();
-        $reponse=$db->prepare($sql);
+    /**
+     * Permet de récupérer une liste des critiques associées à un emprunteur.
+     *
+     * @param Integer $numEmprunteur Le numéro unique identifiant l'emprunteur à rechercher.
+     * @param Integer $pageCourante Indique la page actuellement affichée.
+     * @param Integer $nbEnregistrementsParPage Indique le nombre d'enregistrements à afficher par page.
+     * @return Critique Un tableau indicé d'objets de type Critique associées à l'emprunteur spécifié.
+     */
+    public static function CritiquesParEmprunteur($numEmprunteur, $pageCourante, $nbEnregistrementsParPage)
+    {
+        // On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql = "SELECT * FROM critiquer WHERE numEmprunteur =? LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
+        // Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db = DB::get_instance();
+        $reponse = $db->prepare($sql);
         $reponse->execute(array($numEmprunteur));
-        
-        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
-            $critique = new Critique(
-                $enregistrement['numEmprunteur'],
+
+        while ($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)) {
+            $critique = new Critique($enregistrement['numEmprunteur'],
                 $enregistrement['numLivre'],
                 $enregistrement['noteCritique'],
                 $enregistrement['commentaireCritique']
-            );
-            
+                );
+
             $critique->infosLivre = Livre::chercherParId($enregistrement['numLivre']);
 
-            $liste[]=$critique;
+            $liste[] = $critique;
         }
-            
-            if(isset($liste))
-                return $liste;
-            else
-                return null;
+
+        if (isset($liste))
+            return $liste;
+        else
+            return null;
     }
-    
-    public static function liste($numLivre, $pageCourante, $nbEnregistrementsParPage){
 
-        //On définit notre requête (on récupère l'ensemble des enregistrements)
-        $sql="SELECT * FROM critiquer WHERE numLivre =? LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
-
-        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
-        $db=DB::get_instance();
-        $reponse=$db->prepare($sql);
+    /**
+     * Permet de récupérer une liste des critiques pour un ouvrage donné.
+     *
+     * @param Integer $numLivre Le numéro unique identifiant le livre à rechercher.
+     * @param Integer $pageCourante Indique la page actuellement affichée.
+     * @param Integer $nbEnregistrementsParPage Indique le nombre d'enregistrements à afficher par page.
+     * @return Critique Un tableau indicé d'objets de type Critique.
+     */
+    public static function liste($numLivre, $pageCourante, $nbEnregistrementsParPage)
+    {
+        // On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql = "SELECT * FROM critiquer WHERE numLivre =? LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
+        // Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db = DB::get_instance();
+        $reponse = $db->prepare($sql);
         $reponse->execute(array($numLivre));
-        
-        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
-            $critique = new Critique(
-                $enregistrement['numEmprunteur'],
+
+        while ($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)) {
+            $critique = new Critique($enregistrement['numEmprunteur'],
                 $enregistrement['numLivre'],
                 $enregistrement['noteCritique'],
                 $enregistrement['commentaireCritique']
-            );
-            
-            $emprunteur = Emprunteur::chercherParId($enregistrement['numEmprunteur']);
-            $critique->identifiantEmprunteur=$emprunteur->identifiantEmprunteur;
+                );
 
-            $liste[]=$critique;
-            
+            $emprunteur = Emprunteur::chercherParId($enregistrement['numEmprunteur']);
+            $critique->identifiantEmprunteur = $emprunteur->identifiantEmprunteur;
+
+            $liste[] = $critique;
         }
-        
-        if(isset($liste))
+
+        if (isset($liste))
             return $liste;
         else
             return null;
     }
-    
-    public static function listeComplete($pageCourante, $nbEnregistrementsParPage){
 
-        //On définit notre requête (on récupère l'ensemble des enregistrements)
-        $sql="SELECT * FROM critiquer ORDER BY date DESC LIMIT ".(($pageCourante-1)*$nbEnregistrementsParPage).",".$nbEnregistrementsParPage;
-
-        //Comme on est dans un contexte statique, on récupère l'instance de la BDD
-        $db=DB::get_instance();
-        $reponse=$db->prepare($sql);
+    /**
+     * Permet de récupérer une liste complète de l'ensemble des critiques.
+     *
+     * @param Integer $pageCourante Indique la page actuellement affichée.
+     * @param Integer $nbEnregistrementsParPage Indique le nombre d'enregistrements à afficher par page.
+     * @return Critique Un tableau indicé d'objets de type Critique.
+     */
+    public static function listeComplete($pageCourante, $nbEnregistrementsParPage)
+    {
+        // On définit notre requête (on récupère l'ensemble des enregistrements)
+        $sql = "SELECT * FROM critiquer ORDER BY date DESC LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
+        // Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db = DB::get_instance();
+        $reponse = $db->prepare($sql);
         $reponse->execute();
-        
-        while($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)){
-            $critique = new Critique(
-                $enregistrement['numEmprunteur'],
+
+        while ($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)) {
+            $critique = new Critique($enregistrement['numEmprunteur'],
                 $enregistrement['numLivre'],
                 $enregistrement['noteCritique'],
                 $enregistrement['commentaireCritique']
-            );
-            
+                );
+
             $emprunteur = Emprunteur::chercherParId($enregistrement['numEmprunteur']);
-            $critique->identifiantEmprunteur=$emprunteur->identifiantEmprunteur;
+            $critique->identifiantEmprunteur = $emprunteur->identifiantEmprunteur;
             $critique->infosLivre = Livre::chercherParId($enregistrement['numLivre']);
 
-            $liste[]=$critique;
-            
+            $liste[] = $critique;
         }
-        
-        if(isset($liste))
+
+        if (isset($liste))
             return $liste;
         else
             return null;
     }
-    
-    function ajouterCritique(){
-        
-        $sql="INSERT INTO critiquer VALUES(?,?,?,?,Now())";
-        
-        $res=$this->db->prepare($sql);
-        
-        $res->execute(array(
-            $this->numEmprunteur,
-            $this->numLivre,
-            $this->noteCritique,
-            $this->commentaireCritique
-        ));         
-        
+
+    /**
+     * Permet d'ajouter une critique à la base de données.
+     *
+     * @return Integer L'id de l'enregistrement nouvellement inséré.
+     */
+    function ajouterCritique()
+    {
+        $sql = "INSERT INTO critiquer VALUES(?,?,?,?,Now())";
+
+        $res = $this->db->prepare($sql);
+
+        $res->execute(array($this->numEmprunteur,
+                $this->numLivre,
+                $this->noteCritique,
+                $this->commentaireCritique
+                ));
+
         return $this->db->lastInsertId();
     }
 
-    function modifierCritique(){
-        $sql="UPDATE critiquer SET noteCritique=?,commentaireCritique=? WHERE numEmprunteur=? AND numLivre=?";
-        $res=$this->db->prepare($sql);
-        $res->execute(array(
-            $this->noteCritique,
-            $this->commentaireCritique,
-            $this->numEmprunteur,
-            $this->numLivre
-        ));		
-	}
-    
-    function supprimerCritique(){
-        $sql="DELETE FROM critiquer WHERE numLivre='{$this->numLivre}' AND numEmprunteur='{$this->numEmprunteur}'";
-		$this->db->exec($sql);	
-	}
+    /**
+     * Permet de mettre à jour les informations d'une critique en base de données.
+     *
+     * @return void
+     */
+    function modifierCritique()
+    {
+        $sql = "UPDATE critiquer SET noteCritique=?,commentaireCritique=? WHERE numEmprunteur=? AND numLivre=?";
+        $res = $this->db->prepare($sql);
+        $res->execute(array($this->noteCritique,
+                $this->commentaireCritique,
+                $this->numEmprunteur,
+                $this->numLivre
+                ));
+    }
+
+    /**
+     * Permet de supprimer une critique de la base de données.
+     *
+     * @return void
+     */
+    function supprimerCritique()
+    {
+        $sql = "DELETE FROM critiquer WHERE numLivre='{$this->numLivre}' AND numEmprunteur='{$this->numEmprunteur}'";
+        $this->db->exec($sql);
+    }
 }
 
 ?>

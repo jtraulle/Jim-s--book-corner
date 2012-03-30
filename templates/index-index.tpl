@@ -5,7 +5,7 @@
         <h3>au catalogue de la bibliothèque "Jim's book corner" ...</h3>
         <p></p>
         <p>Depuis cette application, vous pouvez rechercher un livre possédé par la bibliothèque et connaître son statut (disponible, emprunté etc.). </p>
-        <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations etc.), nous vous conseillons de vous inscrire dès maintenant.</p><a style="float:right;" class="btn btn-primary btn-large mainCallToActionBtn" href="?module=inscription">Je m'inscris »</a> <a style="float:right;" class="btn btn-large btn-success mainCallToActionBtn" href="?module=gestemprunteur&action=connect">Déjà inscrit ?</a> 
+        <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations etc.), nous vous conseillons de vous inscrire dès maintenant.</p><a style="float:right;" class="btn btn-primary btn-large mainCallToActionBtn" href="?module=inscription">Je m'inscris »</a> <a style="float:right;" class="btn btn-large btn-success mainCallToActionBtn" href="?module=gestemprunteur&action=connect">Déjà inscrit ?</a>
 </div>
 {/if}
 
@@ -34,10 +34,14 @@
     <div class="span8">
       <h2>Dernier événement</h2>
        <div class="well">
+       {if $dernierEvenement}
         <h3 style="display:inline-block;">{$dernierEvenement->nomEvenement}</h3>
         <p><img class="infobulle" data-placement="below" rel='twipsy' title="Thème de l'événement" src="images/asterisk_yellow.png" /> {$dernierEvenement->themeEvenement} <img class="infobulle" data-placement="below" rel='twipsy' title="Lieu de l'évenement" src="images/home.png" /> {$dernierEvenement->lieuEvenement} <img class="infobulle" data-placement="below" rel='twipsy' title="Date et heure de rendez-vous" src="images/date.png" /> {$dernierEvenement->dateEvenement}</p>
          <p>{$dernierEvenement->desEvenement}</p>
+         {else}
+         <p>Aucun évenement pour le moment ...</p>
+         {/if}
 </div>
       <p><a class="btn" href="?module=gestevenement">Voir plus »</a></p>
-   </div>        
+   </div>
 </div>

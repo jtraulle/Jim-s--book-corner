@@ -1,0 +1,5 @@
+Ce programme est distribué dans l’espoir qu’il sera utile, mais SANS AUCUNE GARANTIE, ni explicite ni implicite.
+Pour plus de détails, reportez vous à la licence GNU AGPL.
+
+Les ressources externes utilisés dans le cadre de ce projet sont - sauf erreur de notre part - placés sous licences libres.
+Ces ressources, images et librairies conservent leurs licences d'origine.

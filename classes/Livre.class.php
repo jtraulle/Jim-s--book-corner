@@ -10,17 +10,17 @@ class Livre extends Table {
     public $nbExemplaireLivre;
 
     /**
-     * Livre::__construct()
-     *
-     * @param String $titreLivre
-     * @param Int $numAuteur
-     * @param String $prenomAuteur
-     * @param String $nomAuteur
-     * @param String $resumeLivre
-     * @param String $langueLivre
-     * @param Int $nbExemplaireLivre
-     * @param Int $numLivre
-     */
+    * Livre::__construct()
+    *
+    * @param String $titreLivre
+    * @param Int $numAuteur
+    * @param String $prenomAuteur
+    * @param String $nomAuteur
+    * @param String $resumeLivre
+    * @param String $langueLivre
+    * @param Int $nbExemplaireLivre
+    * @param Int $numLivre
+    */
     public function __construct($titreLivre, $numAuteur, $prenomAuteur, $nomAuteur, $resumeLivre, $langueLivre, $nbExemplaireLivre, $numLivre = - 1)
     {
         parent::__construct();
@@ -38,13 +38,13 @@ class Livre extends Table {
     }
 
     /**
-     * Chercher par identifiant
-     *
-     * Permet de récupérer les informations d'un livre à partir de son identifiant.
-     *
-     * @param Int $id L'identifiant du livre à rechercher
-     * @return Livre Un objet de type livre
-     */
+    * Chercher par identifiant
+    *
+    * Permet de récupérer les informations d'un livre à partir de son identifiant.
+    *
+    * @param Int $id L'identifiant du livre à rechercher
+    * @return Livre Un objet de type livre
+    */
     public static function chercherParId($id)
     {
         $sql = "SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre
@@ -56,16 +56,15 @@ FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.nu
         $l = $res->fetch();
         return new Livre($l[1], $l[2], $l[3], $l[4], $l[5], $l[6], $l[7], $l[0]);
     }
-
-	// Cette fonction permet de savoir si le livre a déjà été emprunté par l'emprunteur
+    // Cette fonction permet de savoir si le livre a déjà été emprunté par l'emprunteur
     // Cela permet de savoir s'il peut rédiger une critique ou non ...
     /**
-     * Livre::isOuvrageEmprunte()
-     *
-     * @param mixed $numEmprunteur
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::isOuvrageEmprunte()
+    *
+    * @param mixed $numEmprunteur
+    * @param mixed $numLivre
+    * @return
+    */
     public static function isOuvrageEmprunte($numEmprunteur, $numLivre)
     {
         $sql = "SELECT COUNT(numEmprunt) FROM emprunter WHERE numEmprunteur=? AND numLivre=? AND dateEmprunt IS NOT NULL";
@@ -83,12 +82,12 @@ FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.nu
     }
 
     /**
-     * Livre::isPretEnCours()
-     *
-     * @param mixed $numEmprunteur
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::isPretEnCours()
+    *
+    * @param mixed $numEmprunteur
+    * @param mixed $numLivre
+    * @return
+    */
     public static function isPretEnCours($numEmprunteur, $numLivre)
     {
         $sql = "SELECT COUNT(numEmprunt) FROM emprunter WHERE numEmprunteur=? AND numLivre=? AND dateRetour IS NULL";
@@ -102,11 +101,11 @@ FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.nu
     }
     // Cette méthode retourne vrai si le livre passé en paramètre est actuellement réservé. Faux sinon.
     /**
-     * Livre::isReserve()
-     *
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::isReserve()
+    *
+    * @param mixed $numLivre
+    * @return
+    */
     public static function isReserve($numLivre)
     {
         $sql = "SELECT COUNT(numReservation) FROM reserver WHERE numLivre=? AND retireReservation=0";
@@ -123,12 +122,12 @@ FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.nu
     }
     // Cette méthode retourne vrai s'il existe une réservation disponible pour le livre et l'emprunteur spécifiés.
     /**
-     * Livre::isReservationDisponible()
-     *
-     * @param mixed $numLivre
-     * @param mixed $numEmprunteur
-     * @return
-     */
+    * Livre::isReservationDisponible()
+    *
+    * @param mixed $numLivre
+    * @param mixed $numEmprunteur
+    * @return
+    */
     public static function isReservationDisponible($numLivre, $numEmprunteur)
     {
         $sql = "SELECT COUNT(numReservation) FROM reserver WHERE numLivre=? AND numEmprunteur=? AND retireReservation=1";
@@ -145,11 +144,11 @@ FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.nu
     }
     // Cette méthode permet de savoir quelle réservation est à mettre à jour lors de la restitution d'un ouvrage déjà emprunté.
     /**
-     * Livre::reservationAValider()
-     *
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::reservationAValider()
+    *
+    * @param mixed $numLivre
+    * @return
+    */
     public static function reservationAValider($numLivre)
     {
         $sql = "SELECT numReservation FROM reserver WHERE numLivre=? AND retireReservation=0 ORDER BY dateReservation ASC LIMIT 0,1";
@@ -163,11 +162,11 @@ FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.nu
     }
     // Cette méthode permet de savoir quel est l'emprunteur qui dispose de la réservation lors de la restitution d'un ouvrage déjà emprunté.
     /**
-     * Livre::quelEmprunteurReservation()
-     *
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::quelEmprunteurReservation()
+    *
+    * @param mixed $numLivre
+    * @return
+    */
     public static function quelEmprunteurReservation($numLivre)
     {
         $sql = "SELECT numEmprunteur FROM reserver WHERE numLivre=? AND retireReservation=0 ORDER BY dateReservation ASC LIMIT 0,1";
@@ -181,11 +180,11 @@ FROM livre LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur WHERE livre.nu
     }
 
     /**
-     * Livre::dispoReelle()
-     *
-     * @param mixed $idLivre
-     * @return
-     */
+    * Livre::dispoReelle()
+    *
+    * @param mixed $idLivre
+    * @return
+    */
     public static function dispoReelle($idLivre)
     {
         // On définit notre requête (on récupère l'ensemble des enregistrements)
@@ -201,10 +200,10 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::nbEmprunte()
-     *
-     * @return
-     */
+    * Livre::nbEmprunte()
+    *
+    * @return
+    */
     public function nbEmprunte()
     {
         // On définit notre requête (on récupère l'ensemble des enregistrements)
@@ -222,12 +221,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::liste()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @return
-     */
+    * Livre::liste()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @return
+    */
     public static function liste($pageCourante = null, $nbEnregistrementsParPage = null)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -254,7 +253,7 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
                 $enregistrement['nbExemplaireLivre'],
                 $enregistrement['numLivre']
                 );
-            
+
             $livre->nbCritique = Critique::nbCritiqueOuvrage($enregistrement['numLivre']);
 
             $liste[] = $livre;
@@ -267,13 +266,13 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::listeGenre()
-     *
-     * @param mixed $idgenre
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @return
-     */
+    * Livre::listeGenre()
+    *
+    * @param mixed $idgenre
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @return
+    */
     public static function listeGenre($idgenre, $pageCourante = null, $nbEnregistrementsParPage = null)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -307,12 +306,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::livresEmpruntes()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @return
-     */
+    * Livre::livresEmpruntes()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @return
+    */
     public static function livresEmpruntes($pageCourante = null, $nbEnregistrementsParPage = null)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -366,13 +365,13 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::livresEmpruntesLecteur()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @param mixed $id
-     * @return
-     */
+    * Livre::livresEmpruntesLecteur()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @param mixed $id
+    * @return
+    */
     public static function livresEmpruntesLecteur($pageCourante = null, $nbEnregistrementsParPage = null, $id)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -425,12 +424,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::livresEnAttente()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @return
-     */
+    * Livre::livresEnAttente()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @return
+    */
     public static function livresEnAttente($pageCourante = null, $nbEnregistrementsParPage = null)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -482,13 +481,13 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::livresEnAttenteLecteur()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @param mixed $id
-     * @return
-     */
+    * Livre::livresEnAttenteLecteur()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @param mixed $id
+    * @return
+    */
     public static function livresEnAttenteLecteur($pageCourante = null, $nbEnregistrementsParPage = null, $id)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -542,12 +541,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::reservationEnAttente()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @return
-     */
+    * Livre::reservationEnAttente()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @return
+    */
     public static function reservationEnAttente($pageCourante = null, $nbEnregistrementsParPage = null)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -595,13 +594,13 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::reservationEnAttenteLecteur()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @param mixed $id
-     * @return
-     */
+    * Livre::reservationEnAttenteLecteur()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @param mixed $id
+    * @return
+    */
     public static function reservationEnAttenteLecteur($pageCourante = null, $nbEnregistrementsParPage = null, $id)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -649,12 +648,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::reservationDispo()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @return
-     */
+    * Livre::reservationDispo()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @return
+    */
     public static function reservationDispo($pageCourante = null, $nbEnregistrementsParPage = null)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -702,13 +701,13 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::reservationDispoLecteur()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @param mixed $id
-     * @return
-     */
+    * Livre::reservationDispoLecteur()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @param mixed $id
+    * @return
+    */
     public static function reservationDispoLecteur($pageCourante = null, $nbEnregistrementsParPage = null, $id)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -756,10 +755,10 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::cinqDerniersLivres()
-     *
-     * @return
-     */
+    * Livre::cinqDerniersLivres()
+    *
+    * @return
+    */
     public static function cinqDerniersLivres()
     {
         // On définit notre requête (on récupère l'ensemble des enregistrements)
@@ -789,13 +788,13 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::listeParAuteur()
-     *
-     * @param mixed $pageCourante
-     * @param mixed $nbEnregistrementsParPage
-     * @param mixed $idAuteur
-     * @return
-     */
+    * Livre::listeParAuteur()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @param mixed $idAuteur
+    * @return
+    */
     public static function listeParAuteur($pageCourante = null, $nbEnregistrementsParPage = null, $idAuteur)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
@@ -830,12 +829,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::enregistrerPret()
-     *
-     * @param mixed $numEmprunteur
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::enregistrerPret()
+    *
+    * @param mixed $numEmprunteur
+    * @param mixed $numLivre
+    * @return
+    */
     public static function enregistrerPret($numEmprunteur, $numLivre)
     {
         $sql = "INSERT INTO emprunter VALUES('',?,?,null,Now(),null,0)";
@@ -851,12 +850,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::enregistrerDemande()
-     *
-     * @param mixed $numEmprunteur
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::enregistrerDemande()
+    *
+    * @param mixed $numEmprunteur
+    * @param mixed $numLivre
+    * @return
+    */
     public static function enregistrerDemande($numEmprunteur, $numLivre)
     {
         $sql = "INSERT INTO emprunter VALUES('',?,?,Now(),null,null,0)";
@@ -872,12 +871,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::reserver()
-     *
-     * @param mixed $numEmprunteur
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::reserver()
+    *
+    * @param mixed $numEmprunteur
+    * @param mixed $numLivre
+    * @return
+    */
     public static function reserver($numEmprunteur, $numLivre)
     {
         $sql = "INSERT INTO reserver VALUES('',?,?,Now(),0)";
@@ -893,11 +892,11 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::validerPret()
-     *
-     * @param mixed $numEmprunt
-     * @return
-     */
+    * Livre::validerPret()
+    *
+    * @param mixed $numEmprunt
+    * @return
+    */
     public static function validerPret($numEmprunt)
     {
         $sql = "UPDATE emprunter SET dateEmprunt=Now() WHERE numEmprunt=?";
@@ -910,11 +909,11 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
     // Permet de mettre à jour une réservation pour indiquer à l'emprunteur que le livre est disponible.
     /**
-     * Livre::majReservationDispo()
-     *
-     * @param mixed $numReservation
-     * @return
-     */
+    * Livre::majReservationDispo()
+    *
+    * @param mixed $numReservation
+    * @return
+    */
     public static function majReservationDispo($numReservation)
     {
         $sql = "UPDATE reserver SET retireReservation=1 WHERE numReservation=?";
@@ -927,12 +926,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
     // Permet de mettre à jour une réservation pour indiquer qu'elle est terminée.
     /**
-     * Livre::majReservationTerminee()
-     *
-     * @param mixed $numLivre
-     * @param mixed $numEmprunteur
-     * @return
-     */
+    * Livre::majReservationTerminee()
+    *
+    * @param mixed $numLivre
+    * @param mixed $numEmprunteur
+    * @return
+    */
     public static function majReservationTerminee($numLivre, $numEmprunteur)
     {
         $sql = "UPDATE reserver SET retireReservation=2 WHERE numLivre=? AND numEmprunteur=? AND retireReservation=1";
@@ -946,12 +945,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::rendre()
-     *
-     * @param mixed $numEmprunteur
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::rendre()
+    *
+    * @param mixed $numEmprunteur
+    * @param mixed $numLivre
+    * @return
+    */
     public static function rendre($numEmprunteur, $numLivre)
     {
         $sql = "UPDATE emprunter SET dateRetour=Now() WHERE numEmprunteur=? AND numLivre=? AND dateRetour IS NULL";
@@ -965,11 +964,11 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::supprimerDemande()
-     *
-     * @param mixed $id
-     * @return
-     */
+    * Livre::supprimerDemande()
+    *
+    * @param mixed $id
+    * @return
+    */
     function supprimerDemande($id)
     {
         $sql = "DELETE FROM emprunter WHERE numEmprunt=" . $id;
@@ -978,11 +977,11 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::supprimerReservation()
-     *
-     * @param mixed $id
-     * @return
-     */
+    * Livre::supprimerReservation()
+    *
+    * @param mixed $id
+    * @return
+    */
     function supprimerReservation($id)
     {
         $sql = "DELETE FROM reserver WHERE numReservation=" . $id;
@@ -991,12 +990,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::dejaEmprunte()
-     *
-     * @param mixed $numEmprunteur
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::dejaEmprunte()
+    *
+    * @param mixed $numEmprunteur
+    * @param mixed $numLivre
+    * @return
+    */
     public static function dejaEmprunte($numEmprunteur, $numLivre)
     {
         $sql = "SELECT COUNT(numEmprunt) AS dejaEmprunte FROM emprunter WHERE numEmprunteur = ? AND numLivre = ? AND (dateDemande IS NOT NULL OR dateEmprunt IS NOT NULL) AND dateRetour IS NULL";
@@ -1013,12 +1012,12 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::dejaReserve()
-     *
-     * @param mixed $numEmprunteur
-     * @param mixed $numLivre
-     * @return
-     */
+    * Livre::dejaReserve()
+    *
+    * @param mixed $numEmprunteur
+    * @param mixed $numLivre
+    * @return
+    */
     public static function dejaReserve($numEmprunteur, $numLivre)
     {
         $sql = "SELECT COUNT(numReservation) AS dejaReserve FROM reserver WHERE numEmprunteur = ? AND numLivre = ? AND retireReservation = 0";
@@ -1035,24 +1034,24 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
     // fonctions privées-----------------------------------------------
     /**
-     * Livre::enregistrer()
-     *
-     * @return
-     */
+    * Livre::enregistrer()
+    *
+    * @return
+    */
     function enregistrer()
     {
         if ($this->numLivre == - 1) {
             $this->numLivre = $this->inserer();
             return $this->numLivre;
-        }else
+        } else
             return $this->modifier();
     }
 
     /**
-     * Livre::inserer()
-     *
-     * @return
-     */
+    * Livre::inserer()
+    *
+    * @return
+    */
     function inserer()
     {
         $sql = "INSERT INTO livre VALUES('',?,?,?,?,?)";
@@ -1070,10 +1069,10 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::modifier()
-     *
-     * @return
-     */
+    * Livre::modifier()
+    *
+    * @return
+    */
     function modifier()
     {
         $sql = "UPDATE livre SET titreLivre=?,numAuteur=?,resumeLivre=?,langueLivre=?,nbExemplaireLivre=? WHERE numLivre=?";
@@ -1088,10 +1087,10 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
     }
 
     /**
-     * Livre::supprimer()
-     *
-     * @return
-     */
+    * Livre::supprimer()
+    *
+    * @return
+    */
     function supprimer()
     {
         $sql = "DELETE FROM livre WHERE numLivre='{$this->numLivre}'";

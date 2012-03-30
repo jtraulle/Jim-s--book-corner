@@ -1,0 +1,14 @@
+Pour installer cette application, téléversez l'ensemble du dossier 
+web/ à la racine ou dans un répertoire de votre serveur.
+
+Accédez ensuite à l'adresse où vous avez téléversé l'application
+depuis un navigateur web.
+
+L'installation débutera alors automatiquement.
+
+
+
+!!! IMPORTANT !!!
+
+A l'issue de l'installation, n'oubliez pas de supprimer le répertoire
+install/ de votre serveur Web pour des raisons de sécurité.
