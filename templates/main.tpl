@@ -14,8 +14,11 @@
         <script type="text/javascript"src="lib/js/bootstrap-alerts.js"></script>
         <script type="text/javascript"src="lib/js/bootstrap-modal.js"></script>
         <script type="text/javascript"src="lib/js/jquery.rating.js"></script>
+        {if isset($note1)}
         <script type="text/javascript"src="lib/js/highcharts.js"></script>
         <script type="text/javascript"src="lib/js/exporting.js"></script>
+        <script type="text/javascript"src="lib/js/custom-chart.js"></script>
+        {/if}
         <script type="text/javascript"src="lib/js/chosen/chosen.jquery.min.js"></script>
         <script type="text/javascript"src="lib/js/markitup/jquery.markitup.js"></script>
         <script type="text/javascript"src="lib/js/markitup/sets/bbcode/set.js"></script>
@@ -33,7 +36,7 @@
             var note3 = {$note3};
             var note4 = {$note4};
             var note5 = {$note5};
-        </script>
+        </script>      
         {/if}
         
         <script type="text/javascript"src="lib/js/custom.js"></script>

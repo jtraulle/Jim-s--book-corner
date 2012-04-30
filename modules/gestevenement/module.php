@@ -40,7 +40,7 @@ class gestevenement extends Module{
             "themeEvenement",
             "Thème de l'événement",
             true,
-            "alphaNumAccentue",
+            "titreLivre",
             "Vous devez saisir une chaîne alphabétique (accents autorisés)."
         );
         $f->add_text(
@@ -48,7 +48,7 @@ class gestevenement extends Module{
             "lieuEvenement",
             "Lieu de l'événement",
             true,
-            "alphaNumAccentue",
+            "titreLivre",
             "Vous devez saisir une chaîne alphabétique (accents autorisés)."
         );
         $f->add_text(
@@ -119,7 +119,7 @@ class gestevenement extends Module{
             "nomEvenement",
             "Nom de l'événement",
             true,
-            "alphaNumAccentue",
+            "titreLivre",
             "Vous devez saisir une chaîne alphabétique (accents autorisés).",
             $evenementAmodif->nomEvenement
         );
@@ -128,7 +128,7 @@ class gestevenement extends Module{
             "themeEvenement",
             "Thème de l'événement",
             true,
-            "alphaNumAccentue",
+            "titreLivre",
             "Vous devez saisir une chaîne alphabétique (accents autorisés).",
             $evenementAmodif->themeEvenement
         );
@@ -137,7 +137,7 @@ class gestevenement extends Module{
             "lieuEvenement",
             "Lieu de l'événement",
             true,
-            "alphaNumAccentue",
+            "titreLivre",
             "Vous devez saisir une chaîne alphabétique (accents autorisés).",
             $evenementAmodif->lieuEvenement
         );

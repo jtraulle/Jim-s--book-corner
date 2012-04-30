@@ -1,5 +1,7 @@
 <div class="page-title">
-    <h2>A propos de Jim et Christiane Mc Crate</h2><a class="ontitle btn" href="?module=pages&action=lettre_manuscrite"><img style="vertical-align:top;" src="images/edit.png" /> Voir le manuscrit</a>
+    <h2>A propos de Jim et Christiane Mc Crate</h2>
+    <a class="ontitle btn" href="?module=pages&action=lettre_manuscrite"><img style="vertical-align:top;" src="images/edit.png" /> Voir le manuscrit</a> 
+    <a class="ontitle btn" href="?module=gestemoignage"><i class="icon-envelope"></i> Témoignages des lecteurs</a>
 </div>
 
 <div class="well etroit" style ="display:inline-block;">
