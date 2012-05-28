@@ -2,10 +2,10 @@
 <div class="hero-unit tweak-hero">
         <img class="floatleft" src="images/hero-index.png" alt="Oops" />
         <h1>Bienvenue !</h1>
-        <h3>au catalogue de la bibliothèque "Jim's book corner" ...</h3>
-        <p></p>
-        <p>Depuis cette application, vous pouvez rechercher un livre possédé par la bibliothèque et connaître son statut (disponible, emprunté etc.). </p>
-        <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations etc.), nous vous conseillons de vous inscrire dès maintenant.</p><a style="float:right;" class="btn btn-primary btn-large mainCallToActionBtn" href="?module=inscription">Je m'inscris »</a> <a style="float:right;" class="btn btn-large btn-success mainCallToActionBtn" href="?module=gestemprunteur&action=connect">Déjà inscrit ?</a>
+        <h3 style="margin-top: 15px;">sur le catalogue de la bibliothèque “Jim's book corner” dont les différents ouvrages ont été offerts par Jim Mc Crate.</h3>
+        <h3 style="margin-top: 20px;"> Pour les “amoureux” de l'auteur James Joyce, les ouvrages ont été offerts à une autre bibliothèque nommée “<a href='http://jamesjoyce.over-blog.com/categorie-1188006.html'>Anna Livia Plurabelle</a>”. </h3>
+        <p style="margin-top: 30px;">Depuis cette application, vous pouvez rechercher un livre possédé par la bibliothèque et connaître son statut (disponible, emprunté, etc), lire ou déposer des témoignages dédiés à Jim et Christiane Mc Crate et consulter les évènements. </p>
+        <p>Afin de bénéficier de toutes les fonctionnalités du site (gestion de prêts, réservations, etc), merci de vous inscrire dès maintenant.</p><a style="float:right;" class="btn btn-primary btn-large mainCallToActionBtn" href="?module=inscription">Je m'inscris »</a> <a style="float:right;" class="btn btn-large btn-success mainCallToActionBtn" href="?module=gestemprunteur&action=connect">Déjà inscrit ?</a>
 </div>
 {/if}
 

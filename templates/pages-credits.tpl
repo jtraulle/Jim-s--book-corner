@@ -4,27 +4,98 @@
     
     <h3>Paternité</h3>
     
-    Ce projet a été réalisé par 3 étudiants (Adeline Blin, Dorine Talfer et Jean Traullé), dans le cadre d'un projet tutoré.
+    <p>Ce projet a été réalisé par 3 étudiants dans le cadre d'un projet tutoré.</p>
+    <ul>
+        <li>Adeline Blin &lt;adeline.blin@info.iut-amiens.fr&gt;</li>
+        <li>Dorine Tafer &lt;dorine.talfer@info.iut-amiens.fr&gt;</li>
+        <li>Jean Traullé &lt;jean.traulle@info.iut-amiens.fr&gt;</li>
+    </ul>
     
-    <h3>Projets tiers</h3>
+    <h3>Projets tiers - rendons à César ce qui est à César ;)</h3>
 
     <p>Pour réaliser ce projet, nous avons utilisé plusieurs logiciels ou ressources disponibles sous licences libres.<br />
-    C'est aussi grâce aux développeurs talentueux de ces logiciels que ce projet a pu voir le jour, merci à eux !
-    <ul>
-        <li><a href="http://durand.iut-amiens.fr/omgl3:index">Framework PHP (David Durand)</a>
-        <li><a href="http://twitter.github.com/bootstrap/">Framework CSS Bootstrap from Twitter</a>
-        <li><a href="http://www.smarty.net">Moteur de template Smarty</a>
-        <li><a href="https://github.com/semsol/arc2/wiki">Resource Description Framework Arc2</a>
-        <li><a href="http://jquery.com/">Framework javascript jQuery</a>
-        <li><a href="http://harvesthq.github.com/chosen/">Plugin Chosen for jQuery</a>
-        <li><a href="http://jqueryui.com/">Framework javascript jQuery UI</a>
-        <li><a href="http://jqueryui.com/">Thème Aristo for jQuery UI</a>
-        <li><a href="">timepicker plugin for jQuery UI</a>
-        <li><a href="http://www.famfamfam.com/lab/icons/silk/">Silk icons par famfamfam</a>
-    </ul>
-    </p>
+    C'est aussi grâce aux développeurs talentueux de ces logiciels que ce projet a pu voir le jour, merci à eux !</p>
+    
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Logiciel</th>
+            <th>Paternité</th>
+            <th>Licence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="http://durand.iut-amiens.fr/omgl3:index">Framework PHP</a></td>
+            <td>David Durand</td>
+            <td>Inconnue</td>
+          </tr>
+          <tr>
+            <td><a href="http://twitter.github.com/bootstrap/">Framework CSS Bootstrap from Twitter</a></td>
+            <td>Mark Otto, Jacob Thornton</td>
+            <td>Apache License, Version 2.0</td>
+          </tr>
+          <tr>
+            <td><a href="http://www.smarty.net">Moteur de template Smarty</a></td>
+            <td>Monte Ohrt, Messju Mohr</td>
+            <td>Licence publique générale limitée GNU</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/semsol/arc2/wiki">Resource Description Framework Arc2</a></td>
+            <td>Benjamin Nowack</td>
+            <td>W3C Software License, Licence publique générale</td>
+          </tr>
+          <tr>
+            <td><a href="http://jquery.com/">Framework javascript jQuery</a></td>
+            <td>John Resig</td>
+            <td>Licence MIT, GNU GPL v2</td>
+          </tr>
+          <tr>
+            <td><a href="http://harvesthq.github.com/chosen/">Plugin Chosen for jQuery</a></td>
+            <td>Patrick Filler</td>
+            <td>Licence MIT</td>
+          </tr>
+          <tr>
+            <td><a href="http://jqueryui.com/">Framework javascript jQuery UI</a></td>
+            <td>The jQuery Project</td>
+            <td>Licence MIT, GNU GPL v2</td>
+          </tr>
+          <tr>
+            <td><a href="http://jqueryui.com/">Thème Aristo for jQuery UI</a></td>
+            <td>Tait Brown</td>
+            <td>Creative Commons Attribution-Share Alike 3.0</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/trentrichardson/jQuery-Timepicker-Addon">timepicker plugin for jQuery UI</a></td>
+            <td>Trent Richardson</td>
+            <td>Licence MIT, GNU GPL v2</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/ripter/jquery.rating">jQuery Star Rating Plugin</a></td>
+            <td>Chris Richards</td>
+            <td>Licence MIT</td>
+          </tr>
+          <tr>
+            <td><a href="http://www.famfamfam.com/lab/icons/silk/">Silk icons</a></td>
+            <td>famfamfam</td>
+            <td>Creative Commons Attribution 2.5 License</td>
+          </tr>
+          <tr>
+            <td><a href="http://www.highcharts.com/">Highcharts JS</a></td>
+            <td>Torstein Hønsi</td>
+            <td>Creative Commons Attribution-NonCommercial 3.0 License</td>
+          </tr>
+          <tr>
+            <td><a href="http://markitup.jaysalvat.com/home/">markItUp! jQuery plugin</a></td>
+            <td>Jay Salvat</td>
+            <td>Licence MIT, GNU GPL v2</td>
+          </tr>
+        </tbody>
+    </table>
 
-    <h3>Licence</h3>
+    <h3>CLUF - Contrat de Licence Utilisateur Final</h3>
+    
+    <p>Ce programme est distribué dans l’espoir qu’il sera utile, mais SANS AUCUNE GARANTIE ; <br />sans même la garantie implicite de COMMERCIALISATION ou D’ADAPTATION A UN OBJET <br />PARTICULIER. Pour plus de détails, voir la Licence Publique Générale Affero GNU.</p>
 
 <pre style="display:inline-block; width:520px; overflow:auto; height:250px;">
 

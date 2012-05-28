@@ -151,7 +151,7 @@ class Form{
                     break;
                     
                     case "titreLivre":
-                        if (!preg_match('#^[a-zA-Z\'âêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü1234567890:\?!\# ]{1,70}$#', $_REQUEST[$k])){
+                        if (!preg_match('#^[a-zA-Z\'âêôûÄéÇàèÉÈÊùÌÍÎÏîÒÓÔÕÖÙÚÛÜàáâãäçèéêëìíîïñòóôõöùúûü1234567890:()\?!\# ]{1,70}$#', $_REQUEST[$k])){
                             $f->value = $_REQUEST[$k];
                             $f->class = "error";
                             $this->erreurs += 1;
