@@ -98,7 +98,7 @@ class gestlivre extends Module {
             }
         }
 
-        $f->add_select("numAuteur", "numAuteur", "Auteur", $tab);
+        $f->add_select("numAuteur", "numAuteur", "Auteur", $tab)->set_value(null,'chzn-select');
 
         $listeGenres = Genre::liste();
 
@@ -164,8 +164,8 @@ class gestlivre extends Module {
             }
         }
 
-        $f->add_select("numAuteur", "numAuteur", "Auteur", $tab, $livreAmodif->numAuteur);
-
+        $f->add_select("numAuteur", "numAuteur", "Auteur", $tab)->set_value($livreAmodif->numAuteur,'chzn-select');
+        
         $listeGenres = Genre::liste();
 
         if (isset($listeGenres)) {

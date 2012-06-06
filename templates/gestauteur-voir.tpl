@@ -37,9 +37,9 @@
 {else}
 
 <div class="alert-message block-message info">
-  <p style="margin-bottom:10px;"><strong>Aucun auteur à afficher</strong></p> <p>Vous n'avez encore ajouté aucun auteur !<br />Vous devriez commencer par en ajouter quelques uns ...</p>
+  <p style="margin-bottom:10px;"><strong>Aucun livre possédé pour cet auteur</strong></p> <p>Nous ne possédons actuellement aucun livre rédigé par cet auteur.<br />Pourquoi ne consulteriez vous pas un autre auteur ?</p>
   <div class="alert-actions">
-    <a class="btn small" href="?module=inscription">Ajouter un auteur</a> <a class="btn small" href="?module=exampledata&action=importauteurs">Importer des données d'exemple</a>
+    <a class="btn small" href="?module=gestauteur">Parcourir les auteurs</a>
   </div>
 </div>
 

@@ -24,9 +24,9 @@ class gestauteur extends Module{
                 $tab[$auteur->numAuteur]=$auteur->nomAuteur.' '.$auteur->prenomAuteur;
             }
                 
-            $f=new Form("?module=gestauteur&action=modifier","rech");
+            $f=new Form("?module=gestauteur&action=voir","rech");
             $f->add_select("id","id","Recherche rapide",$tab)->set_value(null,'chzn-select');
-            $f->add_submit("sub","sub")->set_value('Consulter/Modifier','inline','btn');
+            $f->add_submit("sub","sub")->set_value('Consulter','inline','btn');
 
             $this->tpl->assign("champ_recherche",$f);
         }

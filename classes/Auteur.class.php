@@ -50,10 +50,10 @@ class Auteur extends Table {
     public static function liste($pageCourante = null, $nbEnregistrementsParPage = null)
     {
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
-            $sql = "SELECT * FROM auteur";
+            $sql = "SELECT * FROM auteur ORDER BY nomAuteur, prenomAuteur";
         else
             // On définit notre requête (on récupère l'ensemble des enregistrements)
-            $sql = "SELECT * FROM auteur LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
+            $sql = "SELECT * FROM auteur ORDER BY nomAuteur, prenomAuteur LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
         // Comme on est dans un contexte statique, on récupère l'instance de la BDD
         $db = DB::get_instance();
         $reponse = $db->query($sql);
@@ -129,7 +129,8 @@ class Auteur extends Table {
     {
         return;
         $sql = "DELETE FROM auteur WHERE numAuteur='{$this->numAuteur}'";
-        $this->db->exec($sql);
+        $db = DB::get_instance();
+        $db->exec($sql);
         $this->numAuteur = - 1;
     }
 }

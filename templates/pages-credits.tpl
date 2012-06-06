@@ -16,7 +16,7 @@
     <p>Pour réaliser ce projet, nous avons utilisé plusieurs logiciels ou ressources disponibles sous licences libres.<br />
     C'est aussi grâce aux développeurs talentueux de ces logiciels que ce projet a pu voir le jour, merci à eux !</p>
     
-    <table class="table table-striped">
+    <table class="table zebra-striped">
         <thead>
           <tr>
             <th>Logiciel</th>
