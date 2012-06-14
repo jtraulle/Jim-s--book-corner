@@ -107,6 +107,14 @@ footer{
 	padding:50px;
 }
 
+.auteurs a{
+    padding-right:8px !important;
+    padding-left:8px !important;
+    padding-top:-3px !important;
+    padding-bottom:-3px !important;
+    margin-left: 3px;
+}
+
 .manuscrit{
 	font-family: 'Dancing Script', cursive;
     font-size: 25px;

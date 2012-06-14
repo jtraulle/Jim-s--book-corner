@@ -264,6 +264,55 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
         else
             return null;
     }
+    
+    /**
+    * Livre::listeAlphabet()
+    *
+    * @param mixed $pageCourante
+    * @param mixed $nbEnregistrementsParPage
+    * @return
+    */
+    public static function listeAlphabet($lettre, $pageCourante = null, $nbEnregistrementsParPage = null)
+    {
+        if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
+            $sql = "SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre
+                FROM livre
+                LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur
+                WHERE nomAuteur LIKE '".$lettre."%'
+                ORDER BY nomAuteur, prenomAuteur, titreLivre";
+        else
+            // On définit notre requête (on récupère l'ensemble des enregistrements)
+            $sql = "SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre
+                FROM livre
+                LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur
+                WHERE nomAuteur LIKE '".$lettre."%' 
+                ORDER BY nomAuteur, prenomAuteur, titreLivre
+                LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
+        // Comme on est dans un contexte statique, on récupère l'instance de la BDD
+        $db = DB::get_instance();
+        $reponse = $db->query($sql);
+
+        while ($enregistrement = $reponse->fetch(PDO::FETCH_ASSOC)) {
+            $livre = new Livre($enregistrement['titreLivre'],
+                $enregistrement['numAuteur'],
+                $enregistrement['prenomAuteur'],
+                $enregistrement['nomAuteur'],
+                $enregistrement['resumeLivre'],
+                $enregistrement['langueLivre'],
+                $enregistrement['nbExemplaireLivre'],
+                $enregistrement['numLivre']
+                );
+
+            $livre->nbCritique = Critique::nbCritiqueOuvrage($enregistrement['numLivre']);
+
+            $liste[] = $livre;
+        }
+
+        if (isset($liste))
+            return $liste;
+        else
+            return null;
+    }
 
     /**
     * Livre::listeGenre()
