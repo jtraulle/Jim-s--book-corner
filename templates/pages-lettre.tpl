@@ -53,7 +53,7 @@ une belle histoire à laquelle la maladie a douloureusement mis fin.</p>
 
 <p class="manuscrit">Elle aimait l’humour, la joie, l’amitié. Elle rayonnait une admiration sans bornes pour ce couple fusionnel.</p>
 
-<p class="manuscrit">de Liliane Brown.</p>
+<p class="manuscrit">de Liliane Brown, ancienne professeur d'anglais à l'IUT d'Amiens.</p>
 
 </div>
 
