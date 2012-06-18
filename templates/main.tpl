@@ -15,6 +15,15 @@
         <script type="text/javascript"src="lib/js/bootstrap-modal.js"></script>
         <script type="text/javascript"src="lib/js/jquery.rating.js"></script>
         {if isset($note1)}
+        
+        <script type="text/javascript">
+            var note1 = {$note1};
+            var note2 = {$note2};
+            var note3 = {$note3};
+            var note4 = {$note4};
+            var note5 = {$note5};
+        </script>  
+        
         <script type="text/javascript"src="lib/js/highcharts.js"></script>
         <script type="text/javascript"src="lib/js/exporting.js"></script>
         <script type="text/javascript"src="lib/js/custom-chart.js"></script>
@@ -27,16 +36,6 @@
         <script type="text/javascript">
            var nomPrenomAuteur = "{$nomPrenomAuteur}";
         </script>
-        {/if}
-
-        {if isset($note1)}
-        <script type="text/javascript">
-            var note1 = {$note1};
-            var note2 = {$note2};
-            var note3 = {$note3};
-            var note4 = {$note4};
-            var note5 = {$note5};
-        </script>      
         {/if}
         
         <script type="text/javascript"src="lib/js/custom.js"></script>
@@ -84,9 +83,9 @@
                     </div>
                 </div>
                 <footer>
-                    {if $statut == 'invite'}<p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a>, <a href="https://github.com/jtraulle/Jim-s--book-corner/tree/0d3a0092b3">rev. 0d3a0092b3</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Réalisation département informatique <acronym style="border-bottom: 1px dotted grey;" title="Institut Universitaire de Technologie">IUT</acronym> d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a><span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="http://projets.opencomp.fr/jim-s--book-corner/issues/new">Signaler une anomalie</a> - <img style="vertical-align:top;" src="images/cog.png" /> <a href="?module=gestgestionnaire&action=connect">Interface de gestion</a></span></p>
+                    {if $statut == 'invite'}<p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a>, <a href="https://github.com/jtraulle/Jim-s--book-corner/tree/fb9f838784">rev. fb9f838784</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Réalisation département informatique <acronym style="border-bottom: 1px dotted grey;" title="Institut Universitaire de Technologie">IUT</acronym> d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a><span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="http://projets.opencomp.fr/jim-s--book-corner/issues/new">Signaler une anomalie</a> - <img style="vertical-align:top;" src="images/cog.png" /> <a href="?module=gestgestionnaire&action=connect">Interface de gestion</a></span></p>
                     {else}
-                    <p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a>, <a href="https://github.com/jtraulle/Jim-s--book-corner/tree/0d3a0092b3">rev. 0d3a0092b3</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Réalisation département informatique de l'<acronym title="Institut Universitaire de Technologie">IUT</acronym> d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a> <span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="http://projets.opencomp.fr/jim-s--book-corner/issues/new">Signaler une anomalie</a></span></p>
+                    <p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a>, <a href="https://github.com/jtraulle/Jim-s--book-corner/tree/fb9f838784">rev. fb9f838784</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Réalisation département informatique de l'<acronym title="Institut Universitaire de Technologie">IUT</acronym> d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a> <span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="http://projets.opencomp.fr/jim-s--book-corner/issues/new">Signaler une anomalie</a></span></p>
                     {/if}
                 </footer>
             </div>
