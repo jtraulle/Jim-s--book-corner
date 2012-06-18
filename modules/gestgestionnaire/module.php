@@ -35,7 +35,7 @@ class gestgestionnaire extends Module{
 
         $gestionnaire = Gestionnaire::chercherParIdentifiant($_POST['identifiantGestionnaire']);
 
-        if($gestionnaire->mdpGestionnaire == sha1($_POST['mdpGestionnaire'])) { 
+        if($gestionnaire->mdpGestionnaire == sha1(strval($_POST['mdpGestionnaire']))) { 
             $this->session->ouvrir($gestionnaire);
             $this->tpl->assign('login',$this->session->user->pseudoGestionnaire);
             $this->session->user->statut = 'gestionnaire';

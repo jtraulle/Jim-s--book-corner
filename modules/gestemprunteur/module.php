@@ -35,7 +35,7 @@ class gestemprunteur extends Module{
 
         $emprunteur = Emprunteur::chercherParIdentifiant($_POST['identifiantEmprunteur']);
 
-        if($emprunteur->mdpEmprunteur == sha1($_POST['mdpEmprunteur'])) { 
+        if($emprunteur->mdpEmprunteur == sha1(strval($_POST['mdpEmprunteur']))) { 
             $this->session->ouvrir($emprunteur);
             $this->tpl->assign('login',$this->session->user->identifiantEmprunteur);
             $this->session->user->statut = 'emprunteur';
@@ -45,7 +45,8 @@ class gestemprunteur extends Module{
         } else {
             $this->site->ajouter_message('Les identifiants saisis sont incorrects, mais comme nous sommes sympa , vous avez le droit à une deuxième chance ;)',1);
             $this->site->redirect('gestemprunteur','connect');
-        }        
+        } 
+  
     }
 
     public function action_deco(){     
