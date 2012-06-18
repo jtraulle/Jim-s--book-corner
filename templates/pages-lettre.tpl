@@ -58,3 +58,6 @@ une belle histoire à laquelle la maladie a douloureusement mis fin.</p>
 </div>
 
 <div style ="display:inline-block; position:absolute; margin-left:40px; margin-top:1700px;"><img style="width:170px;" src="images/christiane.png" /></div>
+
+<div style ="display:inline-block; position:absolute; margin-left:30px; margin-top:10px;"><img style="width:200px;" src="images/jim1.jpg" /></div>
+<div style ="display:inline-block; position:absolute; margin-left:30px; margin-top:180px;"><img style="width:200px;" src="images/jim2.jpg" /></div>
