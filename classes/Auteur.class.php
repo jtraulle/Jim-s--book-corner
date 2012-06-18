@@ -127,10 +127,8 @@ class Auteur extends Table {
     */
     function supprimer()
     {
-        return;
         $sql = "DELETE FROM auteur WHERE numAuteur='{$this->numAuteur}'";
-        $db = DB::get_instance();
-        $db->exec($sql);
+        $this->db->exec($sql);
         $this->numAuteur = - 1;
     }
 }
