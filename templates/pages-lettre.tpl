@@ -59,5 +59,54 @@ une belle histoire à laquelle la maladie a douloureusement mis fin.</p>
 
 <div style ="display:inline-block; position:absolute; margin-left:40px; margin-top:1700px;"><img style="width:170px;" src="images/christiane.png" /></div>
 
-<div style ="display:inline-block; position:absolute; margin-left:30px; margin-top:10px;"><img style="width:200px;" src="images/jim1.jpg" /></div>
-<div style ="display:inline-block; position:absolute; margin-left:30px; margin-top:180px;"><img style="width:200px;" src="images/jim2.jpg" /></div>
+<div class="photo" style ="display:inline-block; position:absolute; margin-left:30px; margin-top:10px;"><a href="#jim1"><img style="width:200px;" src="images/jim1.jpg" /></a></div>
+<div class="photo" style ="display:inline-block; position:absolute; margin-left:30px; margin-top:180px;"><a href="#jim2"><img style="width:200px;" src="images/jim2.jpg" /></a></div>
+<div class="photo" style ="display:inline-block; position:absolute; margin-left:30px; margin-top:350px;"><a href="#jim3"><img style="width:200px;" src="images/jim3.jpg" /></a></div>
+
+<div id="jim1" style="display: none; ">
+	<img src="images/jim1.jpg" alt="helmet">
+</div>
+
+<div id="jim2" style="display: none; ">
+	<img src="images/jim2.jpg" alt="helmet">
+</div>
+
+<div id="jim3" style="display: none; ">
+	<img src="images/jim3.jpg" alt="helmet">
+</div>
+
+<div id="zoom" style="position: absolute; top: 304px; left: 721px; width: 1px; height: 1px; display: none; ">                   
+    <table id="zoom_table" style="border-collapse:collapse; width:100%; height:100%;">                     
+        <tbody>                       
+            <tr>                         
+                <td class="tl" style="border-top:0px; background:url(images/tl.png) 0 0 no-repeat; width:20px; height:20px; overflow:hidden;"></td>
+                <td class="tm" style="border-top:0px; background:url(images/tm.png) 0 0 repeat-x; height:20px; overflow:hidden;"></td>
+                <td class="tr" style="border-top:0px; background:url(images/tr.png) 100% 0 no-repeat; width:20px; height:20px; overflow:hidden;"></td>
+            </tr>                       
+            <tr>                         
+                <td class="ml" style="border-top:0px; background:url(images/ml.png) 0 0 repeat-y; width:20px; overflow:hidden;"></td>                         
+                <td class="mm" style="border-top:0px; background:#fff; vertical-align:top; padding:10px; padding-top:25px;"><div id="zoom_content"></div></td>                         
+                <td class="mr" style="border-top:0px; background:url(images/mr.png) 100% 0 repeat-y;  width:20px; overflow:hidden;"></td>                       
+            </tr>                       
+            <tr>                         
+                <td class="bl" style="border-top:0px; background:url(images/bl.png) 0 100% no-repeat; width:20px; height:20px; overflow:hidden;"></td>
+                <td class="bm" style="border-top:0px; background:url(images/bm.png) 0 100% repeat-x; height:20px; overflow:hidden;"></td>
+                <td class="br" style="border-top:0px; background:url(images/br.png) 100% 100% no-repeat; width:20px; height:20px; overflow:hidden;"></td>
+            </tr>
+        </tbody>
+    </table>                   
+    <a href="#" title="Close" id="zoom_close" style="position: absolute; top: 0px; left: 0px; display: none; " curtop="304" curleft="721" scaleimg="true">                     
+        <img src="images/closebox.png" alt="Close" style="border:none; margin:0; padding:0;">                   
+    </a>
+</div>
+
+{literal}
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function() {
+		$('div.photo a').fancyZoom({scaleImg: true, closeOnClick: true});
+		$('#medium_box_link').fancyZoom({width:400, height:300});
+		$('#large_box_link').fancyZoom();
+		$('#flash_box_link').fancyZoom();
+	});
+</script>
+{/literal}

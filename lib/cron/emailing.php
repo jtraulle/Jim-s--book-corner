@@ -7,9 +7,7 @@ require_once('../../classes/Table.class.php');
 require_once('../../classes/Emailing.class.php');
 require_once('../../classes/Settings.class.php');
 
-$transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, 'ssl')
-		->setUsername(Settings::chercherParCleSetting('adresseGmail')->valSetting)
-		->setPassword(Settings::chercherParCleSetting('mdpGmail')->valSetting);
+$transport = Swift_MailTransport::newInstance();
 
 // Create the Mailer using your created Transport
 $mailer = Swift_Mailer::newInstance($transport);
@@ -39,8 +37,7 @@ if(isset($liste))
 		// Create a message
 		$message = Swift_Message::newInstance($lignemessage->subject)
 		  ->setContentType("text/html")
-		  ->setFrom(array('noreply@jimsbookcorner.fr' => 'Jim\'s Book Corner Library'))
-		  ->setReplyTo(array('noreply@jimsbookcorner.fr' => 'Jim\'s Book Corner Library'))
+		  ->setFrom(array('noreply@jimsbookcorner.iut-amiens.fr' => 'Jim\'s Book Corner Library'))
 		  ->setTo(array($lignemessage->to => $lignemessage->to))
 		  ->setBody($lignemessage->body);
 

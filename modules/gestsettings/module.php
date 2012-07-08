@@ -6,26 +6,6 @@ class gestsettings extends Module{
 		$this->set_title("Modifier les paramètres | Jim's book corner library");
 
         $f=new Form("?module=gestsettings&action=valide","form1");
-    	$f->add_text(
-    	    "adresseGmail",
-    	    "adresseGmail",
-    	    "Adresse Gmail",
-    	    true,
-    	    null,
-    	    "L'adresse du compte Gmail à utiliser pour envoyer les courriels.",
-    	    Settings::chercherParCleSetting('adresseGmail')->valSetting
-    	);
-
-    	$f->add_text(
-    	    "mdpGmail",
-    	    "mdpGmail",
-    	    "Mot de passe Gmail",
-    	    true,
-    	    null,
-    	    "Le mot de passe du compte Gmail dont vous avez renseigné l'adresse.",
-    	    Settings::chercherParCleSetting('mdpGmail')->valSetting
-    	);
-
 		$f->add_textarea(
             "msgEmailDemande",
             "msgEmailDemande",

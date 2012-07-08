@@ -81,15 +81,15 @@ class inscription extends Module{
             "Téléphone fixe",
             false,
             "telfixe",
-            "Saisissez un numéro de téléphone fixe valide"
+            "Saisissez un numéro de téléphone fixe valide (sans espace)"
         );
         $f->add_text(
             "telPortableEmprunteur",
             "telPortableEmprunteur",
             "Téléphone portable",
             false,
-            "telportable",
-            "Saisissez un numéro de téléphone portable valide"
+            null,
+            "Vous pouvez saisir un numéro de téléphone portable valide (sans espace)"
         );
         $f->add_text(
             "emailEmprunteur",
