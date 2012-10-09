@@ -232,12 +232,14 @@ FROM emprunter,livre WHERE livre.numLivre = emprunter.numLivre AND emprunter.num
         if (!isset($pageCourante) && !isset($nbEnregistrementsParPage))
             $sql = "SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre
                 FROM livre
-                LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur";
+                LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur
+                ORDER BY titreLivre";
         else
             // On définit notre requête (on récupère l'ensemble des enregistrements)
             $sql = "SELECT livre.numLivre, titreLivre, livre.numAuteur, prenomAuteur, nomAuteur, resumeLivre, langueLivre, nbExemplaireLivre
                 FROM livre
                 LEFT JOIN auteur ON livre.numAuteur = auteur.numAuteur
+                ORDER BY nomAuteur, prenomAuteur, titreLivre
                 LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
         // Comme on est dans un contexte statique, on récupère l'instance de la BDD
         $db = DB::get_instance();
