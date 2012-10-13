@@ -10,11 +10,16 @@ class Index extends Module{
 	
 	public function action_recalculsha(){
 		
-        $raw = json_decode(file_get_contents('https://api.github.com/repos/jtraulle/Jim-s--book-corner/commits'));
-        $lastrevid = substr($raw[0]->sha, 0, 10) ;
+        
+        $ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jtraulle/Jim-s--book-corner/commits');
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$lastrevid = json_decode(curl_exec($ch));
+		$lastrevid = substr($lastrevid[0]->sha, 0, 10) ;
+		curl_close($ch);
+        
         $handle = fopen("templates/lastrevid.tpl", "w+");
         fwrite($handle, $lastrevid);
-        
         
         $this->site->ajouter_message('Le hash de commit a été correctement mis à jour ;)', 4);
         $this->site->redirect('index');
