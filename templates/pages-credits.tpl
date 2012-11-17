@@ -90,6 +90,16 @@
             <td>Jay Salvat</td>
             <td>Licence MIT, GNU GPL v2</td>
           </tr>
+          <tr>
+            <td><a href="https://github.com/Reflejo/fancyzoomng">Fancy Zoom NG jQuery plugin</a></td>
+            <td>Martín Conte Mac Donell</td>
+            <td>Inconnue</td>
+          </tr>
+          <tr>
+            <td><a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a></td>
+            <td>Gandy Dave</td>
+            <td>Creative Commons Attribution 3.0</td>
+          </tr>
         </tbody>
     </table>
 
