@@ -16,6 +16,13 @@
     <p>Pour réaliser ce projet, nous avons utilisé plusieurs logiciels ou ressources disponibles sous licences libres.<br />
     C'est aussi grâce aux développeurs talentueux de ces logiciels que ce projet a pu voir le jour, merci à eux !</p>
     
+    <div class="well">
+		<div>
+			<img style="float:left; margin-right:10px;" src="images/handcheck.png"> <h4 style="display:inline-block; vertical-align:top;">Décrypter les termes des licences</h4>
+			<p>Pour en savoir plus, nous vous recommandons la lecture de ce <a href="http://www.inria.fr/content/download/5896/48452/version/2/file/INRIA_recueil_fiches_licences_libres_vf.pdf">recueil de fiches explicatives de licences libres (pdf, 443 Ko)</a> réalisé par l'<acronym style="border-bottom: 1px dotted grey;" title="Institut de Recherche en Informatique et en Automatique">INRIA</acronym>.</p>
+		</div>
+	</div>
+    
     <table class="table zebra-striped">
         <thead>
           <tr>

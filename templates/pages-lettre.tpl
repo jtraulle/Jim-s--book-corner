@@ -63,6 +63,11 @@ une belle histoire à laquelle la maladie a douloureusement mis fin.</p>
 <div class="photo" style ="display:inline-block; position:absolute; margin-left:30px; margin-top:180px;"><a href="#jim2"><img style="width:200px;" src="images/jim2.jpg" /></a></div>
 <div class="photo" style ="display:inline-block; position:absolute; margin-left:30px; margin-top:350px;"><a href="#jim3"><img style="width:200px;" src="images/jim3.jpg" /></a></div>
 
+<div class="photo manuscrit" style ="display:inline-block; position:absolute; text-indent: 0px; text-align:left; margin-left:30px; margin-top:700px; width:200px;">Quelques tableaux peints par Jim</div>
+<div class="photo" style ="display:inline-block; position:absolute; margin-left:30px; margin-top:790px;"><a href="#tableau1"><img style="width:200px;" src="images/tableau1.png" /></a></div>
+<div class="photo" style ="display:inline-block; position:absolute; margin-left:30px; margin-top:955px;"><a href="#tableau2"><img style="width:200px;" src="images/tableau2.png" /></a></div>
+<div class="photo" style ="display:inline-block; position:absolute; margin-left:30px; margin-top:1250px;"><a href="#tableau3"><img style="width:200px;" src="images/tableau3.png" /></a></div>
+
 <div id="jim1" style="display: none; ">
 	<img src="images/jim1.jpg" alt="helmet">
 </div>
@@ -73,6 +78,18 @@ une belle histoire à laquelle la maladie a douloureusement mis fin.</p>
 
 <div id="jim3" style="display: none; ">
 	<img src="images/jim3.jpg" alt="helmet">
+</div>
+
+<div id="tableau1" style="display: none; ">
+	<img src="images/tableau1.png" alt="helmet">
+</div>
+
+<div id="tableau2" style="display: none; ">
+	<img src="images/tableau2.png" alt="helmet">
+</div>
+
+<div id="tableau3" style="display: none; ">
+	<img src="images/tableau3.png" alt="helmet">
 </div>
 
 <div id="zoom" style="position: absolute; top: 304px; left: 721px; width: 1px; height: 1px; display: none; ">                   
