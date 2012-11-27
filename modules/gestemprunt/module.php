@@ -21,11 +21,12 @@ class gestemprunt extends Module{
 			Livre::rendre($_GET['idemprunteur'],$_GET['idlivre']);
 			$this->site->ajouter_message('L\'ouvrage a été correctement restitué. Il est maintenant possible de le ranger.',4);
 			if(Livre::isReserve($_GET['idlivre'])){
-				Livre::enregistrerDemande(Livre::quelEmprunteurReservation($_GET['idlivre']),$_GET['idlivre']);
+				$id_nouvel_emprunteur = Livre::quelEmprunteurReservation($_GET['idlivre']);
+				Livre::enregistrerDemande($id_nouvel_emprunteur,$_GET['idlivre']);
 				Livre::majReservationDispo(Livre::reservationAValider($_GET['idlivre']));
 
 				//On envoie un courriel au lecteur ayant réservé l'ouvrage pour le prévenir.
-				$emprunteur = Emprunteur::chercherParId($_GET['idemprunteur']);
+				$emprunteur = Emprunteur::chercherParId($id_nouvel_emprunteur);
 				$mail = new Emailing($emprunteur->emailEmprunteur,'Votre réservation',Settings::chercherParCleSetting('msgEmailReservationDispo')->valSetting);
 				$mail->ajouter();
 
