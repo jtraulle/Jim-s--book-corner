@@ -27,7 +27,7 @@ class Evenement extends Table {
             $sql = "SELECT * FROM evenement";
         else
             // On définit notre requête (on récupère l'ensemble des enregistrements)
-            $sql = "SELECT * FROM evenement ORDER BY dateEvenement, numEvenement DESC LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
+            $sql = "SELECT * FROM evenement ORDER BY dateEvenement DESC, numEvenement DESC LIMIT " . (($pageCourante - 1) * $nbEnregistrementsParPage) . "," . $nbEnregistrementsParPage;
         // Comme on est dans un contexte statique, on récupère l'instance de la BDD
         $db = DB::get_instance();
         $reponse = $db->query($sql);
@@ -55,7 +55,7 @@ class Evenement extends Table {
     public static function dernierEvenement()
     {
         // On définit notre requête (on récupère l'ensemble des enregistrements)
-        $sql = "SELECT * FROM evenement ORDER BY dateEvenement, numEvenement DESC LIMIT 0,1";
+        $sql = "SELECT * FROM evenement ORDER BY dateEvenement DESC LIMIT 0,1";
         // Comme on est dans un contexte statique, on récupère l'instance de la BDD
         $db = DB::get_instance();
         $reponse = $db->query($sql);
