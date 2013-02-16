@@ -32,6 +32,7 @@
         <script type="text/javascript"src="lib/js/chosen/chosen.jquery.min.js"></script>
         <script type="text/javascript"src="lib/js/markitup/jquery.markitup.js"></script>
         <script type="text/javascript"src="lib/js/markitup/sets/bbcode/set.js"></script>
+        <script type="text/javascript"src="lib/js/jquery.nivo.slider.pack.js" ></script>
         
         {if isset($nomPrenomAuteur)}
         <script type="text/javascript">
@@ -51,6 +52,8 @@
         <link rel="stylesheet" type="text/css" href="lib/js/markitup/skins/simple/style.css" />
         <link rel="stylesheet" type="text/css" href="lib/js/markitup/sets/bbcode/style.css" />
         <link href='http://fonts.googleapis.com/css?family=Dawning+of+a+New+Day|Dancing+Script' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="lib/css/nivo-slider/themes/default/default.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="lib/css/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
               
     </head>
 
@@ -69,7 +72,7 @@
 
                 <div class="row">
                     <div class="span16">
-
+                    
                         {include file="navigation.tpl"}
 
                         {if isset($messages)}
@@ -86,7 +89,7 @@
                 <footer>
                     {if $statut == 'invite'}<p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a>, <a href="https://github.com/jtraulle/Jim-s--book-corner/commit/{include file="lastrevid.tpl"}">rev. {include file="lastrevid.tpl"}</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Réalisation département informatique <acronym style="border-bottom: 1px dotted grey;" title="Institut Universitaire de Technologie">IUT</acronym> d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a><span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="http://projets.opencomp.fr/jim-s--book-corner/issues/new">Signaler une anomalie</a> - <img style="vertical-align:top;" src="images/cog.png" /> <a href="?module=gestgestionnaire&action=connect">Interface de gestion</a></span></p>
                     {else}
-                    <p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a>, <a href="https://github.com/jtraulle/Jim-s--book-corner/commit/{include file="lastrevid.tpl"}">rev. {include file="lastrevid.tpl"}</a> &nbsp;{if $statut == 'gestionnaire'}<a href="?module=index&action=recalculsha"><img style="vertical-align:top;" src="images/refresh.png" /></a>{/if}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Réalisation département informatique de l'<acronym title="Institut Universitaire de Technologie">IUT</acronym> d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a> <span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="http://projets.opencomp.fr/jim-s--book-corner/issues/new">Signaler une anomalie</a></span></p>
+                    <p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a>, <a href="https://github.com/jtraulle/Jim-s--book-corner/commit/{include file="lastrevid.tpl"}">rev. {include file="lastrevid.tpl"}</a> &nbsp;{if $statut == 'gestionnaire'}<a href="?module=index&action=recalculsha"><img style="vertical-align:top;" src="images/refresh.png" /></a>{/if}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<em>Réalisation département informatique de l'<acronym title="Institut Universitaire de Technologie">IUT</acronym> d'Amiens</em> - <a href="?module=pages&action=credits">Crédits</a> <span style="float:right;"><img style="vertical-align:top;" src="images/bug.png" /> <a href="http://traulle.homelinux.org/projets/thebuggenie/jim-s--book-corner/issues/new">Signaler une anomalie</a></span></p>
                     {/if}
                 </footer>
             </div>

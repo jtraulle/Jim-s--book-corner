@@ -20,4 +20,8 @@ class pages extends Module{
     public function action_infospratiques(){
 		$this->set_title("Informations pratiques | Jim's book corner library");
 	}
+	
+	public function action_inauguration(){
+		$this->set_title("Inauguration | Jim's book corner library");
+	}
 }

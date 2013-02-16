@@ -1,3 +1,8 @@
+<div class='alert-message warning fade in' data-alert='alert'>
+	<a class="close" href="#">×</a>
+	<strong>Dernière minute !</strong> Nous avons inauguré la bibliothèque, <a href ="?module=pages&action=inauguration">regardez les photos de l'événement</a>.
+</div>
+
 {if $statut == 'invite'}
 <div class="hero-unit tweak-hero">
         <img class="floatleft" src="images/hero-index.png" alt="Oops" />
