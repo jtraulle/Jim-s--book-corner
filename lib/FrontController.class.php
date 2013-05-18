@@ -88,7 +88,9 @@ Class FrontController{
 				'action_lettre_manuscrite',
                 'action_infospratiques',
                 'action_video',
-                'action_inauguration'
+                'action_inauguration',
+                'action_donateurs',
+                'action_presse'
 			)
 		);
 

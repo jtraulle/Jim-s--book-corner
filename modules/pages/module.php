@@ -24,4 +24,14 @@ class pages extends Module{
 	public function action_inauguration(){
 		$this->set_title("Inauguration | Jim's book corner library");
 	}
+
+	public function action_presse(){
+		$this->set_title("Presse | Jim's book corner library");
+	}
+
+    public function action_donateurs(){
+        $donnateurs = Emprunteur::listeDonateurs();
+        $this->set_title("Donateurs | Jim's book corner library");
+        $this->tpl->assign("donateurs",$donnateurs);
+    }
 }

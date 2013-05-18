@@ -213,12 +213,25 @@ class gestemprunteur extends Module{
                 $emprunteurAmodif->emailEmprunteur
             );
             $f->add_endfieldset("endfieldset");
+            $f->add_legend("leg3", "Informations donnateur");
+            $f->add_text(
+                "nbLivresDonnes",
+                "nbLivresDonnes",
+                "Nombre de livres donnés",
+                true,
+                "numeric",
+                "Vous devez saisir une nombre.",
+                $emprunteurAmodif->nbLivresDonnes
+            );
+            $f->add_endfieldset("endfieldset");
             $f->add_submit("sub","sub")->set_value('Enregistrer les modifications','actions','btn btn-primary');
 
             $this->tpl->assign("form",$f);
             $this->session->idEmprunteurAmodif = $emprunteurAmodif->numEmprunteur;
             $this->session->form = $f;
 	}
+
+
 
 	public function action_valide_modif(){
 	    $this->set_title("S'inscrire | Jim's book corner library");
@@ -243,6 +256,7 @@ class gestemprunteur extends Module{
                 $this->req->telFixeEmprunteur,
                 $this->req->telPortableEmprunteur,
                 $this->req->emailEmprunteur,
+                $this->req->nbLivresDonnes,
                 $this->session->idEmprunteurAmodif
             );
 

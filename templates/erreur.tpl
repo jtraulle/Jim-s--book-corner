@@ -12,7 +12,8 @@
 
         <link rel="shortcut icon" href="images/favicon.ico" />
         <link rel="stylesheet" href="lib/css/bootstrap.min.css">
-        <link rel="stylesheet" href="lib/css/custom.css">       
+        <link rel="stylesheet" href="lib/css/custom.css">
+        <link rel="stylesheet" href="lib/css/font-awesome.css">
     </head>
 
     <body>
