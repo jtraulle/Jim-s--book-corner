@@ -14,6 +14,7 @@ class Index extends Module{
         $ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, 'https://api.github.com/repos/jtraulle/Jim-s--book-corner/commits');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)");
 		$lastrevid = json_decode(curl_exec($ch));
 		$lastrevid = substr($lastrevid[0]->sha, 0, 10) ;
 		curl_close($ch);
