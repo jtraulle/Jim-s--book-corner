@@ -35,7 +35,7 @@ $(window).load(function() {
 
 <div class="slider-wrapper theme-default" style="margin:auto; width:80%;">
     <div id="slider">
-        <img src="images/inauguration1.jpeg" alt="" title="Éric Sanniez (fondateur du projet et professeur d'Anglais au STAPS)<br />Paul, Élise Laout Mc Crate et son mari, les principaux donateurs." />
+        <img src="images/inauguration1.jpeg" alt="" title="Éric Sanniez (fondateur du projet et professeur d'Anglais au STAPS)<br />Tom, Élise Laout Mc Crate et son mari, les principaux donateurs." />
         <img src="images/inauguration2.jpeg" alt="" title="Éric Sanniez (fondateur du projet et professeur d'Anglais au STAPS) ; Brigitte Kervella (professeur à l'IUT d'Amiens)<br />Jean Traullé, Adeline Blin et Dorine Talfer (étudiants à l'IUT et développeurs du site Internet)." />
         <img src="images/inauguration3.jpeg" alt="" title="Au centre, Shan Williams, professeur à l'UFR des langues qui a contribué au projet." />
     </div>
