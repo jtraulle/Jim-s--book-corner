@@ -1,0 +1,163 @@
+input {
+    height:inherit;
+}
+
+/* Pour afficher en gris les liens vers les modules inactifs */
+.gris{
+    color: gray;
+}
+
+/* Arrondissons un peu tout ça (header) */
+.page-header {
+    border-bottom: 1px solid #ddd;
+    border-radius: 0 0 6px 6px;
+    background-color: #f5f5f5;
+    padding: 15px 20px 10px;
+}
+
+/* Style pour les titres de pages */
+.page-title{
+    border-bottom-width:1px;
+    border-bottom-style:solid;
+    border-bottom-color:#cacaca;
+    margin-bottom : 25px;
+}
+
+/* Faire flotter l'image dans le hero */
+.floatleft{
+    float: left;
+    margin-right: 50px;
+}
+
+/* Faire en sorte que le texte ne soit pas collÃ© au bord dans le hero */
+.tweak-hero{
+    padding: 30px;
+    padding-bottom: 70px;
+}
+
+/* Positionnons correctement le bouton d'action des recherches rapides */
+.inline{
+    display:inline-block;
+    vertical-align: top;
+    margin-left:20px;
+}
+
+/* Style pour positionner les boutons Call to action des titres de modules */
+.ontitle{
+    float:right;
+    position: relative;
+    top: -14px;
+    margin-left:10px;
+}
+
+/* Surcharge de la classe success pour afficher en gras le texte des boutons */
+a.btn-success {
+    font-weight:bold;
+}
+
+h1{
+    display:inline-block;
+}
+
+.page-header{
+    position:relative;
+}
+
+.login{
+    display:inline-block;
+    vertical-align:top;
+    text-align:right;
+    position:absolute;
+    right:25px;
+    top:12px;
+    z-index:2;
+}
+
+.login p{
+    margin:0px;
+}
+
+footer{
+    padding-top: 5px;
+    margin-bottom: 20px;
+}
+
+.mainCallToActionBtn{
+    margin-left:20px;
+    margin-top:10px;
+}
+
+.center{
+    display: inline-block;
+}
+
+.centrer{
+    text-align:center;
+}
+
+.titresPrets{
+    display:inline-block;
+    vertical-align:top;
+}
+
+.etroit{
+    width:600px;
+    padding:50px;
+}
+
+.auteurs a{
+    padding-right:8px !important;
+    padding-left:8px !important;
+    padding-top:-3px !important;
+    padding-bottom:-3px !important;
+    margin-left: 3px;
+}
+
+.manuscrit{
+    font-family: 'Dancing Script', cursive;
+    font-size: 25px;
+    line-height: 140%;
+    text-align: justify;
+    text-indent: 50px;
+    padding-bottom: 20px;
+}
+
+/* css for timepicker */
+.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
+.ui-timepicker-div dl { text-align: left; padding-left:10px; }
+.ui-timepicker-div dl dt { height: 25px; margin-bottom: -25px; }
+.ui-timepicker-div dl dd { margin: 0 10px 10px 65px; }
+.ui-timepicker-div td { font-size: 90%; }
+.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
+
+#fbzDialogTitle>table{
+    margin-bottom:0px;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: #404040;
+    line-height: 36px;
+}
+
+h1 small {
+    font-size: 18px;
+    color: #bfbfbf;
+}
+
+body {
+    /* font-size: 13px; */
+}
+
+.container {
+    /* max-width: 940px; */
+}
+
+.table-bordered tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 4px;
+}
+
+footer {
+    border-top: 1px solid #eee;
+}

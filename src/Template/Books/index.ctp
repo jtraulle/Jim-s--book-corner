@@ -1,0 +1,67 @@
+<?php
+/**
+ * @var \App\View\AppView $this
+ * @var \App\Model\Entity\Book[]|\Cake\Collection\CollectionInterface $books
+ */
+?>
+
+<h3><?= __('Books') ?></h3>
+<table class="table table-bordered table-striped rounded-lg" cellpadding="0" cellspacing="0">
+    <thead>
+        <tr>
+            <th scope="col"><?= $this->Paginator->sort('title') ?></th>
+            <th scope="col"><?= $this->Paginator->sort('Authors.last_name', 'Author') ?></th>
+            <th scope="col"><?= $this->Paginator->sort('language') ?></th>
+            <th scope="col" class="actions"><?= __('Actions') ?></th>
+        </tr>
+        <tr>
+            <?= $this->Form->create(null, ['valueSources' => 'query']); ?>
+            <?php
+            $this->Form->setTemplates([
+                'inputContainer' => '{{content}}',
+            ]);
+            ?>
+            <th class="p-2"><?= $this->Form->control('title', ['label' => false, 'placeholder' => 'Search by title (enter any part of the title)...', 'class' => 'w-100']); ?></th>
+            <th class="p-2"><?= $this->Form->control('author', ['label' => false, 'placeholder' => 'Search by author...', 'class' => 'w-100']); ?></th>
+            <th class="p-2"><?= $this->Form->select('language', ['Anglais'=>'Anglais','Français'=>'Français'], ['label' => false]); ?></th>
+            <th class="p-2"><?= $this->Form->submit('🔍 Search the catalog', ['class' => 'w-100']); ?></th>
+            <?= $this->Form->end(); ?>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($books as $book): ?>
+        <tr>
+            <td><?= h($book->title) ?></td>
+            <td><?= $book->has('author') ? $this->Html->link($book->author->full_name, ['controller' => 'Authors', 'action' => 'view', $book->author->id]) : '' ?></td>
+            <td><?= h($book->language) ?></td>
+            <td class="actions">
+                <img src="/img/bullet_green.png" />
+                <?= __n('1 available', '{0} available', $book->qty, $book->qty); ?>
+                 <?= $this->Html->link('<img src="/img/view.png" /> ' . __('View'), ['action' => 'view', $book->id], ['escape' => false, 'class' => 'ml-4']) ?>
+                <!-- <?= $this->Html->link(__('Edit'), ['action' => 'edit', $book->id]) ?>
+                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $book->id], ['confirm' => __('Are you sure you want to delete # {0}?', $book->id)]) ?> -->
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<nav aria-label="Page navigation" class="mx-auto mt-3">
+    <ul class="pagination">
+        <?php
+        $this->Paginator->setTemplates([
+            'first' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'prevActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'prevDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'number' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'current' => '<li class="page-item active"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'nextActive' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'nextDisabled' => '<li class="page-item disabled"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+            'last' => '<li class="page-item"><a class="page-link" href="{{url}}">{{text}}</a></li>',
+        ]); ?>
+        <?= $this->Paginator->first('« ' . __('First')) ?>
+        <?= $this->Paginator->prev('← ' . __('Previous')) ?>
+        <?= $this->Paginator->numbers() ?>
+        <?= $this->Paginator->next(__('Next') . ' →') ?>
+        <?= $this->Paginator->last(__('Last') . ' »') ?>
+    </ul>
+</nav>

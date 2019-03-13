@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  nginx:
+    image: opencomp/nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - php
+    volumes:
+      - ./:/var/www/html:delegated
+  php:
+    image: opencomp/php:7.3-fpm-alpine3.9
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www/html:delegated
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: jbcl-ils
+      MYSQL_ROOT_HOST: '%'
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./var/lib/mysql-files:/var/lib/mysql-files
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql-data:
