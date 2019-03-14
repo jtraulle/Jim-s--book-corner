@@ -6,10 +6,11 @@
     "license": "MIT",
     "require": {
         "php": ">=5.6",
+        "cakedc/users": "^8.4",
         "cakephp/cakephp": "3.7.*",
         "cakephp/migrations": "^2.0.0",
         "cakephp/plugin-installer": "^1.0",
-        "friendsofcake/bootstrap-ui": "^1.4",
+        "friendsofcake/bootstrap-ui": "2.0.0-beta4",
         "friendsofcake/search": "^5.2",
         "mobiledetect/mobiledetectlib": "2.*"
     },

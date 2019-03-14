@@ -86,7 +86,7 @@ class BooksController extends AppController
             }
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
-        $authors = $this->Books->Authors->find('list', ['limit' => 200]);
+        $authors = $this->Books->Authors->find('list')->distinct();
         $this->set(compact('book', 'authors'));
     }
 

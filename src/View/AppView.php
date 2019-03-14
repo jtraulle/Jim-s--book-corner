@@ -13,7 +13,7 @@
  */
 namespace App\View;
 
-use Cake\View\View;
+use BootstrapUI\View\UIView;
 
 /**
  * Application View
@@ -22,7 +22,7 @@ use Cake\View\View;
  *
  * @link https://book.cakephp.org/3.0/en/views.html#the-app-view
  */
-class AppView extends View
+class AppView extends UIView
 {
 
     /**
@@ -36,5 +36,11 @@ class AppView extends View
      */
     public function initialize()
     {
+        $helpers = [
+            'AuthLink' => ['className' => 'CakeDC/Users.AuthLink'],
+            'Html' => ['className' => 'BootstrapUI.Html'],
+            'Form' => ['className' => 'BootstrapUI.Form'],
+        ];
+        $this->helpers = array_merge($helpers, $this->helpers);
     }
 }

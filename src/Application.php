@@ -34,6 +34,9 @@ class Application extends BaseApplication
      */
     public function bootstrap()
     {
+        Configure::write('Users.config', ['users']);
+        $this->addPlugin('CakeDC/Users');
+
         $this->addPlugin('Search');
 
         $this->addPlugin('BootstrapUI');

@@ -34,7 +34,7 @@ class AuthorsTable extends Table
         parent::initialize($config);
 
         $this->setTable('authors');
-        $this->setDisplayField('id');
+        $this->setDisplayField('full_name');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Books', [

@@ -66,6 +66,15 @@ class BooksTable extends Table
                 'wildcardOne' => '?',
                 'field' => ['Authors.last_name', 'Authors.first_name']
             ])
+            ->add('authorLastNameStartsWith', 'Search.Like', [
+                'before' => false,
+                'after' => true,
+                'fieldMode' => 'OR',
+                'comparison' => 'LIKE',
+                'wildcardAny' => '*',
+                'wildcardOne' => '?',
+                'field' => ['Authors.last_name']
+            ])
             ->value('language');
     }
 

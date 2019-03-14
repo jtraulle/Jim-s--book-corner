@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "06cdeb3e232c05b2864d5073e41bb203",
+    "content-hash": "9fc4bf1f02b5cf4c25da563c25a36e4b",
     "packages": [
         {
             "name": "aura/intl",
@@ -53,17 +53,140 @@
             "time": "2017-01-20T05:00:11+00:00"
         },
         {
-            "name": "cakephp/cakephp",
-            "version": "3.7.4",
+            "name": "cakedc/auth",
+            "version": "3.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/cakephp/cakephp.git",
-                "reference": "5c78a61c0ed7fbd56ce9d7cee3c6d6f9b27af46b"
+                "url": "https://github.com/CakeDC/auth.git",
+                "reference": "b2e742073fa74c6ad1eb463bc76d0d13ce613541"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/5c78a61c0ed7fbd56ce9d7cee3c6d6f9b27af46b",
-                "reference": "5c78a61c0ed7fbd56ce9d7cee3c6d6f9b27af46b",
+                "url": "https://api.github.com/repos/CakeDC/auth/zipball/b2e742073fa74c6ad1eb463bc76d0d13ce613541",
+                "reference": "b2e742073fa74c6ad1eb463bc76d0d13ce613541",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/cakephp": "^3.6.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^5.0"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CakeDC\\Auth\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakeDC",
+                    "homepage": "https://www.cakedc.com",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/CakeDC/auth/graphs/contributors"
+                }
+            ],
+            "description": "Auth objects for CakePHP",
+            "homepage": "https://github.com/CakeDC/auth",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "cakedc",
+                "cakephp"
+            ],
+            "time": "2018-10-04T13:00:08+00:00"
+        },
+        {
+            "name": "cakedc/users",
+            "version": "8.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CakeDC/users.git",
+                "reference": "3f817d9fe86e819a964ab2687a1adc4a33e7f2f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CakeDC/users/zipball/3f817d9fe86e819a964ab2687a1adc4a33e7f2f8",
+                "reference": "3f817d9fe86e819a964ab2687a1adc4a33e7f2f8",
+                "shasum": ""
+            },
+            "require": {
+                "cakedc/auth": "^3.0",
+                "cakephp/cakephp": "^3.7"
+            },
+            "require-dev": {
+                "cakephp/cakephp-codesniffer": "^2.0",
+                "google/recaptcha": "@stable",
+                "league/oauth2-facebook": "@stable",
+                "league/oauth2-google": "@stable",
+                "league/oauth2-instagram": "@stable",
+                "league/oauth2-linkedin": "@stable",
+                "luchianenco/oauth2-amazon": "^1.1",
+                "phpunit/phpunit": "^5.0",
+                "robthree/twofactorauth": "~1.6",
+                "yubico/u2flib-server": "^1.0"
+            },
+            "suggest": {
+                "google/recaptcha": "Provides reCAPTCHA validation for registration form",
+                "league/oauth1-client": "Provides Social Authentication with Twitter",
+                "league/oauth2-facebook": "Provides Social Authentication with Facebook",
+                "league/oauth2-google": "Provides Social Authentication with Google+",
+                "league/oauth2-instagram": "Provides Social Authentication with Instagram",
+                "league/oauth2-linkedin": "Provides Social Authentication with LinkedIn",
+                "luchianenco/oauth2-amazon": "Provides Social Authentication with Amazon",
+                "robthree/twofactorauth": "Provides Google Authenticator functionality"
+            },
+            "type": "cakephp-plugin",
+            "autoload": {
+                "psr-4": {
+                    "CakeDC\\Users\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "CakeDC",
+                    "homepage": "http://www.cakedc.com",
+                    "role": "Author"
+                },
+                {
+                    "name": "Others",
+                    "homepage": "https://github.com/CakeDC/users/graphs/contributors"
+                }
+            ],
+            "description": "Users Plugin for CakePHP",
+            "homepage": "https://github.com/CakeDC/users",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "cakedc",
+                "cakephp",
+                "oauth2"
+            ],
+            "time": "2019-03-13T12:15:25+00:00"
+        },
+        {
+            "name": "cakephp/cakephp",
+            "version": "3.7.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/cakephp.git",
+                "reference": "0e63c784a61baf65d97177b07bd5f50574218745"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/cakephp/zipball/0e63c784a61baf65d97177b07bd5f50574218745",
+                "reference": "0e63c784a61baf65d97177b07bd5f50574218745",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +262,7 @@
                 "rapid-development",
                 "validation"
             ],
-            "time": "2019-02-09T20:30:00+00:00"
+            "time": "2019-03-14T01:47:14+00:00"
         },
         {
             "name": "cakephp/chronos",
@@ -294,23 +417,23 @@
         },
         {
             "name": "friendsofcake/bootstrap-ui",
-            "version": "1.4.1",
+            "version": "2.0.0-beta4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfCake/bootstrap-ui.git",
-                "reference": "d61733535cad6f4ec1c966bacc6cafaef3f461c0"
+                "reference": "1dfc322c1fa4049b86f8c62ba4213ee3a159c50f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/d61733535cad6f4ec1c966bacc6cafaef3f461c0",
-                "reference": "d61733535cad6f4ec1c966bacc6cafaef3f461c0",
+                "url": "https://api.github.com/repos/FriendsOfCake/bootstrap-ui/zipball/1dfc322c1fa4049b86f8c62ba4213ee3a159c50f",
+                "reference": "1dfc322c1fa4049b86f8c62ba4213ee3a159c50f",
                 "shasum": ""
             },
             "require": {
-                "cakephp/cakephp": "^3.5"
+                "cakephp/cakephp": "^3.7.0"
             },
             "require-dev": {
-                "cakephp/chronos": "^1.1",
+                "cakephp/bake": "^1.8",
                 "phpunit/phpunit": "^5.7.14|^6.0"
             },
             "type": "cakephp-plugin",
@@ -341,7 +464,7 @@
                 "cakephp",
                 "twitter"
             ],
-            "time": "2018-12-20T17:11:21+00:00"
+            "time": "2018-12-20T18:40:28+00:00"
         },
         {
             "name": "friendsofcake/search",
@@ -4329,6 +4452,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
+        "friendsofcake/bootstrap-ui": 10,
         "psy/psysh": 0
     },
     "prefer-stable": true,

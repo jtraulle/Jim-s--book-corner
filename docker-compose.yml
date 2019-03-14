@@ -26,6 +26,10 @@ services:
       - ./var/lib/mysql-files:/var/lib/mysql-files
     ports:
       - "3306:3306"
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - 8025:8025 # web ui
 
 volumes:
   mysql-data:
