@@ -1,0 +1,73 @@
+{#
+/**
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ *
+ * Licensed under The MIT License
+ * For full copyright and license information, please see the LICENSE.txt
+ * Redistributions of files must retain the above copyright notice.
+ *
+ * @copyright     Copyright (c) Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
+ * @since         2.0.0
+ * @license       http://www.opensource.org/licenses/mit-license.php MIT License
+ */
+#}
+{% set fields = Bake.filterFields(fields, schema, modelObject) %}
+
+
+<div class="page-title w-100">
+    <h2><?= __('{{ action|humanize }} {{ singularHumanName }}') ?></h2>
+</div>
+
+<?= $this->Form->create(${{ singularVar }}, ['class' => 'w-100', 'align' => [
+'sm' => [
+'left' => 6,
+'middle' => 6,
+'right' => 12
+],
+'md' => [
+'left' => 2,
+'middle' => 5,
+'right' => 5
+]
+]]) ?>
+
+<?php
+{% for field in fields if field not in primaryKey %}
+{%- if keyFields[field] %}
+    {%- set fieldData = Bake.columnData(field, schema) %}
+    {%- if fieldData.null %}
+        echo $this->Form->control('{{ field }}', ['options' => ${{ keyFields[field] }}, 'empty' => true]);
+        {{- "\n" }}
+    {%- else %}
+        echo $this->Form->control('{{ field }}', ['options' => ${{ keyFields[field] }}]);
+        {{- "\n" }}
+    {%- endif %}
+{%- elseif field not in ['created', 'modified', 'updated'] %}
+    {%- set fieldData = Bake.columnData(field, schema) %}
+    {%- if fieldData.type in ['date', 'datetime', 'time'] and fieldData.null %}
+        echo $this->Form->control('{{ field }}', ['empty' => true]);
+        {{- "\n" }}
+    {%- else %}
+        echo $this->Form->control('{{ field }}');
+{{- "\n" }}
+    {%- endif %}
+{%- endif %}
+{%- endfor %}
+
+{%- if associations.BelongsToMany %}
+{%- for assocName, assocData in associations.BelongsToMany %}
+        echo $this->Form->control('{{ assocData.property }}._ids', ['options' => ${{ assocData.variable }}]);
+{{- "\n" }}
+{%- endfor %}
+{% endif %}
+?>
+<div class="form-group row bg-light pt-4 pb-4 mt-4 border-top ml-0 mr-0 rounded-bottom">
+    <div class="offset-md-2 offset-sm-6 col-sm-6 col-md-5 pl-2">
+        <?= $this->Form->button(__('Submit'), ['class' => 'btn btn-primary']) ?>
+    </div>
+</div>
+
+
+<?= $this->Form->end() ?>
