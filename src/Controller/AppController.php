@@ -49,6 +49,9 @@ class AppController extends Controller
         $this->loadComponent('CakeDC/Users.UsersAuth');
         $this->loadComponent('Security');
 
-        $this->Auth->allow('index');
+        if ($this->getRequest()->getParam('controller') !== 'Users')
+        {
+            $this->Auth->allow('index');
+        }
     }
 }

@@ -1,10 +1,15 @@
-input {
-    height:inherit;
-}
-
-/* Pour afficher en gris les liens vers les modules inactifs */
-.gris{
-    color: gray;
+/* dancing-script-regular - latin */
+@font-face {
+    font-family: 'Dancing Script';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../webfonts/dancing-script-v10-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Dancing Script Regular'), local('DancingScript-Regular'),
+    url('../webfonts/dancing-script-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../webfonts/dancing-script-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../webfonts/dancing-script-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../webfonts/dancing-script-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../webfonts/dancing-script-v10-latin-regular.svg#DancingScript') format('svg'); /* Legacy iOS */
 }
 
 /* Arrondissons un peu tout ça (header) */
@@ -32,36 +37,12 @@ input {
     margin-bottom: 20px;
 }
 
-/* Faire flotter l'image dans le hero */
-.floatleft{
-    float: left;
-    margin-right: 50px;
-}
-
-/* Faire en sorte que le texte ne soit pas collÃ© au bord dans le hero */
-.tweak-hero{
-    padding: 30px;
-    padding-bottom: 70px;
-}
-
-/* Positionnons correctement le bouton d'action des recherches rapides */
-.inline{
-    display:inline-block;
-    vertical-align: top;
-    margin-left:20px;
-}
-
 /* Style pour positionner les boutons Call to action des titres de modules */
 .ontitle{
     float:right;
     position: relative;
     top: -14px;
     margin-left:10px;
-}
-
-/* Surcharge de la classe success pour afficher en gras le texte des boutons */
-a.btn-success {
-    font-weight:bold;
 }
 
 h1{
@@ -72,19 +53,6 @@ h1{
     position:relative;
 }
 
-.login{
-    display:inline-block;
-    vertical-align:top;
-    text-align:right;
-    position:absolute;
-    right:25px;
-    top:12px;
-    z-index:2;
-}
-
-.login p{
-    margin:0px;
-}
 
 footer{
     padding-top: 5px;

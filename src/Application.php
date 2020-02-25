@@ -18,6 +18,7 @@ use Cake\Core\Configure;
 use Cake\Core\Exception\MissingPluginException;
 use Cake\Error\Middleware\ErrorHandlerMiddleware;
 use Cake\Http\BaseApplication;
+use Cake\Http\Middleware\EncryptedCookieMiddleware;
 use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
@@ -75,6 +76,11 @@ class Application extends BaseApplication
             // Catch any exceptions in the lower layers,
             // and make an error page/response
             ->add(new ErrorHandlerMiddleware(null, Configure::read('Error')))
+
+            ->add(new EncryptedCookieMiddleware(
+                ['csrfToken'],
+                Configure::read('Security.cookieKey')
+            ))
 
             // Handle plugin/theme assets like CakePHP normally does.
             ->add(new AssetMiddleware([

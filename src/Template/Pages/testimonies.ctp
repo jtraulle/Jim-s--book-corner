@@ -10,7 +10,7 @@ $this->append('script'); ?>
 
 <div class="page-title w-100">
     <h2><?= __('About Jim and Christiane Mc Crate'); ?></h2>
-    <a class="ontitle btn btn-light btn-outline-secondary" href="/pages/manuscript"><i class="fas fa-fw fa-pencil-alt"></i> <?= __('See manuscript'); ?></a>
+    <a class="ontitle btn btn-light btn-outline-secondary" href="/pages/manuscript"><i class="fas fa-fw fa-pen-fancy"></i> <?= __('See manuscript'); ?></a>
     <a class="ontitle btn btn-light btn-outline-secondary" href="/testimonies"><i class="fas fa-fw fa-envelope"></i> <?= __('Readers testimonies'); ?></a>
 </div>
 

@@ -1,6 +1,6 @@
 <?php if ($this->request->getSession()->read('Auth.User.id') === null): ?>
 <div class="jumbotron pt-4 pb-4">
-    <img class="floatleft" src="/img/hero-index.png" alt="Oops" />
+    <img class="float-left mr-4" src="/img/hero-index.png" alt="Oops" />
     <h2 class="display-4">Bienvenue !</h2>
     <p class="lead font-weight-bold">sur le catalogue de la bibliothèque “Jim's book corner” dont les différents ouvrages ont été offerts par Jim Mc Crate.</p>
     <p class="lead font-weight-bold mt-4"> Pour les “amoureux” de l'auteur James Joyce, les ouvrages ont été offerts à une autre bibliothèque nommée “<a href='http://jamesjoyce-a-saintgerandlepuy.com/crbst_23.html'>Anna Livia Plurabelle</a>”. </p>
@@ -11,9 +11,9 @@
 </div>
 <?php endif; ?>
 
-<div class="col-6 p-0 pr-3">
+<div class="col-md-6 p-0 pr-3">
 <?= $this->cell('LatestBooksAdded::display'); ?>
 </div>
-<div class="col-6">
+<div class="col-md-6">
 <?= $this->cell('LatestEvent::display'); ?>
 </div>

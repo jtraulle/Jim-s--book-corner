@@ -33,47 +33,37 @@
         </thead>
         <tbody>
         <tr>
-            <td><a href="https://cakephp.org/">Framework PHP CakePHP</a></td>
+            <td><a href="https://cakephp.org/">CakePHP PHP Framework</a></td>
             <td>CakePHP contributors</td>
             <td>MIT license</td>
         </tr>
         <tr>
-            <td><a href="https://getbootstrap.com/">Framework CSS Bootstrap</a></td>
+            <td><a href="https://getbootstrap.com/">Bootstrap CSS Framework</a></td>
             <td>Bootstrap contributors</td>
             <td>MIT license</td>
         </tr>
         <tr>
-            <td><a href="http://thednp.github.io/bootstrap.native/v4.html">Native Javascript for Bootstrap</a></td>
+            <td><a href="http://thednp.github.io/bootstrap.native/v4.html">Native Javascript for Bootstrap library</a></td>
             <td>thednp/bootstrap.native contributors</td>
             <td>MIT license</td>
         </tr>
         <tr>
-            <td><a href="https://github.com/semsol/arc2/wiki">Resource Description Framework Arc2</a></td>
-            <td>Benjamin Nowack</td>
-            <td>W3C Software License, Licence publique générale</td>
-        </tr>
-        <tr>
-            <td><a href="https://joshuajohnson.co.uk/Choices/">Choices</a></td>
+            <td><a href="https://joshuajohnson.co.uk/Choices/">Choices Javascript library</a></td>
             <td>Choices contributors</td>
             <td>MIT license</td>
         </tr>
         <tr>
-            <td><a href="https://dbrekalo.github.io/simpleLightbox/">simpleLightbox</a></td>
+            <td><a href="https://dbrekalo.github.io/simpleLightbox/">simpleLightbox Javascript library</a></td>
             <td>simpleLightbox contributors</td>
             <td>MIT license</td>
         </tr>
         <tr>
-            <td><a href="http://www.famfamfam.com/lab/icons/silk/">Silk icons</a></td>
-            <td>famfamfam</td>
-            <td>Creative Commons Attribution 2.5 License</td>
-        </tr>
-        <tr>
-            <td><a href="http://www.sceditor.com/">SCEditor</a></td>
+            <td><a href="http://www.sceditor.com/">SCEditor Javascript library</a></td>
             <td>SCEditor contributors</td>
             <td>MIT license</td>
         </tr>
         <tr>
-            <td><a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome</a></td>
+            <td><a href="http://fortawesome.github.com/Font-Awesome/">Font Awesome icons</a></td>
             <td>Font Awesome contributors</td>
             <td>Font Awesome Free License</td>
         </tr>
@@ -742,5 +732,5 @@ if any, to sign a "copyright disclaimer" for the program, if necessary.
 For more information on this, and how to apply and follow the GNU AGPL, see
 <http://www.gnu.org/licenses/>.
 </pre>
-    <img style="display:inline-block; position: relative; left: 120px; bottom: 120px;" src="/img/agpl-logo.png" />
+    <img style="display:inline-block; position: relative; left: 120px; bottom: 120px; width: 155px;" src="/img/agpl-logo.svg" />
 </div>

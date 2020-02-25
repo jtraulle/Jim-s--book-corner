@@ -11,7 +11,6 @@
     <?= $this->Html->css('bootstrap.min.css') ?>
     <?= $this->Html->css('fontawesome.min.css') ?>
     <?= $this->Html->css('fontawesome-solid.min.css') ?>
-    <?= $this->Html->css('https://fonts.googleapis.com/css?family=Dancing+Script') ?>
     <?= $this->Html->css('style.css') ?>
 
     <?= $this->fetch('meta') ?>
@@ -21,18 +20,18 @@
     <div class='container'>
         <div class="content">
             <div class="row page-header">
-                <h1>Jim's book corner library <small>Integrated library system <sub>βeta</sub></small></h1>
-                <div class="login">
+                <h1>Jim's book corner library <small class="d-none d-lg-inline">Integrated library system <sub>βeta</sub></small></h1>
+                <div class="ml-auto">
                     <?php if ($this->request->getSession()->read('Auth.User.id') !== null): ?>
-                        <p><em><?= __('You are authenticated as {0}', $this->request->getSession()->read('Auth.User.username')); ?></em>
+                        <p class="m-0"><em><?= __('You are authenticated as {0}', $this->request->getSession()->read('Auth.User.username')); ?></em>
                             <?php if ($this->request->getSession()->read('Auth.User.is_superuser')): ?>
-                            <img class="infobulle" src="/img/bricks.png" data-toggle="tooltip" data-placement="bottom" title="<small><?= __('You have management rights'); ?></small>"/>
+                                <i class="fas fa-fw fa-cubes text-danger" data-toggle="tooltip" data-placement="bottom" title="<small><?= __('You have management rights'); ?></small>"></i>
                             <?php endif; ?>
                         </p>
-                        <p><a href="/users/users/logout"><img src="/img/key.png" /> <?= __('Close session'); ?></a></p>
+                        <p class="m-0 float-right"><a href="/users/users/logout"><i class="fas fa-fw fa-key text-warning"></i> <?= __('Close session'); ?></a></p>
                     <?php else: ?>
-                    <p><a href="/users/users/register"><img src="/img/user_add.png" /> <?= __('Register'); ?></a></p>
-                    <p><a href="/users/users/login"><img src="/img/user_go.png" /> <?= __('My reader account'); ?></a></p>
+                    <p class="m-0"><a href="/users/users/register"><i class="fas fa-fw fa-user-plus"></i> <?= __('Register'); ?></a></p>
+                    <p class="m-0"><a href="/users/users/login"><i class="fas fa-fw fa-book-reader pr-2"></i> <?= __('My reader account'); ?></a></p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -44,13 +43,13 @@
                 <?= $this->fetch('content') ?>
             </div>
             <footer class="row mt-5">
-                <div class="col-2"><p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a></p></div>
-                <div class="col-5"><p><em><?= __('Produced by Amiens <abbr title="Institut Universitaire de Technologie">UIT</abbr> <abbr title="Information Technology">IT</abbr> department'); ?></em> - <a href="/pages/licenses"><?= __('Licenses'); ?></a></p></div>
-                <div class="col-5">
+                <div class="col-md-2 col-sm-12"><p><a href="https://github.com/jtraulle/Jim-s--book-corner/">JBCL ILS</a></p></div>
+                <div class="col-md-5 col-sm-12 align-items-center"><p><em><?= __('Produced by Amiens <abbr title="Institut Universitaire de Technologie">UIT</abbr> <abbr title="Information Technology">IT</abbr> department'); ?></em> - <a href="/pages/licenses"><?= __('Licenses'); ?></a></p></div>
+                <div class="col-md-5 col-sm-12">
                     <p class="float-right">
-                        <img src="/img/bug.png" />
+                        <i class="fas fa-fw fa-bug text-success"></i>
                         <a class="mr-3" href="https://github.com/jtraulle/Jim-s--book-corner/issues/new"><?= __('Report an issue'); ?></a>
-                        <img src="/img/cog.png" />
+                        <i class="fas fa-fw fa-cog text-secondary"></i>
                         <a href="/users/users/login"><?= __('Management interface'); ?></a>
                     </p>
                 </div>
