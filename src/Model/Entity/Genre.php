@@ -4,18 +4,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Author Entity
+ * Genre Entity
  *
  * @property int $id
- * @property string $first_name
- * @property string $last_name
- * @property string $full_name
+ * @property string $name
  *
  * @property \App\Model\Entity\Book[] $books
  */
-class Author extends Entity
+class Genre extends Entity
 {
-    protected $_virtual = ['full_name'];
 
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -27,16 +24,7 @@ class Author extends Entity
      * @var array
      */
     protected $_accessible = [
-        'first_name' => true,
-        'last_name' => true,
+        'name' => true,
         'books' => true
     ];
-
-    protected function _getFullName()
-    {
-        if (isset($this->_properties['first_name']) && isset($this->_properties['last_name'])) {
-            return $this->_properties['first_name'] . '  ' .
-                $this->_properties['last_name'];
-        }
-    }
 }

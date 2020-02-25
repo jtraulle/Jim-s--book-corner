@@ -86,8 +86,9 @@ class BooksController extends AppController
             }
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
-        $authors = $this->Books->Authors->find('list')->distinct();
-        $this->set(compact('book', 'authors'));
+        $authors = $this->Books->Authors->find('list')->distinct()->order('last_name asc, first_name asc');
+        $genres = $this->Books->Genres->find('list')->order('name asc');
+        $this->set(compact('book', 'authors', 'genres'));
     }
 
     /**
@@ -112,7 +113,8 @@ class BooksController extends AppController
             $this->Flash->error(__('The book could not be saved. Please, try again.'));
         }
         $authors = $this->Books->Authors->find('list', ['limit' => 200]);
-        $this->set(compact('book', 'authors'));
+        $genres = $this->Books->Genres->find('list')->order('name asc');
+        $this->set(compact('book', 'authors', 'genres'));
     }
 
     /**

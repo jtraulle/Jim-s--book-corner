@@ -1,16 +1,16 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Author $author
+ * @var \App\Model\Entity\Genre $genre
  */
 ?>
 
 
 <div class="page-title w-100">
-    <h2><?= __('Edit Author') ?></h2>
+    <h2><?= __('Add Genre') ?></h2>
 </div>
 
-<?= $this->Form->create($author, ['class' => 'w-100', 'align' => [
+<?= $this->Form->create($genre, ['class' => 'w-100', 'align' => [
 'sm' => [
 'left' => 6,
 'middle' => 6,
@@ -24,8 +24,8 @@
 ]]) ?>
 
 <?php
-        echo $this->Form->control('first_name');
-        echo $this->Form->control('last_name');
+        echo $this->Form->control('name');
+        echo $this->Form->control('books._ids', ['options' => $books]);
 ?>
 <div class="form-group row bg-light pt-4 pb-4 mt-4 border-top ml-0 mr-0 rounded-bottom">
     <div class="offset-md-2 offset-sm-6 col-sm-6 col-md-5 pl-2">

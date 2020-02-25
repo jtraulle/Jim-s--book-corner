@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Books Model
  *
  * @property \App\Model\Table\AuthorsTable|\Cake\ORM\Association\BelongsTo $Authors
+ * @property \App\Model\Table\GenresTable|\Cake\ORM\Association\BelongsToMany $Genres
  *
  * @method \App\Model\Entity\Book get($primaryKey, $options = [])
  * @method \App\Model\Entity\Book newEntity($data = null, array $options = [])
@@ -42,6 +43,8 @@ class BooksTable extends Table
             'foreignKey' => 'author_id',
             'joinType' => 'INNER'
         ]);
+
+        $this->belongsToMany('Genres');
 
         // Add the behaviour to your table
         $this->addBehavior('Search.Search');
